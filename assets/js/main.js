@@ -573,15 +573,15 @@ new Swiper('.home-clients-slider', {
     },
     480: {
       slidesPerView: 1,
-      spaceBetween: 60
+      spaceBetween: 20
     },
     640: {
       slidesPerView: 2,
-      spaceBetween: 80
+      spaceBetween: 20
     },
     992: {
       slidesPerView: 3,
-      spaceBetween: 40,
+      spaceBetween: 20,
     },
     1200: {
       slidesPerView: 4,

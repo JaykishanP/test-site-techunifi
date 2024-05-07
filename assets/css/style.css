@@ -2448,6 +2448,9 @@ section.ticket-form {
     top: 12%;
     right: 24%;
    }
+   .home-swipe-img-text {
+    font-size: 12px; 
+  }
 
 }
 
@@ -2595,7 +2598,9 @@ section.ticket-form {
   top: 17%;
   right: 33%;
 }
-
+.home-swipe-img-text {
+  font-size: 12px;
+}
 
 }
 
@@ -2650,6 +2655,13 @@ section.ticket-form {
   bottom: -15px;
   left: 44%;
 }
+.home-swipe-img-text {
+  font-size: 14px;
+}
+.home-clients-slider .swiper-button-next, .home-clients-slider .swiper-button-prev{
+  display: block;
+  color: var(--orange);
+}
 
 }
 
@@ -2658,6 +2670,10 @@ section.ticket-form {
   .sale-text {
     top: 19%;
     right: 45%;
+  }
+  .home-clients-slider .swiper-button-next, .home-clients-slider .swiper-button-prev{
+    display: block;
+    color: var(--orange);
   }
 }
 
