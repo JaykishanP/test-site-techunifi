@@ -580,11 +580,18 @@ new Swiper('.home-clients-slider', {
       spaceBetween: 80
     },
     992: {
-      slidesPerView: 3,
+      slidesPerView: 2,
       centeredSlides: true,
       spaceBetween: 40,
-      slidesOffsetBefore: -40,
-      slidesOffsetAfter: -40
+      // slidesOffsetBefore: -40,
+      // slidesOffsetAfter: -40
+    },
+    1200: {
+      slidesPerView: 4,
+      centeredSlides: true,
+      spaceBetween: 40,
+      // slidesOffsetBefore: -40,
+      // slidesOffsetAfter: -40
     }
   }
 });
