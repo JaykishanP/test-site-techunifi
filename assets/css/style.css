@@ -469,9 +469,14 @@ section {
   margin: 0 auto;
 }
 
+.event-anchor {
+  margin: 30px 0;
+  display: block;
+}
+
 .event-section{
   position: relative;
-  padding: 100px 0 100px 0;
+  padding: 20px 0;
 }
 
 .event-close {
@@ -492,12 +497,13 @@ section {
 
 .sale-text {
   position: absolute;
-  top: 31%;
+  top: 18%;
   right: 76px;
 }
 
 .sale-text h1 {
-  font-size: 36px;
+  font-size: 32px;
+  line-height: 34px;
   color: #34465A;
   letter-spacing: 1.5px;
   margin: 0;
@@ -505,8 +511,8 @@ section {
 
 .sale-text p{
   margin: 0;
-  font-size: 22px;
-  line-height: 26px;
+  font-size: 20px;
+  line-height: 22px;
   letter-spacing: 0.8px;
 }
 
@@ -2134,7 +2140,11 @@ section.sub-tab-section {
     padding: 45px 0 0 0;
   }
   .event-section{
-    padding: 0px 0 50px 0;
+    /* padding: 0px 0 50px 0; */
+  }
+  .event-anchor {
+    margin: 0 0 50px 0;
+    display: block;
   }
   .event-close {
     right: 21px;
@@ -2142,8 +2152,8 @@ section.sub-tab-section {
     font-size: 15px;
   }
   .sale-text {
-    top: 8%;
-    right: 18%;
+    top: 14%;
+    right: 16%;
   }
   .sale-text h1 {
     font-size: 21px;
@@ -2423,8 +2433,8 @@ section.ticket-form {
 
 @media only screen and (min-width: 390px) and (max-width: 450px){
   .sale-text {
-    top: 12%;
-    right: 19%;
+    top: 15%;
+    right: 18%;
   }
 }
 
@@ -2597,7 +2607,7 @@ section.ticket-form {
   font-size: 20px;
 }
 .sale-text {
-  top: 27%;
+  top: 17%;
   right: 33%;
 }
 
@@ -2619,8 +2629,8 @@ section.ticket-form {
   }
 
   .sale-text {
-    top: 26%;
-    right: 37%;
+    top: 19%;
+    right: 35%;
   }
 
   .event-section .hero-banner-img {
@@ -2661,6 +2671,25 @@ section.ticket-form {
   left: 44%;
 }
 
+}
+
+/* 992 - 1023 */
+@media only screen and (min-width: 992px) and (max-width: 1023.9px){
+  .sale-text {
+    top: 19%;
+    right: 45%;
+  }
+}
+
+/* 1200 */
+@media only screen and (min-width: 1200px) and (max-width: 1400.9px){
+  .sale-text {
+    top: 16%;
+  }
+  .sale-text h1 {
+    font-size: 28px;
+    line-height: 29px;
+  }
 }
 
 /* Homeslider */
