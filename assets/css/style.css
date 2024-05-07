@@ -943,7 +943,7 @@ input[type="submit"] {
   background-color: var(--black);
   position: absolute;
   bottom: -20px;
-  left: 2%;
+  left: 6.4px;
   z-index: -1;
 }
 
@@ -1386,7 +1386,7 @@ section#hero.submit-banner {
   background-color: var(--black);
   position: absolute;
   bottom: -20px;
-  left: 1%;
+  left: 0%;
   z-index: -1;
 }
 
@@ -2786,3 +2786,25 @@ section.ticket-form {
 @media only screen and (min-width: 576px) and (max-width: 767px){
   
 }
+
+/* ==== min width - 1200 ==== */
+
+@media screen and (min-width: 1200px) {
+  .home-clients-slider .swiper-slide {
+    width: calc(40% - 34px) !important; 
+  }
+
+  .home-clients-slider .swiper-slide.swiper-slide-prev,
+  .home-clients-slider .swiper-slide.swiper-slide-next {
+    width: calc(40% - 34px) !important;
+  }
+
+  .home-clients-slider .swiper-slide.swiper-slide-prev {
+    margin-left: 0; 
+  }
+
+  .home-clients-slider .swiper-slide.swiper-slide-next {
+    margin-right: 0; 
+  }
+}
+
