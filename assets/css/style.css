@@ -1523,8 +1523,14 @@ section.ticket-form {
   color: #2A7AFF;
 }
 
+.dashboardPage .form-submit-tooltip span{
+  color: var(--black);
+  padding: 0 0 0 10px;
+}
+
 .submitPage .tooltip .tooltip-inner,
-.homePage .tooltip .tooltip-inner {
+.homePage .tooltip .tooltip-inner,
+.dashboardPage .tooltip .tooltip-inner {
   background-color: #fff;
   color: var(--black);
   box-shadow: 0 1px 10px 0 rgb(0 0 0 / .2),0 6px 9px 0 rgb(0 0 0 / .1);
@@ -1540,9 +1546,15 @@ max-width: 400px;
   position: relative;
   border-radius: 15px;
 }
+.dashboardPage .tooltip .tooltip-inner{
+  border: 1px solid #0662BB;
+  padding: 5px 10px 5px 36px;
+  font-weight: 500;
+}
 
 .submitPage .tooltip .tooltip-inner::before,
-.homePage .tooltip .tooltip-inner::before {
+.homePage .tooltip .tooltip-inner::before,
+.dashboardPage .tooltip .tooltip-inner::before {
   content: '?';
   position: absolute;
   top: 18px;
@@ -1553,12 +1565,20 @@ max-width: 400px;
   padding: 0 0 21px 0;
   border-radius: 100%;
   color: #2A7AFF;
-  background: white;
+  background: #fff;
   border: thin solid #2A7AFF;
   vertical-align: middle;
   font-weight: bold;
   text-align: center;
   display: inline-block;
+}
+
+.dashboardPage .tooltip .tooltip-inner::before{
+  color: #0662BB;
+  background: #fff;
+  border: thin solid #0662BB;
+  top: 5px;
+  left: 8px;
 }
 
 .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before, .bs-tooltip-start .tooltip-arrow::before{
@@ -2068,7 +2088,8 @@ span.bread-inner {
 @media only screen and (max-width: 767.9px){
 
   .submitPage .tooltip .tooltip-inner,
-  .homePage .tooltip .tooltip-inner {
+  .homePage .tooltip .tooltip-inner,
+  .dashboardPage .tooltip .tooltip-inner {
     max-width: 300px;
   }
 
@@ -2459,7 +2480,8 @@ section.ticket-form {
 @media only screen and (min-width: 768px) and (max-width: 1023px){
 
   .submitPage .tooltip .tooltip-inner,
-  .homePage .tooltip .tooltip-inner{
+  .homePage .tooltip .tooltip-inner,
+  .dashboardPage .tooltip .tooltip-inner{
     max-width: 700px;
     margin: 0 0 0 20px;
   }
