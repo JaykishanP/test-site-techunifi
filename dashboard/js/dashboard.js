@@ -1,7 +1,5 @@
 
 /* ===== Dashboard Tab ===== */
-
-
 function openDash(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("dash-tabcontent");
@@ -24,3 +22,13 @@ function openDash(evt, cityName) {
         // console.error("Element with ID 'defaultOpen' not found.");
     }
   });
+
+/* ==== Dashboard Tab Fixed ==== */
+window.addEventListener('scroll', function() {
+  var tabDashFixed = document.querySelector('.tab-dash-fixed');
+  if (window.scrollY >= 50) {
+    tabDashFixed.classList.add('make-fixed-dash');
+  } else {
+    tabDashFixed.classList.remove('make-fixed-dash');
+  }
+});
