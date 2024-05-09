@@ -997,7 +997,104 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 })
 
 
-/* ==== Mobile Overlay Slider ==== */
+/* ==== Product Accordion Approach ==== */
+/* ==== Card Width ==== */
+
+document.addEventListener('DOMContentLoaded', function() {
+  const swiperSlides = document.querySelectorAll('.swiper-slide');
+  const cardClicks = document.querySelectorAll('.card-click');
+  const cardMores = document.querySelectorAll('.card-more');
+
+  // Function to set width and activate card-more
+  function activateCardMore(slide) {
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 1024) {
+      slide.style.width = '600px';
+    }
+    const cardMore = slide.querySelector('.card-more');
+    if (cardMore) {
+      cardMore.classList.add('active');
+    }
+  }
+
+  // Function to hide card-prod-heading for the first card
+  function hideFirstCardProdHeading() {
+    const firstCard = swiperSlides[0];
+    const cardProdHeading = firstCard.querySelector('.card-click .card-prod-heading');
+    if (cardProdHeading) {
+      cardProdHeading.style.display = 'none';
+    }
+  }
+
+  // Reset card-prod-heading
+  function resetCardProdHeading() {
+    const cardProdHeadings = document.querySelectorAll('.card-click .card-prod-heading');
+    cardProdHeadings.forEach(function(heading) {
+      heading.style.display = 'block';
+    });
+  }
+
+  // Set width and activate card-more for the first slide by default
+  activateCardMore(swiperSlides[0]);
+  hideFirstCardProdHeading(); // Hide card-prod-heading for the first card
+
+  // Handle click on any card-click
+  cardClicks.forEach(function(card, index) {
+    card.addEventListener('click', function() {
+      // Find the nearest swiper-slide parent
+      const swiperSlide = card.closest('.swiper-slide');
+
+      // Reset all slides and hide all card-mores
+      swiperSlides.forEach(function(slide) {
+        slide.style.width = ''; // Reset width
+        const cardMore = slide.querySelector('.card-more');
+        if (cardMore) {
+          cardMore.classList.remove('active'); // Hide card-more
+        }
+      });
+
+      // Reset card-prod-heading
+      resetCardProdHeading();
+
+      // Set width to 600px and show card-more for the clicked one if screen width is at least 768px
+      if (swiperSlide) {
+        activateCardMore(swiperSlide);
+      }
+
+      // Hide .card-prod-heading when a .card-click is clicked
+      const cardProdHeading = card.closest('.prod-slide-card').querySelector('.card-click .card-prod-heading');
+      if (cardProdHeading) {
+        cardProdHeading.style.display = 'none';
+      }
+    });
+  });
+
+  // Handle click on any card-more
+  cardMores.forEach(function(cardMore) {
+    cardMore.addEventListener('click', function(event) {
+      const swiperSlide = cardMore.closest('.swiper-slide');
+      if (swiperSlide) {
+        swiperSlide.style.width = ''; // Reset width
+        cardMore.classList.remove('active'); // Hide card-more
+        const cardProdHeading = swiperSlide.querySelector('.card-prod-heading');
+        if (cardProdHeading) {
+          cardProdHeading.style.display = 'block'; // Show card-prod-heading
+        }
+      }
+      event.stopPropagation(); // Prevent click event from propagating to card-click
+    });
+  });
+});
+
+
+
+/* ==== Card link hide ==== */
+
+// $(document).ready(function() {
+//   $('.card-more.active').each(function() {
+//       $(this).closest('.prod-slide-card').find('.card-click .card-prod-heading').hide();
+//   });
+// });
 
 
 

@@ -1812,6 +1812,11 @@ section.product-tab-section {
   width: 0;
 }
 
+.coming-soon .submit-head-para .prod-heading h3::before {
+  height: 0;
+  left: 0;
+}
+
 .coming-soon .tabs-para {
   max-width: 52%;
   margin: 0 auto 20px;
@@ -2072,6 +2077,7 @@ span.bread-inner {
 }
 .prod-slide-card .rows{
   display: flex;
+  gap: 15px;
 }
 .prod-slide-card .card-prod-heading span {
   display: block;
@@ -2079,6 +2085,36 @@ span.bread-inner {
   font-size: 21px;
   padding: 0;
   margin: 0;
+}
+.prod-slide-card .card-prod-heading.sub-prod-card {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.sub-card-text {
+  font-size: 16px;
+  padding: 10px 0;
+}
+.card-get-link {
+  font-weight: 600;
+  background-color: var(--black);
+  color: var(--gray);
+  border-radius: var(--border-radius);
+  border: var(--border);
+  display: block;
+  max-width: fit-content;
+  margin: 5px 0 10px 0;
+}
+.card-get-link:hover{
+  color: var(--black);
+  background-color: #fff;
+  border: var(--border);
+}
+.tele-clocks .container-inner .slider {
+  height: calc(316em/13);
+}
+.card-click {
+  margin: 40px 0 0 0;
 }
 
 
@@ -2108,6 +2144,9 @@ span.bread-inner {
     height: unset;
    }
 
+   .tele-clocks .container-inner .slider {
+      height: unset;
+   }
 
   p.social {
     margin: unset;
@@ -2500,6 +2539,14 @@ section.ticket-form {
 
    .container-inner .slider__listItem{
     height: auto;
+   }
+
+   .tele-clocks .container-inner .slider {
+     height: unset;
+   }
+
+   .tele-clocks .container-inner .slider__listItem{
+     height: fit-content;
    }
 
   .what-we-do p {
