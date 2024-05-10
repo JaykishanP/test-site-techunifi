@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Section</title>
+</head>
+<body>
+    <div id="newsSection"></div>
+
+    <script>
+        function fetchNews() {
+            fetch('news.json') // Replace 'news.json' with your JSON file or RSS feed URL
+                .then(response => response.json())
+                .then(data => displayNews(data))
+                .catch(error => console.error('Error fetching news:', error));
+        }
+
+        function displayNews(newsData) {
+            const newsSection = document.getElementById('newsSection');
+            newsSection.innerHTML = ''; // Clear existing news articles
+
+            newsData.forEach(article => {
+                const articleElement = document.createElement('div');
+                articleElement.innerHTML = `
+                    <h2>${article.title}</h2>
+                    <p>${article.content}</p>
+                    <p>Published on: ${article.date}</p>
+                `;
+                newsSection.appendChild(articleElement);
+            });
+        }
+
+        // Fetch news on page load and refresh every 10 minutes
+        fetchNews();
+        setInterval(fetchNews, 600000); // 10 minutes in milliseconds
+    </script>
+</body>
+</html>

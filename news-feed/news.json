@@ -1,0 +1,18 @@
+[
+    {
+      "title": "Example News Article 1",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et massa non mauris aliquam facilisis. Proin efficitur, nisl quis rutrum ultrices, eros leo tincidunt dui, a eleifend est nunc at libero.",
+      "date": "2024-05-10"
+    },
+    {
+      "title": "Example News Article 2",
+      "content": "Sed nec luctus justo. Ut id diam non urna laoreet vulputate. Nulla a purus vehicula, tempus ante id, laoreet sem. Suspendisse potenti.",
+      "date": "2024-05-09"
+    },
+    {
+      "title": "Example News Article 3",
+      "content": "Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.",
+      "date": "2024-05-08"
+    }
+  ]
+  
