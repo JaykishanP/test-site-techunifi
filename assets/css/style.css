@@ -1881,7 +1881,7 @@ span.bread-inner {
 }
 
 .container-inner .slider {
-   margin: 0 auto 10px 0;
+   margin: 0 auto 10px 5px;
    width: calc(300em/16);
    height: calc(314em/16);
    overflow: visible;
@@ -2111,10 +2111,14 @@ span.bread-inner {
   border: var(--border);
 }
 .tele-clocks .container-inner .slider {
-  height: calc(316em/13);
+  height: calc(328em/15);
 }
-.card-click {
-  margin: 40px 0 0 0;
+.prod-slide-card .card-prod-heading span.hidden {
+  display: none;
+}
+
+.swiper-slide {
+  transition: all 0.5s ease;
 }
 
 
