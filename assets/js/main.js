@@ -999,7 +999,6 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 /* ==== Product Accordion Approach ==== */
 /* ==== Card Width ==== */
-
 document.addEventListener('DOMContentLoaded', function() {
   const swiperSlides = document.querySelectorAll('.swiper-slide');
   const cardClicks = document.querySelectorAll('.card-click');
@@ -1009,17 +1008,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const screenWidth = window.innerWidth;
     const cardMore = slide.querySelector('.card-more');
     const cardChevRight = slide.querySelector('.card-click .card-chev-right');
-    if (cardMore && cardChevRight) {
+    const cardCollapseContent = slide.querySelector('.card-collapse-content');
+
+    if (cardMore && cardChevRight && cardCollapseContent) {
       if (showDetails) {
         if (screenWidth >= 1024) {
           slide.style.width = '600px'; // Set width to show card-more
         }
         cardMore.classList.add('active'); // Show card-more
         cardChevRight.classList.add('hidden'); // Hide card-chev-right
+        cardCollapseContent.style.maxHeight = cardCollapseContent.scrollHeight + 'px'; // Expand content
       } else {
         slide.style.width = ''; // Reset width
         cardMore.classList.remove('active'); // Hide card-more
         cardChevRight.classList.remove('hidden'); // Show card-chev-right
+        cardCollapseContent.style.maxHeight = null; // Collapse content
       }
     }
   }

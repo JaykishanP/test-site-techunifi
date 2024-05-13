@@ -2095,6 +2095,10 @@ span.bread-inner {
   font-size: 16px;
   padding: 10px 0;
 }
+ul.sub-card-text {
+  list-style: disc;
+  padding: 10px 0 10px 16px;
+}
 .card-get-link {
   font-weight: 600;
   background-color: var(--black);
@@ -2116,10 +2120,21 @@ span.bread-inner {
 .prod-slide-card .card-prod-heading span.hidden {
   display: none;
 }
-
-.card-more {
-  transition: all 0.5s ease;
+.swiper-slide {
+  transition: width 0.7s ease; /* Smooth transition for width change */
 }
+
+.card-collapse-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1.3s ease; 
+}
+
+.card-collapse-content.active {
+  max-height: 1000px;
+}
+
+
 
 
 /* ============ Responsive ==============*/
