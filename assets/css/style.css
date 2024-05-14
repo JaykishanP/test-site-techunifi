@@ -2614,8 +2614,8 @@ section.ticket-form {
    }
 
    .tele-clocks .container-inner .slider__listItem,
-   .tele-cordless-phone .container-inner .slider,
-   .tele-corded-phone .container-inner .slider{
+   .tele-cordless-phone .container-inner .slider__listItem,
+   .tele-corded-phone .container-inner .slider__listItem{
      height: fit-content;
    }
 
