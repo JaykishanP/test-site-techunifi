@@ -2173,11 +2173,11 @@ a.card-spec-sheet {
 }
 
 .tele-corded-phone .container-inner .slider {
-  height: calc(407em/15);
+  height: calc(390em/15);
 }
 
 .tele-cordless-phone .container-inner .slider {
-  height: calc(390em/15);
+  height: calc(370em/15);
 }
 
 
