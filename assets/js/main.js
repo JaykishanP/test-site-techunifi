@@ -405,6 +405,38 @@ function openTab(evt, tabName) {
   }
 }
 
+/* ==== Home to ClientList - About Page ==== */
+document.addEventListener('DOMContentLoaded', function() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var tabParam = urlParams.get('tab');
+  if (tabParam === 'clientList') {
+    openTab(null, 'tab4'); // Assuming 'tab2' is the ID of the News tab
+    var tabLinks = document.getElementsByClassName('tablinks');
+    for (var i = 0; i < tabLinks.length; i++) {
+      if (tabLinks[i].getAttribute('data-tab') === 'tab4') {
+        tabLinks[i].classList.add('active');
+        break; // Stop looping once the News tab link is found
+      }
+    }
+  }
+});
+
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].classList.remove("active"); // Remove active class from all tab links
+  }
+  document.getElementById(tabName).style.display = "block";
+  if (evt) {
+    evt.currentTarget.classList.add("active"); // Add active class to the clicked tab link
+  }
+}
+
 
 /* === Scroll to about top === */
 //scroll to top on tab click

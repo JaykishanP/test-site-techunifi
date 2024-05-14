@@ -97,7 +97,7 @@ img{
 
 .back-to-top:hover {
   border: var(--border);
-  background-color: var(--black);
+  background-color: var(--blue);
 }
 
 .back-to-top:hover i{
@@ -206,7 +206,7 @@ section {
 
 
 .menu-bar .nav-link.raise-btn {
-  background-color: var(--black);
+  background-color: var(--blue);
   padding: 10px 20px;
   border-radius: 100px;
   color: #fff;
@@ -337,7 +337,7 @@ section {
 @media (max-width: 993px) {
   .nav-end .raise-btn {
     display: block;
-    background-color: var(--black);
+    background-color: var(--blue);
     padding: 6px 12px;
     border-radius: 100px;
     font-size: 12px;
@@ -527,7 +527,7 @@ section {
 }
 
 .sale-text a:hover{
-  background-color: var(--black);
+  background-color: var(--blue);
   color: var(--gray);
 }
 
@@ -582,7 +582,7 @@ section {
 
 .hero-text a:hover {
   color: var(--gray);
-  background-color: var(--black);
+  background-color: var(--blue);
 }
 
 .hero-heading h3 {
@@ -602,7 +602,7 @@ section {
   height: 1px;
   width: 106px;
   display: inline-block;
-  background-color: var(--black);
+  background-color: var(--blue);
   position: absolute;
   bottom: -20px;
   left: 1%;
@@ -732,7 +732,7 @@ section {
 
 .prod-para a:hover, .how-work-text a:hover {
   color: var(--gray);
-  background-color: var(--black);
+  background-color: var(--blue);
 }
 
 section#product-section {
@@ -852,7 +852,7 @@ section#home-clients {
 }
 
 .home-clients .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--black);
+  background-color: var(--blue);
 }
 
 .home-clients .swiper-slide img {
@@ -880,6 +880,35 @@ section#home-clients {
 .home-clients-slider .swiper-button-next, 
 .home-clients-slider .swiper-button-prev{
   display: none;
+}
+
+.client-button-home {
+  margin: 50px 0 30px;
+}
+
+.client-button-home a{
+  background-color: var(--blue);
+  color: var(--gray);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  margin: 0 auto 50px;
+  display: block;
+  max-width: fit-content;
+  padding: 10px 50px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.client-button-home a:hover{
+  background-color: var(--gray);
+  color: var(--black);
+}
+.client-button-home span{
+    max-width: 500px;
+    background-color: var(--blue);
+    display: block;
+    height: 4px;
+    margin: 0 auto;
+    border-radius: 50px;
 }
 
 .form-group {
@@ -923,7 +952,7 @@ input[type="submit"] {
 }
 
 #contact-submit button {
-  background-color: var(--black);
+  background-color: var(--blue);
   color: var(--gray);
   border: 1px solid var(--black);
   border-radius: var(--border-radius);
@@ -940,7 +969,7 @@ input[type="submit"] {
   height: 1px;
   width: 106px;
   display: inline-block;
-  background-color: var(--black);
+  background-color: var(--blue);
   position: absolute;
   bottom: -20px;
   left: 6.4px;
@@ -1012,7 +1041,7 @@ footer.footer {
 }
 
 .email-subscribe button {
-  background-color: var(--black);
+  background-color: var(--blue);
   color: var(--gray);
   border-radius: var(--border-radius);
   border: var(--border);
@@ -1053,7 +1082,7 @@ p.social {
   height: 40px;
   border-radius: 50%;
   margin: 5px 5px;
-  background: var(--black);
+  background: var(--blue);
   position: relative;
   text-align: center;
   transition: 0.3s background ease;
@@ -1167,7 +1196,7 @@ ul.list-unstyled.connect-details {
   height: 29px;
   width: 6px;
   display: inline-block;
-  background-color: var(--black);
+  background-color: var(--blue);
   position: absolute;
   right: 0;
   transform-origin: bottom right;
@@ -1179,7 +1208,7 @@ ul.list-unstyled.connect-details {
   height: 0.8px;
   width: 106px;
   display: inline-block;
-  background-color: var(--black);
+  background-color: var(--blue);
   position: absolute;
   bottom: -20px;
   left: 1%;
@@ -1284,7 +1313,7 @@ ul.list-unstyled.connect-details {
   padding: 0 15px;
   
   &.swiper-slide-active {
-    color: var(--black);
+    color: var(--blue);
     /* transform: scale(1.4); */
     z-index: 2;
     width: 400px !important;
@@ -1383,7 +1412,7 @@ section#hero.submit-banner {
   height: 1px;
   width: 106px;
   display: inline-block;
-  background-color: var(--black);
+  background-color: var(--blue);
   position: absolute;
   bottom: -20px;
   left: 0%;
@@ -1481,7 +1510,7 @@ section.ticket-form {
 .sub-tab-section .tab button.active {
   border: 1px solid var(--black);
   border-radius: 50px;
-  background-color: var(--black);
+  background-color: var(--blue);
   color: var(--gray);
 }
 
@@ -1635,7 +1664,7 @@ max-width: 400px;
   border: var(--border);
   border-color: var(--black) !important;
   border-radius: var(--border-radius);
-  background-color: var(--black);
+  background-color: var(--blue);
   color: var(--gray);
 }
 
@@ -1778,7 +1807,7 @@ section.product-tab-section {
 }
 .sub-Inquiry {
   display: block;
-  background-color: var(--black);
+  background-color: var(--blue);
   padding: 10px 20px;
   border-radius: 100px;
   color: #fff;
@@ -2097,11 +2126,11 @@ span.bread-inner {
 }
 ul.sub-card-text {
   list-style: disc;
-  padding: 10px 0 10px 16px;
+  padding: 10px 0 0 16px;
 }
 .card-get-link {
   font-weight: 600;
-  background-color: var(--black);
+  background-color: var(--blue);
   color: var(--gray);
   border-radius: var(--border-radius);
   border: var(--border);
@@ -2134,6 +2163,22 @@ ul.sub-card-text {
   max-height: 1000px;
 }
 
+a.card-spec-sheet {
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 0;
+  display: inline-block;
+  margin: 0 0 10px 0;
+  color: #2A7AFF;
+}
+
+.tele-corded-phone .container-inner .slider {
+  height: calc(407em/15);
+}
+
+.tele-cordless-phone .container-inner .slider {
+  height: calc(390em/15);
+}
 
 
 
@@ -2163,7 +2208,9 @@ ul.sub-card-text {
     height: unset;
    }
 
-   .tele-clocks .container-inner .slider {
+   .tele-clocks .container-inner .slider,
+   .tele-cordless-phone .container-inner .slider,
+   .tele-corded-phone .container-inner .slider {
       height: unset;
    }
 
@@ -2560,11 +2607,15 @@ section.ticket-form {
     height: auto;
    }
 
-   .tele-clocks .container-inner .slider {
+   .tele-clocks .container-inner .slider,
+   .tele-cordless-phone .container-inner .slider,
+   .tele-corded-phone .container-inner .slider {
      height: unset;
    }
 
-   .tele-clocks .container-inner .slider__listItem{
+   .tele-clocks .container-inner .slider__listItem,
+   .tele-cordless-phone .container-inner .slider,
+   .tele-corded-phone .container-inner .slider{
      height: fit-content;
    }
 
