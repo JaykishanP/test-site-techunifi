@@ -2100,6 +2100,7 @@ span.bread-inner {
 /* Product Slider Accordion */
 .card-more {
   display: none; 
+  transition: max-height 0.7s ease;
 }
 .card-more.active {
   display: block;
@@ -2149,20 +2150,6 @@ ul.sub-card-text {
 .prod-slide-card .card-prod-heading span.hidden {
   display: none;
 }
-.swiper-slide {
-  transition: width 0.7s ease; /* Smooth transition for width change */
-}
-
-.card-collapse-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 1.3s ease; 
-}
-
-.card-collapse-content.active {
-  max-height: 1000px;
-}
-
 a.card-spec-sheet {
   font-weight: 500;
   letter-spacing: 1px;
@@ -2171,21 +2158,76 @@ a.card-spec-sheet {
   margin: 0 0 10px 0;
   color: #2A7AFF;
 }
-
 .tele-corded-phone .container-inner .slider {
   height: calc(390em/15);
 }
-
 .tele-cordless-phone .container-inner .slider {
   height: calc(370em/15);
 }
 
+.swiper-slide {
+  transition: width 0.7s ease; /* Smooth transition for width change */
+}
+.card-collapse-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1.3s ease;
+}
+ 
+.card-collapse-content.active {
+  max-height: 1000px;
+}
+/* home clients */
+.home-clients-section {
+  padding: 0 0 50px 0;
+}
+.clients-home-img img {
+  max-width: 137px;
+  margin: 0 auto;
+}
+.clients-home-img {
+  display: flex;
+  align-items: center;
+  gap: 65px;
+  justify-content: center;
+  max-width: 70%;
+  margin: 0 auto;
+}
+.home-clients-section .section-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0 50px 0;
+}
+span.hr-rule {
+  max-width: 500px;
+  background-color: var(--blue);
+  display: block;
+  height: 4px;
+  margin: 0 auto;
+  border-radius: 50px;
+}
 
 
 /* ============ Responsive ==============*/
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
+
+  .clients-home-img {
+    display: unset;
+    max-width: unset;
+    margin: unset;
+  }
+  .clients-home-img img {
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 20px 0;
+    display: block;
+  }
+  .home-clients-section .section-container {
+    margin: 30px 0 0 0;
+  }
 
   .submitPage .tooltip .tooltip-inner,
   .homePage .tooltip .tooltip-inner,

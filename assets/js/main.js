@@ -1031,17 +1031,18 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 /* ==== Product Accordion Approach ==== */
 /* ==== Card Width ==== */
+
 document.addEventListener('DOMContentLoaded', function() {
   const swiperSlides = document.querySelectorAll('.swiper-slide');
   const cardClicks = document.querySelectorAll('.card-click');
-
+ 
   // Function to reset width and hide/show card-more and card-chev-right
   function toggleCardDetails(slide, showDetails) {
     const screenWidth = window.innerWidth;
     const cardMore = slide.querySelector('.card-more');
     const cardChevRight = slide.querySelector('.card-click .card-chev-right');
     const cardCollapseContent = slide.querySelector('.card-collapse-content');
-
+ 
     if (cardMore && cardChevRight && cardCollapseContent) {
       if (showDetails) {
         if (screenWidth >= 1024) {
@@ -1058,28 +1059,28 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   }
-
+ 
   // Set width and activate card-more for the first slide by default
   toggleCardDetails(swiperSlides[0], true);
-
+ 
   // Handle click on any card-click
   cardClicks.forEach(function(card) {
     card.addEventListener('click', function() {
       // Find the nearest swiper-slide parent
       const swiperSlide = card.closest('.swiper-slide');
-
+ 
       // Reset all slides and hide all card-mores
       swiperSlides.forEach(function(slide) {
         toggleCardDetails(slide, false);
       });
-
+ 
       // Show/hide card-more and reset width for the clicked one
       if (swiperSlide) {
         toggleCardDetails(swiperSlide, true);
       }
     });
   });
-
+ 
   // Handle click on card-more to close it
   swiperSlides.forEach(function(slide) {
     const cardMore = slide.querySelector('.card-more');
@@ -1092,7 +1093,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-
+ 
 
 /* ==== Event Close ==== */
 
