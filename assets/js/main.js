@@ -1095,6 +1095,73 @@ document.addEventListener('DOMContentLoaded', function() {
 });
  
 
+/* ===== New How Works ===== */
+// Function to handle scroll event
+function handleScroll() {
+  // Get the scroll position
+  var scrollPosition = window.scrollY;
+  
+  // Get references to the sections
+  var firstSection = document.querySelector('.first-works');
+  var secondSection = document.querySelector('.second-works');
+  var thirdSection = document.querySelector('.third-works');
+  var fourthSection = document.querySelector('.fourth-works');
+  var fifthSection = document.querySelector('.fifth-works');
+
+  // Define the scroll positions for each section
+  var secondSectionScrollPosition = secondSection.offsetTop;
+  var thirdSectionScrollPosition = thirdSection.offsetTop;
+  var fourthSectionScrollPosition = fourthSection.offsetTop;
+  var fifthSectionScrollPosition = fifthSection.offsetTop;
+
+  // Check the scroll position and apply styles accordingly
+  if (scrollPosition < secondSectionScrollPosition) {
+      applyStyles(firstSection, true);
+      applyStyles(secondSection, false);
+      applyStyles(thirdSection, false);
+      applyStyles(fourthSection, false);
+      applyStyles(fifthSection, false);
+  } else if (scrollPosition < thirdSectionScrollPosition) {
+      applyStyles(firstSection, false);
+      applyStyles(secondSection, true);
+      applyStyles(thirdSection, false);
+      applyStyles(fourthSection, false);
+      applyStyles(fifthSection, false);
+  } else if (scrollPosition < fourthSectionScrollPosition) {
+      applyStyles(firstSection, false);
+      applyStyles(secondSection, false);
+      applyStyles(thirdSection, true);
+      applyStyles(fourthSection, false);
+      applyStyles(fifthSection, false);
+  } else if (scrollPosition < fifthSectionScrollPosition) {
+      applyStyles(firstSection, false);
+      applyStyles(secondSection, false);
+      applyStyles(thirdSection, false);
+      applyStyles(fourthSection, true);
+      applyStyles(fifthSection, false);
+  } else {
+      applyStyles(firstSection, false);
+      applyStyles(secondSection, false);
+      applyStyles(thirdSection, false);
+      applyStyles(fourthSection, false);
+      applyStyles(fifthSection, true);
+  }
+}
+
+// Function to apply styles to a section
+function applyStyles(section, isActive) {
+  if (isActive) {
+      section.classList.add('active');
+  } else {
+      section.classList.remove('active');
+  }
+}
+
+// Add scroll event listener
+window.addEventListener('scroll', handleScroll);
+
+
+
 /* ==== Event Close ==== */
 
 // document.addEventListener('DOMContentLoaded', function() {

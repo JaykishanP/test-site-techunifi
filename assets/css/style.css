@@ -2207,6 +2207,47 @@ span.hr-rule {
   margin: 0 auto;
   border-radius: 50px;
 }
+/* New how Works */
+.new-how-main {
+  padding: 20px 0;
+}
+.new-how-main h1 {
+  font-size: 90px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.new-how-main h5{
+  text-align: center;
+}
+/* Initially hide all sections */
+/* Style for the active h1 */
+.new-how-works .active h1 {
+  color: orange;
+}
+
+/* Style for the inactive h1 */
+.new-how-works h1 {
+  color: black;
+}
+
+/* Progressive styling for inactive h1 */
+.new-how-works .active ~ div h1 {
+  color: grey;
+}
+
+/* Hide images and paragraphs in inactive sections */
+.new-how-works div:not(.active) img,
+.new-how-works div:not(.active) p {
+  display: none;
+}
+
+/* Only show the default section */
+.first-works {
+  display: flex;
+}
+
+
 
 
 /* ============ Responsive ==============*/
