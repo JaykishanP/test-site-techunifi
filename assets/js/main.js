@@ -1083,7 +1083,7 @@ document.addEventListener('DOMContentLoaded', function() {
  
   // Handle click on card-more to close it
   swiperSlides.forEach(function(slide) {
-    const cardMore = slide.querySelector('.card-more');
+    const cardMore = slide.querySelector('.card-more .card-chev-right');
     if (cardMore) {
       cardMore.addEventListener('click', function(event) {
         event.stopPropagation(); // Prevent click event from bubbling up to the card-click
