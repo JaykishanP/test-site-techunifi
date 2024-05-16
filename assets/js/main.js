@@ -1096,70 +1096,64 @@ document.addEventListener('DOMContentLoaded', function() {
  
 
 /* ===== New How Works ===== */
-// Function to handle scroll event
-function handleScroll() {
-  // Get the scroll position
-  var scrollPosition = window.scrollY;
-  
-  // Get references to the sections
-  var firstSection = document.querySelector('.first-works');
-  var secondSection = document.querySelector('.second-works');
-  var thirdSection = document.querySelector('.third-works');
-  var fourthSection = document.querySelector('.fourth-works');
-  var fifthSection = document.querySelector('.fifth-works');
+// =======
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.new-how-main');
 
-  // Define the scroll positions for each section
-  var secondSectionScrollPosition = secondSection.offsetTop;
-  var thirdSectionScrollPosition = thirdSection.offsetTop;
-  var fourthSectionScrollPosition = fourthSection.offsetTop;
-  var fifthSectionScrollPosition = fifthSection.offsetTop;
+  sections.forEach(section => {
+    const imgElement = section.querySelector('.col-md-5 img');
+    const pElement = section.querySelector('.col-md-5 p');
+    const h1Element = section.querySelector('h1');
 
-  // Check the scroll position and apply styles accordingly
-  if (scrollPosition < secondSectionScrollPosition) {
-      applyStyles(firstSection, true);
-      applyStyles(secondSection, false);
-      applyStyles(thirdSection, false);
-      applyStyles(fourthSection, false);
-      applyStyles(fifthSection, false);
-  } else if (scrollPosition < thirdSectionScrollPosition) {
-      applyStyles(firstSection, false);
-      applyStyles(secondSection, true);
-      applyStyles(thirdSection, false);
-      applyStyles(fourthSection, false);
-      applyStyles(fifthSection, false);
-  } else if (scrollPosition < fourthSectionScrollPosition) {
-      applyStyles(firstSection, false);
-      applyStyles(secondSection, false);
-      applyStyles(thirdSection, true);
-      applyStyles(fourthSection, false);
-      applyStyles(fifthSection, false);
-  } else if (scrollPosition < fifthSectionScrollPosition) {
-      applyStyles(firstSection, false);
-      applyStyles(secondSection, false);
-      applyStyles(thirdSection, false);
-      applyStyles(fourthSection, true);
-      applyStyles(fifthSection, false);
-  } else {
-      applyStyles(firstSection, false);
-      applyStyles(secondSection, false);
-      applyStyles(thirdSection, false);
-      applyStyles(fourthSection, false);
-      applyStyles(fifthSection, true);
-  }
-}
+    section.addEventListener('mouseover', () => {
+      imgElement.style.opacity = '1';
+      pElement.style.opacity = '1';
+      h1Element.style.color = '#EB6D47';
+      h1Element.style.opacity = '1'; 
+    });
 
-// Function to apply styles to a section
-function applyStyles(section, isActive) {
-  if (isActive) {
-      section.classList.add('active');
-  } else {
-      section.classList.remove('active');
-  }
-}
+    section.addEventListener('mouseout', () => {
+      imgElement.style.opacity = '0'; 
+      pElement.style.opacity = '0'; 
+      h1Element.style.color = '#313D53';
+      h1Element.style.opacity = '0.7';
+    });
+  });
+});
 
-// Add scroll event listener
-window.addEventListener('scroll', handleScroll);
 
+/* ==== Funct ==== */
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.new-how-main');
+  const options = {
+    root: null,
+    threshold: 0.6
+  };
+
+  let currentIndex = 0;
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const newIndex = Array.from(sections).indexOf(entry.target);
+        const isSequentialForward = newIndex === currentIndex + 1 || (currentIndex === sections.length - 1 && newIndex === 0);
+        const isSequentialBackward = newIndex === currentIndex - 1 || (currentIndex === 0 && newIndex === sections.length - 1);
+        
+        if (isSequentialForward || isSequentialBackward) {
+          setTimeout(() => {
+            sections.forEach(section => section.classList.remove('active'));
+            entry.target.classList.add('active');
+            currentIndex = newIndex;
+          }, 100);
+        }
+      }
+    });
+  }, options);
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+});
 
 
 /* ==== Event Close ==== */
