@@ -1114,6 +1114,7 @@ p.social {
 
 .copy-right img {
   max-width: 22%;
+  padding: 0 0 10px 0;
 }
 
 .copy-right p {
@@ -2208,7 +2209,6 @@ span.hr-rule {
   border-radius: 50px;
 }
 /* New how Works */
-/* New how Works */
 .new-how-main {
   padding: 40px 0;
   transform: translateY(30px);
@@ -2281,6 +2281,15 @@ span.hr-rule {
     margin: 20px auto;
     padding: 20px 0;
     display: block;
+  }
+  .new-how-works img {
+    float: unset;
+    margin: 0 auto;
+  }
+  .new-how-works p {
+    max-width: 100%;
+    padding: 0;
+    text-align: center;
   }
   .home-clients-section .section-container {
     margin: 30px 0 0 0;
@@ -2682,6 +2691,10 @@ section.ticket-form {
 
 /* Ipad Mini - Air */
 @media only screen and (min-width: 768px) and (max-width: 1023px){
+
+  .new-how-works img {
+    max-width: 100%;
+   }
 
   .submitPage .tooltip .tooltip-inner,
   .homePage .tooltip .tooltip-inner,

@@ -1096,7 +1096,7 @@ document.addEventListener('DOMContentLoaded', function() {
  
 
 /* ===== New How Works ===== */
-// =======
+
 document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('.new-how-main');
 
@@ -1106,23 +1106,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const h1Element = section.querySelector('h1');
 
     section.addEventListener('mouseover', () => {
-      imgElement.style.opacity = '1';
-      pElement.style.opacity = '1';
-      h1Element.style.color = '#EB6D47';
-      h1Element.style.opacity = '1'; 
+      if (!section.classList.contains('active')) {
+        imgElement.style.opacity = '1';
+        pElement.style.opacity = '1';
+        h1Element.style.color = '#EB6D47';
+        h1Element.style.opacity = '1';
+      }
     });
 
     section.addEventListener('mouseout', () => {
-      imgElement.style.opacity = '0'; 
-      pElement.style.opacity = '0'; 
-      h1Element.style.color = '#313D53';
-      h1Element.style.opacity = '0.7';
+      if (!section.classList.contains('active')) {
+        imgElement.style.opacity = '0';
+        pElement.style.opacity = '0';
+        h1Element.style.color = '#313D53';
+        h1Element.style.opacity = '0.5';
+      }
+    });
+
+    // Add transition effect
+    [imgElement, pElement, h1Element].forEach(elem => {
+      elem.style.transition = 'opacity 0.7s ease'; // Adjust the duration and timing function as needed
     });
   });
 });
 
 
-/* ==== Funct ==== */
+
+// =======
+
 document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('.new-how-main');
   const options = {
@@ -1141,8 +1152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (isSequentialForward || isSequentialBackward) {
           setTimeout(() => {
-            sections.forEach(section => section.classList.remove('active'));
-            entry.target.classList.add('active');
+            adjustAdjacentOpacity(entry.target);
             currentIndex = newIndex;
           }, 100);
         }
@@ -1153,7 +1163,33 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach(section => {
     observer.observe(section);
   });
+
+  function adjustAdjacentOpacity(activeSection) {
+    sections.forEach((section, index) => {
+      const h1Element = section.querySelector('h1');
+      const isAdjacentSection = isAdjacent(activeSection, section);
+      if (section === activeSection) {
+        h1Element.style.opacity = '1';
+        section.classList.add('active');
+      } else if (isAdjacentSection) {
+        h1Element.style.opacity = '0.7';
+        section.classList.remove('active');
+      } else {
+        h1Element.style.opacity = '0.32';
+        section.classList.remove('active');
+      }
+    });
+  }
+  
+  
+
+  function isAdjacent(section1, section2) {
+    const index1 = Array.from(sections).indexOf(section1);
+    const index2 = Array.from(sections).indexOf(section2);
+    return Math.abs(index1 - index2) === 1 || Math.abs(index1 - index2) === sections.length - 1;
+  }
 });
+
 
 
 /* ==== Event Close ==== */
