@@ -1099,7 +1099,70 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('.new-how-main');
+  const options = {
+    root: null,
+    threshold: 0.6
+  };
 
+  let currentIndex = 0;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const newIndex = Array.from(sections).indexOf(entry.target);
+
+        // Directly adjust opacity without sequential check for reliability
+        adjustAdjacentOpacity(entry.target);
+        currentIndex = newIndex;
+      }
+    });
+  }, options);
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+  function adjustAdjacentOpacity(activeSection) {
+    sections.forEach((section, index) => {
+      const h1Element = section.querySelector('h1');
+      const imgElement = section.querySelector('.col-md-5 img');
+      const pElement = section.querySelector('.col-md-5 p');
+      const isAdjacentSection = isAdjacent(activeSection, section);
+
+      if (section === activeSection) {
+        h1Element.style.opacity = '1';
+        h1Element.style.color = '#EB6D47';
+        section.classList.add('active');
+        imgElement.style.opacity = '1';
+        pElement.style.opacity = '1';
+      } else if (isAdjacentSection) {
+        h1Element.style.opacity = '0.7';
+        h1Element.style.color = '#313D53';
+        section.classList.remove('active');
+        imgElement.style.opacity = '0';
+        pElement.style.opacity = '0';
+      } else {
+        h1Element.style.opacity = '0.32';
+        h1Element.style.color = '#313D53';
+        section.classList.remove('active');
+        imgElement.style.opacity = '0';
+        pElement.style.opacity = '0';
+      }
+
+      // Add transition effect
+      [imgElement, pElement, h1Element].forEach(elem => {
+        elem.style.transition = 'opacity 0.7s ease, color 0.7s ease'; // Added color transition for smoother change
+      });
+    });
+  }
+
+  function isAdjacent(section1, section2) {
+    const index1 = Array.from(sections).indexOf(section1);
+    const index2 = Array.from(sections).indexOf(section2);
+    return Math.abs(index1 - index2) === 1 || Math.abs(index1 - index2) === sections.length - 1;
+  }
+
+  // Hover effect for sections
   sections.forEach(section => {
     const imgElement = section.querySelector('.col-md-5 img');
     const pElement = section.querySelector('.col-md-5 p');
@@ -1119,75 +1182,10 @@ document.addEventListener('DOMContentLoaded', () => {
         imgElement.style.opacity = '0';
         pElement.style.opacity = '0';
         h1Element.style.color = '#313D53';
-        h1Element.style.opacity = '0.5';
+        h1Element.style.opacity = '0.32'; // Reset to non-active opacity
       }
-    });
-
-    // Add transition effect
-    [imgElement, pElement, h1Element].forEach(elem => {
-      elem.style.transition = 'opacity 0.7s ease'; // Adjust the duration and timing function as needed
     });
   });
-});
-
-
-
-// =======
-
-document.addEventListener('DOMContentLoaded', () => {
-  const sections = document.querySelectorAll('.new-how-main');
-  const options = {
-    root: null,
-    threshold: 0.6
-  };
-
-  let currentIndex = 0;
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const newIndex = Array.from(sections).indexOf(entry.target);
-        const isSequentialForward = newIndex === currentIndex + 1 || (currentIndex === sections.length - 1 && newIndex === 0);
-        const isSequentialBackward = newIndex === currentIndex - 1 || (currentIndex === 0 && newIndex === sections.length - 1);
-        
-        if (isSequentialForward || isSequentialBackward) {
-          setTimeout(() => {
-            adjustAdjacentOpacity(entry.target);
-            currentIndex = newIndex;
-          }, 100);
-        }
-      }
-    });
-  }, options);
-
-  sections.forEach(section => {
-    observer.observe(section);
-  });
-
-  function adjustAdjacentOpacity(activeSection) {
-    sections.forEach((section, index) => {
-      const h1Element = section.querySelector('h1');
-      const isAdjacentSection = isAdjacent(activeSection, section);
-      if (section === activeSection) {
-        h1Element.style.opacity = '1';
-        section.classList.add('active');
-      } else if (isAdjacentSection) {
-        h1Element.style.opacity = '0.7';
-        section.classList.remove('active');
-      } else {
-        h1Element.style.opacity = '0.32';
-        section.classList.remove('active');
-      }
-    });
-  }
-  
-  
-
-  function isAdjacent(section1, section2) {
-    const index1 = Array.from(sections).indexOf(section1);
-    const index2 = Array.from(sections).indexOf(section2);
-    return Math.abs(index1 - index2) === 1 || Math.abs(index1 - index2) === sections.length - 1;
-  }
 });
 
 

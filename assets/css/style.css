@@ -719,7 +719,8 @@ section {
 
 .prod-heading h3 {
   font-size: 40px;
-  font-weight: 300;
+  font-weight: 800;
+  color: var(--blue);
   position: relative;
   margin: 0 0 40px 0;
   letter-spacing: 5px;
@@ -736,12 +737,12 @@ section {
 }
 
 section#product-section {
-  padding: 20px 0 50px 0;
+  padding: 20px 0 20px 0;
 }
 
 /* How it works */
 section.howItworks {
-  padding: 0 0 60px 0;
+  padding: 0 0 20px 0;
 }
 
 #how-it-works::before{
@@ -754,7 +755,8 @@ section.howItworks {
 
 .how-heading h3 {
   font-size: 40px;
-  font-weight: 300;
+  font-weight: 800;
+  color: var(--blue);
   position: relative;
   padding: 0 0 10px 0;
   letter-spacing: 5px;
@@ -762,7 +764,8 @@ section.howItworks {
 }
 
 .section-container.how-head-sec h3::before {
-  width: 0;
+  left: 46%;
+  bottom: -6px;
 }
 
 .how-heading hr{
@@ -2254,6 +2257,18 @@ span.hr-rule {
 .new-how-works .active p {
   opacity: 1;
   display: block;
+  animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+}
+@keyframes fadeInOpacity {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
 }
 
 /* Prod home hr */
@@ -2283,6 +2298,10 @@ span.hr-rule {
   border: 1px solid var(--orange);
   padding: 10px 25px;
 }
+.contact .home-clients-section  .prod-heading h3::before {
+  left: 31%;
+  bottom: -10px;
+}
 
 
 
@@ -2290,6 +2309,17 @@ span.hr-rule {
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
+
+  .prod-head-text .prod-para {
+    border-left: unset;
+    padding: 20px 20px 20px 20px;
+  }
+  .prod-head-text .prod-heading {
+    padding: 0 0 0 20px;
+  }
+  .prod-below-hr {
+    margin: 40px auto 0;
+  }
 
   .clients-home-img {
     display: unset;
@@ -2305,6 +2335,7 @@ span.hr-rule {
   .new-how-works img {
     float: unset;
     margin: 0 auto;
+    max-width: 100%;
   }
   .new-how-works p {
     max-width: 100%;
@@ -2436,6 +2467,9 @@ section.sub-tab-section {
   }
   .section-container h3::before {
     bottom: -7px;
+  }
+  .section-container.how-head-sec h3::before {
+    left: 33%;
   }
   .section-container.we-head h3::before {
     left: 36%;
@@ -2711,7 +2745,17 @@ section.ticket-form {
 
 /* Ipad Mini - Air */
 @media only screen and (min-width: 768px) and (max-width: 1023px){
+  
+  .prod-head-text .prod-heading {
+    padding: 20px 0 0 40px;
+   }
+   .prod-head-text .prod-para {
+    padding: 20px 10px 70px 50px;
+  }
 
+  .section-container.how-head-sec h3::before {
+    left: 41%;
+  }
   .new-how-works img {
     max-width: 100%;
    }
