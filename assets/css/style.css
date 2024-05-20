@@ -1280,6 +1280,13 @@ ul.list-unstyled.connect-details {
   text-underline-offset: 2px;
   color: var(--black);
 }
+.video-baps{
+  text-align: center;
+}
+.video-baps iframe{
+  height: 290px;
+  width: 700px;
+}
 
 .expand summary {
   color: #2A7AFF;
@@ -2318,7 +2325,10 @@ span.hr-rule {
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
-
+  .video-baps iframe {
+    height: 290px;
+    width: auto;
+  }
   .prod-head-text .prod-para {
     border-left: unset;
     padding: 20px 20px 20px 20px;
@@ -2712,6 +2722,15 @@ section.ticket-form {
 
 }
 
+@media only screen and (max-width: 400px){
+  .video-baps{
+    text-align: center;
+  }
+  .video-baps iframe{
+    height: auto;
+    max-width: 273px;
+  }
+}
 
 @media only screen and (min-width: 390px) and (max-width: 450px){
   .sale-text {
@@ -2729,7 +2748,10 @@ section.ticket-form {
 
 /* Higher Mobile */
 @media only screen and (min-width: 601px) and (max-width: 767px){
-
+  .video-baps iframe {
+    height: 290px;
+    width: auto;
+  }
    .hero-sub .col-container {
       display: contents;
    }
@@ -2754,6 +2776,15 @@ section.ticket-form {
 
 /* Ipad Mini - Air */
 @media only screen and (min-width: 768px) and (max-width: 1023px){
+
+  
+.video-baps{
+  text-align: center;
+}
+
+.video-baps iframe{
+  width: 500px;
+}
   
   .prod-head-text .prod-heading {
     padding: 20px 0 0 40px;
@@ -2931,7 +2962,13 @@ section.ticket-form {
 
 /* Ipad Pro */
 @media only screen and (min-width: 1024px) and (max-width: 1199.9px){
-  
+  .video-baps{
+    text-align: center;
+  }
+  .video-baps iframe{
+    width: 500px;
+  }
+
   .logo {
     margin-right: 0rem;
   }
