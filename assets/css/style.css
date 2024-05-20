@@ -742,7 +742,7 @@ section#product-section {
 
 /* How it works */
 section.howItworks {
-  padding: 0 0 20px 0;
+  padding: 0;
 }
 
 #how-it-works::before{
@@ -1270,6 +1270,15 @@ ul.list-unstyled.connect-details {
 
 .news-content p {
   padding: 20px 0 15px 0;
+}
+
+.news-content p a {
+  padding: 0;
+  font-size: 16px;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 2px;
+  color: var(--black);
 }
 
 .expand summary {
