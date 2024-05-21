@@ -2318,6 +2318,62 @@ span.hr-rule {
   left: 31%;
   bottom: -10px;
 }
+/* Image Map */
+
+.imagemap-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.imagemap {
+  position: relative;
+  max-width: 100%;
+}
+.imagemap img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.imagemap .area {
+  position: absolute;
+  background-color: var(--orange);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  transition: box-shadow 0.15s ease-in-out;
+  padding: 0;
+  border: 2px solid #fff;
+  animation: zoom 1s infinite;
+}
+.imagemap .area:hover {
+  animation: unset;
+}
+.imagemap .area:hover::after {
+  content: attr(data-content);
+  position: absolute;
+  top: -50px; 
+  left: 15px; 
+  padding: 10px;
+  background-color: #fff;
+  font-size: 16px;
+  color: var(--black);
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.2), 0 6px 9px rgba(0,0,0,0.1);
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+}
+/* Keyframe animation for zoom effect */
+@keyframes zoom {
+  0%, 100% {
+      box-shadow: 0 0 0 2px rgba(255,0,0,0.3);
+  }
+  50% {
+      box-shadow: 0 0 0 6px rgba(255,0,0,0.7);
+  }
+}
 
 
 
