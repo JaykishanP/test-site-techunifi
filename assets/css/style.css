@@ -2007,7 +2007,7 @@ span.bread-inner {
   margin-top: -3px;
 }
 .prod-slide-card .card-prod-heading {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
 }
 .right-content .voltage-brands .submit-head-para {
@@ -2142,7 +2142,7 @@ span.bread-inner {
   letter-spacing: 1px;
 }
 .sub-card-text {
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px 0;
 }
 ul.sub-card-text {
@@ -2165,7 +2165,7 @@ ul.sub-card-text {
   border: var(--border);
 }
 .tele-clocks .container-inner .slider {
-  height: calc(328em/15);
+  height: calc(280em/14);
 }
 .prod-slide-card .card-prod-heading span.hidden {
   display: none;
@@ -2179,10 +2179,10 @@ a.card-spec-sheet {
   color: #2A7AFF;
 }
 .tele-corded-phone .container-inner .slider {
-  height: calc(390em/15);
+  height: calc(300em/14);
 }
 .tele-cordless-phone .container-inner .slider {
-  height: calc(370em/15);
+  height: calc(300em/14);
 }
 
 .swiper-slide {
