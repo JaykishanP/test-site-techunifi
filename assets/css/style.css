@@ -541,24 +541,24 @@ section {
 }
 
 .hero-line-parent {
-  padding: 60px 0 40px;
+  padding: 60px 0 0;
 }
 
 .hero-line:after {
-  content:"";
+  content: "";
   position: absolute;
   z-index: -1;
   top: 0;
   bottom: 0;
-  left: 50%;
-  border-left: 2px solid var(--blue);
+  left: 50.3%;
+  border-left: 4px solid var(--blue);
   transform: translate(-50%);
 }
 
 .hero-line {
   margin: 0 auto;
   width: 60%;
-  height: 100px;
+  height: 150px;
   position:relative;
   text-align:center
 }
@@ -613,9 +613,24 @@ section {
   left: 46%;
 }
 
-
+.bg-color-services-main {
+  background-color: var(--blue);
+  padding: 0 0 30px 0;
+}
+.we-do-it .col-md-6 {
+  padding-top: 80px;
+  color: #EDEDED;
+}
+.we-do-it  .we-text-col {
+  border-left: 3.4px solid #fff;
+  padding-left: 50px;
+}
+.we-head h3 {
+  font-weight: 800;
+  padding: 0 0 0 40px;
+}
 .service-img {
-  padding: 40px 0 20px;
+  padding: 0 0 20px;
 }
 
 .service-img img {
@@ -647,6 +662,7 @@ section {
 
 .service-section-desc .service-col {
   cursor: pointer;
+  color: #EDEDED;
 }
 
 .service-section-desc .service-col h3 {
@@ -2319,22 +2335,40 @@ span.hr-rule {
   bottom: -10px;
 }
 /* Image Map */
+/* Styling for links */
+.we-text-col a {
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background-color: var(--orange);
+  border: 1px solid var(--orange);
+  padding: 10px 25px;
+}
 
+/* Wrapper for the image map */
 .imagemap-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
+
+/* Image map container */
 .imagemap {
   position: relative;
   max-width: 100%;
 }
+
+/* Image inside the image map */
 .imagemap img {
   display: block;
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
+  padding: 0 0 0 25px;
+  margin: 0 auto;
 }
+
+/* Styling for clickable areas */
 .imagemap .area {
   position: absolute;
   background-color: var(--orange);
@@ -2346,35 +2380,54 @@ span.hr-rule {
   border: 2px solid #fff;
   animation: zoom 1s infinite;
 }
+
+/* Hover effect for clickable areas */
 .imagemap .area:hover {
   animation: unset;
 }
-.imagemap .area:hover::after {
-  content: attr(data-content);
+
+/* Info box for clickable areas */
+.imagemap .area:hover .info-box {
+  display: flex;
+  align-items: center;
+}
+
+.info-box {
+  display: none;
   position: absolute;
-  top: -50px; 
-  left: 15px; 
+  top: -60px; 
+  left: 20px;
   padding: 10px;
   background-color: #fff;
   font-size: 16px;
   color: var(--black);
   border: 1px solid var(--orange);
   border-radius: 10px;
-  box-shadow: 0 1px 10px rgba(0,0,0,0.2), 0 6px 9px rgba(0,0,0,0.1);
-  white-space: nowrap;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 6px 9px rgba(0, 0, 0, 0.1);
   z-index: 10;
   pointer-events: none;
+  white-space: nowrap;
 }
+
+.info-box img {
+  max-width: 50px; /* Adjust as needed */
+  height: auto;
+  margin-right: 10px;
+}
+
+.info-box span {
+  display: inline-block;
+}
+
 /* Keyframe animation for zoom effect */
 @keyframes zoom {
   0%, 100% {
-      box-shadow: 0 0 0 2px rgba(255,0,0,0.3);
+      box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.3); /* var(--orange) color */
   }
   50% {
-      box-shadow: 0 0 0 6px rgba(255,0,0,0.7);
+      box-shadow: 0 0 0 6px rgba(255, 165, 0, 0.7); /* var(--orange) color */
   }
 }
-
 
 
 /* ============ Responsive ==============*/
@@ -2551,7 +2604,7 @@ section.sub-tab-section {
     bottom: -7px;
   }
   .service-img {
-    padding: 10px 0;
+    padding: 0 0 10px 0;
   }
   .service-col h3 {
     padding: 10px 0 0 0;
