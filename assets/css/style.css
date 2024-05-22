@@ -2344,22 +2344,16 @@ span.hr-rule {
   border: 1px solid var(--orange);
   padding: 10px 25px;
 }
-
-/* Wrapper for the image map */
 .imagemap-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
-
-/* Image map container */
 .imagemap {
   position: relative;
   max-width: 100%;
 }
-
-/* Image inside the image map */
 .imagemap img {
   display: block;
   max-width: 80%;
@@ -2367,8 +2361,6 @@ span.hr-rule {
   padding: 0 0 0 25px;
   margin: 0 auto;
 }
-
-/* Styling for clickable areas */
 .imagemap .area {
   position: absolute;
   background-color: var(--orange);
@@ -2379,55 +2371,52 @@ span.hr-rule {
   padding: 0;
   border: 2px solid #fff;
   animation: zoom 1s infinite;
+  z-index: 2; /* Ensure clickable areas are above the main image */
 }
-
-/* Hover effect for clickable areas */
 .imagemap .area:hover {
   animation: unset;
 }
-
-/* Info box for clickable areas */
 .imagemap .area:hover .info-box {
   display: flex;
   align-items: center;
 }
-
 .info-box {
   display: none;
   position: absolute;
-  top: -60px; 
-  left: 20px;
-  padding: 10px;
-  background-color: #fff;
+  top: -60px;
+  left: -28px;
+  padding: 5px 10px;
+  background-color: rgba(237, 237, 237, 0.29);
   font-size: 16px;
-  color: var(--black);
-  border: 1px solid var(--orange);
-  border-radius: 10px;
+  font-weight: 600;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 25px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 6px 9px rgba(0, 0, 0, 0.1);
   z-index: 10;
   pointer-events: none;
   white-space: nowrap;
 }
-
 .info-box img {
-  max-width: 50px; /* Adjust as needed */
+  max-width: 50px; 
   height: auto;
   margin-right: 10px;
+  padding: 0;
 }
 
 .info-box span {
   display: inline-block;
 }
 
-/* Keyframe animation for zoom effect */
 @keyframes zoom {
   0%, 100% {
-      box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.3); /* var(--orange) color */
+    box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.3); 
   }
   50% {
-      box-shadow: 0 0 0 6px rgba(255, 165, 0, 0.7); /* var(--orange) color */
+    box-shadow: 0 0 0 6px rgba(255, 165, 0, 0.7); 
   }
 }
+
 
 
 /* ============ Responsive ==============*/
