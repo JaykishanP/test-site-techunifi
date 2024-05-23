@@ -688,10 +688,23 @@ section {
 .service-col img {
   /* opacity: 0.4; */
   max-width: 100%;
+  margin: 0 auto;
 }
 
-.service-section-desc .service-col:hover img {
-  opacity: 1;
+.service-section-desc .service-col .home-service-white {
+  display: block;
+}
+
+.service-section-desc .service-col:hover .home-service-white{
+  display: none;
+}
+
+.service-section-desc .service-col .home-service-orange{
+  display: none;
+}
+
+.service-section-desc .service-col:hover .home-service-orange {
+  display: block;
 }
 
 .how-section-desc .service-col img {
@@ -2341,6 +2354,9 @@ span.hr-rule {
   background-color: var(--orange);
   border: 1px solid var(--orange);
   padding: 10px 25px;
+  max-width: fit-content;
+  display: block;
+  margin: 0 0 35px 0;
 }
 .bg-color-services-main .prod-below-hr {
   max-width: 274px;
@@ -2370,7 +2386,7 @@ span.hr-rule {
   display: block;
   max-width: 80%;
   height: auto;
-  padding: 0 0 0 25px;
+  padding: 0 0 0 33.9px;
   margin: 0 auto;
 }
 .imagemap .area {
@@ -2392,14 +2408,21 @@ span.hr-rule {
   display: flex;
   align-items: center;
 }
+/* .imagemap .area:hover .hover-display {
+  display: flex;
+  align-items: center;
+} */
+/* .hover-display{
+  display: none;
+} */
 .info-box {
   display: none;
   position: absolute;
   top: -39px;
   left: -28px;
   padding: 3px 10px;
-  /* background-color: rgba(237, 237, 237, 0.29); */
-  background-color: var(--orange);
+  background-color: rgba(237, 237, 237, 0.29);
+  backdrop-filter: blur(30px);
   font-size: 16px;
   font-weight: 600;
   color: #fff;
@@ -2411,7 +2434,7 @@ span.hr-rule {
   white-space: nowrap;
 }
 .info-box img {
-  max-width: 50px; 
+  max-width: 18px; 
   height: auto;
   margin-right: 10px;
   padding: 0;
@@ -2436,6 +2459,12 @@ span.hr-rule {
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
+  .imagemap img {
+    padding: 0 0 0 18px;
+ }
+  .we-text-col a {
+    margin: 0 auto 35px;
+  }
   .video-baps iframe {
     height: 290px;
     width: auto;
@@ -2898,6 +2927,12 @@ section.ticket-form {
 /* Ipad Mini - Air */
 @media only screen and (min-width: 768px) and (max-width: 1023px){
 
+  .we-do-it  .we-text-col {
+    border-left: 2.3px solid #fff;
+   }
+  .imagemap img {
+    padding: 0 0 0 19.6px;
+  }
   .homePage .col-container {
     display: flex;
     width: 100%;
@@ -3163,7 +3198,25 @@ section.ticket-form {
     display: block;
     color: var(--orange);
   }
+  .imagemap img {
+    padding: 0 0 0 25.6px;
+  }
 }
+
+/* 1024 - 1299 */
+@media only screen and (min-width: 1024px) and (max-width: 1199.9px){
+  .imagemap img {
+    padding: 0 0 0 28.6px;
+  }
+}
+
+/* 1200 - 1299 */
+@media only screen and (min-width: 1024px) and (max-width: 1299.9px){
+  .imagemap img {
+    padding: 0 0 0 31.4px;
+  }
+}
+
 
 /* 1200 */
 @media only screen and (min-width: 1200px) and (max-width: 1400.9px){
