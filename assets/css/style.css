@@ -2370,7 +2370,6 @@ span.hr-rule {
 
   border-left: 4px solid #fff;
 }
-
 /* Image Map */
 .imagemap-wrapper {
   display: flex;
@@ -2388,6 +2387,7 @@ span.hr-rule {
   height: auto;
   padding: 0 0 0 33.9px;
   margin: 0 auto;
+  object-fit: contain;
 }
 .imagemap .area {
   position: absolute;
@@ -2395,28 +2395,40 @@ span.hr-rule {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  transition: box-shadow 0.15s ease-in-out;
+  transition: width 0.15s ease-in-out, height 0.15s ease-in-out, border 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   padding: 0;
   border: 2px solid #fff;
   animation: zoom 1s infinite;
   z-index: 2; /* Ensure clickable areas are above the main image */
 }
 .imagemap .area:hover {
+  display: inline-block;
   animation: unset;
+  border: 0;
+  background-color: transparent;
 }
-.imagemap .area:hover .info-box {
-  display: flex;
-  align-items: center;
-}
-/* .imagemap .area:hover .hover-display {
-  display: flex;
-  align-items: center;
-} */
-/* .hover-display{
+.imagemap .area .hover-display {
   display: none;
-} */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.imagemap .area:hover .hover-display {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.imagemap .hoverImage {
+  max-width: 100px; /* Adjust the size as needed */
+  height: auto;
+  margin-bottom: 5px;
+  transition: transform 2s ease;
+}
 .info-box {
-  display: none;
+  display: flex;
   position: absolute;
   top: -39px;
   left: -28px;
@@ -2432,6 +2444,7 @@ span.hr-rule {
   z-index: 10;
   pointer-events: none;
   white-space: nowrap;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .info-box img {
   max-width: 18px; 
@@ -2439,9 +2452,25 @@ span.hr-rule {
   margin-right: 10px;
   padding: 0;
 }
-
 .info-box span {
   display: inline-block;
+}
+/* Hover color */
+.telecom-map .hoverImage {
+  position: relative;
+  max-width: 66px;
+  left: -29px;
+  top: -4px;
+}
+.lightning-map .hoverImage {
+  max-width: 38px;
+  position: relative;
+  left: -13px;
+  top: -45px;
+  padding: 0;
+}
+.lightning-map .info-box {
+  top: -84px; 
 }
 
 @keyframes zoom {
@@ -2452,6 +2481,8 @@ span.hr-rule {
     box-shadow: 0 0 0 6px rgba(255, 165, 0, 0.7); 
   }
 }
+
+
 
 
 
@@ -3215,6 +3246,9 @@ section.ticket-form {
   .imagemap img {
     padding: 0 0 0 31.4px;
   }
+  .imagemap .info-box img {
+    padding: 0;
+  }
 }
 
 
@@ -3365,3 +3399,14 @@ section.ticket-form {
   }
 }
 
+/* ==== max-width - 1200 ==== */
+
+@media screen and (max-width: 1199.9px) {
+  .imagemap .info-box img {
+    padding: 0;
+  }
+  .imagemap .hoverImage {
+    display: none;
+  }
+
+}
