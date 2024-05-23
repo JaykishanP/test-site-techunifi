@@ -2398,7 +2398,8 @@ span.hr-rule {
   top: -39px;
   left: -28px;
   padding: 3px 10px;
-  background-color: rgba(237, 237, 237, 0.29);
+  /* background-color: rgba(237, 237, 237, 0.29); */
+  background-color: var(--orange);
   font-size: 16px;
   font-weight: 600;
   color: #fff;
