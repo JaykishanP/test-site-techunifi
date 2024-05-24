@@ -2458,15 +2458,16 @@ span.hr-rule {
 /* Hover color */
 .telecom-map .hoverImage {
   position: relative;
-  max-width: 66px;
-  left: -29px;
+  max-width: 30.7px;
+  left: 4px;
   top: -4px;
+  padding: 0;
 }
 .lightning-map .hoverImage {
-  max-width: 38px;
+  max-width: 35.4px;
   position: relative;
-  left: -13px;
-  top: -45px;
+  left: -12px;
+  top: -43px;
   padding: 0;
 }
 .lightning-map .info-box {
