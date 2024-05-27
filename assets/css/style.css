@@ -2395,8 +2395,8 @@ span.hr-rule {
   padding: 0;
 }
 .bg-color-services-main .hero-line:after {
-
   border-left: 4px solid #fff;
+  z-index: 0;
 }
 /* Image Map */
 .imagemap-wrapper {
@@ -2492,14 +2492,52 @@ span.hr-rule {
   padding: 0;
 }
 .lightning-map .hoverImage {
-  max-width: 35.4px;
+  max-width: 37px;
   position: relative;
-  left: -12px;
-  top: -43px;
+  left: -13px;
+  top: -42px;
   padding: 0;
 }
 .lightning-map .info-box {
   top: -84px; 
+}
+.ev-charge-map .hoverImage{
+  max-width: 78.6px;
+  position: relative;
+  left: -1px;
+  top: 0px;
+  padding: 0;
+}
+.network-map .hoverImage{
+  max-width: 158.6px;
+  position: relative;
+  left: 6px;
+  top: -8px;
+  padding: 0;
+}
+.itman-map .hoverImage{
+  max-width: 55px;
+  position: relative;
+  left: -24px;
+  top: -31px;
+  padding: 0;
+}
+.itman-map .info-box {
+  top: -64px; 
+}
+.lowvoltage-map .hoverImage{
+  max-width: 270px;
+  position: relative;
+  left: -130px;
+  top: -237px;
+  padding: 0;
+}
+.audivide-map .hoverImage{
+  max-width: 79px;
+  position: relative;
+  left: 30px;
+  top: -10px;
+  padding: 0;
 }
 
 @keyframes zoom {
@@ -2588,8 +2626,8 @@ span.hr-rule {
 
    .tele-clocks .container-inner .slider,
    .tele-cordless-phone .container-inner .slider,
-   .tele-corded-phone .container-inner .slider,
-   .mega-ip .container-inner .slider,
+   .tele-corded-phone .container-inner .slider, 
+   .mega-ip .container-inner .slider, 
    .security-ip .container-inner .slider {
       height: unset;
    }
