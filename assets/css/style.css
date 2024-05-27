@@ -2212,7 +2212,35 @@ a.card-spec-sheet {
 .tele-cordless-phone .container-inner .slider {
   height: calc(300em/14);
 }
-
+.security-ip .card-click .card-prod-heading,
+.mega-ip .card-click .card-prod-heading {
+  font-size: 16px;
+}
+.security-ip .container-inner .slider {
+  height: calc(310em/14);
+}
+.security-ip .card-brand-img,
+.mega-ip .card-brand-img {
+  margin: 15px 0 0 0;
+}
+.mega-ip .container-inner .slider {
+  height: calc(360em/15);
+}
+.mega-security-large {
+  background-color: #fff;
+  border-radius: 25px;
+  margin: 50px 0 20px;
+}
+.large-img-mega img {
+  border-radius: 25px;
+}
+.large-mega-text {
+  padding: 40px;
+}
+.large-mega-text h3 {
+  margin: 0 0 20px 0;
+  font-weight: 600;
+}
 .swiper-slide {
   transition: width 0.7s ease; /* Smooth transition for width change */
 }
@@ -2560,7 +2588,9 @@ span.hr-rule {
 
    .tele-clocks .container-inner .slider,
    .tele-cordless-phone .container-inner .slider,
-   .tele-corded-phone .container-inner .slider {
+   .tele-corded-phone .container-inner .slider,
+   .mega-ip .container-inner .slider,
+   .security-ip .container-inner .slider {
       height: unset;
    }
 
@@ -2959,6 +2989,16 @@ section.ticket-form {
 /* Ipad Mini - Air */
 @media only screen and (min-width: 768px) and (max-width: 1023px){
 
+  .large-img-mega {
+    display: flex;
+    justify-content: revert-layer;
+    align-items: center;
+  }
+
+  .large-img-mega img{
+    border-radius: 0;
+  }
+
   .we-do-it  .we-text-col {
     border-left: 2.3px solid #fff;
    }
@@ -3019,13 +3059,17 @@ section.ticket-form {
 
    .tele-clocks .container-inner .slider,
    .tele-cordless-phone .container-inner .slider,
-   .tele-corded-phone .container-inner .slider {
+   .tele-corded-phone .container-inner .slider,
+   .mega-ip .container-inner .slider,
+   .security-ip .container-inner .slider {
      height: unset;
    }
 
    .tele-clocks .container-inner .slider__listItem,
    .tele-cordless-phone .container-inner .slider__listItem,
-   .tele-corded-phone .container-inner .slider__listItem{
+   .tele-corded-phone .container-inner .slider__listItem,
+   .mega-ip .container-inner .slider__listItem,
+   .security-ip .container-inner .slider__listItem{
      height: fit-content;
    }
 
@@ -3156,6 +3200,16 @@ section.ticket-form {
 
 /* Ipad Pro */
 @media only screen and (min-width: 1024px) and (max-width: 1199.9px){
+  .large-img-mega {
+    display: flex;
+    justify-content: revert-layer;
+    align-items: center;
+  }
+
+  .large-img-mega img{
+    border-radius: 0;
+  }
+
   .video-baps{
     text-align: center;
   }
