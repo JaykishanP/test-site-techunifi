@@ -450,29 +450,65 @@ $('.tablinks, .prod-tablinks').click(function(event) {
 /* ====== Product ======*/
 //Product - Tabs
 
-function openProd(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("product-tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("prod-tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to handle tab clicks
+  function openProd(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("product-tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+      tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("prod-tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active"); // Remove active class from all tab links
+    }
 
-// Get the element with id="defaultOpen" and click on it
-// document.getElementById("productOpen").click();
+    var cityElement = document.getElementById(cityName);
+    if (cityElement) {
+      cityElement.style.display = "block";
+      cityElement.classList.add("active");
+    }
+
+    // Add active class to the clicked tab button
+    evt.currentTarget.classList.add("active");
+  }
+
+  // Find and handle the overview tab
+  var productOpenButton = document.getElementById("productOpen");
+  var overviewTabContent = document.getElementById("tab-overview");
+
+  if (productOpenButton && overviewTabContent) {
+    productOpenButton.classList.add("active"); // Add active class to Overview tab button
+    overviewTabContent.style.display = "block"; // Ensure Overview content is visible
+    overviewTabContent.classList.add("active"); // Add active class to Overview tab content
+  }
+
+  // Adding event listeners to all tab buttons
+  var tabButtons = document.querySelectorAll(".prod-tablinks");
+  tabButtons.forEach(function(button) {
+    button.addEventListener("click", function(event) {
+      var isActive = button.classList.contains("active");
+      if (!isActive || button.id === "productOpen") {
+        openProd(event, button.getAttribute("id").replace("prod-", ""));
+      }
+    });
+  });
+});
 
 document.addEventListener('DOMContentLoaded', function() {
-  var productOpenButton = document.getElementById("productOpen");
-  if (productOpenButton) {
-    productOpenButton.click();
-  } else {
-      // console.error("Element with ID 'defaultOpen' not found.");
+  var overviewTabButton = document.getElementById("productOpen");
+  var overviewTabContent = document.getElementById("tab-overview");
+
+  if (overviewTabButton && overviewTabContent) {
+    overviewTabButton.addEventListener("click", function(event) {
+      if (!overviewTabButton.classList.contains("active")) {
+        overviewTabButton.classList.add("active");
+        overviewTabContent.style.display = "block";
+      } else {
+        overviewTabContent.style.display = "block"; // Ensure content is visible even if button is already active
+      }
+    });
   }
 });
 
@@ -1194,12 +1230,10 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.card-more .card-get-link').forEach(function(link) {
     link.addEventListener('click', function(event) {
       event.preventDefault();
-      console.log('Card link clicked'); // Debugging statement
 
       // Find the corresponding card's description
       const card = event.target.closest('.rows');
       const description = card.querySelector('.card-click .card-prod-heading').textContent.trim();
-      console.log('Description:', description); // Debugging statement
 
       // Save the description to sessionStorage
       sessionStorage.setItem('cardDescription', description);
@@ -1220,7 +1254,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const descriptionTextarea = document.querySelector('textarea[name="description"]');
     if (descriptionTextarea) {
       descriptionTextarea.value = description;
-      console.log('Textarea filled with description'); // Debugging statement
     }
 
     // Optionally, you can clear the saved description from sessionStorage
