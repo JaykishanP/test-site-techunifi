@@ -1262,7 +1262,26 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+/* ==== remove AOS for mobile(<1024) ==== */
+document.addEventListener('DOMContentLoaded', function() {
+  function removeAOSAttributes() {
+    const elements = document.querySelectorAll('[data-aos], [data-aos-delay]');
+    if (window.innerWidth < 1024) {
+      elements.forEach(element => {
+        element.removeAttribute('data-aos');
+        element.removeAttribute('data-aos-delay');
+      });
+    }
+  }
 
+  // Run the function on page load
+  removeAOSAttributes();
+
+  // Run the function on window resize
+  window.addEventListener('resize', function() {
+    removeAOSAttributes();
+  });
+});
 
 /* ==== Event Close ==== */
 
