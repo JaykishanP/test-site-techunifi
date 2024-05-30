@@ -2599,7 +2599,16 @@ span.hr-rule {
 }
 .news-home-section .news-rows {
   margin: 25px 0 25px 0;
+  height: 90%;
+  max-height: 100%;
 }
+.full-news-page a {
+  padding: 0;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #2A7AFF;
+}
+
 
 
 /* ============ Responsive ==============*/
@@ -2611,6 +2620,10 @@ span.hr-rule {
   }
   .news-home-section .home-news-heading h2 br {
     display: none;
+  }
+  .full-news-page a {
+    margin: 0 0 20px 0;
+    display: block;
   }
   .imagemap img {
     padding: 0 0 0 18px;
