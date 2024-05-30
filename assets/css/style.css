@@ -888,6 +888,7 @@ section#home-clients {
 
 .home-clients .swiper-slide img {
   transition: 0.3s;
+  border-radius: 8px;
 }
 
 .home-clients-slider .swiper-slide.swiper-slide-prev img,
@@ -3045,6 +3046,9 @@ section.ticket-form {
 }
 .prod-tablinks.active {
   border-radius: 0;
+}
+.ticket-form .home-contact-submit input[type="submit"] {
+  margin: 15px 0 10px auto;
 }
 
 }
