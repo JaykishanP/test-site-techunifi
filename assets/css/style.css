@@ -2587,11 +2587,31 @@ span.hr-rule {
   max-width: 70%;
 }
 
+/* Home News Section */
+.news-home-section {
+  background-color: var(--blue);
+}
+.news-home-section .home-news-heading h2 {
+  color: #fff;
+  font-weight: 600;
+  padding: 30px 0 0 0;
+  letter-spacing: 2.5px;
+}
+.news-home-section .news-rows {
+  margin: 25px 0 25px 0;
+}
+
 
 /* ============ Responsive ==============*/
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
+  .news-home-section .news-rows {
+    margin: 15px 0 15px 0;
+  }
+  .news-home-section .home-news-heading h2 br {
+    display: none;
+  }
   .imagemap img {
     padding: 0 0 0 18px;
  }
