@@ -2108,6 +2108,17 @@ span.bread-inner {
   position: relative;
   background-color: #ededed;
 }
+.left-right {
+  position: relative;
+}
+.left-right::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  background-color: var(--blue);
+}
+
 /* Slider Overlay */
 .card-overlay-main {
   position: relative;
@@ -2571,6 +2582,9 @@ span.hr-rule {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.image-right-banner img {
+  max-width: 70%;
 }
 
 
