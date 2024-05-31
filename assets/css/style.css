@@ -658,7 +658,9 @@ section {
   padding: 16px 8px;
   text-align: center;
 }
-
+.bg-color-services-main .service-col {
+  text-align: left;
+}
 .service-section-desc .service-col {
   cursor: pointer;
   color: #EDEDED;
@@ -690,7 +692,9 @@ section {
   max-width: 100%;
   margin: 0 auto;
 }
-
+.bg-color-services-main .service-col img {
+  margin: 0;
+}
 .service-section-desc .service-col .home-service-white {
   display: block;
 }
@@ -806,6 +810,7 @@ section.howItworks {
   width: 97%;
   margin: 0 auto;
   display: block;
+  border-radius: 8px;
 }
 
 .how-img-text {
@@ -1479,6 +1484,11 @@ section.ticket-form {
 .submit-sub-section {
   background-color: #fff;
   padding: 25px 30px 15px;
+  border-radius: 12px;
+}
+
+.submit-sub-section:hover{
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 9px 0 rgba(0, 0, 0, 0.1);
 }
 
 .submit-ticket-info {
@@ -1538,11 +1548,16 @@ section.ticket-form {
 ::placeholder {
   color: lightgrey;
 }
-
-.ticket-form .home-contact-submit input[type="submit"] {
-  margin: 0 0 10px auto;
+.home-contact-submit {
+  display: flex;
+  align-items: center;
 }
-
+.ticket-form .home-contact-submit input[type="submit"] {
+  margin: 0;
+}
+.homePage .ticket-form .g-recaptcha {
+  float: right;
+}
 .sub-tab1-section .ticket-form .home-contact-submit input[type="submit"] {
   margin: 0 auto;
 }
@@ -2306,62 +2321,59 @@ span.hr-rule {
 /* New how Works */
 .new-how-main {
   padding: 40px 0;
-  transform: translateY(30px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: scale(0.9);
+  transition: opacity 0.7s ease, transform 0.9s ease;
 }
+
 .new-how-main h1 {
   font-size: 90px;
   font-weight: 700;
   letter-spacing: 1px;
   text-align: center;
+  transition: color 0.7s ease, opacity 0.7s ease;
 }
+
 .new-how-main h5 {
   text-align: center;
 }
+
 .new-how-works h1 {
   color: #313D53;
   opacity: 0.7;
-  transition: color 0.5s ease;
 }
+
 .new-how-works img,
 .new-how-works p {
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.7s ease;
 }
+
 .new-how-works p {
   max-width: 401px;
   padding: 0 0 0 20px;
 }
-.new-how-works img{
+
+.new-how-works img {
   max-width: 338px;
   float: right;
 }
+
 /* Highlight active section */
 .new-how-works .active {
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1);
 }
+
 .new-how-works .active h1 {
   color: #EB6D47;
   opacity: 1;
 }
+
 .new-how-works .active img,
 .new-how-works .active p {
   opacity: 1;
-  display: block;
-  animation-name: fadeInOpacity;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in;
-    animation-duration: 1s;
 }
-@keyframes fadeInOpacity {
-  0% {
-      opacity: 0;
-  }
-  100% {
-      opacity: 1;
-  }
-}
+
 
 /* Prod home hr */
 .prod-below-hr{
@@ -2459,7 +2471,6 @@ span.hr-rule {
   display: none;
   opacity: 0;
   transform: translateY(-10px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .imagemap .area:hover .hover-display {
   display: flex;
@@ -2470,11 +2481,21 @@ span.hr-rule {
 }
 
 .imagemap .hoverImage {
-  max-width: 100px; /* Adjust the size as needed */
+  max-width: 100px; 
   height: auto;
   margin-bottom: 5px;
   transition: transform 2s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease; 
 }
+
+.imagemap .area:hover .hoverImage {
+  opacity: 1; 
+  transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -webkit-transition: opacity 1s ease-in-out;
+}
+
 .info-box {
   display: flex;
   position: absolute;
@@ -2590,10 +2611,10 @@ span.hr-rule {
 
 /* Home News Section */
 .news-home-section {
-  background-color: var(--blue);
+  background-color: #cdcfd3;
 }
 .news-home-section .home-news-heading h2 {
-  color: #fff;
+  color: var(--blue);
   font-weight: 600;
   padding: 30px 0 0 0;
   letter-spacing: 2.5px;
