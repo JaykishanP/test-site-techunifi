@@ -1484,11 +1484,11 @@ section.ticket-form {
 .submit-sub-section {
   background-color: #fff;
   padding: 25px 30px 15px;
-  border-radius: 12px;
 }
 
 .submit-sub-section:hover{
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 9px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .submit-ticket-info {
@@ -2526,38 +2526,38 @@ span.hr-rule {
 .telecom-map .hoverImage {
   position: relative;
   max-width: 30.7px;
-  left: 4px;
-  top: -4px;
-  padding: 0;
+  left: 6px;
+  top: -3.8px;
+  padding: 0;  
 }
 .lightning-map .hoverImage {
   max-width: 37px;
   position: relative;
-  left: -13px;
-  top: -42px;
+  left: -12px;
+  top: -44px;
   padding: 0;
 }
 .lightning-map .info-box {
   top: -84px; 
 }
 .ev-charge-map .hoverImage {
-  max-width: 78.6px;
+  max-width: 82.6px;
   position: relative;
   left: -1px;
-  top: 0px;
+  top: 1px;
   padding: 0;
 }
 .network-map .hoverImage {
-  max-width: 158.6px;
+  max-width: 165.6px;
   position: relative;
-  left: 6px;
+  left: 7px;
   top: -8px;
   padding: 0;
 }
 .itman-map .hoverImage {
-  max-width: 55px;
+  max-width: 57px;
   position: relative;
-  left: -24px;
+  left: -25px;
   top: -31px;
   padding: 0;
 }
@@ -2568,14 +2568,14 @@ span.hr-rule {
   max-width: 270px;
   position: relative;
   left: -130px;
-  top: -237px;
+  top: -233px;
   padding: 0;
 }
 .audivide-map .hoverImage {
   max-width: 79px;
   position: relative;
-  left: 30px;
-  top: -10px;
+  left: 33px;
+  top: -9px;
   padding: 0;
 }
 
@@ -2622,6 +2622,7 @@ span.hr-rule {
   margin: 25px 0 25px 0;
   height: 90%;
   max-height: 100%;
+  border-radius: 8px;
 }
 .full-news-page a {
   padding: 0;
