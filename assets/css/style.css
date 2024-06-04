@@ -2484,16 +2484,14 @@ span.hr-rule {
   max-width: 100px; 
   height: auto;
   margin-bottom: 5px;
-  transition: transform 2s ease;
   opacity: 0;
-  transition: opacity 0.3s ease; 
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .imagemap .area:hover .hoverImage {
   opacity: 1; 
-  transition: opacity 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out;
-  -webkit-transition: opacity 1s ease-in-out;
+  transform: scale(1);
 }
 
 .info-box {
@@ -2542,21 +2540,21 @@ span.hr-rule {
 .lightning-map .info-box {
   top: -84px; 
 }
-.ev-charge-map .hoverImage{
+.ev-charge-map .hoverImage {
   max-width: 78.6px;
   position: relative;
   left: -1px;
   top: 0px;
   padding: 0;
 }
-.network-map .hoverImage{
+.network-map .hoverImage {
   max-width: 158.6px;
   position: relative;
   left: 6px;
   top: -8px;
   padding: 0;
 }
-.itman-map .hoverImage{
+.itman-map .hoverImage {
   max-width: 55px;
   position: relative;
   left: -24px;
@@ -2566,14 +2564,14 @@ span.hr-rule {
 .itman-map .info-box {
   top: -64px; 
 }
-.lowvoltage-map .hoverImage{
+.lowvoltage-map .hoverImage {
   max-width: 270px;
   position: relative;
   left: -130px;
   top: -237px;
   padding: 0;
 }
-.audivide-map .hoverImage{
+.audivide-map .hoverImage {
   max-width: 79px;
   position: relative;
   left: 30px;
@@ -2589,6 +2587,7 @@ span.hr-rule {
     box-shadow: 0 0 0 6px rgba(255, 165, 0, 0.7); 
   }
 }
+
 
 
 /* Product tab active bg color to orange */
@@ -2637,6 +2636,9 @@ span.hr-rule {
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
+  .homePage .ticket-form .g-recaptcha {
+    float: unset;
+}
   .news-home-section .news-rows {
     margin: 15px 0 15px 0;
   }
