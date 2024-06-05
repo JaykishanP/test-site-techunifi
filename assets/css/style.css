@@ -2578,6 +2578,13 @@ span.hr-rule {
   top: -9px;
   padding: 0;
 }
+.security-map .hoverImage {
+  max-width: 79px;
+  position: relative;
+  left: 33px;
+  top: -9px;
+  padding: 0;
+}
 
 @keyframes zoom {
   0%, 100% {
@@ -2614,7 +2621,7 @@ span.hr-rule {
 }
 .news-home-section .home-news-heading h2 {
   color: var(--blue);
-  font-weight: 600;
+  font-weight: 800;
   padding: 30px 0 0 0;
   letter-spacing: 2.5px;
 }
