@@ -1484,6 +1484,7 @@ section.ticket-form {
 .submit-sub-section {
   background-color: #fff;
   padding: 25px 30px 15px;
+  border-radius: 8px;
 }
 
 .submit-sub-section:hover{
@@ -2565,10 +2566,10 @@ span.hr-rule {
   top: -64px; 
 }
 .lowvoltage-map .hoverImage {
-  max-width: 270px;
+  max-width: 285px;
   position: relative;
-  left: -130px;
-  top: -233px;
+  left: -137px;
+  top: -248px;
   padding: 0;
 }
 .audivide-map .hoverImage {
@@ -2579,9 +2580,9 @@ span.hr-rule {
   padding: 0;
 }
 .security-map .hoverImage {
-  max-width: 222px;
+  max-width: 224px;
   position: relative;
-  left: -16px;
+  left: -18px;
   top: -45px;
   padding: 0;
 }
@@ -2774,6 +2775,9 @@ section.sub-tab-section {
   .hero-sub {
     padding: 45px 0 0 0;
   }
+  .hero-home-main-section .hero-sub {
+    padding: 25px 0 0 0;
+  }
   .event-section{
     /* padding: 0px 0 50px 0; */
   }
@@ -2787,7 +2791,7 @@ section.sub-tab-section {
     font-size: 15px;
   }
   .sale-text {
-    top: 14%;
+    top: 8%;
     right: 16%;
   }
   .sale-text h1 {
@@ -3096,7 +3100,7 @@ section.ticket-form {
 
 @media only screen and (min-width: 390px) and (max-width: 450px){
   .sale-text {
-    top: 15%;
+    top: 8%;
     right: 18%;
   }
 }
@@ -3616,6 +3620,10 @@ section.ticket-form {
   }
   .imagemap .hoverImage {
     display: none;
+  }
+  .event-section {
+    position: relative;
+    padding: 0;
   }
 
 }
