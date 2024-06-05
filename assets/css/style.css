@@ -2579,10 +2579,10 @@ span.hr-rule {
   padding: 0;
 }
 .security-map .hoverImage {
-  max-width: 79px;
+  max-width: 222px;
   position: relative;
-  left: 33px;
-  top: -9px;
+  left: -16px;
+  top: -45px;
   padding: 0;
 }
 
