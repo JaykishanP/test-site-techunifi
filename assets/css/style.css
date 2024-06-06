@@ -2645,6 +2645,24 @@ span.hr-rule {
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
+  .hero-sub .hero-line:after {
+    border-left: unset;
+}
+.hero-sub .hero-line{
+  height: 30px;
+}
+.hero-text p {
+  font-size: 14px;
+}
+.bg-color-services-main .prod-below-hr {
+  max-width: 0;
+}
+.bg-color-services-main .hero-line:after {
+  border-left: unset;
+}
+.bg-color-services-main .hero-line{
+  height: 0px;
+}
   .homePage .ticket-form .g-recaptcha {
     float: unset;
 }
@@ -2655,12 +2673,15 @@ span.hr-rule {
     display: none;
   }
   .news-home-section .home-news-heading h3{
-    font-size: 28px;
+    font-size: 32px;
 }
 .contact .news-home-section .home-news-heading h3::before {
   z-index: 0;
   width: 82px;
   left: 0;
+}
+.news-company {
+  font-size: 16px;
 }
   .full-news-page a {
     margin: 0 0 20px 0;
@@ -2707,6 +2728,7 @@ span.hr-rule {
     max-width: 100%;
     padding: 0;
     text-align: center;
+    font-size: 14px;
   }
   .home-clients-section .section-container {
     margin: 30px 0 0 0;
@@ -2823,7 +2845,7 @@ section.sub-tab-section {
     max-width: 74%;
   }
   .hero-logo {
-    max-width: 86%;
+    max-width: 67%;
     margin: 0 auto;
   }
   .hero-line-parent {
@@ -2833,7 +2855,7 @@ section.sub-tab-section {
     height: 80px;
   }
   .hero-heading h3 {
-    font-size: 35px;
+    font-size: 32px;
     margin: 0 0 20px 0;
   }
   .section-container h3::before {
@@ -2865,8 +2887,11 @@ section.sub-tab-section {
     padding: 41px 0 14px 0;
   }
   .prod-heading h3 {
-    font-size: 35px;
+    font-size: 32px;
     margin: 0 0 24px 0;
+  }
+  .prod-head-text .prod-para p {
+    font-size: 14px;
   }
   .how-heading h3{
     padding: 0;
@@ -2910,6 +2935,13 @@ section.sub-tab-section {
   section.howItworks{
     padding: 0;
   }
+  .new-how-main h1 {
+    font-size: 96px;
+    margin-bottom: 0;
+  }
+  .new-how-main h5 {
+    font-size: 20px;
+}
   section.contact {
     padding: 30px 0;
   }
