@@ -1227,16 +1227,20 @@ ul.list-unstyled.connect-details {
 .tab button.active {
   position: relative;
   font-weight: 700;
+  background-color: #ede1da;
+  border-radius: 20px 0 0 20px;
+  padding: 11px 20px;
 }
 
 .tab button.active::after {
   content: "";
-  height: 29px;
+  height: 43px;
   width: 6px;
   display: inline-block;
-  background-color: var(--blue);
+  background-color: var(--orange);
   position: absolute;
   right: 0;
+  top: 0;
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
@@ -2310,7 +2314,7 @@ a.card-spec-sheet {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 30px 0 50px 0;
+  margin: 30px 0 5px 0;
 }
 span.hr-rule {
   max-width: 500px;
@@ -3035,6 +3039,11 @@ section.sub-tab-section {
   background-color: #ede1da;
   border-radius: unset;
 }
+.tab button.active {
+  border-radius: 0;
+  padding: 15px 10px 5px 10px;
+  border-bottom: 3px solid var(--orange);
+}
 .tab button.active::after {
     height: 4px;
     width: 50px;
@@ -3043,7 +3052,7 @@ section.sub-tab-section {
 }
 
 .tab button:hover {
-    border-bottom: var(--border);
+    /* border-bottom: var(--border); */
     border-right: none
 }
 
