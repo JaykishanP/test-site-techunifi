@@ -1295,6 +1295,7 @@ ul.list-unstyled.connect-details {
   background-color: #fff;
   margin: 15px 0 25px 0;
   display: inline-block;
+  border-radius: 8px;
 }
 
 .news-company {
