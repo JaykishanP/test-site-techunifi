@@ -3139,7 +3139,7 @@ section.ticket-form {
   left: 39%;
 }
 .prod-tablinks.active {
-  border-radius: 0;
+    margin: 6px 0 0 0;
 }
 .ticket-form .home-contact-submit input[type="submit"] {
   margin: 15px 0 10px auto;
