@@ -3600,12 +3600,16 @@ section.ticket-form {
     background:#ededed;
     z-index: 9;
     top: 88px;
+    border-bottom: 2px solid var(--blue);
   }
 
   .productPage .container-inner {
     z-index: 8;
   }  
-
+  .left-right .tab a {
+    font-size: 14px;
+  }
+  
   .prod-fixed {
     position: unset;
     width: 100%;
@@ -3617,6 +3621,7 @@ section.ticket-form {
     justify-content: unset; 
     align-items: unset;
     margin: 0;
+    border-bottom: 0;
   }
 
   .tabs-container {
@@ -3647,17 +3652,18 @@ section.ticket-form {
     float: left;
   }
   .left-right .tab {
-    padding: 10px 27px;
+    padding: 10px 10px;
     z-index: 11;
-    margin: -4px 0;
-    box-shadow: 3px 2px var(--gray);
+    margin: 4px 0;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 6px 9px 0 rgba(0, 0, 0, 0.1);
   }
   .left-right .tab a {
-    padding: 10px 10px;
+    padding: 10px 15px;
   }
   .left-right .tab a.active {
-    border-bottom: 5px solid var(--orange);
-    border-right: 0;
+       border-right: 0;
+       border-radius: 50px;
+       font-weight: 800;
   }
   .coming-soon .tabs-para{
     max-width: 100%;
