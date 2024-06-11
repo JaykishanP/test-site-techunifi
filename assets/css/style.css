@@ -2076,13 +2076,15 @@ span.bread-inner {
 }
 .home-clients-slider .swiper-button-next:after, 
 .home-clients-slider .swiper-button-prev:after{
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 800;
   position: relative;
   bottom: 30px;
-  border: 2px solid var(--orange);
-  padding: 4px 5px;
-  border-radius: 100%;
+  border: 1px solid var(--orange);
+  padding: 7px;
+  /* border-radius: 100%; */
+  color: #fff;
+  background-color: var(--orange);
 }
 .cloud-img{
   padding-top: 35px;
@@ -3091,7 +3093,7 @@ section.sub-tab-section {
 }
 
 #nav-menu.header-scrolled {
-  background: linear-gradient(#ededed, transparent, transparent, transparent);
+  background: linear-gradient(#ededed, #ededed, #ededed, transparent);
   backdrop-filter: blur(6px);
 }
 .bk-slider {
