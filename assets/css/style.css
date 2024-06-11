@@ -1842,6 +1842,13 @@ section.product-tab-section {
   padding: 5px 0 0 0;
 }
 
+.product-tab button:hover p {
+  display: block;
+  margin: 0;
+  font-weight: 600;
+  padding: 7px 0 0 0;
+}
+
 .product-tab button.active span {
   font-weight: 700;
   letter-spacing: 1px;
