@@ -200,8 +200,7 @@ section {
 }
 
 #nav-menu.header-scrolled {
-  background: linear-gradient(#ededed, transparent, transparent, transparent);
-  backdrop-filter: blur(6px);
+  background: linear-gradient(#ededed, #ededed, #ededed, transparent);
 }
 
 
@@ -1785,8 +1784,7 @@ section.thank-section {
 
 
 .productPage #nav-menu.header-scrolled {
-  background: linear-gradient(#ededed, transparent, transparent, transparent);
-  backdrop-filter: blur(6px);
+  background: linear-gradient(#ededed, #ededed, #ededed);
 }
 
 section.product-tab-section {
@@ -1801,9 +1799,8 @@ section.product-tab-section {
   top: 104px;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, transparent, transparent, transparent);
-  backdrop-filter: blur(6px);
   margin-top: -4px;
+  background: linear-gradient(#ededed, #ededed, #ededed, transparent);
 }
 
 .bread-crumb-row {
@@ -2079,10 +2076,13 @@ span.bread-inner {
 }
 .home-clients-slider .swiper-button-next:after, 
 .home-clients-slider .swiper-button-prev:after{
-  font-size: 30px;
+  font-size: 12px;
   font-weight: 800;
   position: relative;
   bottom: 30px;
+  border: 2px solid var(--orange);
+  padding: 4px 5px;
+  border-radius: 100%;
 }
 .cloud-img{
   padding-top: 35px;
@@ -2672,13 +2672,16 @@ span.hr-rule {
     float: unset;
 }
   .news-home-section .news-rows {
-    margin: 15px 0 15px 0;
+    margin: 10px 0 0 0;
+    height: 95%;
+    padding: 20px 20px 18px 20px;
   }
   .news-home-section .home-news-heading h3 br {
     display: none;
   }
   .news-home-section .home-news-heading h3{
     font-size: 32px;
+    padding: 20px 0 0 0;
 }
 .contact .news-home-section .home-news-heading h3::before {
   z-index: 0;
@@ -3138,6 +3141,9 @@ section.ticket-form {
 }
 .ticket-form .home-contact-submit input[type="submit"] {
   margin: 15px 0 10px auto;
+}
+.sub-tab-section .tab button.active {
+  padding: 10px 15px;
 }
 
 }
@@ -3699,5 +3705,14 @@ section.ticket-form {
     position: relative;
     padding: 0;
   }
+
+}
+
+/* ==== 1200 - 1360 */
+@media only screen and (min-width: 1200px) and (max-width: 1360px){
+
+.left-right .right-content {
+  padding: 0 0 0 30px;
+}
 
 }
