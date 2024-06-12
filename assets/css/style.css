@@ -1849,8 +1849,11 @@ section.product-tab-section {
   padding: 7px 0 0 0;
 }
 
+.product-tab button:hover span{
+  font-weight: 800 !important;
+}
 .product-tab button.active span {
-  font-weight: 700;
+  font-weight: 700 !important;
   letter-spacing: 1px;
 }
 
@@ -1863,17 +1866,8 @@ section.product-tab-section {
   padding: 6px 12px;
 }
 
-.overview-tab-content {
-  text-align: center;
-}
-
 .overview-tab-content .submit-head-para{
   margin: 0;
-}
-
-.overview-tab-content .submit-head-para .prod-heading h3::before {
-  bottom: -15px;
-  left: 46%;
 }
 
 .overview-tab-content .tabs-para{
@@ -1894,13 +1888,24 @@ section.product-tab-section {
   color: var(--black);
 }
 
-.overview-tab-content .sub-Inquiry{
-  margin: 0 auto;
-}
 
 .overview-tab-content img {
   width: 73%;
   padding-top: 50px;
+}
+
+.overview-sketch{
+  text-align: center;
+}
+
+.overview-cont-col{
+  border-left: 3.4px solid var(--blue);
+  padding-left: 50px;
+}
+
+.overview-sketch img {
+  position: relative;
+  left: 25px;
 }
 
 .coming-soon {
@@ -3153,6 +3158,12 @@ section.ticket-form {
 }
 .sub-tab-section .tab button.active {
   padding: 10px 15px;
+}
+.image-right-banner img {
+  max-width: 100%;
+}
+.left-right::before {
+  background-color: transparent;
 }
 
 }
