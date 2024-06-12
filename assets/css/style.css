@@ -3380,7 +3380,7 @@ section.ticket-form {
   }
   
   .product-tab button {
-    min-width: 80px;
+    min-width: 74px;
   }
   .product-tab .prod-tablinks img {
     max-width: 18px;
@@ -3656,6 +3656,8 @@ section.ticket-form {
     z-index: 11;
     margin: 4px 0;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 6px 9px 0 rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
   }
   .left-right .tab a {
     padding: 10px 15px;
