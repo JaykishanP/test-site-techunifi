@@ -2658,6 +2658,21 @@ span.hr-rule {
   color: #2A7AFF;
 }
 
+.left-right .tab a.click-active {
+  font-weight: 700;
+  border-right: 5px solid var(--orange);
+  background-color: #ede1da;
+  border-radius: 20px 0 0 20px;
+  color: var(--blue);
+}
+
+.left-right .tab a.scroll-active {
+  font-weight: 700;
+  border-right: 5px solid var(--orange);
+  background-color: #ede1da;
+  border-radius: 20px 0 0 20px;
+  color: var(--blue);
+}
 
 
 /* ============ Responsive ==============*/

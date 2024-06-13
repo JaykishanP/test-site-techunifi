@@ -450,28 +450,91 @@ $('.tablinks, .prod-tablinks').click(function(event) {
 /* ====== Product ======*/
 //Product - Tabs
 
+// document.addEventListener('DOMContentLoaded', function() {
+//   // Function to handle tab clicks
+//   function openProd(evt, cityName) {
+//     var i, tabcontent, tablinks;
+//     tabcontent = document.getElementsByClassName("product-tabcontent");
+//     for (i = 0; i < tabcontent.length; i++) {
+//       tabcontent[i].style.display = "none";
+//       tabcontent[i].classList.remove("active");
+//     }
+//     tablinks = document.getElementsByClassName("prod-tablinks");
+//     for (i = 0; i < tablinks.length; i++) {
+//       tablinks[i].classList.remove("active"); // Remove active class from all tab links
+//     }
+
+//     var cityElement = document.getElementById(cityName);
+//     if (cityElement) {
+//       cityElement.style.display = "block";
+//       cityElement.classList.add("active");
+//     }
+
+//     // Add active class to the clicked tab button
+//     evt.currentTarget.classList.add("active");
+//   }
+
+//   // Find and handle the overview tab
+//   var productOpenButton = document.getElementById("productOpen");
+//   var overviewTabContent = document.getElementById("tab-overview");
+
+//   if (productOpenButton && overviewTabContent) {
+//     productOpenButton.classList.add("active"); // Add active class to Overview tab button
+//     overviewTabContent.style.display = "block"; // Ensure Overview content is visible
+//     overviewTabContent.classList.add("active"); // Add active class to Overview tab content
+//   }
+
+//   // Adding event listeners to all tab buttons
+//   var tabButtons = document.querySelectorAll(".prod-tablinks");
+//   tabButtons.forEach(function(button) {
+//     button.addEventListener("click", function(event) {
+//       var isActive = button.classList.contains("active");
+//       if (!isActive || button.id === "productOpen") {
+//         openProd(event, button.getAttribute("id").replace("prod-", ""));
+//       }
+//     });
+//   });
+// });
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   var overviewTabButton = document.getElementById("productOpen");
+//   var overviewTabContent = document.getElementById("tab-overview");
+
+//   if (overviewTabButton && overviewTabContent) {
+//     overviewTabButton.addEventListener("click", function(event) {
+//       if (!overviewTabButton.classList.contains("active")) {
+//         overviewTabButton.classList.add("active");
+//         overviewTabContent.style.display = "block";
+//       } else {
+//         overviewTabContent.style.display = "block"; // Ensure content is visible even if button is already active
+//       }
+//     });
+//   }
+// });
+
+
 document.addEventListener('DOMContentLoaded', function() {
   // Function to handle tab clicks
   function openProd(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("product-tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-      tabcontent[i].classList.remove("active");
-    }
-    tablinks = document.getElementsByClassName("prod-tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].classList.remove("active"); // Remove active class from all tab links
-    }
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("product-tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+          tabcontent[i].classList.remove("active");
+      }
+      tablinks = document.getElementsByClassName("prod-tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].classList.remove("active"); // Remove active class from all tab links
+      }
 
-    var cityElement = document.getElementById(cityName);
-    if (cityElement) {
-      cityElement.style.display = "block";
-      cityElement.classList.add("active");
-    }
+      var cityElement = document.getElementById(cityName);
+      if (cityElement) {
+          cityElement.style.display = "block";
+          cityElement.classList.add("active");
+      }
 
-    // Add active class to the clicked tab button
-    evt.currentTarget.classList.add("active");
+      // Add active class to the clicked tab button
+      evt.currentTarget.classList.add("active");
   }
 
   // Find and handle the overview tab
@@ -479,20 +542,20 @@ document.addEventListener('DOMContentLoaded', function() {
   var overviewTabContent = document.getElementById("tab-overview");
 
   if (productOpenButton && overviewTabContent) {
-    productOpenButton.classList.add("active"); // Add active class to Overview tab button
-    overviewTabContent.style.display = "block"; // Ensure Overview content is visible
-    overviewTabContent.classList.add("active"); // Add active class to Overview tab content
+      productOpenButton.classList.add("active"); // Add active class to Overview tab button
+      overviewTabContent.style.display = "block"; // Ensure Overview content is visible
+      overviewTabContent.classList.add("active"); // Add active class to Overview tab content
   }
 
   // Adding event listeners to all tab buttons
   var tabButtons = document.querySelectorAll(".prod-tablinks");
   tabButtons.forEach(function(button) {
-    button.addEventListener("click", function(event) {
-      var isActive = button.classList.contains("active");
-      if (!isActive || button.id === "productOpen") {
-        openProd(event, button.getAttribute("id").replace("prod-", ""));
-      }
-    });
+      button.addEventListener("click", function(event) {
+          var isActive = button.classList.contains("active");
+          if (!isActive || button.id === "productOpen") {
+              openProd(event, button.getAttribute("id").replace("prod-", ""));
+          }
+      });
   });
 });
 
@@ -501,16 +564,86 @@ document.addEventListener('DOMContentLoaded', function() {
   var overviewTabContent = document.getElementById("tab-overview");
 
   if (overviewTabButton && overviewTabContent) {
-    overviewTabButton.addEventListener("click", function(event) {
-      if (!overviewTabButton.classList.contains("active")) {
-        overviewTabButton.classList.add("active");
-        overviewTabContent.style.display = "block";
-      } else {
-        overviewTabContent.style.display = "block"; // Ensure content is visible even if button is already active
-      }
-    });
+      overviewTabButton.addEventListener("click", function(event) {
+          if (!overviewTabButton.classList.contains("active")) {
+              overviewTabButton.classList.add("active");
+              overviewTabContent.style.display = "block";
+          } else {
+              overviewTabContent.style.display = "block"; // Ensure content is visible even if button is already active
+          }
+      });
   }
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  let isClicking = false;
+
+  function activateClickTab(tabLink) {
+      isClicking = true;
+
+      // Remove click-active and scroll-active classes from all tabs
+      document.querySelectorAll(".left-right .tab a").forEach(function(link) {
+          link.classList.remove("click-active");
+          link.classList.remove("scroll-active");
+      });
+
+      // Add click-active class to the clicked tab
+      tabLink.classList.add("click-active");
+
+      // Scroll to the corresponding section
+      document.getElementById(tabLink.getAttribute("href").substring(1)).scrollIntoView({ behavior: 'smooth' });
+
+      // Remove the flag after the scrolling is done
+      setTimeout(() => { isClicking = false; }, 1000);
+  }
+
+  function activateScrollTab() {
+      if (isClicking) return;
+
+      var fromTop = window.scrollY + 100; // Adjust offset as necessary
+
+      document.querySelectorAll(".left-right .tab a").forEach(function(link) {
+          var section = document.getElementById(link.getAttribute("href").substring(1));
+          if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+              // Remove scroll-active and click-active class from all tabs
+              document.querySelectorAll(".left-right .tab a").forEach(function(link) {
+                  link.classList.remove("scroll-active");
+                  link.classList.remove("click-active");
+              });
+              // Add scroll-active class to the current tab
+              link.classList.add("scroll-active");
+          } else {
+              link.classList.remove("scroll-active");
+          }
+      });
+  }
+
+  // Click event for tabs
+  document.querySelectorAll(".left-right .tab a").forEach(function(link) {
+      link.addEventListener("click", function(event) {
+          event.preventDefault();
+          activateClickTab(this);
+      });
+  });
+
+  // Add scroll event listener
+  window.addEventListener('scroll', activateScrollTab);
+
+  // Highlight the tab corresponding to the current hash on page load
+  if (window.location.hash) {
+      var initialTab = document.querySelector(`.left-right .tab a[href="${window.location.hash}"]`);
+      if (initialTab) {
+          activateClickTab(initialTab);
+      }
+  }
+
+  // Trigger activateScrollTab on initial load
+  activateScrollTab();
+});
+
+
+
 
 
 /* ======== Prod tab Mobile slide ============  */
@@ -771,12 +904,10 @@ document.addEventListener("DOMContentLoaded", function() {
   tabLinks.forEach(link => {
     link.addEventListener("click", function(event) {
       
-      // Remove the "active" class from all links
       tabLinks.forEach(link => {
         link.classList.remove("active");
       });
       
-      // Add the "active" class to the clicked link
       this.classList.add("active");
     });
   });
@@ -1140,54 +1271,46 @@ document.addEventListener('DOMContentLoaded', () => {
     threshold: 0.6
   };
 
-  let currentIndex = 0;
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const newIndex = Array.from(sections).indexOf(entry.target);
-
-        // Directly adjust opacity without sequential check for reliability
-        adjustAdjacentOpacity(entry.target);
-        currentIndex = newIndex;
+        const activeSection = entry.target;
+        adjustAdjacentOpacity(activeSection);
       }
     });
   }, options);
 
-  sections.forEach(section => {
-    observer.observe(section);
-  });
+  sections.forEach(section => observer.observe(section));
 
   function adjustAdjacentOpacity(activeSection) {
-    sections.forEach((section, index) => {
+    sections.forEach(section => {
       const h1Element = section.querySelector('h1');
       const imgElement = section.querySelector('.col-md-5 img');
       const pElement = section.querySelector('.col-md-5 p');
       const isAdjacentSection = isAdjacent(activeSection, section);
 
       if (section === activeSection) {
-        h1Element.style.opacity = '1';
-        h1Element.style.color = '#EB6D47';
         section.classList.add('active');
+        h1Element.style.color = '#EB6D47';
+        h1Element.style.opacity = '1';
         imgElement.style.opacity = '1';
         pElement.style.opacity = '1';
       } else if (isAdjacentSection) {
-        h1Element.style.opacity = '0.7';
-        h1Element.style.color = '#313D53';
         section.classList.remove('active');
+        h1Element.style.color = '#313D53';
+        h1Element.style.opacity = '0.7';
         imgElement.style.opacity = '0';
         pElement.style.opacity = '0';
       } else {
-        h1Element.style.opacity = '0.32';
-        h1Element.style.color = '#313D53';
         section.classList.remove('active');
+        h1Element.style.color = '#313D53';
+        h1Element.style.opacity = '0.32';
         imgElement.style.opacity = '0';
         pElement.style.opacity = '0';
       }
 
-      // Add transition effect
-      [imgElement, pElement, h1Element].forEach(elem => {
-        elem.style.transition = 'opacity 0.7s ease, color 0.7s ease'; // Added color transition for smoother change
+      [h1Element, imgElement, pElement].forEach(elem => {
+        elem.style.transition = 'opacity 0.7s ease, color 0.7s ease';
       });
     });
   }
@@ -1195,34 +1318,34 @@ document.addEventListener('DOMContentLoaded', () => {
   function isAdjacent(section1, section2) {
     const index1 = Array.from(sections).indexOf(section1);
     const index2 = Array.from(sections).indexOf(section2);
-    return Math.abs(index1 - index2) === 1 || Math.abs(index1 - index2) === sections.length - 1;
+    return Math.abs(index1 - index2) === 1;
   }
 
-  // Hover effect for sections
   sections.forEach(section => {
+    const h1Element = section.querySelector('h1');
     const imgElement = section.querySelector('.col-md-5 img');
     const pElement = section.querySelector('.col-md-5 p');
-    const h1Element = section.querySelector('h1');
 
     section.addEventListener('mouseover', () => {
       if (!section.classList.contains('active')) {
-        imgElement.style.opacity = '1';
-        pElement.style.opacity = '1';
         h1Element.style.color = '#EB6D47';
         h1Element.style.opacity = '1';
+        imgElement.style.opacity = '1';
+        pElement.style.opacity = '1';
       }
     });
 
     section.addEventListener('mouseout', () => {
       if (!section.classList.contains('active')) {
+        h1Element.style.color = '#313D53';
+        h1Element.style.opacity = '0.32';
         imgElement.style.opacity = '0';
         pElement.style.opacity = '0';
-        h1Element.style.color = '#313D53';
-        h1Element.style.opacity = '0.32'; // Reset to non-active opacity
       }
     });
   });
 });
+
 
 /* ===== Product heading to new Inquiry ===== */
 
@@ -1282,6 +1405,13 @@ document.addEventListener('DOMContentLoaded', function() {
     removeAOSAttributes();
   });
 });
+
+
+/* ==== active class sidebar ==== */
+
+
+
+
 
 /* ==== Event Close ==== */
 
