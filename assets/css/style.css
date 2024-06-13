@@ -3451,7 +3451,7 @@ section.ticket-form {
 }
 .overview-tab-content .submit-head-para .prod-heading h3::before {
   bottom: -15px;
-  left: 43%;
+  left: 0;
 }
 
 .event-close {
@@ -3557,7 +3557,7 @@ section.ticket-form {
 }
 .overview-tab-content .submit-head-para .prod-heading h3::before {
   bottom: -15px;
-  left: 44%;
+  left: 0;
 }
 .home-swipe-img-text {
   font-size: 14px;
