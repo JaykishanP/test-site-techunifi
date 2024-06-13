@@ -3185,6 +3185,14 @@ section.ticket-form {
 .left-right::before {
   background-color: transparent;
 }
+.overview-cont-col {
+  border-left: unset;
+  padding-left: 14px;
+}
+.overview-sketch img {
+  left: unset;
+  max-width: 100%;
+}
 
 }
 
@@ -3465,6 +3473,15 @@ section.ticket-form {
 .home-clients-section .section-container {
   margin: 30px 0 30px 0;
 }
+.overview-cont-col {
+  border-left: 2.4px solid var(--blue);
+  padding-left: 20px;
+}
+.overview-sketch img {
+  left: 13.0px;
+  max-width: 80%;
+}
+
 }
 
 
@@ -3549,6 +3566,9 @@ section.ticket-form {
   display: block;
   color: var(--orange);
 }
+.overview-sketch img {
+  left: 18px;
+}
 
 }
 
@@ -3593,6 +3613,9 @@ section.ticket-form {
   .sale-text h1 {
     font-size: 28px;
     line-height: 29px;
+  }
+  .overview-sketch img {
+    left: 19.6px;
   }
 }
 
