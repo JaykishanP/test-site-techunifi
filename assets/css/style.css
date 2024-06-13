@@ -1905,7 +1905,12 @@ section.product-tab-section {
 
 .overview-sketch img {
   position: relative;
-  left: 25px;
+  left: 24px;
+  max-width: 80%;
+}
+
+.overview-cont-col a.sub-Inquiry {
+  margin: 0 0 30px 0;
 }
 
 .coming-soon {
