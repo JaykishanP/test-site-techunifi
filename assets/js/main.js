@@ -450,126 +450,65 @@ $('.tablinks, .prod-tablinks').click(function(event) {
 /* ====== Product ======*/
 //Product - Tabs
 
-// document.addEventListener('DOMContentLoaded', function() {
-//   // Function to handle tab clicks
-//   function openProd(evt, cityName) {
-//     var i, tabcontent, tablinks;
-//     tabcontent = document.getElementsByClassName("product-tabcontent");
-//     for (i = 0; i < tabcontent.length; i++) {
-//       tabcontent[i].style.display = "none";
-//       tabcontent[i].classList.remove("active");
-//     }
-//     tablinks = document.getElementsByClassName("prod-tablinks");
-//     for (i = 0; i < tablinks.length; i++) {
-//       tablinks[i].classList.remove("active"); // Remove active class from all tab links
-//     }
-
-//     var cityElement = document.getElementById(cityName);
-//     if (cityElement) {
-//       cityElement.style.display = "block";
-//       cityElement.classList.add("active");
-//     }
-
-//     // Add active class to the clicked tab button
-//     evt.currentTarget.classList.add("active");
-//   }
-
-//   // Find and handle the overview tab
-//   var productOpenButton = document.getElementById("productOpen");
-//   var overviewTabContent = document.getElementById("tab-overview");
-
-//   if (productOpenButton && overviewTabContent) {
-//     productOpenButton.classList.add("active"); // Add active class to Overview tab button
-//     overviewTabContent.style.display = "block"; // Ensure Overview content is visible
-//     overviewTabContent.classList.add("active"); // Add active class to Overview tab content
-//   }
-
-//   // Adding event listeners to all tab buttons
-//   var tabButtons = document.querySelectorAll(".prod-tablinks");
-//   tabButtons.forEach(function(button) {
-//     button.addEventListener("click", function(event) {
-//       var isActive = button.classList.contains("active");
-//       if (!isActive || button.id === "productOpen") {
-//         openProd(event, button.getAttribute("id").replace("prod-", ""));
-//       }
-//     });
-//   });
-// });
-
-// document.addEventListener('DOMContentLoaded', function() {
-//   var overviewTabButton = document.getElementById("productOpen");
-//   var overviewTabContent = document.getElementById("tab-overview");
-
-//   if (overviewTabButton && overviewTabContent) {
-//     overviewTabButton.addEventListener("click", function(event) {
-//       if (!overviewTabButton.classList.contains("active")) {
-//         overviewTabButton.classList.add("active");
-//         overviewTabContent.style.display = "block";
-//       } else {
-//         overviewTabContent.style.display = "block"; // Ensure content is visible even if button is already active
-//       }
-//     });
-//   }
-// });
-
 document.addEventListener('DOMContentLoaded', function() {
-  let isClicking = false;
+  // Function to handle tab clicks
+  function openProd(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("product-tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+      tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("prod-tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active"); // Remove active class from all tab links
+    }
 
-  function clearActiveClasses() {
-    document.querySelectorAll(".left-right .tab a").forEach(function(link) {
-      link.classList.remove("active");
-    });
+    var cityElement = document.getElementById(cityName);
+    if (cityElement) {
+      cityElement.style.display = "block";
+      cityElement.classList.add("active");
+    }
+
+    // Add active class to the clicked tab button
+    evt.currentTarget.classList.add("active");
   }
 
-  function activateTab(tabLink) {
-    clearActiveClasses(); // Clear all active classes first
+  // Find and handle the overview tab
+  var productOpenButton = document.getElementById("productOpen");
+  var overviewTabContent = document.getElementById("tab-overview");
 
-    tabLink.classList.add("active"); // Add active class to the clicked tab
+  if (productOpenButton && overviewTabContent) {
+    productOpenButton.classList.add("active"); // Add active class to Overview tab button
+    overviewTabContent.style.display = "block"; // Ensure Overview content is visible
+    overviewTabContent.classList.add("active"); // Add active class to Overview tab content
   }
 
-  function handleIntersection(entries, observer) {
-    if (isClicking) return;
-
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        const tabLink = document.querySelector(`.left-right .tab a[href="#${id}"]`);
-
-        if (tabLink) {
-          clearActiveClasses();
-          tabLink.classList.add("active");
-        }
+  // Adding event listeners to all tab buttons
+  var tabButtons = document.querySelectorAll(".prod-tablinks");
+  tabButtons.forEach(function(button) {
+    button.addEventListener("click", function(event) {
+      var isActive = button.classList.contains("active");
+      if (!isActive || button.id === "productOpen") {
+        openProd(event, button.getAttribute("id").replace("prod-", ""));
       }
     });
-  }
+  });
+});
 
-  const options = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.5
-  };
+document.addEventListener('DOMContentLoaded', function() {
+  var overviewTabButton = document.getElementById("productOpen");
+  var overviewTabContent = document.getElementById("tab-overview");
 
-  const observer = new IntersectionObserver(handleIntersection, options);
-
-  document.querySelectorAll('.left-right .tab a').forEach(function(link) {
-    link.addEventListener("click", function(event) {
-      event.preventDefault();
-      isClicking = true; // Set clicking flag to true during click
-      activateTab(this); // Activate tab link when clicked
-      setTimeout(() => { isClicking = false; }, 1000); // Reset clicking flag after delay
+  if (overviewTabButton && overviewTabContent) {
+    overviewTabButton.addEventListener("click", function(event) {
+      if (!overviewTabButton.classList.contains("active")) {
+        overviewTabButton.classList.add("active");
+        overviewTabContent.style.display = "block";
+      } else {
+        overviewTabContent.style.display = "block"; // Ensure content is visible even if button is already active
+      }
     });
-  });
-
-  document.querySelectorAll('section').forEach((section) => {
-    observer.observe(section);
-  });
-
-  // Highlight the tab corresponding to the current hash on page load
-  if (window.location.hash) {
-    const initialTab = document.querySelector(`.left-right .tab a[href="${window.location.hash}"]`);
-    if (initialTab) {
-      activateTab(initialTab); // Activate tab link based on hash on page load
-    }
   }
 });
 
@@ -803,44 +742,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* ====== Leftnav highlight on scroll ======= */
-document.addEventListener("DOMContentLoaded", function() {
-  const tabLinks = document.querySelectorAll(".left-right .tab a");
+// document.addEventListener("DOMContentLoaded", function() {
+//   const tabLinks = document.querySelectorAll(".left-right .tab a");
   
-  window.addEventListener("scroll", function() {
-    const sections = document.querySelectorAll(".right-content .id-div");
-    const scrollPosition = window.scrollY || window.pageYOffset;
+//   window.addEventListener("scroll", function() {
+//     const sections = document.querySelectorAll(".right-content .id-div");
+//     const scrollPosition = window.scrollY || window.pageYOffset;
     
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
+//     sections.forEach(section => {
+//       const rect = section.getBoundingClientRect();
       
-      if (rect.top <= 0 && rect.bottom > 0) {
-        const id = section.getAttribute("id");
-        tabLinks.forEach(link => {
-          if (link.getAttribute("href") === `#${id}`) {
-            link.classList.add("active");
-          } else {
-            link.classList.remove("active");
-          }
-        });
-      }
-    });
-  });
-});
+//       if (rect.top <= 0 && rect.bottom > 0) {
+//         const id = section.getAttribute("id");
+//         tabLinks.forEach(link => {
+//           if (link.getAttribute("href") === `#${id}`) {
+//             link.classList.add("active");
+//           } else {
+//             link.classList.remove("active");
+//           }
+//         });
+//       }
+//     });
+//   });
+// });
 
-document.addEventListener("DOMContentLoaded", function() {
-  const tabLinks = document.querySelectorAll(".left-right .tab a");
+// document.addEventListener("DOMContentLoaded", function() {
+//   const tabLinks = document.querySelectorAll(".left-right .tab a");
   
-  tabLinks.forEach(link => {
-    link.addEventListener("click", function(event) {
+//   tabLinks.forEach(link => {
+//     link.addEventListener("click", function(event) {
       
-      tabLinks.forEach(link => {
-        link.classList.remove("active");
-      });
+//       tabLinks.forEach(link => {
+//         link.classList.remove("active");
+//       });
       
-      this.classList.add("active");
-    });
-  });
-});
+//       this.classList.add("active");
+//     });
+//   });
+// });
 
 
 /* ======== mobile prod sidebar fixed ======== */
