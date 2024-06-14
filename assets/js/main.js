@@ -766,20 +766,20 @@ document.addEventListener('DOMContentLoaded', function() {
 //   });
 // });
 
-// document.addEventListener("DOMContentLoaded", function() {
-//   const tabLinks = document.querySelectorAll(".left-right .tab a");
+document.addEventListener("DOMContentLoaded", function() {
+  const tabLinks = document.querySelectorAll(".left-right .tab a");
   
-//   tabLinks.forEach(link => {
-//     link.addEventListener("click", function(event) {
+  tabLinks.forEach(link => {
+    link.addEventListener("click", function(event) {
       
-//       tabLinks.forEach(link => {
-//         link.classList.remove("active");
-//       });
+      tabLinks.forEach(link => {
+        link.classList.remove("active");
+      });
       
-//       this.classList.add("active");
-//     });
-//   });
-// });
+      this.classList.add("active");
+    });
+  });
+});
 
 
 /* ======== mobile prod sidebar fixed ======== */
