@@ -3152,7 +3152,7 @@ section.ticket-form {
 }
 .overview-tab-content .submit-head-para .prod-heading h3::before {
   bottom: -15px;
-  left: 39%;
+  left: 0;
 }
 .prod-tablinks.active {
     margin: 6px 0 0 0;
