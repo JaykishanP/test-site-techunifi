@@ -2662,6 +2662,11 @@ span.hr-rule {
   letter-spacing: 1.5px;
   color: #2A7AFF;
 }
+img.music-image {
+  max-width: 97%;
+  margin: 0 auto;
+  display: block;
+}
 
 
 /* ============ Responsive ==============*/
@@ -3696,6 +3701,7 @@ section.ticket-form {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 6px 9px 0 rgba(0, 0, 0, 0.1);
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
   }
   .left-right .tab a {
     padding: 10px 15px;
