@@ -200,7 +200,7 @@ section {
 }
 
 #nav-menu.header-scrolled {
-  background: linear-gradient(#ededed, #ededed, #ededed, transparent);
+  background: linear-gradient(#ededed, #ededed);
 }
 
 
@@ -1576,6 +1576,10 @@ section.ticket-form {
   border-right: 0;
 }
 
+.submitPage .sub-tab-section .tab button:hover {
+  font-weight: 800;
+}
+
 .sub-tab-section .tab button.active {
   border: 1px solid var(--black);
   border-radius: 50px;
@@ -1800,7 +1804,7 @@ section.product-tab-section {
   left: 0;
   right: 0;
   margin-top: -4px;
-  background: linear-gradient(#ededed, #ededed, #ededed, transparent);
+  background: linear-gradient(#ededed, #ededed);
 }
 
 .bread-crumb-row {
@@ -3147,7 +3151,7 @@ section.sub-tab-section {
 }
 
 #nav-menu.header-scrolled {
-  background: linear-gradient(#ededed, #ededed, #ededed, transparent);
+  background: linear-gradient(#ededed, #ededed);
   backdrop-filter: blur(6px);
 }
 .bk-slider {
