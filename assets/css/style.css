@@ -2667,6 +2667,39 @@ img.music-image {
   margin: 0 auto;
   display: block;
 }
+/* Form field focus */
+.ticket-form input:focus, .ticket-form textarea:focus, .ticket-form select:focus {
+  border-color: var(--black); 
+  outline: none; 
+  box-shadow: 0 0 5px rgba(235, 109, 71, 0.75); 
+  caret-color: var(--orange);
+}
+
+.ticket-form input, .ticket-form textarea {
+  padding-left: 0.2em; 
+}
+
+.ticket-form input:focus::after, .ticket-form textarea:focus::after {
+  content: '';
+  position: absolute;
+  width: 4px; 
+  height: 1.2em; 
+  background: linear-gradient(135deg, var(--orange), #ffb347); /* Gradient background for uniqueness */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Slight border for better contrast */
+  animation: blink 1s step-end infinite; 
+  top: 0.1em; /* Adjust as necessary to align with text */
+  left: 0.5em; /* Starting position of the cursor */
+}
+
+@keyframes blink {
+  from, to {
+      background-color: transparent;
+  }
+  50% {
+      background: linear-gradient(135deg, var(--orange), #ffb347); /* Maintain gradient during blink */
+  }
+}
+
 
 
 /* ============ Responsive ==============*/
