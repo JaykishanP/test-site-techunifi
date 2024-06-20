@@ -2119,6 +2119,7 @@ span.bread-inner {
   margin: 0 auto;
   display: block;
   width: 100%;
+  border-radius: 8px;
 }
 .id-div {
   display: block;
