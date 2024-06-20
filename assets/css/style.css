@@ -665,9 +665,10 @@ section {
   color: #EDEDED;
 }
 
-.service-section-desc .service-col h3 {
+.service-section-desc .service-col:hover h3 {
   text-decoration: underline;
   text-underline-offset: 4px;
+  text-decoration-color: var(--orange);
 }
 
 .service-section-desc .service-col:hover p {
@@ -2718,6 +2719,7 @@ img.music-image {
   background-color: transparent;
   border-color: var(--orange);
 }
+
 
 /* ============ Responsive ==============*/
 /* Mobile */
