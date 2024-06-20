@@ -2121,6 +2121,12 @@ span.bread-inner {
   width: 100%;
   border-radius: 8px;
 }
+#other-info video {
+  margin: 0 auto;
+  display: block;
+  width: 93%;
+  border-radius: 8px;
+}
 .id-div {
   display: block;
 }
@@ -2164,6 +2170,9 @@ span.bread-inner {
   height: 1px;
   position: absolute;
   background-color: var(--blue);
+}
+.sec-firewalls .sub-card-text {
+  padding: 10px 0 20px 25px;
 }
 
 /* Slider Overlay */
@@ -2279,7 +2288,8 @@ a.card-spec-sheet {
   height: calc(300em/14);
 }
 .security-ip .card-click .card-prod-heading,
-.mega-ip .card-click .card-prod-heading {
+.mega-ip .card-click .card-prod-heading,
+.security-lpr .card-click .card-prod-heading {
   font-size: 16px;
 }
 .security-ip .container-inner .slider {
@@ -2291,6 +2301,9 @@ a.card-spec-sheet {
 }
 .mega-ip .container-inner .slider {
   height: calc(360em/15);
+}
+.security-lpr .container-inner .slider {
+  height: calc(360em/14);
 }
 .mega-security-large {
   background-color: #fff;
@@ -2843,7 +2856,8 @@ img.music-image {
    .tele-cordless-phone .container-inner .slider,
    .tele-corded-phone .container-inner .slider, 
    .mega-ip .container-inner .slider, 
-   .security-ip .container-inner .slider {
+   .security-ip .container-inner .slider,
+   .security-lpr .container-inner .slider {
       height: unset;
    }
 
@@ -3372,7 +3386,8 @@ section.ticket-form {
    .tele-cordless-phone .container-inner .slider,
    .tele-corded-phone .container-inner .slider,
    .mega-ip .container-inner .slider,
-   .security-ip .container-inner .slider {
+   .security-ip .container-inner .slider,
+   .security-lpr .container-inner .slider {
      height: unset;
    }
 
@@ -3380,7 +3395,8 @@ section.ticket-form {
    .tele-cordless-phone .container-inner .slider__listItem,
    .tele-corded-phone .container-inner .slider__listItem,
    .mega-ip .container-inner .slider__listItem,
-   .security-ip .container-inner .slider__listItem{
+   .security-ip .container-inner .slider__listItem,
+   .security-lpr .container-inner .slider__listItem{
      height: fit-content;
    }
 
