@@ -3827,6 +3827,9 @@ section.ticket-form {
 .left-right .right-content {
   padding: 0 0 0 30px;
 }
+.overview-sketch img {
+  left: 20px;
+}
 
 }
 
