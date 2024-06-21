@@ -1905,7 +1905,7 @@ section.product-tab-section {
 
 .overview-cont-col{
   border-left: 3.4px solid var(--blue);
-  padding-left: 50px;
+  padding-left: 46px;
 }
 
 .overview-sketch img {
@@ -2289,7 +2289,9 @@ a.card-spec-sheet {
 }
 .security-ip .card-click .card-prod-heading,
 .mega-ip .card-click .card-prod-heading,
-.security-lpr .card-click .card-prod-heading {
+.security-lpr .card-click .card-prod-heading,
+.energy-thermo .card-click .card-prod-heading,
+.energy-ev .card-click .card-prod-heading{
   font-size: 16px;
 }
 .security-ip .container-inner .slider {
@@ -2305,6 +2307,12 @@ a.card-spec-sheet {
 .security-lpr .container-inner .slider {
   height: calc(360em/14);
 }
+.energy-thermo .container-inner .slider{
+  height: calc(320em/15);
+}
+.energy-ev .container-inner .slider{
+  height: calc(300em/15);
+}
 .mega-security-large {
   background-color: #fff;
   border-radius: 25px;
@@ -2319,6 +2327,12 @@ a.card-spec-sheet {
 .large-mega-text h3 {
   margin: 0 0 20px 0;
   font-weight: 600;
+}
+.security-lpr .card-brand-img {
+  margin-top: 41px;
+}
+.mega-ip .card-click .card-brand-img{
+  margin-top: 21px;
 }
 .swiper-slide {
   transition: width 0.7s ease; /* Smooth transition for width change */
@@ -2734,6 +2748,17 @@ img.music-image {
   border-color: var(--orange);
 }
 
+/* low */
+.low-structure-img {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.low-structure-img .col-md-4 {
+  padding: 0 3px;
+  width: 32%;
+}
+
 
 /* ============ Responsive ==============*/
 /* Mobile */
@@ -2857,7 +2882,9 @@ img.music-image {
    .tele-corded-phone .container-inner .slider, 
    .mega-ip .container-inner .slider, 
    .security-ip .container-inner .slider,
-   .security-lpr .container-inner .slider {
+   .security-lpr .container-inner .slider,
+   .energy-thermo .container-inner .slider,
+   .energy-ev .container-inner .slider {
       height: unset;
    }
 
@@ -3249,6 +3276,12 @@ section.ticket-form {
   left: unset;
   max-width: 100%;
 }
+.low-structure-img .col-md-4 {
+  width: unset;
+}
+div#low-Voltage {
+  padding: 44px 12px 0;
+}
 
 }
 
@@ -3387,7 +3420,9 @@ section.ticket-form {
    .tele-corded-phone .container-inner .slider,
    .mega-ip .container-inner .slider,
    .security-ip .container-inner .slider,
-   .security-lpr .container-inner .slider {
+   .security-lpr .container-inner .slider,
+   .energy-thermo .container-inner .slider,
+   .energy-ev .container-inner .slider {
      height: unset;
    }
 
@@ -3396,7 +3431,9 @@ section.ticket-form {
    .tele-corded-phone .container-inner .slider__listItem,
    .mega-ip .container-inner .slider__listItem,
    .security-ip .container-inner .slider__listItem,
-   .security-lpr .container-inner .slider__listItem{
+   .security-lpr .container-inner .slider__listItem,
+   .energy-thermo .container-inner .slider__listItem,
+   .energy-ev .container-inner .slider__listItem{
      height: fit-content;
    }
 
@@ -3539,6 +3576,9 @@ section.ticket-form {
   left: 13.0px;
   max-width: 80%;
 }
+.low-structure-img .col-md-4 {
+  padding: 0 4px;
+}
 
 }
 
@@ -3626,6 +3666,9 @@ section.ticket-form {
 }
 .overview-sketch img {
   left: 18px;
+}
+.low-structure-img .col-md-4 {
+  padding: 0 4px;
 }
 
 }
@@ -3754,6 +3797,7 @@ section.ticket-form {
     font-size: 30px;
     position: relative;
     display: inline-block;
+    margin-top: 15px;
   }
 
   .prod-next-button {
