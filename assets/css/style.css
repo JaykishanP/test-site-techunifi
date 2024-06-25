@@ -2758,6 +2758,9 @@ img.music-image {
   padding: 0 3px;
   width: 32%;
 }
+.esaas-energy video {
+  max-width: 100%;
+}
 
 
 /* ============ Responsive ==============*/
@@ -3756,6 +3759,7 @@ div#low-Voltage {
     z-index: 9;
     top: 88px;
     border-bottom: 2px solid var(--blue);
+    margin-top: -6px;
   }
 
   .productPage .container-inner {
