@@ -3759,7 +3759,7 @@ div#low-Voltage {
     z-index: 9;
     top: 88px;
     border-bottom: 2px solid var(--blue);
-    margin-top: -6px;
+    margin-top: -10px;
   }
 
   .productPage .container-inner {
