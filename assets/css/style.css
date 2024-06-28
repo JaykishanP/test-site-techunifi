@@ -1050,9 +1050,13 @@ footer.footer {
   font-weight: 500;
 }
 
-.footer .footer-prod-services {
-  /* margin-top: 53px; */
+.footer-prod-services li p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue);
 }
+
 .footer .footer-prod-services  ul.links-footer li {
   padding: 0 0 10px 0;
 }
