@@ -2777,6 +2777,57 @@ img.music-image {
   max-width: 100%;
 }
 
+/* Get a Quote Modal Popup */
+.quoteModal {
+  display: none; 
+  position: fixed;
+  z-index: 10; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+.quoteModal .modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid var(--orange);
+  width: 60%;
+}
+.quoteModal .close {
+  color: var(--orange);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.quoteModal .close:hover,
+.quoteModal .close:focus {
+  color: var(--blue);
+  text-decoration: none;
+  cursor: pointer;
+}
+.quoteModal section.ticket-form {
+  padding: 0 0 20px;
+}
+.quoteModal  .submit-sub-section {
+  padding: 15px 20px 15px;
+}
+.quoteModal .submit-head-para {
+  margin: 0;
+  text-align: center;
+}
+.quoteModal h3 {
+  margin: 0;
+}
+.quoteModal  .submit-sub-section {
+  padding: 15px 20px 15px;
+  margin: 5px 0;
+}
+
+
 
 /* ============ Responsive ==============*/
 /* Mobile */

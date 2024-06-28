@@ -1416,9 +1416,30 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-/* ==== active class sidebar ==== */
+/* ==== Get a Quote Modal Popup ==== */
 
+document.addEventListener("DOMContentLoaded", function() {
+  var modal = document.getElementById("quoteModal");
+  var span = document.getElementsByClassName("close")[0];
+  var links = document.querySelectorAll(".card-get-link");
 
+  links.forEach(function(link) {
+      link.addEventListener("click", function(event) {
+          event.preventDefault();
+          modal.style.display = "block";
+      });
+  });
+
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+});
 
 
 
