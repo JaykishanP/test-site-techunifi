@@ -1441,6 +1441,76 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+/* =========  Product heading to Modal Popup new Inquiry ========== */
+document.addEventListener('DOMContentLoaded', () => {
+  // Get the modal and the description textarea
+  const modal = document.querySelector('.quoteModal');
+  const descriptionTextarea = document.querySelector('#description');
+  const closeModal = document.querySelector('.modal .close');
+
+  // Check if modal and descriptionTextarea are found
+  if (!modal || !descriptionTextarea) {
+      console.error('Modal or description textarea not found in the DOM.');
+      return;
+  }
+
+  // Function to open the modal
+  const openModal = () => {
+      modal.style.display = 'block';
+  };
+
+  // Function to close the modal
+  const closeModalFunction = () => {
+      modal.style.display = 'none';
+  };
+
+  // Attach event listener to close button
+  if (closeModal) {
+      closeModal.addEventListener('click', closeModalFunction);
+  } else {
+      console.error('Close button not found in the DOM.');
+  }
+
+  // Attach event listener to the "More Info" links
+  document.querySelectorAll('.card-more .card-get-link').forEach(link => {
+      link.addEventListener('click', event => {
+          event.preventDefault();
+
+          // Find the closest card and get the content of its .card-prod-heading
+          const card = event.target.closest('.card-click');
+
+          // Check if card is found
+          if (!card) {
+              console.error('Card element not found.');
+              return;
+          }
+
+          const cardHeading = card.querySelector('.card-prod-heading h3');
+
+          // Check if cardHeading is found
+          if (!cardHeading) {
+              console.error('Card heading element not found.');
+              return;
+          }
+
+          const cardHeadingContent = cardHeading.innerText;
+
+          // Set the content of the description textarea
+          descriptionTextarea.value = cardHeadingContent;
+
+          // Open the modal
+          openModal();
+      });
+  });
+
+  // Close modal when clicking outside of it
+  window.addEventListener('click', event => {
+      if (event.target == modal) {
+          closeModalFunction();
+      }
+  });
+});
+
 
 
 /* ==== Event Close ==== */
