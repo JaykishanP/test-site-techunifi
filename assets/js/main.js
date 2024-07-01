@@ -1450,7 +1450,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   links.forEach(function(link) {
     link.addEventListener("click", function(event) {
-      event.preventDefault();
+      event.preventDefault(); // Prevent the default action of the link
       // Save current scroll position
       scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
       // Disable scroll
@@ -1495,6 +1495,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 });
+
 
 
 /* =========  Product heading to Modal Popup new Inquiry ========== */
