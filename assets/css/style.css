@@ -1025,8 +1025,8 @@ footer.footer {
 .footer h3 {
   font-size: 20px;
   margin-bottom: 20px;
-  color: var(--black);
-  font-weight: 600;
+  color: var(--blue);
+  font-weight: 700;
 }
 
 .footer .location-details h3 {
@@ -1052,11 +1052,14 @@ footer.footer {
 
 .footer-prod-services li p {
   margin: 0;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
   color: var(--blue);
 }
-
+.footer .about-us li a {
+  font-weight: 700;
+  color: var(--blue);
+}
 .footer .footer-prod-services  ul.links-footer li {
   padding: 0 0 10px 0;
 }
@@ -2843,6 +2846,26 @@ body.productPage.modal-open {
   padding: 10px 10px 0;
   margin: 0 auto;
 }
+
+/* Home clients */
+.image-container-clients {
+  position: relative;
+  overflow: hidden;
+}
+.image-container-clients img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+.image-container-clients:hover img {
+  transform: scale(1.2);
+}
+.image-container-clients.enlarge img {
+  transform: scale(1.2);
+}
+
+
 
 
 /* ============ Responsive ==============*/
