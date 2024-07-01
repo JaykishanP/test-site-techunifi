@@ -1418,99 +1418,143 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* ==== Get a Quote Modal Popup ==== */
 
+// document.addEventListener("DOMContentLoaded", function() {
+//   var modal = document.getElementById("quoteModal");
+//   var span = document.getElementsByClassName("close")[0];
+//   var links = document.querySelectorAll(".card-get-link");
+
+//   links.forEach(function(link) {
+//       link.addEventListener("click", function(event) {
+//           event.preventDefault();
+//           modal.style.display = "block";
+//       });
+//   });
+
+//   span.onclick = function() {
+//       modal.style.display = "none";
+//   }
+
+//   window.onclick = function(event) {
+//       if (event.target == modal) {
+//           modal.style.display = "none";
+//       }
+//   }
+// });
+
+
 document.addEventListener("DOMContentLoaded", function() {
   var modal = document.getElementById("quoteModal");
   var span = document.getElementsByClassName("close")[0];
-  var links = document.querySelectorAll(".card-get-link");
+  var links = document.querySelectorAll(".card-more .card-get-link");
+  var captchaRendered = false;
 
   links.forEach(function(link) {
-      link.addEventListener("click", function(event) {
-          event.preventDefault();
-          modal.style.display = "block";
-      });
+    link.addEventListener("click", function(event) {
+      event.preventDefault();
+      modal.style.display = "block";
+
+      // Check if reCAPTCHA needs to be rendered
+      if (!captchaRendered) {
+        renderRecaptcha();
+        captchaRendered = true;
+      }
+    });
   });
 
   span.onclick = function() {
-      modal.style.display = "none";
-  }
+    modal.style.display = "none";
+  };
 
   window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  function renderRecaptcha() {
+    if (typeof grecaptcha !== "undefined") {
+      grecaptcha.render(document.querySelector('.g-recaptcha'), {
+        sitekey: '6LfnZs4pAAAAAI9TPACWBCvx4O5CGV0tB7jHNRt1',
+        size: 'normal' 
+      });
+    }
   }
 });
+
 
 /* =========  Product heading to Modal Popup new Inquiry ========== */
-document.addEventListener('DOMContentLoaded', () => {
-  // Get the modal and the description textarea
-  const modal = document.querySelector('.quoteModal');
-  const descriptionTextarea = document.querySelector('#description');
-  const closeModal = document.querySelector('.modal .close');
+// document.addEventListener('DOMContentLoaded', () => {
+//   // Get the modal and the description textarea
+//   const modal = document.querySelector('.quoteModal');
+//   const descriptionTextarea = document.querySelector('#description');
+//   const closeModal = document.querySelector('.modal .close');
 
-  // Check if modal and descriptionTextarea are found
-  if (!modal || !descriptionTextarea) {
-      console.error('Modal or description textarea not found in the DOM.');
-      return;
-  }
+//   // Debugging: Check if modal and descriptionTextarea are found
+//   if (!modal) {
+//       console.error('Modal not found in the DOM.');
+//       return;
+//   }
+//   if (!descriptionTextarea) {
+//       console.error('Description textarea not found in the DOM.');
+//       return;
+//   }
 
-  // Function to open the modal
-  const openModal = () => {
-      modal.style.display = 'block';
-  };
+//   // Function to open the modal
+//   const openModal = () => {
+//       modal.style.display = 'block';
+//   };
 
-  // Function to close the modal
-  const closeModalFunction = () => {
-      modal.style.display = 'none';
-  };
+//   // Function to close the modal
+//   const closeModalFunction = () => {
+//       modal.style.display = 'none';
+//   };
 
-  // Attach event listener to close button
-  if (closeModal) {
-      closeModal.addEventListener('click', closeModalFunction);
-  } else {
-      console.error('Close button not found in the DOM.');
-  }
+//   // Attach event listener to close button
+//   if (closeModal) {
+//       closeModal.addEventListener('click', closeModalFunction);
+//   } else {
+//       console.error('Close button not found in the DOM.');
+//   }
 
-  // Attach event listener to the "More Info" links
-  document.querySelectorAll('.card-more .card-get-link').forEach(link => {
-      link.addEventListener('click', event => {
-          event.preventDefault();
+//   // Attach event listener to the "More Info" links
+//   document.querySelectorAll('.card-more .card-get-link').forEach(link => {
+//       link.addEventListener('click', event => {
+//           event.preventDefault();
 
-          // Find the closest card and get the content of its .card-prod-heading
-          const card = event.target.closest('.card-click');
+//           // Find the closest card and get the content of its .card-prod-heading
+//           const card = event.target.closest('.card-click');
 
-          // Check if card is found
-          if (!card) {
-              console.error('Card element not found.');
-              return;
-          }
+//           // Debugging: Check if card is found
+//           if (!card) {
+//               console.error('Card element not found.');
+//               return;
+//           }
 
-          const cardHeading = card.querySelector('.card-prod-heading h3');
+//           const cardHeading = card.querySelector('.card-prod-heading h3');
 
-          // Check if cardHeading is found
-          if (!cardHeading) {
-              console.error('Card heading element not found.');
-              return;
-          }
+//           // Debugging: Check if cardHeading is found
+//           if (!cardHeading) {
+//               console.error('Card heading element not found.');
+//               return;
+//           }
 
-          const cardHeadingContent = cardHeading.innerText;
+//           const cardHeadingContent = cardHeading.innerText;
 
-          // Set the content of the description textarea
-          descriptionTextarea.value = cardHeadingContent;
+//           // Set the content of the description textarea
+//           descriptionTextarea.value = cardHeadingContent;
 
-          // Open the modal
-          openModal();
-      });
-  });
+//           // Open the modal
+//           openModal();
+//       });
+//   });
 
-  // Close modal when clicking outside of it
-  window.addEventListener('click', event => {
-      if (event.target == modal) {
-          closeModalFunction();
-      }
-  });
-});
-
+//   // Close modal when clicking outside of it
+//   window.addEventListener('click', event => {
+//       if (event.target === modal) {
+//           closeModalFunction();
+//       }
+//   });
+// });
 
 
 /* ==== Event Close ==== */
