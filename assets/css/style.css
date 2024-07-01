@@ -2778,6 +2778,7 @@ img.music-image {
 }
 
 /* Get a Quote Modal Popup */
+
 .quoteModal {
   display: none; 
   position: fixed;
@@ -2797,6 +2798,17 @@ img.music-image {
   border: 1px solid var(--orange);
   width: 60%;
 }
+body.productPage.modal-open {
+  /* position: fixed; */
+  /* width: 100%; */
+  overflow-y: hidden;
+}
+/* 
+.quoteModal .modal-content {
+  max-height: 80vh; 
+  overflow-y: auto;
+} */
+
 .quoteModal .close {
   color: var(--orange);
   float: right;
@@ -2826,7 +2838,11 @@ img.music-image {
   padding: 15px 20px 15px;
   margin: 5px 0;
 }
-
+.quoteModal .post-form-para p {
+  text-align: center;
+  padding: 10px 10px 0;
+  margin: 0 auto;
+}
 
 
 /* ============ Responsive ==============*/

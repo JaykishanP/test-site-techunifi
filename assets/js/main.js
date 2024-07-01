@@ -1441,16 +1441,21 @@ document.addEventListener('DOMContentLoaded', function() {
 //   }
 // });
 
-
 document.addEventListener("DOMContentLoaded", function() {
   var modal = document.getElementById("quoteModal");
   var span = document.getElementsByClassName("close")[0];
   var links = document.querySelectorAll(".card-more .card-get-link");
   var captchaRendered = false;
+  var scrollPosition = 0;
 
   links.forEach(function(link) {
     link.addEventListener("click", function(event) {
       event.preventDefault();
+      // Save current scroll position
+      scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      // Disable scroll
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPosition}px`;
       modal.style.display = "block";
 
       // Check if reCAPTCHA needs to be rendered
@@ -1463,11 +1468,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
   span.onclick = function() {
     modal.style.display = "none";
+    // Enable scroll
+    document.body.style.position = '';
+    document.body.style.top = '';
+    // Restore scroll position
+    window.scrollTo(0, scrollPosition);
   };
 
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
+      // Enable scroll
+      document.body.style.position = '';
+      document.body.style.top = '';
+      // Restore scroll position
+      window.scrollTo(0, scrollPosition);
     }
   };
 
@@ -1475,7 +1490,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (typeof grecaptcha !== "undefined") {
       grecaptcha.render(document.querySelector('.g-recaptcha'), {
         sitekey: '6LfnZs4pAAAAAI9TPACWBCvx4O5CGV0tB7jHNRt1',
-        size: 'normal' 
+        size: 'normal'
       });
     }
   }
