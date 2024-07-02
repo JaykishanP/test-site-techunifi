@@ -669,6 +669,7 @@ section {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: var(--orange);
+  color: var(--orange)
 }
 
 .service-section-desc .service-col:hover p {
@@ -1042,11 +1043,11 @@ footer.footer {
 }
 
 .what-we-do p {
-  max-width: 408px;
+  max-width: 306px;
 }
 
 .footer ul.links-footer li {
-  padding: 0 0 30px 0;
+  padding: 0 0 43px 0;
   font-weight: 500;
 }
 
@@ -1055,6 +1056,7 @@ footer.footer {
   font-size: 20px;
   font-weight: 700;
   color: var(--blue);
+  line-height: 22px;
 }
 .footer .about-us li a {
   font-weight: 700;
@@ -1117,8 +1119,8 @@ footer.footer {
   font-size: 14px;
 }
 
-p.social {
-  margin: 64px 0 0 0;
+.above-social {
+  margin: 75px 0 0 0;
 }
 
 .social-us .contact-icon span.bi {
