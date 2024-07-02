@@ -744,12 +744,32 @@ new Swiper('.home-clients-slider', {
 });
 
 // Home clients scale up
-document.querySelectorAll('.image-container-clients').forEach(item => {
-  item.addEventListener('click', function() {
-    this.classList.toggle('enlarge');
+document.addEventListener('DOMContentLoaded', function () {
+  var modal = document.getElementById("image-modal");
+  var modalImg = document.getElementById("modal-image");
+  var captionText = document.getElementById("caption-image");
+
+  var images = document.querySelectorAll('.swiper-slide img');
+  images.forEach(function (img) {
+    img.onclick = function () {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.getAttribute('data-caption');
+    };
+  });
+
+  var span = document.querySelector(".close");
+
+  span.addEventListener('click', function () {
+    modal.style.display = "none";
+  });
+
+  modal.addEventListener('click', function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
   });
 });
-
 
 
 /* ======== Products Slider ========== */
