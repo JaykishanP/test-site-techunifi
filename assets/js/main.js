@@ -700,7 +700,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* ======== Home img Slider ========= */
-new Swiper('.home-clients-slider', {
+var swiper = new Swiper('.home-clients-slider', {
   speed: 400,
   loop: true,
   autoplay: {
@@ -738,7 +738,6 @@ new Swiper('.home-clients-slider', {
       slidesPerView: 4,
       centeredSlides: false,
       spaceBetween: 20,
-      
     }
   }
 });
@@ -755,6 +754,7 @@ document.addEventListener('DOMContentLoaded', function () {
       modal.style.display = "block";
       modalImg.src = this.src;
       captionText.innerHTML = this.getAttribute('data-caption');
+      swiper.autoplay.stop(); // Stop autoplay when modal is opened
     };
   });
 
@@ -762,11 +762,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   span.addEventListener('click', function () {
     modal.style.display = "none";
+    swiper.autoplay.start(); // Start autoplay when modal is closed
   });
 
   modal.addEventListener('click', function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
+      swiper.autoplay.start(); // Start autoplay when modal is closed
     }
   });
 });
