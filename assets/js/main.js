@@ -560,6 +560,30 @@ document.addEventListener("DOMContentLoaded", function() {
   // }
 });
 
+/* ======= Prod center Mobile slide ========= */
+document.addEventListener('DOMContentLoaded', function() {
+  function centerActiveTab(tab) {
+    if (window.innerWidth <= 767) { // Check if the screen width is 767px or less
+      var tabsContainer = document.querySelector('.tabs-container');
+      var tabRect = tab.getBoundingClientRect();
+      var containerRect = tabsContainer.getBoundingClientRect();
+
+      var offset = tabRect.left - containerRect.left - (containerRect.width / 2) + (tabRect.width / 2);
+      tabsContainer.scrollBy({
+        left: offset,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  var tabButtons = document.querySelectorAll('.prod-tablinks');
+  tabButtons.forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      centerActiveTab(event.currentTarget);
+    });
+  });
+});
+
 
 /* ======== ============ */
 // redirect from h to p
@@ -600,6 +624,38 @@ document.addEventListener('DOMContentLoaded', function () {
 function redirectToPage(page, section) {
   window.location.href = `${page}?section=${section}`;
 }
+
+/* ======= redirect from h to p Prod center Mobile slide ========= */
+document.addEventListener('DOMContentLoaded', function() {
+  function centerActiveTab(tab) {
+    if (window.innerWidth <= 767) { // Check if the screen width is 767px or less
+      var tabsContainer = document.querySelector('.tabs-container');
+      var tabRect = tab.getBoundingClientRect();
+      var containerRect = tabsContainer.getBoundingClientRect();
+
+      var offset = tabRect.left - containerRect.left - (containerRect.width / 2) + (tabRect.width / 2);
+      tabsContainer.scrollBy({
+        left: offset,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const section = urlParams.get('section');
+
+  if (section) {
+    const activeButton = document.querySelector(`.prod-tablinks[id="prod-${section}"]`);
+    if (activeButton) {
+      // Add a slight delay to ensure the DOM has rendered the tab content
+      setTimeout(function() {
+        centerActiveTab(activeButton);
+      }, 100); // Adjust the delay time if necessary
+    }
+  }
+});
+
 
 
 /* == == */
@@ -686,6 +742,14 @@ new Swiper('.home-clients-slider', {
     }
   }
 });
+
+// Home clients scale up
+document.querySelectorAll('.image-container-clients').forEach(item => {
+  item.addEventListener('click', function() {
+    this.classList.toggle('enlarge');
+  });
+});
+
 
 
 /* ======== Products Slider ========== */
@@ -1418,29 +1482,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* ==== Get a Quote Modal Popup ==== */
 
-// document.addEventListener("DOMContentLoaded", function() {
-//   var modal = document.getElementById("quoteModal");
-//   var span = document.getElementsByClassName("close")[0];
-//   var links = document.querySelectorAll(".card-get-link");
-
-//   links.forEach(function(link) {
-//       link.addEventListener("click", function(event) {
-//           event.preventDefault();
-//           modal.style.display = "block";
-//       });
-//   });
-
-//   span.onclick = function() {
-//       modal.style.display = "none";
-//   }
-
-//   window.onclick = function(event) {
-//       if (event.target == modal) {
-//           modal.style.display = "none";
-//       }
-//   }
-// });
-
 document.addEventListener("DOMContentLoaded", function() {
   var modal = document.getElementById("quoteModal");
   var span = document.getElementsByClassName("close")[0];
@@ -1495,7 +1536,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 });
-
 
 
 /* =========  Product heading to Modal Popup new Inquiry ========== */
