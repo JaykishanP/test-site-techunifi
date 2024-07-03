@@ -700,6 +700,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* ======== Home img Slider ========= */
+// Initialize Swiper
 var swiper = new Swiper('.home-clients-slider', {
   speed: 400,
   loop: true,
@@ -772,6 +773,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
 
 
 /* ======== Products Slider ========== */

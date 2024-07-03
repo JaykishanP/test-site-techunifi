@@ -2850,24 +2850,26 @@ body.productPage.modal-open {
 }
 
 /* Home clients */
+/* Home clients */
 .image-modal {
   display: none;
   position: fixed;
   z-index: 9;
-  padding: 50px 0 0;
+  padding: 20px 0 0;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(49,61,83,0.9);
+  /* background-color: rgba(49,61,83,0.9); */
+  background-color: rgba(248, 248, 248, 0.9); ;
   overflow: auto;
 }
 .image-modal .modal-content {
   margin: auto;
   display: block;
-  width: 90%;
-  max-width: 900px;
-  max-height: 80%;
+  width: 70%;
+  max-width: 623px;
+  max-height: 94%;
 }
 .image-modal .close {
   color: var(--orange);
