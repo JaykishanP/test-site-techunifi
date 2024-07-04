@@ -1653,7 +1653,8 @@ section.ticket-form {
 
 .submitPage .tooltip .tooltip-inner,
 .homePage .tooltip .tooltip-inner,
-.dashboardPage .tooltip .tooltip-inner {
+.dashboardPage .tooltip .tooltip-inner,
+.productPage .tooltip .tooltip-inner{
   background-color: #fff;
   color: var(--black);
   box-shadow: 0 1px 10px 0 rgb(0 0 0 / .2),0 6px 9px 0 rgb(0 0 0 / .1);
@@ -1677,7 +1678,8 @@ max-width: 400px;
 
 .submitPage .tooltip .tooltip-inner::before,
 .homePage .tooltip .tooltip-inner::before,
-.dashboardPage .tooltip .tooltip-inner::before {
+.dashboardPage .tooltip .tooltip-inner::before,
+.productPage .tooltip .tooltip-inner::before{
   content: '?';
   position: absolute;
   top: 18px;
@@ -3443,6 +3445,10 @@ div#low-Voltage {
   top: -14px;
   right: 4px;
 }
+.quoteModal .modal-content {
+  padding: 10px;
+  width: 95%;
+}
 
 }
 
@@ -3499,7 +3505,7 @@ div#low-Voltage {
 
 
 /* Ipad Mini - Air */
-@media only screen and (min-width: 768px) and (max-width: 1023px){
+@media only screen and (min-width: 768px) and (max-width: 1023.9px){
   .news-home-section .home-news-heading h3 {
     font-size: 28px;
 }
@@ -3761,7 +3767,9 @@ div#low-Voltage {
   font-size: 16px;
   font-weight: 500;
 }
-
+.quoteModal .modal-content {
+  width: 88%;
+}
 }
 
 
