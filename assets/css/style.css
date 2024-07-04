@@ -3872,6 +3872,10 @@ div#low-Voltage {
 ul.menu-bar {
   padding-left: 0;
 }
+.news-company {
+  font-size: 20px;
+  font-weight: 500;
+}
 
 }
 
@@ -3891,6 +3895,10 @@ ul.menu-bar {
   ul.menu-bar {
     padding-left: 0;
   }
+  .news-company {
+    font-size: 20px;
+    font-weight: 500;
+}
 }
 
 /* 1024 - 1199 */
