@@ -746,32 +746,37 @@ var swiper = new Swiper('.home-clients-slider', {
 // Home clients scale up
 document.addEventListener('DOMContentLoaded', function () {
   var modal = document.getElementById("image-modal");
-  var modalImg = document.getElementById("modal-image");
-  var captionText = document.getElementById("caption-image");
+  
+  if (modal) {
+    var modalImg = document.getElementById("modal-image");
+    var captionText = document.getElementById("caption-image");
 
-  var images = document.querySelectorAll('.swiper-slide img');
-  images.forEach(function (img) {
-    img.onclick = function () {
-      modal.style.display = "block";
-      modalImg.src = this.src;
-      captionText.innerHTML = this.getAttribute('data-caption');
-      swiper.autoplay.stop(); // Stop autoplay when modal is opened
-    };
-  });
+    var images = document.querySelectorAll('.swiper-slide img');
+    images.forEach(function (img) {
+      img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.getAttribute('data-caption');
+        swiper.autoplay.stop(); // Stop autoplay when modal is opened
+      };
+    });
 
-  var span = document.querySelector(".close");
+    var span = document.querySelector(".close");
 
-  span.addEventListener('click', function () {
-    modal.style.display = "none";
-    swiper.autoplay.start(); // Start autoplay when modal is closed
-  });
-
-  modal.addEventListener('click', function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-      swiper.autoplay.start(); // Start autoplay when modal is closed
+    if (span) {
+      span.addEventListener('click', function () {
+        modal.style.display = "none";
+        swiper.autoplay.start(); // Start autoplay when modal is closed
+      });
     }
-  });
+
+    modal.addEventListener('click', function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        swiper.autoplay.start(); // Start autoplay when modal is closed
+      }
+    });
+  }
 });
 
 
@@ -1508,10 +1513,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener("DOMContentLoaded", function() {
   var modal = document.getElementById("quoteModal");
-  var span = document.getElementsByClassName("close")[0];
+  var span = document.querySelector(".quoteModal .close");
   var links = document.querySelectorAll(".card-more .card-get-link");
   var captchaRendered = false;
   var scrollPosition = 0;
+
+  // Check if modal and span are found in the DOM
+
+  // if (!modal || !span) {
+  //   console.error('Modal or close button not found in the DOM.');
+  //   return;
+  // }
 
   links.forEach(function(link) {
     link.addEventListener("click", function(event) {
@@ -1523,6 +1535,9 @@ document.addEventListener("DOMContentLoaded", function() {
       document.body.style.top = `-${scrollPosition}px`;
       modal.style.display = "block";
 
+      // Scroll modal content to the top
+      modal.scrollTop = 0;
+
       // Check if reCAPTCHA needs to be rendered
       if (!captchaRendered) {
         renderRecaptcha();
@@ -1531,17 +1546,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  span.onclick = function() {
-    modal.style.display = "none";
-    // Enable scroll
-    document.body.style.position = '';
-    document.body.style.top = '';
-    // Restore scroll position
-    window.scrollTo(0, scrollPosition);
-  };
+  if (span) {
+    span.onclick = function() {
+      modal.style.display = "none";
+      // Enable scroll
+      document.body.style.position = '';
+      document.body.style.top = '';
+      // Restore scroll position
+      window.scrollTo(0, scrollPosition);
+    };
+  }
 
   window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target === modal) {
       modal.style.display = "none";
       // Enable scroll
       document.body.style.position = '';
@@ -1563,78 +1580,73 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 /* =========  Product heading to Modal Popup new Inquiry ========== */
-// document.addEventListener('DOMContentLoaded', () => {
-//   // Get the modal and the description textarea
-//   const modal = document.querySelector('.quoteModal');
-//   const descriptionTextarea = document.querySelector('#description');
-//   const closeModal = document.querySelector('.modal .close');
 
-//   // Debugging: Check if modal and descriptionTextarea are found
-//   if (!modal) {
-//       console.error('Modal not found in the DOM.');
-//       return;
-//   }
-//   if (!descriptionTextarea) {
-//       console.error('Description textarea not found in the DOM.');
-//       return;
-//   }
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('quoteModal');
+  
+  // Check if modal exists on the page
+  if (!modal) {
+    console.log('Modal element not found on this page.');
+    return;
+  }
 
-//   // Function to open the modal
-//   const openModal = () => {
-//       modal.style.display = 'block';
-//   };
+  const descriptionTextarea = modal.querySelector('.productPage textarea[name="description"]');
+  const closeModalButton = modal.querySelector('.close');
+  const getQuoteLinks = document.querySelectorAll('.card-more .card-get-link');
 
-//   // Function to close the modal
-//   const closeModalFunction = () => {
-//       modal.style.display = 'none';
-//   };
+  const openModal = () => {
+    modal.style.display = 'block';
+  };
 
-//   // Attach event listener to close button
-//   if (closeModal) {
-//       closeModal.addEventListener('click', closeModalFunction);
-//   } else {
-//       console.error('Close button not found in the DOM.');
-//   }
+  const closeModal = () => {
+    modal.style.display = 'none';
+  };
 
-//   // Attach event listener to the "More Info" links
-//   document.querySelectorAll('.card-more .card-get-link').forEach(link => {
-//       link.addEventListener('click', event => {
-//           event.preventDefault();
+  if (closeModalButton) {
+    closeModalButton.addEventListener('click', closeModal);
+  }
 
-//           // Find the closest card and get the content of its .card-prod-heading
-//           const card = event.target.closest('.card-click');
+  getQuoteLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
 
-//           // Debugging: Check if card is found
-//           if (!card) {
-//               console.error('Card element not found.');
-//               return;
-//           }
+      const card = event.target.closest('.prod-slide-card');
 
-//           const cardHeading = card.querySelector('.card-prod-heading h3');
+      if (!card) {
+        console.error('Card element not found.');
+        return;
+      }
 
-//           // Debugging: Check if cardHeading is found
-//           if (!cardHeading) {
-//               console.error('Card heading element not found.');
-//               return;
-//           }
+      const cardHeading = card.querySelector('.card-click .card-prod-heading');
 
-//           const cardHeadingContent = cardHeading.innerText;
+      if (!cardHeading) {
+        console.error('Card heading element not found.');
+        return;
+      }
 
-//           // Set the content of the description textarea
-//           descriptionTextarea.value = cardHeadingContent;
+      const cardHeadingContent = cardHeading.innerText.trim();
 
-//           // Open the modal
-//           openModal();
-//       });
-//   });
+      if (descriptionTextarea) {
+        descriptionTextarea.value = cardHeadingContent;
+      }
 
-//   // Close modal when clicking outside of it
-//   window.addEventListener('click', event => {
-//       if (event.target === modal) {
-//           closeModalFunction();
-//       }
-//   });
-// });
+      openModal();
+    });
+  });
+
+  window.addEventListener('click', event => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  window.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+});
+
 
 
 /* ==== Event Close ==== */
