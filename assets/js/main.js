@@ -743,6 +743,7 @@ var swiper = new Swiper('.home-clients-slider', {
   }
 });
 
+
 // Home clients scale up
 document.addEventListener('DOMContentLoaded', function () {
   var modal = document.getElementById("image-modal");
@@ -756,7 +757,12 @@ document.addEventListener('DOMContentLoaded', function () {
       img.onclick = function () {
         modal.style.display = "block";
         modalImg.src = this.src;
-        captionText.innerHTML = this.getAttribute('data-caption');
+        
+        // Get the caption text from the corresponding .home-swipe-img-text element
+        var parentSlide = this.closest('.swiper-slide');
+        var caption = parentSlide.querySelector('.home-swipe-img-text').innerText;
+        captionText.innerHTML = caption;
+
         swiper.autoplay.stop(); // Stop autoplay when modal is opened
       };
     });
@@ -778,7 +784,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
 
 
 /* ======== Products Slider ========== */
