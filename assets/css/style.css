@@ -2434,12 +2434,13 @@ span.hr-rule {
 
 .new-how-works p {
   max-width: 401px;
-  padding: 0 0 0 20px;
+  padding: 18px 0 0 20px;
 }
 
 .new-how-works img {
   max-width: 338px;
   float: right;
+  padding: 15px 0 0 0;
 }
 
 /* Highlight active section */
