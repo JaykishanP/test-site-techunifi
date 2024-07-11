@@ -1391,7 +1391,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function adjustAdjacentOpacity(activeSection) {
     sections.forEach(section => {
-      const h1Element = section.querySelector('h1');
+      const h1Element = section.querySelector('h2');
       const imgElement = section.querySelector('.col-md-5 img');
       const pElement = section.querySelector('.col-md-5 p');
       const isAdjacentSection = isAdjacent(activeSection, section);
@@ -1429,7 +1429,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   sections.forEach(section => {
-    const h1Element = section.querySelector('h1');
+    const h1Element = section.querySelector('h2');
     const imgElement = section.querySelector('.col-md-5 img');
     const pElement = section.querySelector('.col-md-5 p');
 

@@ -2410,7 +2410,7 @@ span.hr-rule {
   transition: opacity 0.7s ease, transform 0.9s ease;
 }
 
-.new-how-main h1 {
+.new-how-main h2 {
   font-size: 90px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -2422,7 +2422,7 @@ span.hr-rule {
   text-align: center;
 }
 
-.new-how-works h1 {
+.new-how-works h2 {
   color: #313D53;
   opacity: 0.7;
 }
@@ -3214,7 +3214,7 @@ section.sub-tab-section {
   section.howItworks{
     padding: 0;
   }
-  .new-how-main h1 {
+  .new-how-main h2 {
     font-size: 96px;
     margin-bottom: 0;
   }
