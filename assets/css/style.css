@@ -2910,6 +2910,13 @@ body.productPage.modal-open {
   font-size: 20px;
   line-height: 22px;
 }
+/* Structure Cabling Image popup */
+#low-Voltage .image-modal {
+  z-index: 11;
+}
+#low-Voltage .image-modal .modal-content {
+  top: 20%;
+}
 
 
 
@@ -3457,6 +3464,13 @@ div#low-Voltage {
 .quoteModal .modal-content {
   padding: 10px;
   width: 95%;
+}
+#low-Voltage .image-modal .modal-content {
+  top: 5%;
+  padding: 0 10px;
+}
+#low-Voltage .image-modal .close {
+  top: 50px;
 }
 
 }

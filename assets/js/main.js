@@ -1516,73 +1516,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* ==== Get a Quote Modal Popup ==== */
 
-// document.addEventListener("DOMContentLoaded", function() {
-//   var modal = document.getElementById("quoteModal");
-//   var span = document.querySelector(".quoteModal .close");
-//   var links = document.querySelectorAll(".card-more .card-get-link");
-//   var captchaRendered = false;
-//   var scrollPosition = 0;
-
-//   // Check if modal and span are found in the DOM
-
-//   // if (!modal || !span) {
-//   //   console.error('Modal or close button not found in the DOM.');
-//   //   return;
-//   // }
-
-//   links.forEach(function(link) {
-//     link.addEventListener("click", function(event) {
-//       event.preventDefault(); // Prevent the default action of the link
-//       // Save current scroll position
-//       scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-//       // Disable scroll
-//       document.body.style.position = 'fixed';
-//       document.body.style.top = `-${scrollPosition}px`;
-//       modal.style.display = "block";
-
-//       // Scroll modal content to the top
-//       modal.scrollTop = 0;
-
-//       // Check if reCAPTCHA needs to be rendered
-//       if (!captchaRendered) {
-//         renderRecaptcha();
-//         captchaRendered = true;
-//       }
-//     });
-//   });
-
-//   if (span) {
-//     span.onclick = function() {
-//       modal.style.display = "none";
-//       // Enable scroll
-//       document.body.style.position = '';
-//       document.body.style.top = '';
-//       // Restore scroll position
-//       window.scrollTo(0, scrollPosition);
-//     };
-//   }
-
-//   window.onclick = function(event) {
-//     if (event.target === modal) {
-//       modal.style.display = "none";
-//       // Enable scroll
-//       document.body.style.position = '';
-//       document.body.style.top = '';
-//       // Restore scroll position
-//       window.scrollTo(0, scrollPosition);
-//     }
-//   };
-
-//   function renderRecaptcha() {
-//     if (typeof grecaptcha !== "undefined") {
-//       grecaptcha.render(document.querySelector('.g-recaptcha'), {
-//         sitekey: '6LfnZs4pAAAAAI9TPACWBCvx4O5CGV0tB7jHNRt1',
-//         size: 'normal'
-//       });
-//     }
-//   }
-// });
-
 document.addEventListener("DOMContentLoaded", function() {
   var modal = document.getElementById("quoteModal");
   var span = document.querySelector(".quoteModal .close");
@@ -1773,6 +1706,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+/* ========= Lowvoltage Structure cabling popup  ==========  */
+document.addEventListener('DOMContentLoaded', function () {
+  var modal = document.getElementById("image-modal");
+  var body = document.querySelector("body");
+  
+  if (modal) {
+    var modalImg = document.getElementById("modal-image");
+    var images = document.querySelectorAll('.low-structure-img img');
+    
+    images.forEach(function (img) {
+      img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        body.style.overflow = "hidden"; // Disable scrolling on body
+      };
+    });
+
+    var span = document.querySelector(".close");
+
+    if (span) {
+      span.addEventListener('click', function () {
+        modal.style.display = "none";
+        body.style.overflow = "auto"; // Re-enable scrolling on body
+        swiper.autoplay.start(); // Start autoplay when modal is closed
+      });
+    }
+
+    modal.addEventListener('click', function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        body.style.overflow = "auto"; // Re-enable scrolling on body
+        swiper.autoplay.start(); // Start autoplay when modal is closed
+      }
+    });
+  }
+});
+
 
 
 
