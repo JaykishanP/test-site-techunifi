@@ -1708,6 +1708,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ========= Lowvoltage Structure cabling popup  ==========  */
+
 document.addEventListener('DOMContentLoaded', function () {
   var modal = document.getElementById("image-modal");
   var body = document.querySelector("body");
@@ -1715,12 +1716,22 @@ document.addEventListener('DOMContentLoaded', function () {
   if (modal) {
     var modalImg = document.getElementById("modal-image");
     var images = document.querySelectorAll('.low-structure-img img');
+    var mediaQuery = window.matchMedia("(max-width: 767px)");
     
     images.forEach(function (img) {
       img.onclick = function () {
         modal.style.display = "block";
         modalImg.src = this.src;
-        body.style.overflow = "hidden"; // Disable scrolling on body
+        
+        if (mediaQuery.matches) {
+          body.style.overflow = "hidden"; // Disable scrolling on body
+          window.scrollTo(0, 0); // Scroll to top when modal opens only on small screens
+          setTimeout(function () {
+            body.style.overflow = "hidden"; // Ensure scrolling is still disabled
+          }, 0);
+        } else {
+          body.style.overflow = "hidden"; // Disable scrolling on body
+        }
       };
     });
 
@@ -1730,7 +1741,6 @@ document.addEventListener('DOMContentLoaded', function () {
       span.addEventListener('click', function () {
         modal.style.display = "none";
         body.style.overflow = "auto"; // Re-enable scrolling on body
-        swiper.autoplay.start(); // Start autoplay when modal is closed
       });
     }
 
@@ -1738,13 +1748,10 @@ document.addEventListener('DOMContentLoaded', function () {
       if (event.target == modal) {
         modal.style.display = "none";
         body.style.overflow = "auto"; // Re-enable scrolling on body
-        swiper.autoplay.start(); // Start autoplay when modal is closed
       }
     });
   }
 });
-
-
 
 
 /* ==== Event Close ==== */
