@@ -813,58 +813,6 @@ sliders.forEach(function(slider) {
 
 
 
-/* ======== new Inquiry ======== */
-document.addEventListener('DOMContentLoaded', function() {
-  // Function to activate the "New Inquiry" tab and display its content
-  function activateNewInquiryTab() {
-      var newInquiryTabContent = document.getElementById("sub-tab1");
-      var newInquiryTabLink = document.getElementById("sub-defaultOpen");
-
-      // Display "New Inquiry" tab content
-      if (newInquiryTabContent) {
-          newInquiryTabContent.style.display = "block";
-      }
-
-      // Remove "active" class from all tab links
-      var tabLinks = document.getElementsByClassName("sub-tablinks");
-      for (var i = 0; i < tabLinks.length; i++) {
-          tabLinks[i].classList.remove("active");
-      }
-
-      // Add "active" class to "New Inquiry" tab link
-      if (newInquiryTabLink) {
-          newInquiryTabLink.classList.add("active");
-      }
-
-      // Activate the "New Inquiry" button
-      var newInquiryButton = document.getElementById("newInquiryButton");
-      if (newInquiryButton) {
-          newInquiryButton.classList.add("active");
-      }
-
-      // Remove "active" class from the "Submit a Ticket" button
-      var submitTicketButton = document.getElementById("sub-defaultOpen");
-      if (submitTicketButton) {
-          submitTicketButton.classList.remove("active");
-      }
-
-      // Hide other tab contents
-      var otherTabs = document.getElementsByClassName("sub-tabcontent");
-      for (var i = 0; i < otherTabs.length; i++) {
-          if (otherTabs[i].id !== "sub-tab1") {
-              otherTabs[i].style.display = "none";
-          }
-      }
-  }
-
-  // Check if the URL contains "?activeTab=newInquiry"
-  if (window.location.href.indexOf("?activeTab=newInquiry") > -1) {
-      // Activate the "New Inquiry" tab and button
-      activateNewInquiryTab();
-  }
-});
-
-
 /* ====== Leftnav highlight on scroll ======= */
 
 // document.addEventListener("DOMContentLoaded", function() {
@@ -1122,13 +1070,91 @@ $(document).ready(function() {
 $(document).ready(function() {
 
   /* ======= Submit a Ticket ======= */
-  /*Math Function for Submit Ticket */
+
+    /* === New Inquiry Form === */
+    
+    function inquirygenerateRandomNumbers() {
+      var inquirynum1 = Math.floor(Math.random() * 10);
+      var inquirynum2 = Math.floor(Math.random() * 10);
+      return [inquirynum1, inquirynum2]
+    }
+  
+    function inquiryupdateMathSumQuestion() {
+      var inquiryrandomNumbers = inquirygenerateRandomNumbers();
+      var inquirynum1 = inquiryrandomNumbers[0];
+      var inquirynum2 = inquiryrandomNumbers[1];
+      $('#inquirymathSumQuestion').text('What is ' + inquirynum1 + ' + ' + inquirynum2 + '?');
+      $('#inquirymathSum').data('inquiryexpectedSum', inquirynum1 + inquirynum2)
+    }
+    inquiryupdateMathSumQuestion();
+  
+    function validateInquiryForm() {
+      var formValid = !0;
+      $('#myInquiryForm input, #myInquiryForm select, #myInquiryForm textarea').each(function() {
+        if ($(this).hasClass('not-required')) {
+          return !0
+        }
+        if (!$(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length === 0)) {
+          formValid = !1;
+          $(this).css('border-color', 'red');
+          $('html, body').animate({
+            scrollTop: $(this).offset().top - 160
+          }, 500);
+          return !1
+        } else {
+          $(this).css('border-color', 'green')
+        }
+      });
+      var inquirymathSumInput = $('#inquirymathSum');
+      var inquirymathSumValue = inquirymathSumInput.val();
+      var inquiryexpectedSum = inquirymathSumInput.data('inquiryexpectedSum');
+      if (!inquirymathSumValue || parseInt(inquirymathSumValue) !== inquiryexpectedSum) {
+        inquirymathSumInput.css('border-color', 'red');
+        formValid = !1
+      } else {
+        inquirymathSumInput.css('border-color', 'green')
+      }
+      if (!formValid) {
+        return !1
+      }
+      return !0
+    }
+    $('#myInquiryForm').submit(function() {
+      return validateInquiryForm()
+    });
+    $('#submitTicketForm').on('reset', function() {
+      inquiryupdateMathSumQuestion()
+    });
+    $('#myInquiryForm input, #myInquiryForm select, #myInquiryForm textarea').on('input change blur', function() {
+      if (!$(this).hasClass('not-required')) {
+        if ($(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length !== 0)) {
+          $(this).css('border-color', 'green')
+        } else {
+          $(this).css('border-color', 'red')
+        }
+      }
+    })
+
+
+
+  });
+
+
+/* ===== Submit a Ticket ===== */
+// JavaScript for submit.html
+
+
+/* ===== Change Order ===== */
+// JavaScript for change-order.html
+
+$(document).ready(function() {
+  // Function to generate random numbers for math validation
   function generateRandomNumbers() {
     var num1 = Math.floor(Math.random() * 10);
     var num2 = Math.floor(Math.random() * 10);
     return [num1, num2];
   }
- 
+
   // Function to update the math sum question with new numbers
   function updateMathSumQuestion() {
     var randomNumbers = generateRandomNumbers();
@@ -1137,33 +1163,34 @@ $(document).ready(function() {
     $('#mathSumQuestion').text('What is ' + num1 + ' + ' + num2 + '?');
     $('#mathSum').data('expectedSum', num1 + num2); // Store the expected sum in a data attribute for validation
   }
- 
+
   // Call the function to update the math sum question when the document is ready
   updateMathSumQuestion();
- 
+
+  // Function to validate the ticket form
   function validateTicketForm() {
     var formValid = true;
 
     // Check each input field in the form
     $('#submitTicketForm input, #submitTicketForm select, #submitTicketForm textarea').each(function() {
-        // Skip validation for fields with class "not-required"
-        if ($(this).hasClass('not-required')) {
-            return true; // Skip this field and continue with the next one
-        }
+      // Skip validation for fields with class "not-required"
+      if ($(this).hasClass('not-required')) {
+        return true; // Skip this field and continue with the next one
+      }
 
-        // If the field is empty or not selected
-        if (!$(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length === 0)) {
-            formValid = false;
-            $(this).css('border-color', 'red');
-            // Scroll to the field
-            $('html, body').animate({
-                scrollTop: $(this).offset().top - 200 // Adjust the offset to ensure the field is visible
-            }, 500);
-            return false; // Exit the loop after scrolling to the first invalid field
-        } else {
-            // Set border color to green if the field is filled
-            $(this).css('border-color', 'green');
-        }
+      // If the field is empty or not selected
+      if (!$(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length === 0)) {
+        formValid = false;
+        $(this).css('border-color', 'red');
+        // Scroll to the field
+        $('html, body').animate({
+          scrollTop: $(this).offset().top - 200 // Adjust the offset to ensure the field is visible
+        }, 500);
+        return false; // Exit the loop after scrolling to the first invalid field
+      } else {
+        // Set border color to green if the field is filled
+        $(this).css('border-color', 'green');
+      }
     });
 
     // Validate math sum question after other fields are validated
@@ -1171,129 +1198,55 @@ $(document).ready(function() {
     var mathSumValue = mathSumInput.val();
     var expectedSum = mathSumInput.data('expectedSum'); // Retrieve the expected sum from the data attribute
     if (!mathSumValue || parseInt(mathSumValue) !== expectedSum) {
-        mathSumInput.css('border-color', 'red');
-        formValid = false;
-        
+      mathSumInput.css('border-color', 'red');
+      formValid = false;
     } else {
-        mathSumInput.css('border-color', 'green');
+      mathSumInput.css('border-color', 'green');
     }
 
-    // Return false if any field is empty or not selected
-    if (!formValid) {
-        return false;
+    // Validate CAPTCHA
+    var captchaResponse = grecaptcha.getResponse();
+    if (!captchaResponse) {
+      // If CAPTCHA is not completed
+      formValid = false;
+      $('.g-recaptcha').css('border-color', 'red'); // Optional: You might want to style CAPTCHA differently
+      alert('Please complete the CAPTCHA'); // Optional: Alert to inform user
+    } else {
+      $('.g-recaptcha').css('border-color', 'green'); // Optional: Style CAPTCHA if completed
     }
-}
 
- 
-    $('#submitTicketForm').submit(function() {
-      return validateTicketForm();
-    });
- 
-    // Event listener to update math sum question when the form is reset (e.g., after submission)
-    $('#submitTicketForm').on('reset', function() {
-      updateMathSumQuestion();
-    });
- 
-    $('#submitTicketForm input, #submitTicketForm select, #submitTicketForm textarea').on('input change blur', function() {
-      if (!$(this).hasClass('not-required')) {
-          if ($(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length !== 0)) {
-              $(this).css('border-color', 'green');
-          } else {
-              $(this).css('border-color', 'red');
-          }
-      }
-    });
-  
-
-    /* === New Inquiry Form === */
-
-    /*Math Function for Submit Ticket */
-  function inquirygenerateRandomNumbers() {
-    var inquirynum1 = Math.floor(Math.random() * 10);
-    var inquirynum2 = Math.floor(Math.random() * 10);
-    return [inquirynum1, inquirynum2];
-  }
- 
-  // Function to update the math sum question with new numbers
-  function inquiryupdateMathSumQuestion() {
-    var inquiryrandomNumbers = inquirygenerateRandomNumbers();
-    var inquirynum1 = inquiryrandomNumbers[0];
-    var inquirynum2 = inquiryrandomNumbers[1];
-    $('#inquirymathSumQuestion').text('What is ' + inquirynum1 + ' + ' + inquirynum2 + '?');
-    $('#inquirymathSum').data('inquiryexpectedSum', inquirynum1 + inquirynum2); // Store the expected sum in a data attribute for validation
+    // Return false if any field is invalid
+    return formValid;
   }
 
-    // Call the function to update the math sum question when the document is ready
-    inquiryupdateMathSumQuestion();
-
-    function validateInquiryForm() {
-      var formValid = true;
-  
-      $('#myInquiryForm input, #myInquiryForm select, #myInquiryForm textarea').each(function() {
-          if ($(this).hasClass('not-required')) {
-              return true;
-          }
-  
-          if (!$(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length === 0)) {
-              formValid = false;
-              $(this).css('border-color', 'red');
-              $('html, body').animate({
-                  scrollTop: $(this).offset().top - 160 // Adjust the offset to ensure the field is visible
-              }, 500);
-              return false;
-          } else {
-              $(this).css('border-color', 'green');
-          }
-      });
-  
-      // Validate math sum question after other fields are validated
-      var inquirymathSumInput = $('#inquirymathSum'); // Corrected selector
-      var inquirymathSumValue = inquirymathSumInput.val();
-      var inquiryexpectedSum = inquirymathSumInput.data('inquiryexpectedSum'); // Retrieve the expected sum from the data attribute
-      if (!inquirymathSumValue || parseInt(inquirymathSumValue) !== inquiryexpectedSum) {
-          inquirymathSumInput.css('border-color', 'red');
-          formValid = false;
-      } else {
-          inquirymathSumInput.css('border-color', 'green');
-      }
-  
-      if (!formValid) {
-          return false;
-      }
-      
-      return true; // Return true if all validations pass
-  }
-    
-    // Add event listener for form submission
-  
-    $('#myInquiryForm').submit(function() {
-      return validateInquiryForm();
-    });
-    
-     // Event listener to update math sum question when the form is reset (e.g., after submission)
-     $('#submitTicketForm').on('reset', function() {
-      inquiryupdateMathSumQuestion();
-    });
-    
-    
-    // Add event listeners for input, change, and blur events to change border color dynamically
-  
-    $('#myInquiryForm input, #myInquiryForm select, #myInquiryForm textarea').on('input change blur', function() {
-      if (!$(this).hasClass('not-required')) {
-          if ($(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length !== 0)) {
-              $(this).css('border-color', 'green');
-          } else {
-              $(this).css('border-color', 'red');
-          }
-      }
-    });
-    
-  
+  // Attach submit event handler to the form
+  $('#submitTicketForm').on('submit', function(event) {
+    if (!validateTicketForm()) {
+      event.preventDefault(); // Prevent form submission if validation fails
+    }
   });
 
+  // Event listener to update math sum question when the form is reset
+  $('#submitTicketForm').on('reset', function() {
+    updateMathSumQuestion();
+  });
 
-  /* ==== Captcha Implementaion ==== */
-  function timestamp() { var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500); 
+  // Event listener to update border color on input changes
+  $('#submitTicketForm input, #submitTicketForm select, #submitTicketForm textarea').on('input change blur', function() {
+    if (!$(this).hasClass('not-required')) {
+      if ($(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length !== 0)) {
+        $(this).css('border-color', 'green');
+      } else {
+        $(this).css('border-color', 'red');
+      }
+    }
+  });
+});
+
+
+
+
+
 
 
 /* ==== Tooltip ==== */
@@ -1309,64 +1262,67 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 document.addEventListener('DOMContentLoaded', function() {
   const swiperSlides = document.querySelectorAll('.swiper-slide');
   const cardClicks = document.querySelectorAll('.card-click');
- 
-  // Function to reset width and hide/show card-more and card-chev-right
-  function toggleCardDetails(slide, showDetails) {
-    const screenWidth = window.innerWidth;
-    const cardMore = slide.querySelector('.card-more');
-    const cardChevRight = slide.querySelector('.card-click .card-chev-right');
-    const cardCollapseContent = slide.querySelector('.card-collapse-content');
- 
-    if (cardMore && cardChevRight && cardCollapseContent) {
-      if (showDetails) {
-        if (screenWidth >= 1024) {
-          slide.style.width = '600px'; // Set width to show card-more
+
+  if (swiperSlides.length > 0 && cardClicks.length > 0) {
+    // Function to reset width and hide/show card-more and card-chev-right
+    function toggleCardDetails(slide, showDetails) {
+      const screenWidth = window.innerWidth;
+      const cardMore = slide.querySelector('.card-more');
+      const cardChevRight = slide.querySelector('.card-click .card-chev-right');
+      const cardCollapseContent = slide.querySelector('.card-collapse-content');
+
+      if (cardMore && cardChevRight && cardCollapseContent) {
+        if (showDetails) {
+          if (screenWidth >= 1024) {
+            slide.style.width = '600px'; // Set width to show card-more
+          }
+          cardMore.classList.add('active'); // Show card-more
+          cardChevRight.classList.add('hidden'); // Hide card-chev-right
+          cardCollapseContent.style.maxHeight = cardCollapseContent.scrollHeight + 'px'; // Expand content
+        } else {
+          slide.style.width = ''; // Reset width
+          cardMore.classList.remove('active'); // Hide card-more
+          cardChevRight.classList.remove('hidden'); // Show card-chev-right
+          cardCollapseContent.style.maxHeight = null; // Collapse content
         }
-        cardMore.classList.add('active'); // Show card-more
-        cardChevRight.classList.add('hidden'); // Hide card-chev-right
-        cardCollapseContent.style.maxHeight = cardCollapseContent.scrollHeight + 'px'; // Expand content
-      } else {
-        slide.style.width = ''; // Reset width
-        cardMore.classList.remove('active'); // Hide card-more
-        cardChevRight.classList.remove('hidden'); // Show card-chev-right
-        cardCollapseContent.style.maxHeight = null; // Collapse content
       }
     }
-  }
- 
-  // Set width and activate card-more for the first slide by default
-  toggleCardDetails(swiperSlides[0], true);
- 
-  // Handle click on any card-click
-  cardClicks.forEach(function(card) {
-    card.addEventListener('click', function() {
-      // Find the nearest swiper-slide parent
-      const swiperSlide = card.closest('.swiper-slide');
- 
-      // Reset all slides and hide all card-mores
-      swiperSlides.forEach(function(slide) {
-        toggleCardDetails(slide, false);
+
+    // Set width and activate card-more for the first slide by default
+    toggleCardDetails(swiperSlides[0], true);
+
+    // Handle click on any card-click
+    cardClicks.forEach(function(card) {
+      card.addEventListener('click', function() {
+        // Find the nearest swiper-slide parent
+        const swiperSlide = card.closest('.swiper-slide');
+
+        // Reset all slides and hide all card-mores
+        swiperSlides.forEach(function(slide) {
+          toggleCardDetails(slide, false);
+        });
+
+        // Show/hide card-more and reset width for the clicked one
+        if (swiperSlide) {
+          toggleCardDetails(swiperSlide, true);
+        }
       });
- 
-      // Show/hide card-more and reset width for the clicked one
-      if (swiperSlide) {
-        toggleCardDetails(swiperSlide, true);
+    });
+
+    // Handle click on card-more to close it
+    swiperSlides.forEach(function(slide) {
+      const cardMore = slide.querySelector('.card-more .card-chev-right');
+      if (cardMore) {
+        cardMore.addEventListener('click', function(event) {
+          event.stopPropagation(); // Prevent click event from bubbling up to the card-click
+          const swiperSlide = cardMore.closest('.swiper-slide');
+          toggleCardDetails(swiperSlide, false);
+        });
       }
     });
-  });
- 
-  // Handle click on card-more to close it
-  swiperSlides.forEach(function(slide) {
-    const cardMore = slide.querySelector('.card-more .card-chev-right');
-    if (cardMore) {
-      cardMore.addEventListener('click', function(event) {
-        event.stopPropagation(); // Prevent click event from bubbling up to the card-click
-        const swiperSlide = cardMore.closest('.swiper-slide');
-        toggleCardDetails(swiperSlide, false);
-      });
-    }
-  });
+  }
 });
+
  
 
 /* ===== New How Works ===== */
@@ -1492,6 +1448,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
 /* ==== remove AOS for mobile(<1024) ==== */
 document.addEventListener('DOMContentLoaded', function() {
   function removeAOSAttributes() {
@@ -1513,130 +1470,27 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
-/* ==== Get a Quote Modal Popup ==== */
-
-document.addEventListener("DOMContentLoaded", function() {
-  var modal = document.getElementById("quoteModal");
-  var span = document.querySelector(".quoteModal .close");
-  var links = document.querySelectorAll(".card-more .card-get-link");
-  var scrollPosition = 0;
-  var captchaRendered = false;
-
-  links.forEach(function(link) {
-    link.addEventListener("click", function(event) {
-      event.preventDefault(); // Prevent the default action of the link
-      // Save current scroll position
-      scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      // Disable scroll
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollPosition}px`;
-      modal.style.display = "block";
-
-      // Show the form section and hide the thank you message
-      var formSection = document.querySelector(".ticket-form");
-      var thankYouSection = document.querySelector(".quote-thanku");
-      formSection.style.display = "block";
-      thankYouSection.style.display = "none";
-
-      // Clear form fields
-      document.getElementById("myInquiryForm").reset();
-
-      // Scroll modal content to the top
-      modal.scrollTop = 0;
-
-      // Check if reCAPTCHA needs to be rendered
-      if (!captchaRendered) {
-        renderRecaptcha();
-        captchaRendered = true;
+   
+/* ==== Captcha Implementation==== */
+function timestamp() {
+  var response = document.getElementById("g-recaptcha-response");
+  if (!response) {
+      console.warn("g-recaptcha-response element not found");
+      return;
+  }
+  
+  if (response.value.trim() === "") {
+      var captchaSettingsElem = document.getElementsByName("captcha_settings")[0];
+      if (captchaSettingsElem) {
+          var elems = JSON.parse(captchaSettingsElem.value);
+          elems["ts"] = new Date().getTime(); // no need to stringify here
+          captchaSettingsElem.value = JSON.stringify(elems);
       }
-    });
-  });
-
-  if (span) {
-    span.onclick = function() {
-      modal.style.display = "none";
-      // Enable scroll
-      document.body.style.position = '';
-      document.body.style.top = '';
-      // Restore scroll position
-      window.scrollTo(0, scrollPosition);
-    };
   }
+}
 
-  window.onclick = function(event) {
-    if (event.target === modal) {
-      modal.style.display = "none";
-      // Enable scroll
-      document.body.style.position = '';
-      document.body.style.top = '';
-      // Restore scroll position
-      window.scrollTo(0, scrollPosition);
-    }
-  };
-
-  // Function to handle form submission with validation
-  document.getElementById('myInquiryForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission (for demo purposes)
-
-    // Validate form fields and captcha
-    if (validateForm() && validateCaptcha()) {
-      // Display thank you message and hide form
-      var formSection = document.querySelector(".ticket-form");
-      var thankYouSection = document.querySelector(".quote-thanku");
-      formSection.style.display = "none";
-      thankYouSection.style.display = "block";
-
-      // Clear form fields
-      document.getElementById("myInquiryForm").reset();
-
-      // Reset modal scroll position
-      modal.scrollTop = 0;
-    } else {
-      // Form validation failed, handle accordingly (e.g., show error messages)
-      console.log("Form validation failed. Please check your inputs.");
-    }
-  });
-
-  // Function to validate form fields
-  function validateForm() {
-    var isValid = true;
-    var form = document.getElementById("myInquiryForm");
-
-    // Example validation: Check if required fields are filled
-    var requiredFields = form.querySelectorAll('[required]');
-    requiredFields.forEach(function(field) {
-      if (!field.value.trim()) {
-        isValid = false;
-        // You can implement your error handling here (e.g., displaying error messages)
-        field.classList.add('error'); // Example: Add error class for styling
-      } else {
-        field.classList.remove('error');
-      }
-    });
-
-    return isValid;
-  }
-
-  // Function to validate captcha
-  function validateCaptcha() {
-    // Replace with your captcha validation logic
-    // Example: Check if captcha response is valid
-    var captchaResponse = grecaptcha.getResponse();
-    return captchaResponse !== ''; // Return true if captcha response is not empty
-  }
-
-  // Function to render reCAPTCHA
-  function renderRecaptcha() {
-    if (typeof grecaptcha !== "undefined") {
-      grecaptcha.render(document.querySelector('.g-recaptcha'), {
-        sitekey: '6LfnZs4pAAAAAI9TPACWBCvx4O5CGV0tB7jHNRt1',
-        size: 'normal'
-      });
-    }
-  }
-
-});
+// Optionally, adjust or replace setInterval based on your needs
+setInterval(timestamp, 500);
 
 
 /* =========  Product heading to Modal Popup new Inquiry ========== */

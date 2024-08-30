@@ -1589,7 +1589,7 @@ section.ticket-form {
   margin: 0 auto;
 }
 
-.sub-tab-section .tab button {
+.sub-tab-section .tab a.sub-tablinks {
   display: block;
   margin: 4px;
   border-radius: 50px;
@@ -1598,11 +1598,16 @@ section.ticket-form {
   border-right: 0;
 }
 
-.submitPage .sub-tab-section .tab button:hover {
+.submitPage .sub-tab-section .tab a:hover {
   font-weight: 800;
+  color: var(--blue);
+}
+.submitPage .sub-tab-section .tab a.active:hover {
+  font-weight: 800;
+  color: var(--gray);
 }
 
-.sub-tab-section .tab button.active {
+.sub-tab-section .tab a.active {
   border: 1px solid var(--black);
   border-radius: 50px;
   background-color: var(--blue);
@@ -1619,7 +1624,7 @@ section.ticket-form {
   position: relative;
 }
 
-.sub-tab-section .tab button.active::after {
+.sub-tab-section .tab a.active::after {
   content: "";
   height: 0;
   width: 0;
@@ -1783,6 +1788,25 @@ section.thank-section {
 .thank-section a:hover {
   color: var(--black);
 } 
+
+#captchaBackground {
+  margin: 5px 0 0;
+}
+
+.input-refresh {
+  display: flex;
+  gap: 39px;
+}
+
+input#textBox {
+  max-width: 31%;
+  margin-bottom: 6px;
+}
+
+#refreshIcon {
+  font-size: 40px;
+  margin-top: -11px;
+}
 
 /* ======== Product Page ========= */
 
@@ -2136,7 +2160,10 @@ span.bread-inner {
   background-color: var(--orange);
 }
 .cloud-img{
-  padding-top: 35px;
+  margin-top: 35px;
+}
+.cloud-img:hover {
+  box-shadow: 0 4px 10px 0 rgb(0 0 0 / .2),0 8px 9px 0 rgb(0 0 0 / .1);
 }
 .prod-slide-card img {
   display: block;
@@ -3091,7 +3118,7 @@ section.sub-tab-section {
     padding: 45px 0 0 0;
   }
   .hero-home-main-section .hero-sub {
-    padding: 25px 0 0 0;
+    padding: 50px 0 0 0;
   }
   .event-section{
     /* padding: 0px 0 50px 0; */
@@ -3419,7 +3446,7 @@ section.ticket-form {
 .ticket-form .home-contact-submit input[type="submit"] {
   margin: 15px 0 10px auto;
 }
-.sub-tab-section .tab button.active {
+.sub-tab-section .tab a.active {
   padding: 10px 15px;
 }
 .image-right-banner img {
@@ -3471,6 +3498,9 @@ div#low-Voltage {
 }
 #low-Voltage .image-modal .close {
   top: 50px;
+}
+input#textBox {
+  max-width: 97%;
 }
 
 }
@@ -3529,6 +3559,9 @@ div#low-Voltage {
 
 /* Ipad Mini - Air */
 @media only screen and (min-width: 768px) and (max-width: 1023.9px){
+  input#textBox {
+    max-width: 85%;
+}
   .news-home-section .home-news-heading h3 {
     font-size: 28px;
 }
@@ -3798,6 +3831,9 @@ div#low-Voltage {
 
 /* Ipad Pro */
 @media only screen and (min-width: 1024px) and (max-width: 1199.9px){
+  .quoteModal .modal-content {
+    width: 85%;
+}
   .clients-home-img {
     gap: 36px;
     flex-wrap: wrap;
