@@ -164,7 +164,7 @@ function gtag(){dataLayer.push(arguments);}
         </div>
         <div class="col-md-6 we-text-col">
           <div class="section-container we-head">
-            <p loading="lazy">Techunifi collaborates with renowned industry leaders, known for their innovative contributions to the tech landscape. As your trusted partner, we strive to empower you in making informed decisions tailored to your business requirements. Below, we've curated a selection of products and brands categorized by service. Don't hesitate to contact us for further information or to inquire about any specific product. We're here to assist you every step of the way in finding the perfect tech solutions for your business.</p>
+           <div><p loading="lazy">Techunifi collaborates with renowned industry leaders, known for their innovative contributions to the tech landscape. As your trusted partner, we strive to empower you in making informed decisions tailored to your business requirements. Below, we've curated a selection of products and brands categorized by service. Don't hesitate to contact us for further information or to inquire about any specific product. We're here to assist you every step of the way in finding the perfect tech solutions for your business.</p></div>
             <a href="#landing-services">Our Services</a>
           </div>
         </div>
@@ -689,7 +689,19 @@ function gtag(){dataLayer.push(arguments);}
          </div>
        </div>
 
-        <div class="row ticket-form" data-aos="zoom-in" data-aos-delay="50">
+       <div class="row contact-progress-section">
+
+        <div class="col-md-3 progress-bar">
+          <div class="progress" style="height: 0%;">
+            <div class="checkpoint" id="checkpoint1" data-target="#contactInfo"></div>
+            <div class="checkpoint" id="checkpoint2" data-target="#addressInfo"></div>
+            <div class="checkpoint" id="checkpoint3" data-target="#inquiryInfo"></div>
+            <div class="checkpoint" id="checkpoint4" data-target="#servicesInfo"></div>
+        </div>
+        </div>
+        <div class="col-md-9">
+          
+        <div class="ticket-form" data-aos="zoom-in" data-aos-delay="50">
 
           <form id='myInquiryForm'  action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHo000002fpJX" method="POST">
 
@@ -704,7 +716,7 @@ function gtag(){dataLayer.push(arguments);}
             <!--  value="corey@inovisolutions.com">                                       -->
             <!--  ----------------------------------------------------------------------  -->
 
-            <div class="submit-sub-section submit-contact-info aos-init aos-animate" data-aos="zoom-in" data-aos-delay="50">
+            <div class="submit-sub-section submit-contact-info aos-init aos-animate" data-aos="zoom-in" data-aos-delay="50" id="contactInfo">
 
               <div class="row cont-row-head">
                 <div class="col-md-12">
@@ -756,7 +768,7 @@ function gtag(){dataLayer.push(arguments);}
 
             </div>
             
-            <div class="submit-sub-section submit-ticket-info aos-init aos-animate" data-aos="zoom-in" data-aos-delay="50">
+            <div class="submit-sub-section submit-ticket-info aos-init aos-animate" data-aos="zoom-in" data-aos-delay="50" id="addressInfo">
 
               <div class="row cont-row-head">
                 <div class="col-md-12">
@@ -788,7 +800,7 @@ function gtag(){dataLayer.push(arguments);}
 
             </div>
 
-            <div class="submit-sub-section submit-ticket-info aos-init aos-animate" data-aos="zoom-in" data-aos-delay="50">
+            <div class="submit-sub-section submit-ticket-info aos-init aos-animate" data-aos="zoom-in" data-aos-delay="50" id="inquiryInfo">
 
               <div class="row cont-row-head">
                 <div class="col-md-12">
@@ -821,7 +833,7 @@ function gtag(){dataLayer.push(arguments);}
               </div>
 
          
-              <div class="row">
+              <div class="row" id="servicesInfo">
                 <div class="col-md-4">
                   <label class="form-submit-tooltip">Service Needed
                     <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="You may select one or more of our services">
@@ -888,10 +900,69 @@ function gtag(){dataLayer.push(arguments);}
 
             </div>
                   
+                        <!-- After your form fields, include this script -->
+                        <script>
+                            const form = document.getElementById('myInquiryForm');
+const checkpoints = [
+    document.getElementById('checkpoint1'),
+    document.getElementById('checkpoint2'),
+    document.getElementById('checkpoint3'),
+    document.getElementById('checkpoint4')
+];
+
+const checkFields = () => {
+    let filledCount = 0;
+
+    const sections = [
+        ['company', 'first_name', 'last_name', 'phone', 'mobile', 'email'], // Contact Information
+        ['street', 'city', 'state', 'zip'], // Address
+        ['00NHo00000XG1NV', '00NHo00000XG1Nf'], // Inquiry
+        ['00NHo00000XG1Na', 'description', 'inquirymathSum'] // Services Needed
+    ];
+
+    sections.forEach((section, index) => {
+        const allFilled = section.every(id => document.getElementById(id)?.value.trim() !== '');
+        if (allFilled) {
+            filledCount++;
+            checkpoints[index].classList.add('filled');
+        } else {
+            checkpoints[index].classList.remove('filled');
+        }
+    });
+
+    const progressHeight = (filledCount / sections.length) * 100;
+    document.querySelector('.progress').style.height = progressHeight + '%';
+};
+
+// Scroll to the section when a checkpoint is clicked
+checkpoints.forEach(checkpoint => {
+    checkpoint.addEventListener('click', () => {
+        const targetId = checkpoint.getAttribute('data-target');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            // Scroll only within the form section
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+        }
+    });
+});
+
+form.addEventListener('input', checkFields);
+
+
+                      </script>
+                        <!-- Your existing form closing tags -->
+
+
+
             </form>
             
 
+
         </div>
+        </div>
+
+       </div>
+
       </div>
 
       <!-- </div> -->
