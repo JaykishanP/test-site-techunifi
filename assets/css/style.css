@@ -404,7 +404,13 @@ section {
   .menu.show,
   .dropdown.active {
     display: block;
-    background-color: #ededed;
+    background: linear-gradient(#ededed, #ededed, transparent);
+  }
+
+  .changeOrderPage .menu.show,
+  .changeOrderPage .dropdown.active {
+    display: block;
+    background: linear-gradient(#ededed, #ededed, transparent, transparent);
   }
 
   .dropdown ul {
@@ -2945,12 +2951,118 @@ body.productPage.modal-open {
   top: 20%;
 }
 
+/* Signature */
+.flex-row {
+  /* display: flex; */
+}
+.wrapper {
+  border: 1px solid var(--black);
+}
+canvas#signature-pad {
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+button#clear {
+  height: 100%;
+  background: var(--blue);
+  border: 1px solid transparent;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+button#clear span {
+  /* transform: rotate(90deg); */
+  display: block;
+}
+.download-pdf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ticket-form form .download-pdf button {
+  padding: 10px 20px;
+  display: block;
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+.captcha-order-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Terms Modal */
+.terms-conditions {
+  color: #2A7AFF;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.terms-modal .modal.show .modal-dialog {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px 50px;
+  border: 0;
+  width: 100%;
+  max-width: 889px;
+  border-radius: 8px;
+}
+.terms-modal .modal-content,
+.terms-modal .modal-header {
+  border: 0;
+}
+.terms-modal button.btn-close,
+.terms-modal button.btn-close:focus {
+  width: auto;
+  border: 0;
+  --bs-btn-close-bg: none;
+  font-size: 33px;
+  line-height: 0;
+  color: var(--blue);
+  font-weight: 600;
+  opacity: 1;
+  box-shadow: none;
+}
+.terms-modal .modal-body li::marker {
+  font-weight: 600;
+  font-size: 16px;
+}
+.terms-modal .modal-body li{
+  font-size: 16px;
+  line-height: 26px;
+  padding-bottom: 20px;
+}
+h3#termsModalLabel {
+  font-size: 35px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--blue);
+}
+.change-terms-para {
+  font-size: 18px;
+}
+
+.changeOrderPage .modal-backdrop.fade.show {
+  background: #ededed;
+  -webkit-filter: blur(20px);
+  filter: blur(1px);
+  opacity: 0.9;
+}
 
 
 /* ============ Responsive ==============*/
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
+  .terms-modal .modal.show .modal-dialog {
+    padding: 20px 20px;
+}
+h3#termsModalLabel {
+  font-size: 26px;
+}
   .hero-sub .hero-line:after {
     border-left: unset;
 }
@@ -3159,6 +3271,7 @@ section.sub-tab-section {
   .hero-logo {
     max-width: 67%;
     margin: 0 auto;
+    padding: 0 0 30px 0;
   }
   .hero-line-parent {
     padding: 20px 0 0;
@@ -3502,6 +3615,10 @@ div#low-Voltage {
 input#textBox {
   max-width: 97%;
 }
+.sub-tab-section .tab a.sub-tablinks {
+  padding: 10px 15px;
+  font-size: 12px;
+}
 
 }
 
@@ -3561,6 +3678,9 @@ input#textBox {
 @media only screen and (min-width: 768px) and (max-width: 1023.9px){
   input#textBox {
     max-width: 85%;
+}
+.terms-modal .modal.show .modal-dialog {
+  padding: 20px 20px;
 }
   .news-home-section .home-news-heading h3 {
     font-size: 28px;
@@ -4229,3 +4349,78 @@ ul.menu-bar {
   }
 
 }
+
+
+/* ================================PROGRESS BAR================================== */
+/* Add this CSS to your stylesheet */
+.contact-progress-section {
+  position: relative;
+  height: auto; /* Ensures the section takes the height of its content */
+}
+
+.progress-bar {
+  height: 100%; /* Use full height */
+  position: sticky; /* Changed to sticky */
+  top: 0; /* Stick to the top of the contact-progress-section */
+  padding: 10px;
+}
+
+.progress {
+  background-color: transparent; /* Transparent to show checkpoints */
+  height: 100%; /* Fill the height of the progress bar */
+  display: flex;
+  flex-direction: column; /* Arrange checkpoints vertically */
+  justify-content: flex-start; /* Start from the top */
+  align-items: center
+}
+
+.checkpoint {
+  height: 20px; /* Height of each checkpoint */
+  background-color: red; /* Default color for unfilled checkpoints */
+  margin-bottom: 5px; /* Spacing between checkpoints */
+  flex-grow: 1; /* Allows checkpoints to grow to fill the available space */
+}
+
+.checkpoint.filled {
+  background-color: green; /* Color for filled checkpoints */
+}
+
+/* Ensures the form is scrollable if it exceeds a certain height */
+.ticket-form {
+  max-height: 500px; /* Set a maximum height for the form */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 15px; /* Ensure padding to prevent overlap with the scrollbar */
+}
+
+.contact-progress-section {
+  display: flex;
+}
+
+.progress-bar {
+  position: relative;
+  height: 100%; /* Set height to take full height of the parent */
+}
+
+.ticket-form {
+  position: relative;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: 500px; /* Set a specific height */
+}
+
+.progress {
+  position: sticky;
+  top: 0; /* Keep progress bar fixed while scrolling */
+}
+
+.checkpoint {
+  margin: 10px 0; /* Space between checkpoints */
+  background-color: red; /* Default color */
+  cursor: pointer; /* Change cursor on hover */
+  width: 20px;
+    border-radius: 50%;
+    margin: 0 0 50px 0;
+}
+
+.checkpoint.filled {
+  background-color: green; /* Color for filled checkpoints */
+} 
