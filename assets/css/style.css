@@ -4355,7 +4355,8 @@ ul.menu-bar {
 /* Add this CSS to your stylesheet */
 .contact-progress-section {
   position: relative;
-  height: auto; /* Ensures the section takes the height of its content */
+  height: auto; 
+    display: flex;
 }
 
 .progress-bar {
@@ -4363,6 +4364,8 @@ ul.menu-bar {
   position: sticky; /* Changed to sticky */
   top: 0; /* Stick to the top of the contact-progress-section */
   padding: 10px;
+  position: relative;
+  height: 100%; /* Set height to take full height of the parent */
 }
 
 .progress {
@@ -4371,18 +4374,33 @@ ul.menu-bar {
   display: flex;
   flex-direction: column; /* Arrange checkpoints vertically */
   justify-content: flex-start; /* Start from the top */
-  align-items: center
+  align-items: center;
+  position: sticky;
+  top: 0; /* Keep progress bar fixed while scrolling */
+}
+
+.progress::after {
+  content: "";
+  height: 74%;
+  width: 2px;
+  background-color: var(--blue);
+  position: absolute;
+  top: 11px;
+  z-index: -1;
 }
 
 .checkpoint {
   height: 20px; /* Height of each checkpoint */
-  background-color: red; /* Default color for unfilled checkpoints */
-  margin-bottom: 5px; /* Spacing between checkpoints */
+  background-color: var(--black); /* Default color for unfilled checkpoints */
   flex-grow: 1; /* Allows checkpoints to grow to fill the available space */
+  cursor: pointer; /* Change cursor on hover */
+  width: 20px;
+  border-radius: 50%;
+   margin: 0 0 50px 0;
 }
 
 .checkpoint.filled {
-  background-color: green; /* Color for filled checkpoints */
+  background-color: var(--orange); /* Color for filled checkpoints */
 }
 
 /* Ensures the form is scrollable if it exceeds a certain height */
@@ -4390,37 +4408,6 @@ ul.menu-bar {
   max-height: 500px; /* Set a maximum height for the form */
   overflow-y: auto; /* Enable vertical scrolling */
   padding-right: 15px; /* Ensure padding to prevent overlap with the scrollbar */
-}
-
-.contact-progress-section {
-  display: flex;
-}
-
-.progress-bar {
   position: relative;
-  height: 100%; /* Set height to take full height of the parent */
-}
-
-.ticket-form {
-  position: relative;
-  overflow-y: auto; /* Enable vertical scrolling */
   height: 500px; /* Set a specific height */
 }
-
-.progress {
-  position: sticky;
-  top: 0; /* Keep progress bar fixed while scrolling */
-}
-
-.checkpoint {
-  margin: 10px 0; /* Space between checkpoints */
-  background-color: red; /* Default color */
-  cursor: pointer; /* Change cursor on hover */
-  width: 20px;
-    border-radius: 50%;
-    margin: 0 0 50px 0;
-}
-
-.checkpoint.filled {
-  background-color: green; /* Color for filled checkpoints */
-} 
