@@ -4360,16 +4360,15 @@ ul.menu-bar {
 }
 
 .progress-bar {
-  height: 100%; /* Use full height */
-  position: sticky; /* Changed to sticky */
-  top: 0; /* Stick to the top of the contact-progress-section */
+  height: 100%; 
+  position: sticky; 
+  top: 107px; 
   padding: 10px;
-  position: relative;
-  height: 100%; /* Set height to take full height of the parent */
+  position: relative;/
 }
 
 .progress {
-  background-color: transparent; /* Transparent to show checkpoints */
+  background-color: transparent; 
   height: 100%; /* Fill the height of the progress bar */
   display: flex;
   flex-direction: column; /* Arrange checkpoints vertically */
