@@ -4364,7 +4364,7 @@ ul.menu-bar {
   position: sticky; 
   top: 107px; 
   padding: 10px;
-  position: relative;/
+  position: relative;
 }
 
 .progress {
@@ -4385,7 +4385,7 @@ ul.menu-bar {
   background-color: var(--blue);
   position: absolute;
   top: 11px;
-  z-index: -1;
+  z-index: -4;
 }
 
 .checkpoint {
@@ -4400,6 +4400,18 @@ ul.menu-bar {
 
 .checkpoint.filled {
   background-color: var(--orange); /* Color for filled checkpoints */
+}
+
+.checkpoint.filled#checkpoint1::after,
+.checkpoint.filled#checkpoint2::after,
+.checkpoint.filled#checkpoint3::after{
+  content: "";
+  height: 26%;
+  width: 4px;
+  background-color: var(--orange);
+  position: absolute;
+  z-index: -2;
+  margin: 0 0 0 -2px;
 }
 
 /* Ensures the form is scrollable if it exceeds a certain height */
