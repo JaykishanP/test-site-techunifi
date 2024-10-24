@@ -4422,3 +4422,20 @@ ul.menu-bar {
   position: relative;
   height: 500px; /* Set a specific height */
 }
+
+/* ===hover=== */
+.checkpoint:hover::before {
+  content: attr(data-tooltip); /* Retrieve tooltip text from data attribute */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--blue);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 1; 
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
