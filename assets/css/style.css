@@ -4390,12 +4390,11 @@ ul.menu-bar {
 
 .checkpoint {
   height: 20px; /* Height of each checkpoint */
-  background-color: var(--black); /* Default color for unfilled checkpoints */
   flex-grow: 1; /* Allows checkpoints to grow to fill the available space */
   cursor: pointer; /* Change cursor on hover */
   width: 130px;
   border-radius: 50%;
-   margin: 0 0 50px 0;
+  margin: 0 0 50px 0;
 }
 
 .checkpoint.filled#checkpoint1::after,
