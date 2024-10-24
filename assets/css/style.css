@@ -4424,7 +4424,7 @@ ul.menu-bar {
 }
 
 /* ===hover=== */
-.checkpoint:hover::before {
+.checkpoint::before {
   content: attr(data-tooltip); /* Retrieve tooltip text from data attribute */
   position: absolute;
   left: 50%;
@@ -4438,4 +4438,10 @@ ul.menu-bar {
   opacity: 1; 
   pointer-events: none;
   transition: opacity 0.2s ease-in-out;
+}
+
+.checkpoint.filled::before {
+  background-color: var(--orange);
+  color: var(--blue);
+  font-weight: 800;
 }
