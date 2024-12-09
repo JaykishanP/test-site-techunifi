@@ -145,31 +145,45 @@ section.Brand-Password.mandate-password .toggle-password {
     left: 1%;
     z-index: -1;
 }
+.PolicyPage .nav-link.services{
+   font-weight: 700;
+}
 
 </style>
    
 </head>
 <body class="changeOrderPage PolicyPage" id="submit-captcha">
     
-  <!-- ======= Header ======= -->
-  <header id="nav-menu" class="header-nav" aria-label="navigation bar">
-    <div class="container">
-      <div class="nav-start">
-        <a class="logo" href="https://www.techunifi.com/">
-          <img src="assets/img/logo.png" title="techunifi" alt="Logo" />
-        </a>
-
-        <nav class="menu">
-          <ul class="menu-bar">
-            <li class="d-none d-lg-block"><a class="nav-link raise-btn" href="index.html" onclick="toggleUnderline(event)">Website</a></li>
-          </ul>
-        </nav>
-
-      </div>
+    <!-- ======= Header ======= -->
+    <header id="nav-menu" class="header-nav" aria-label="navigation bar">
+      <div class="container">
+        <div class="nav-start">
+          <a class="logo" href="https://www.techunifi.com/">
+            <img src="assets/img/logo.png" title="techunifi" alt="Logo" />
+          </a>
   
-    </div>
-  </header>
-  <!-- End Header -->
+          <div class="nav-end">
+            <a class="nav-link raise-btn" href="index.html" onclick="toggleUnderline(event)">Website</a>
+            <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
+              <i class="bx bx-menu" aria-hidden="true"></i>
+            </button>
+          </div>
+  
+          <nav class="menu">
+            <ul class="menu-bar">
+              <li><a class="nav-link services" href="policy.html" onclick="toggleUnderline(event)">Drawing Mock Ups</a></li>
+              <li><a class="nav-link howit-Works" href="submit.html" onclick="toggleUnderline(event)">Submit a Ticket</a></li>
+              <li><a class="nav-link menu-products" href="new-inquiry.html" onclick="toggleUnderline(event)">Contact</a></li>
+              <li><a class="nav-link menu-about" href="brands.html" onclick="toggleUnderline(event)">Our Brand</a></li>
+              <li class="d-none d-lg-block"><a class="nav-link raise-btn" href="index.html" onclick="toggleUnderline(event)">Website</a></li>
+              
+            </ul>
+          </nav>
+        </div>
+    
+      </div>
+    </header>
+    <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="submit-banner">
@@ -478,11 +492,11 @@ section.Brand-Password.mandate-password .toggle-password {
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- <script>
+  <script>
     /* Disable right-click functionality globally */
-    document.addEventListener("contextmenu", function (event) {
-      event.preventDefault(); // Prevent the default right-click menu
-    });
+    // document.addEventListener("contextmenu", function (event) {
+    //   event.preventDefault();
+    // });
 
     document.addEventListener('keydown', function(event) {
     if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
@@ -552,7 +566,8 @@ section.Brand-Password.mandate-password .toggle-password {
       }
     }
   </script>
-   -->
+  
 
-</body>
+
+  </body>
 </html>
