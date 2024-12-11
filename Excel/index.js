@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors({ origin: 'https://jaykishanp.github.io/', methods: ['GET', 'POST'], allowedHeaders: ['Content-Type'] }));
+app.use(cors({ origin: 'https://www.techunifi.com/', methods: ['GET', 'POST'], allowedHeaders: ['Content-Type'] }));
 app.use(express.json());
 
 // Verify GOOGLE_CREDENTIALS_BASE64 exists
