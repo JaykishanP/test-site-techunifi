@@ -7,16 +7,28 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors({ origin: 'https://www.techunifi.com' })); // Allow frontend's origin
+const allowedOrigins = ['https://www.techunifi.com']; // Add allowed frontend origins here
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS policy: Origin not allowed'));
+    }
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+}));
+
 app.use(express.json());
 
-const allowedOrigins = ['https://www.techunifi.com']; // List all allowed origins here
-
-// Google API setup
+// Google Sheets API setup
 const auth = new google.auth.GoogleAuth({
   credentials: JSON.parse(Buffer.from(process.env.GOOGLE_CREDENTIALS_BASE64, 'base64').toString('utf-8')),
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
+
 const sheets = google.sheets({ version: 'v4', auth });
 
 // Define constants
@@ -60,6 +72,9 @@ app.post('/submit-timesheet', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+// Preflight OPTIONS handling (optional but recommended)
+app.options('/submit-timesheet', cors());
 
 // Start server
 app.listen(PORT, () => {
