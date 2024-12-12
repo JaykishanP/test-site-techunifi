@@ -385,27 +385,29 @@ function gtag(){dataLayer.push(arguments);}
             date: form.date.value,
         };
     
-        try {
-            const response = await fetch('https://test-site-techunifi.onrender.com/submit-timesheet', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-    
-            if (response.ok) {
-                const result = await response.json();
-                alert('Form submitted successfully!');
-                form.reset(); // Clears all input fields
-            } else {
-                const error = await response.json();
-                alert('Error: ' + error.error);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('Failed to submit form.');
-        }
+       try {
+    const response = await fetch('https://test-site-techunifi.onrender.com/submit-timesheet', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+        const result = await response.json();
+        alert(result.message || 'Form submitted successfully!');
+        form.reset(); // Clear fields
+    } else {
+        const error = await response.json();
+        console.error('Error:', error);
+        alert('Server Error: ' + (error.error || 'Unknown Error'));
+    }
+} catch (error) {
+    console.error('Network Error:', error);
+    alert('Failed to submit form. Please check your network or try again later.');
+}
+
     });
           
     
