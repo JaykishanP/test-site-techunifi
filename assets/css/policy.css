@@ -19,21 +19,18 @@ section.Brand-Password.mandate-password .toggle-password {
 
 /* General Left-Side Navigation Fix */
 
-/* Make left sidebar sticky */
 /* Make the left sidebar fixed */
-.left-sidebar {
+/* .left-sidebar {
     position: fixed;
-    top: 300px;  /* Adjust this based on your header height */
-    width: 220px;  /* Set the width of the sidebar */
-    border-right: 1px solid var(--black);
+    top: 0; 
     text-align: right;
     padding: 30px 15px 30px 0;
-    height: calc(100vh - 160px);  /* Height adjusted to avoid footer overlap (adjust '160px' based on footer height) */
-}
+    overflow-y: auto;
+    height: calc(100vh - 150px - 100px);
+} */
 
 /* Adjust the layout of content to avoid overlap with the fixed sidebar */
 .right-policy-content {
-    margin-left: 240px;  /* Adjusted to make space for the fixed sidebar */
     padding: 0 0 0 60px;  /* Adjust padding as needed */
 }
 
@@ -42,6 +39,7 @@ section.Brand-Password.mandate-password .toggle-password {
     font-size: 16px;
     padding: 15px 8px 15px 10px;
     display: block;
+    border-right: 1px solid var(--black);
 }
 
 
@@ -108,7 +106,7 @@ section.Brand-Password.mandate-password .toggle-password {
    font-weight: 700;
    color: var(--blue);
 }
-.prod-heading.policy-head h3::before {
+.tech-sta .prod-heading.policy-head h3::before {
     content: "";
     height: 0.8px;
     width: 106px;
@@ -119,6 +117,13 @@ section.Brand-Password.mandate-password .toggle-password {
     left: 46%;
     z-index: -1;
 }
-.policy-banner .sub-tab-section .tab a.sub-tablinks {
+.tech-sta  .submit-head-para {
+    margin: 0 0 15px 0;
+}
+.policy-banner.sub-tab-section .tab a.sub-tablinks {
     font-size: 16px;
+}
+.down-noti.text-center {
+    display: flex;
+    justify-content: center;
 }
