@@ -1,0 +1,124 @@
+section.Brand-Password.mandate-password .toggle-password {
+    top: 84%;
+}
+.Brand-Password input#mandate-email {
+  border: var(--border);
+  max-width: 358px;
+  width: 100%;
+  padding: 5px 10px;
+}
+.mandate-password .mandate-link {
+    margin: 10px 0 0 0;
+    display: inline-block;
+    font-size: 18px;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    color: #2A7AFF;
+}
+/* ============= */
+
+/* General Left-Side Navigation Fix */
+
+/* Make left sidebar sticky */
+/* Make the left sidebar fixed */
+.left-sidebar {
+    position: fixed;
+    top: 300px;  /* Adjust this based on your header height */
+    width: 220px;  /* Set the width of the sidebar */
+    border-right: 1px solid var(--black);
+    text-align: right;
+    padding: 30px 15px 30px 0;
+    height: calc(100vh - 160px);  /* Height adjusted to avoid footer overlap (adjust '160px' based on footer height) */
+}
+
+/* Adjust the layout of content to avoid overlap with the fixed sidebar */
+.right-policy-content {
+    margin-left: 240px;  /* Adjusted to make space for the fixed sidebar */
+    padding: 0 0 0 60px;  /* Adjust padding as needed */
+}
+
+/* Ensure the sidebar links are spaced out */
+.left-sidebar a {
+    font-size: 16px;
+    padding: 15px 8px 15px 10px;
+    display: block;
+}
+
+
+.right-policy-content {
+    padding: 0 0 0 60px; 
+}
+
+.left-sidebar a {
+    font-size: 16px;
+    padding: 15px 8px 15px 10px;
+    display: block;
+}
+.left-sidebar a:hover {
+    color: var(--black);
+}
+
+
+  
+
+/* ============= */
+.policy-content{
+    margin: 20px auto;
+}
+.policy-content ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 0 0 0 35px;
+}
+
+.policy-content li {
+    margin-bottom: 10px;
+}
+.policy-content li strong{
+    color: var(--blue);
+    margin: 25px 0 0 0;
+    display: block;
+}
+.policy-sub-title {
+    color: var(--blue);
+    font-size: 30px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 7px;
+    margin: 0 0 20px 0;
+}
+.third-title {
+    color: var(--blue);
+    font-weight: 600;
+    font-size: 22px;
+    padding: 15px 0 0 20px;
+}
+.prod-heading.policy-before h3::before {
+    content: "";
+    height: 0.8px;
+    width: 106px;
+    display: inline-block;
+    background-color: var(--blue);
+    position: absolute;
+    bottom: -10px;
+    left: 1%;
+    z-index: -1;
+}
+.PolicyPage .nav-link.services{
+   font-weight: 700;
+   color: var(--blue);
+}
+.prod-heading.policy-head h3::before {
+    content: "";
+    height: 0.8px;
+    width: 106px;
+    display: inline-block;
+    background-color: var(--blue);
+    position: absolute;
+    bottom: -10px;
+    left: 46%;
+    z-index: -1;
+}
+.policy-banner .sub-tab-section .tab a.sub-tablinks {
+    font-size: 16px;
+}
