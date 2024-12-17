@@ -113,7 +113,7 @@ function gtag(){dataLayer.push(arguments);}
             </ul>
           </nav>
         </div>
-    
+       <hr size="5" style="margin: 5px 0 0 0; color: var(--blue); opacity: unset;">
       </div>
     </header>
     <!-- End Header -->
@@ -125,36 +125,48 @@ function gtag(){dataLayer.push(arguments);}
 <!-- ======= Password Modal ======= -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="submit-banner policy-banner">
+  <section id="hero" class="submit-banner policy-banner sub-tab-section">
 
-    <section class="sub-tab-section">
         <div class="container">
+          
             <div class="row">
                 <div class="col-md-12">
+                  <br><br>
                   <div class="tab">
                     <a href="policy.html" class="sub-tablinks active">Standard</a>
                     <a href="submit.html" class="sub-tablinks">Take-off</a>
                   </div>
                 </div>
-              </div>
-        </div>
-        <br><br>
+
+      <div class="row text-center tech-sta">
+
         <div class="submit-head-para">
-            <div class="prod-heading policy-head">
-              <h3>Techunifi Standard</h3>
+          <div class="prod-heading policy-head">
+            <br><br>
+
+            <h3>Techunifi Standard</h3>
+        </div>
+
+        <img src="assets/img/policy/standard-banner.png" title="techunifi" alt="techunifi">
+
+      </div>
+
+
+      </div>
+
+                <div class="down-noti text-center">
+                  <a href="assets/img/prod-images/telecom/corded/Corded/77 slim sip.pdf" class="card-get-link" download="">Download Standards</a>
+              </div>
+
             </div>
-          </div>
-
-    </section>
-
-    
-    <img src="assets/img/policy/standard-banner.png" title="techunifi" alt="techunifi">
+        </div>      
   </section>
   <!-- End Hero -->
 
 
   <section class="sub-tab-section">
     <div class="container">
+
 
       <div class="row left-policy-right">
 
@@ -174,7 +186,13 @@ function gtag(){dataLayer.push(arguments);}
           <div class="right-policy-content policy-content">
 
             <div id="drawing-index" class="drawing-index">
-              <h2 class="policy-sub-title">Drawing Index</h2>
+              <div class="submit-head-para">
+                <div class="prod-heading policy-head">
+                  <h3>Drawing Index</h3>
+                </div>
+            </div>
+            <br>
+
               <ul>
                   <li><strong>Reference Material and General Notes</strong>
                       <ul>
@@ -427,27 +445,76 @@ function gtag(){dataLayer.push(arguments);}
 
 
   <script>
-        window.addEventListener('scroll', function() {
-  const sidebar = document.querySelector('.left-sidebar');
-  const contentContainer = document.querySelector('.left-policy-right');
-  const header = document.querySelector('header');
-  const footer = document.querySelector('footer');
-  const banner = document.querySelector('.policy-banner');
 
-  const headerHeight = header.offsetHeight;
-  const footerHeight = footer.offsetHeight;
-  const bannerHeight = banner.offsetHeight;
-  const contentTop = contentContainer.offsetTop;
-  const contentBottom = contentTop + contentContainer.offsetHeight;
+//     window.addEventListener('scroll', function() {
+//   const sidebar = document.querySelector('.left-sidebar');
+//   const contentContainer = document.querySelector('.left-policy-right');
+//   const header = document.querySelector('header');
+//   const footer = document.querySelector('footer');
 
-  if (window.scrollY >= contentTop && 
-      window.scrollY < (contentBottom - footerHeight)) { 
-    sidebar.style.display = 'block';
-  } else {
-    sidebar.style.display = 'none';
-  }
+//   const headerHeight = header.offsetHeight;
+//   const footerHeight = footer.offsetHeight;
+//   const contentTop = contentContainer.offsetTop;
+//   const contentBottom = contentTop + contentContainer.offsetHeight;
+
+//   if (window.scrollY >= contentTop && window.scrollY < contentBottom) {
+//     sidebar.style.display = 'block';
+//     sidebar.style.top = `${headerHeight}px`; 
+//     sidebar.style.height = `calc(100vh - ${headerHeight}px - ${footerHeight}px)`; 
+//   } else {
+//     sidebar.style.display = 'none';
+//     sidebar.style.top = 'auto';
+//     sidebar.style.height = 'auto'; 
+//   }
+// });
+
+
+$(document).ready(function () {
+  $(window).scroll(function () {
+    var sidebar = $('.left-sidebar'); // Sidebar element
+    var headerHeight = $('header').outerHeight(); // Header height
+    var footerHeight = $('footer').outerHeight(); // Footer height
+    var windowHeight = $(window).height(); // Window height
+    var scrollTop = $(window).scrollTop(); // Current scroll position
+
+    // Sidebar's height
+    var sidebarHeight = sidebar.outerHeight();
+    
+    // Footer's offset from the top of the document
+    var footerOffsetTop = $('footer').offset().top;
+    
+    // Calculate the sidebar's maximum scrollable position (above the footer)
+    var maxTop = footerOffsetTop - sidebarHeight;
+
+    // Determine the sidebar's top position
+    if (scrollTop + headerHeight >= maxTop) {
+      // Sidebar should stop above the footer
+      sidebar.css({
+        'position': 'absolute',
+        'top': maxTop + 'px', // Position it just above the footer
+        'bottom': 'auto',
+        'border-right': '1px solid var(--black)',
+      });
+    } else if (scrollTop > headerHeight) {
+      // Sidebar is fixed after scrolling past the header
+      sidebar.css({
+        'position': 'fixed',
+        'top': '580px', // Fix it to the top of the viewport
+        'bottom': 'auto',
+        'border-right': '1px solid var(--black)',
+      });
+    } else {
+      // Sidebar in its initial static position
+      sidebar.css({
+        'position': 'static',
+        'border-right': '1px solid var(--black)',
+      });
+    }
+  });
 });
-  </script>
+
+
+ </script>
 
 
   </body>
