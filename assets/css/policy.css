@@ -321,3 +321,45 @@ section.Brand-Password.mandate-password .toggle-password {
     width: 40px; /* Maintain consistent size for icons */
     height: 40px;
   }
+
+  .custom-modal.active .prod-heading h3 {
+    font-size: 31px;
+    letter-spacing: 2.6px;
+ }
+
+ .custom-modal.active .prod-heading h3::before{
+    bottom: -6px;
+ }
+
+ .custom-modal .submit-head-para {
+    margin: 0;
+ }
+
+  .release-notes .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .custom-modal .date {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+    letter-spacing: 0.9px;
+  }
+ 
+  .release-notes .section {
+    margin-bottom: 15px;
+  }
+  
+  .release-notes .section-title {
+    font-weight: bold;
+    text-align: left;
+    padding: 0;
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .release-notes .section-description {
+    margin: 5px 0 0 0;
+  }
