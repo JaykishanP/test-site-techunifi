@@ -591,30 +591,9 @@ function gtag(){dataLayer.push(arguments);}
 <!-- left nav -->
   <script>
 
-//     window.addEventListener('scroll', function() {
-//   const sidebar = document.querySelector('.left-sidebar');
-//   const contentContainer = document.querySelector('.left-policy-right');
-//   const header = document.querySelector('header');
-//   const footer = document.querySelector('footer');
+if (window.matchMedia('(min-width: 768px)').matches) {
 
-//   const headerHeight = header.offsetHeight;
-//   const footerHeight = footer.offsetHeight;
-//   const contentTop = contentContainer.offsetTop;
-//   const contentBottom = contentTop + contentContainer.offsetHeight;
-
-//   if (window.scrollY >= contentTop && window.scrollY < contentBottom) {
-//     sidebar.style.display = 'block';
-//     sidebar.style.top = `${headerHeight}px`; 
-//     sidebar.style.height = `calc(100vh - ${headerHeight}px - ${footerHeight}px)`; 
-//   } else {
-//     sidebar.style.display = 'none';
-//     sidebar.style.top = 'auto';
-//     sidebar.style.height = 'auto'; 
-//   }
-// });
-
-
-$(document).ready(function () {
+  $(document).ready(function () {
   $(window).scroll(function () {
     var sidebar = $('.left-sidebar'); // Sidebar element
     var headerHeight = $('header').outerHeight(); // Header height
@@ -658,6 +637,9 @@ $(document).ready(function () {
     }
   });
 });
+
+
+}
 
 
  </script>
