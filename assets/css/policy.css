@@ -312,6 +312,10 @@ section.Brand-Password.mandate-password .toggle-password {
     display: none; /* Initially hidden */
   }
 
+  .TakeOffPage .update-notification .custom-modal {
+    z-index: 103;
+  }
+
   .update-notification .custom-modal.active {
     display: block; /* Show modal when active */
   }
@@ -369,10 +373,54 @@ section.Brand-Password.mandate-password .toggle-password {
   #drawing-index::before,
   #drawing::before,
   #color-code::before,
-  #icon-policy::before {
+  #icon-policy::before{
     content: '';
     display: block;
     height: 108px;
     margin-top: -70px;
     visibility: hidden;
  }
+
+ .steps-scroll::before{
+    content: '';
+    display: block;
+    height: 108px;
+    margin-top: -70px;
+    visibility: hidden;
+ }
+
+ .steps-main {
+    padding: 20px 20px 20px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.steps-container .prod-heading h3{
+    margin: 0;
+    font-size: 23px;
+    letter-spacing: 0.9px;
+}
+
+.steps-container .submit-head-para .prod-heading h3::before{
+    z-index: 1;
+    bottom: -10px;
+}
+
+.steps-container .submit-head-para{
+    margin: 0 0 20px 0;
+}
+.steps-container .section-title {
+    font-size: 16px;
+    text-align: left;
+    font-weight: 600;
+    margin: 20px 0 0;
+    padding: 10px 0 0 0;
+}
+.steps-container .section ul {
+    margin: 10px 0 0 0;
+}
+.steps-container .section ul li {
+    margin: 0 0 5px 0;
+}
