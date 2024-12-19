@@ -363,3 +363,16 @@ section.Brand-Password.mandate-password .toggle-password {
   .release-notes .section-description {
     margin: 5px 0 0 0;
   }
+
+  /* ============== */
+
+  #drawing-index::before,
+  #drawing::before,
+  #color-code::before,
+  #icon-policy::before {
+    content: '';
+    display: block;
+    height: 108px;
+    margin-top: -70px;
+    visibility: hidden;
+ }
