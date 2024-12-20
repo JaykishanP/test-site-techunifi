@@ -824,5 +824,28 @@ if (window.matchMedia('(min-width: 768px)').matches) {
  });
 </script>
 
+ 
+<!-- Active Class  -->
+<script>
+  $(document).ready(function() {
+  $(".left-sidebar a").click(function() {
+    // Remove previous active state
+    $(".left-sidebar a").css({
+      "font-weight": "normal",
+      "color": "black", // Default text color
+      "background-color": "transparent"
+    });
+
+    // Set active state for the clicked link
+    $(this).css({
+      "font-weight": "800",
+      "color": "#eb6d47",
+      'background-color': "#d9d9d9"
+    });
+  });
+});
+</script>
+
+
   </body>
 </html>
