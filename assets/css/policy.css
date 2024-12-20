@@ -453,6 +453,9 @@ section.Brand-Password.mandate-password .toggle-password {
     .update-notification {
         top: 30px;
     }
+    .TakeOffPage .update-notification {
+        top: 44px;
+    }
     .update-notification img {
         cursor: pointer;
         width: 35px;
@@ -481,6 +484,9 @@ section.Brand-Password.mandate-password .toggle-password {
     .tech-sta .prod-heading.policy-head h3 {
         font-size: 23px;
         letter-spacing: 1.6px;
+    }
+    .right-policy-content .submit-head-para .prod-heading h3 {
+        margin: 0 0 42px 0;
     }
     .TakeOffPage .tech-sta .prod-heading.policy-head{
         padding: 35px 0 0 0;
