@@ -424,3 +424,104 @@ section.Brand-Password.mandate-password .toggle-password {
 .steps-container .section ul li {
     margin: 0 0 5px 0;
 }
+
+/* For mobile phones: */
+
+@media only screen and (max-width: 1023px) {
+    
+    .PolicyPage section.sub-tab-section {
+        padding: 0;
+    }
+
+    .left-sidebar {
+        position: fixed;
+        top: 93px;
+        display: flex;
+        border-bottom: 1px solid var(--blue);
+        padding: 10px 0;
+        background: #ededed;
+    }
+    
+    .left-sidebar a {
+        font-size: 12px;
+        padding: 5px 5px 0;
+        display: block;
+        text-align: center;
+        border-right: 0;
+        margin: 0 1px;
+    }
+    .update-notification {
+        top: 30px;
+    }
+    .update-notification img {
+        cursor: pointer;
+        width: 35px;
+        height: unset;
+    }
+    .PolicyPage .left-sidebar {
+        top: 85px;
+        left: 5%;
+        z-index: 9;
+    }
+    .TakeOffPage .left-sidebar{
+        z-index: 9;
+    }
+    .PolicyPage .left-sidebar a {
+        padding: 10px 15px;
+    }
+    .update-notification .custom-modal {
+        top: 56px;
+        margin: 0 20px;
+        width: auto;
+    }
+    .tech-sta .prod-heading.policy-head h3::before {
+        bottom: -10px;
+        left: 34%;
+    }
+    .tech-sta .prod-heading.policy-head h3 {
+        font-size: 23px;
+        letter-spacing: 1.6px;
+    }
+    .TakeOffPage .tech-sta .prod-heading.policy-head{
+        padding: 35px 0 0 0;
+    }
+    .TakeOffPage .tech-sta .prod-heading.policy-head br{
+        display: none;
+    }
+    #drawing-index::before, #drawing::before, #color-code::before, #icon-policy::before {
+        height: 151px;
+        margin-top: -127px;
+    }
+    .TakeOffPage .policy-banner .row.left-policy-right {
+        z-index: 1;
+    }
+    .TakeOffPage .right-policy-content {
+        padding: 0;
+    }
+    .TakeOffPage .left-sidebar a {
+        background-color: #fff;
+        padding: 10px 5px;
+    }
+    .steps-scroll::before {
+        height: 150px;
+        margin-top: -112px;
+    }
+  
+}
+
+/* 768 - 1023 */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+   
+.PolicyPage .left-sidebar a {
+    padding: 10px 58px;
+}
+.update-notification .custom-modal {
+    top: 78px;
+}
+.TakeOffPage .left-sidebar a {
+    background-color: #fff;
+    padding: 10px 15px;
+    margin: 0 10px;}
+
+}
