@@ -119,7 +119,42 @@ function gtag(){dataLayer.push(arguments);}
 
 <!-- ======= Password Modal ======= -->
 
-  
+<section class="Brand-Password mandate-password">
+  <div id="passwordModal" class="modal">
+    <div class="modal-content">
+      <form id="PasswordloginForm">
+        <h4 class="pass-heading">Policy</h4>
+        <p class="change-order-para">
+          Use the Login information provided in your email.
+        </p>
+        <div class="eye-password">
+          <input
+            type="email"
+            id="mandate-email"
+            name="email"
+            placeholder="Enter Email"
+            required
+            oninput="hideErrorMessage()"
+          >
+          <br><br>
+          <input
+            type="password"
+            id="protected-password"
+            name="password"
+            placeholder="Enter Password"
+            oninput="hideErrorMessage()"
+          >
+          <span class="toggle-password" onclick="togglePasswordVisibility()">
+            <i class="bx bx-hide"></i>
+          </span>
+        </div>
+        <span class="error-message" id="mandate-error-message">Invalid email or password. Please try again.</span><br>
+        <input type="button" value="Login" onclick="validateLogin()"><br>
+        <a href="index.html" class="mandate-link">Back to Main Site</a>
+      </form>
+    </div>
+  </div>
+</section>
 
 <!-- ======= Password Modal ======= -->
 
@@ -570,6 +605,84 @@ function gtag(){dataLayer.push(arguments);}
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+
+  <!-- Password -->
+  <script>
+    /* Disable right-click functionality globally */
+    document.addEventListener("contextmenu", function (event) {
+      event.preventDefault();
+    });
+ 
+    document.addEventListener('keydown', function(event) {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+        event.preventDefault();
+    }
+});
+ 
+ 
+    /* ===== Modal ===== */
+    var modal = document.getElementById("passwordModal");
+    var errorMessage = document.getElementById("brand-error-message");
+ 
+    var validCredentials = [
+      { email: "rajesh.patel@techunifi.com", password: "Tech@Rajesh$25" },
+      { email: "sunny.patel@techunifi.com", password: "Patel@Sunny-31$" },
+      { email: "jaykishan.patel@techunifi.com", password: "Kishan@Jay-18" },
+      { email: "mahesh.hatwar@techture.global", password: "&Techture_Mahesh@43" },
+      // Add more credentials as needed
+    ];
+ 
+    document.addEventListener("DOMContentLoaded", function () {
+      modal.style.display = "block";
+      document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+    });
+ 
+    function validateLogin() {
+      var email = document.getElementById("mandate-email").value;
+      var password = document.getElementById("protected-password").value;
+ 
+      var isValid = validCredentials.some(function (cred) {
+        return cred.email === email && cred.password === password;
+      });
+ 
+      if (isValid) {
+        modal.style.display = "none";
+        document.body.style.overflow = ""; // Reset body overflow property
+      } else {
+        var errorMessage = document.getElementById("mandate-error-message");
+        errorMessage.style.display = "block";
+      }
+    }
+ 
+    function hideErrorMessage() {
+      var errorMessage = document.getElementById("mandate-error-message");
+      errorMessage.style.display = "none";
+    }
+ 
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        validateLogin();
+      }
+    });
+ 
+    /* === Toggle Password Eye === */
+    function togglePasswordVisibility() {
+      var passwordInput = document.getElementById("protected-password");
+      var toggleButton = document.querySelector(".toggle-password i");
+ 
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleButton.classList.remove("bx-hide");
+        toggleButton.classList.add("bx-show");
+      } else {
+        passwordInput.type = "password";
+        toggleButton.classList.remove("bx-show");
+        toggleButton.classList.add("bx-hide");
+      }
+    }
+  </script>
 
   <!-- Tabs -->
   <script>
