@@ -454,7 +454,8 @@ section.Brand-Password.mandate-password .toggle-password {
         top: 30px;
     }
     .TakeOffPage .update-notification {
-        top: 44px;
+        top: 51px;
+        margin: 10px 0 10px 0;
     }
     .update-notification img {
         cursor: pointer;
@@ -466,16 +467,23 @@ section.Brand-Password.mandate-password .toggle-password {
         left: 5%;
         z-index: 9;
     }
+    .right-policy-content {
+        padding: 0;
+    }
     .TakeOffPage .left-sidebar{
         z-index: 9;
     }
     .PolicyPage .left-sidebar a {
-        padding: 10px 15px;
+        padding: 10px 12px;
     }
     .update-notification .custom-modal {
         top: 56px;
         margin: 0 20px;
         width: auto;
+    }
+    .color-code .right-color-content {
+        background-color: unset;
+        padding: 0 20px;
     }
     .tech-sta .prod-heading.policy-head h3::before {
         bottom: -10px;
@@ -511,6 +519,11 @@ section.Brand-Password.mandate-password .toggle-password {
     .steps-scroll::before {
         height: 150px;
         margin-top: -112px;
+    }
+    .hori-tab .poli-tablinks {
+        padding: 9px 9px;
+        width: unset;
+        font-size: 12px;
     }
   
 }
