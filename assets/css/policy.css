@@ -232,6 +232,7 @@ section.Brand-Password.mandate-password .toggle-password {
 }
 .policy-content .drawing ul strong{
     color: var(--blue);
+    margin: 0;
 }
 .policy-content .drawing ul ul{
     padding: 5px 10px;
