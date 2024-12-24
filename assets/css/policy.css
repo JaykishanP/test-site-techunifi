@@ -424,6 +424,9 @@ section.Brand-Password.mandate-password .toggle-password {
 .steps-container .section ul li {
     margin: 0 0 5px 0;
 }
+.TakeOffPage .Brand-Password .modal {
+    z-index: 104;
+}
 
 /* For mobile phones: */
 
