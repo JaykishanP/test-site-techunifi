@@ -822,6 +822,11 @@ sliders.forEach(function(slider) {
             prevEl: slider.parentNode.querySelector(".swiper-button-prev"), // Corrected selector to find previous button
         },
         mousewheel: true,
+
+        scrollbar: {
+          el: slider.querySelector(".swiper-scrollbar"),
+          draggable: true, // Allow users to drag the scrollbar
+      },
     });
 
 
