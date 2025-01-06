@@ -1968,6 +1968,80 @@ textareas.forEach(textarea => {
 });
 
 
+/* ====== Site Search Functionality ====== */
+
+// Function to toggle the modal and manage background scrolling
+function toggleModal() {
+  const modal = document.getElementById('searchModal');
+  const isModalOpen = modal.style.display === 'block';
+
+  if (isModalOpen) {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    clearSearch(); // Clear search when modal is closed
+  } else {
+    modal.style.display = 'block';
+    document.body.classList.add('modal-open');
+  }
+}
+
+// Close the modal if user clicks outside
+window.onclick = function (event) {
+  const modal = document.getElementById('searchModal');
+  if (event.target === modal) {
+    toggleModal();
+  }
+};
+
+// Function to clear the search input and results
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchResults').innerHTML = '';
+}
+
+// Function to perform search and highlight results
+function performSearch(event) {
+  const query = event.target.value.toLowerCase();
+  const searchResults = document.getElementById('searchResults');
+  searchResults.innerHTML = ''; // Clear previous results
+
+  if (query) {
+    // Example static search index (replace with actual site content)
+    const siteContent = [
+      { text: 'Welcome to our homepage', url: 'index.html' },
+      { text: 'About our team and mission', url: 'about.html' },
+      { text: 'Get in touch with us via the contact page', url: 'contact.html' },
+      { text: 'Discover articles on our blog', url: 'about.html#news' },
+      { text: 'We offer various services to our clients', url: 'products.html' },
+    ];
+
+    const results = siteContent.filter(content =>
+      content.text.toLowerCase().includes(query)
+    );
+
+    if (results.length > 0) {
+      results.forEach(result => {
+        const highlightedText = highlightText(result.text, query);
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <p>${highlightedText}</p>
+          <a href="${result.url}" target="_blank">Visit: ${result.url}</a>
+        `;
+        searchResults.appendChild(li);
+      });
+    } else {
+      searchResults.innerHTML = '<li>No results found</li>';
+    }
+  }
+}
+
+// Function to highlight the searched text
+function highlightText(text, query) {
+  const regex = new RegExp(`(${query})`, 'gi');
+  return text.replace(regex, '<span class="highlight">$1</span>');
+}
+
 
 /* ==== Event Close ==== */
 

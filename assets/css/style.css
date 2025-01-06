@@ -251,6 +251,10 @@ section {
   transition: 300ms;
 }
 
+.menu-bar .nav-link.login-icon{
+  min-width: unset;
+}
+
 .menu-bar .nav-link:hover:not(.menu-bar .nav-link.raise-btn:hover),
 .dropdown-link:hover {
   color: var(--orange);
@@ -331,6 +335,11 @@ section {
 
 .nav-end .raise-btn{
   display: none;
+}
+/* Profile Icon */
+.profile-icon{
+  display: none;
+  margin-left: 15px;
 }
 
 @media (max-width: 993px) {
@@ -455,6 +464,11 @@ section {
   .menu-bar .nav-link.raise-btn{
     max-width: max-content;
   }
+
+  /* Profile Icon */
+.profile-icon{
+  display: block;
+}
 
 }
 
@@ -3133,6 +3147,89 @@ h3#termsModalLabel {
   position: absolute;
   top: -4px;
 }
+
+/* === Search Modal === */
+
+/* Disable background scrolling when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Modal styles */
+.search-main .modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.search-main .modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px 35px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 8px;
+}
+
+.search-main .close {
+  font-weight: 800;
+  color: var(--blue);
+  float: left;
+  font-size: 23px;
+  text-align: right;
+  cursor: pointer;
+}
+
+.search-main .search-input-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-main .search-input-container button {
+  padding: 10px 15px;
+  background-color: var(--blue);
+  color: white;
+  border: var(--border);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.search-main #searchResults{
+  padding: 10px;
+}
+
+.search-main #searchResults li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  line-height: 1.5;
+}
+
+.search-main #searchResults li .highlight {
+  background-color: yellow;
+  font-weight: bold;
+}
+
+.search-main #searchResults li a{
+  padding: 0;
+  color: #2A7AFF;
+  font-size: 16px;
+}
+
+input#searchInput {
+  border: 1px solid var(--blue);
+  padding: 10px 20px;
+  max-width: 83%;
+  width: 100%;
+}
+
 /* ============ Responsive ==============*/
 /* Mobile */
 
