@@ -337,7 +337,7 @@ section {
   display: none;
 }
 /* Profile Icon */
-.profile-icon{
+.profile-icon, .mobile-search{
   display: none;
   margin-left: 15px;
 }
@@ -466,8 +466,12 @@ section {
   }
 
   /* Profile Icon */
-.profile-icon{
+.profile-icon, .mobile-search{
   display: block;
+}
+
+.search-main .modal-content {
+  width: 90%;
 }
 
 }
