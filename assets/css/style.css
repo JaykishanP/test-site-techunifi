@@ -470,7 +470,7 @@ section {
   display: block;
 }
 
-.search-main .modal-content {
+.search-main #searchModal .modal-content {
   width: 90%;
 }
 
