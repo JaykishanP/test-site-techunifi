@@ -3122,7 +3122,7 @@ h3#termsModalLabel {
   position: absolute;
   bottom: -45px;
   left: 0;
-  width: 100vw;
+  width: 69vw;
   height: 8px;
   background: transparent;
   border-radius: 4px;
@@ -3204,7 +3204,6 @@ body.modal-open {
   border-radius: 5px;
   cursor: pointer;
 }
-
 
 .search-main #searchResults{
   padding: 10px;
