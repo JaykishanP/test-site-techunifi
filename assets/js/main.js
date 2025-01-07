@@ -1999,50 +1999,123 @@ function clearSearch() {
   document.getElementById('searchResults').innerHTML = '';
 }
 
-// Function to perform search dynamically on the current page content
-function performSearch(event) {
-  const query = event.target.value.toLowerCase();
-  const searchResults = document.getElementById('searchResults');
-  searchResults.innerHTML = ''; // Clear previous results
+// Array of URLs to be included in the search
+const pages = [
+  '/about.html',
+  '/products.html',
+  '/submit.html',
+  '/new-inquiry.html',
+  '/change-order.html',
+  'https://www.techunifi.com/#how-it-works',
+  'https://www.techunifi.com/#landing-services',
+  'https://www.techunifi.com/#contact',
+  'https://www.techunifi.com/products.html?section=low-Voltage',
+  'https://www.techunifi.com/products.html?section=telecom',
+  'https://www.techunifi.com/products.html?section=security',
+  'https://www.techunifi.com/products.html?section=wifi',
+  'https://www.techunifi.com/products.html?section=audi-vide',
+  'https://www.techunifi.com/products.html?section=light',
+  'https://www.techunifi.com/products.html?section=energy',
+  'https://www.techunifi.com/products.html?section=other-info',
 
-  if (query) {
-    // Get all elements containing text (consider using dompurify for sanitization)
-    const textElements = document.querySelectorAll('p, h1, h2, h3, span');
+]; // Add all page URLs here
 
-    // Split the query into individual words
-    const queryWords = query.split(/\s+/).filter(word => word.length > 0);
+// Function to fetch and parse HTML content of a page
+async function fetchPageContent(url) {
+  try {
+    const response = await fetch(url);
+    const html = await response.text();
 
-    let hasResults = false;
-    const searchResultsList = [];
+    console.log(`Content from ${url}:`, html); // Debugging
 
-    textElements.forEach(element => {
-      const textContent = element.textContent.toLowerCase();
-      let snippet = "";
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
 
-      // Check if any query word is found in the element's text
-      queryWords.forEach(word => {
-        if (textContent.includes(word)) {
-          hasResults = true;
-          snippet = textContent.replace(word, `<b>${word}</b>`); // Highlight matched word
-        }
-      });
+    const textNodes = getAllTextNodes(doc.body);
+    console.log(`Text nodes from ${url}:`, textNodes.map(node => node.textContent.trim())); // Debugging
 
-      if (snippet) {
-        searchResultsList.push(`<li>... ${snippet} ...</li>`);
-      }
-    });
-
-    if (hasResults) {
-      searchResults.innerHTML = searchResultsList.join('');
-    } else {
-      searchResults.innerHTML = '<li>No results found.</li>';
-    }
+    return textNodes.map(node => ({
+      text: node.textContent.trim(),
+      link: `${url}#${node.closest('[id]')?.id || ''}`,
+    }));
+  } catch (error) {
+    console.error(`Error fetching ${url}:`, error);
+    return [];
   }
 }
 
-// Attach event listener to the search input
-const searchInput = document.getElementById('searchInput');
-searchInput.addEventListener('input', performSearch);
+
+// Function to get all visible text nodes from a DOM
+function getAllTextNodes(root) {
+  const textNodes = [];
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (!node.textContent.trim()) return NodeFilter.FILTER_REJECT;
+      const parent = node.parentElement;
+      if (parent && (parent.style.display === 'none' || parent.style.visibility === 'hidden'))
+        return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    },
+  });
+
+  let node;
+  while ((node = walker.nextNode())) {
+    textNodes.push(node);
+  }
+  return textNodes;
+}
+
+// Function to perform the search
+async function performSearch(event) {
+  const query = event.target.value.toLowerCase();
+  const searchResults = document.getElementById('searchResults');
+  searchResults.innerHTML = '';
+
+  if (!query.trim()) return;
+
+  const queryWords = query.split(/\s+/).filter(word => word.length > 0);
+  console.log('Query Words:', queryWords); // Debugging
+
+  const results = [];
+  for (const page of pages) {
+    const pageContent = await fetchPageContent(page);
+    console.log(`Page content from ${page}:`, pageContent); // Debugging
+
+    results.push(...pageContent.filter(content => {
+      return queryWords.every(word => content.text.toLowerCase().includes(word));
+    }));
+  }
+
+  if (results.length > 0) {
+    results.forEach(result => {
+      const highlightedText = highlightText(result.text, queryWords);
+
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <p>${highlightedText}</p>
+        ${
+          result.link
+            ? `<a href="${result.link}" target="_blank">Go to section</a>`
+            : '<span>(No direct link available)</span>'
+        }
+      `;
+      searchResults.appendChild(li);
+    });
+  } else {
+    searchResults.innerHTML = '<li>No results found</li>';
+  }
+}
+
+// Function to highlight the searched text
+function highlightText(text, queryWords) {
+  const escapeRegExp = str => str.replace(/[.*+?^=!:${}()|[\]\\]/g, '\\$&');
+  queryWords.forEach(word => {
+    const regex = new RegExp(`(${escapeRegExp(word)})`, 'gi');
+    text = text.replace(regex, '<span class="highlight">$1</span>');
+  });
+  return text;
+}
+
 
 /* ==== Event Close ==== */
 
