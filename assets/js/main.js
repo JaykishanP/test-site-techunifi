@@ -2005,19 +2005,7 @@ const pages = [
   '/products.html',
   '/submit.html',
   '/new-inquiry.html',
-  '/change-order.html',
-  'https://www.techunifi.com/#how-it-works',
-  'https://www.techunifi.com/#landing-services',
-  'https://www.techunifi.com/#contact',
-  'https://www.techunifi.com/products.html?section=low-Voltage',
-  'https://www.techunifi.com/products.html?section=telecom',
-  'https://www.techunifi.com/products.html?section=security',
-  'https://www.techunifi.com/products.html?section=wifi',
-  'https://www.techunifi.com/products.html?section=audi-vide',
-  'https://www.techunifi.com/products.html?section=light',
-  'https://www.techunifi.com/products.html?section=energy',
-  'https://www.techunifi.com/products.html?section=other-info',
-
+  '/change-order.html'
 ]; // Add all page URLs here
 
 // Function to fetch and parse HTML content of a page
