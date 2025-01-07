@@ -1986,7 +1986,7 @@ function toggleModal() {
 }
 
 // Close the modal if user clicks outside
-window.onclick = function (event) {
+window.onclick = function(event) {
   const modal = document.getElementById('searchModal');
   if (event.target === modal) {
     toggleModal();
@@ -1999,49 +1999,50 @@ function clearSearch() {
   document.getElementById('searchResults').innerHTML = '';
 }
 
-// Function to perform search and highlight results
+// Function to perform search dynamically on the current page content
 function performSearch(event) {
   const query = event.target.value.toLowerCase();
   const searchResults = document.getElementById('searchResults');
   searchResults.innerHTML = ''; // Clear previous results
 
   if (query) {
-    // Example static search index (replace with actual site content)
-    const siteContent = [
-      { text: 'Welcome to our homepage', url: 'index.html' },
-      { text: 'About our team and mission', url: 'about.html' },
-      { text: 'Get in touch with us via the contact page', url: 'contact.html' },
-      { text: 'Discover articles on our blog', url: 'about.html#news' },
-      { text: 'We offer various services to our clients', url: 'products.html' },
-    ];
+    // Get all elements containing text (consider using dompurify for sanitization)
+    const textElements = document.querySelectorAll('p, h1, h2, h3, span');
 
-    const results = siteContent.filter(content =>
-      content.text.toLowerCase().includes(query)
-    );
+    // Split the query into individual words
+    const queryWords = query.split(/\s+/).filter(word => word.length > 0);
 
-    if (results.length > 0) {
-      results.forEach(result => {
-        const highlightedText = highlightText(result.text, query);
+    let hasResults = false;
+    const searchResultsList = [];
 
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <p>${highlightedText}</p>
-          <a href="${result.url}" target="_blank">Visit: ${result.url}</a>
-        `;
-        searchResults.appendChild(li);
+    textElements.forEach(element => {
+      const textContent = element.textContent.toLowerCase();
+      let snippet = "";
+
+      // Check if any query word is found in the element's text
+      queryWords.forEach(word => {
+        if (textContent.includes(word)) {
+          hasResults = true;
+          snippet = textContent.replace(word, `<b>${word}</b>`); // Highlight matched word
+        }
       });
+
+      if (snippet) {
+        searchResultsList.push(`<li>... ${snippet} ...</li>`);
+      }
+    });
+
+    if (hasResults) {
+      searchResults.innerHTML = searchResultsList.join('');
     } else {
-      searchResults.innerHTML = '<li>No results found</li>';
+      searchResults.innerHTML = '<li>No results found.</li>';
     }
   }
 }
 
-// Function to highlight the searched text
-function highlightText(text, query) {
-  const regex = new RegExp(`(${query})`, 'gi');
-  return text.replace(regex, '<span class="highlight">$1</span>');
-}
-
+// Attach event listener to the search input
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', performSearch);
 
 /* ==== Event Close ==== */
 
