@@ -2014,8 +2014,9 @@ function performSearch(event) {
 
     let hasResults = false;
     const searchResultsList = [];
+    const elementPositions = []; // Store element positions for navigation
 
-    textElements.forEach(element => {
+    textElements.forEach((element, index) => {
       const textContent = element.textContent.toLowerCase();
       let snippet = "";
 
@@ -2028,7 +2029,8 @@ function performSearch(event) {
       });
 
       if (snippet) {
-        searchResultsList.push(`<li>... ${snippet} ...</li>`);
+        elementPositions.push(index); // Store element position
+        searchResultsList.push(`<li onclick="navigateToResult(${index})">... ${snippet} ...</li>`);
       }
     });
 
@@ -2037,6 +2039,16 @@ function performSearch(event) {
     } else {
       searchResults.innerHTML = '<li>No results found.</li>';
     }
+  }
+}
+
+// Function to navigate to the search result's position on the page
+function navigateToResult(index) {
+  const textElements = document.querySelectorAll('p, h1, h2, h3, span, div, a, h4, h5, h6, ');
+  const targetElement = textElements[index];
+
+  if (targetElement) {
+    targetElement.scrollIntoView({ behavior: 'smooth' });
   }
 }
 
@@ -2075,4 +2087,5 @@ searchInput.addEventListener('input', performSearch);
 //       }
 //   });
 // });
+
 
