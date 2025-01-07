@@ -3155,9 +3155,9 @@ h3#termsModalLabel {
 /* === Search Modal === */
 
 /* Disable background scrolling when modal is open */
-body.modal-open {
+/* body.modal-open {
   overflow: hidden;
-}
+} */
 
 /* Modal styles */
 .search-main .modal {
