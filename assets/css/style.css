@@ -3044,6 +3044,21 @@ button#clear span {
   align-items: center;
 }
 
+.structure .prod-heading,
+.structure .tabs-para {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.structure .submit-head-para .prod-heading h3::before {
+  left: 40%;
+}
+
+.structure a.sub-Inquiry {
+  margin: 0 auto;
+}
+
 /* Terms Modal */
 .terms-conditions {
   color: #2A7AFF;
