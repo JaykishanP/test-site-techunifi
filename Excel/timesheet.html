@@ -149,8 +149,10 @@ function gtag(){dataLayer.push(arguments);}
                     <div class="prod-heading aos-init">
                       <h3>Contractor Time Sheet</h3>
                     </div>
-                    <p class="tabs-para aos-init">
-                        Please enter the following information. Ensure that the date, time, hours, and property information are accurate and correct.
+                    <p class="tabs-para aos-init" style="line-height: 2; font-weight: 500;">
+                      Instructions for the Timesheet:<br>
+After completing a property's timesheet, submit it before starting the next one.<br>
+If you need help, message or call me at <a href="tel:336-601-6502" style="padding: 0; color: #2A7AFF; text-decoration: underline;">336-601-6502</a>.
                     </p>
                   </div>
                   <!--  -->
@@ -181,7 +183,25 @@ function gtag(){dataLayer.push(arguments);}
                                       <textarea id="description" name="description" rows="7" placeholder="Enter Work Details" required></textarea>
                                     </div>
                                   </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="date">Date</label>
+                                      <input id="date" name="date" size="20" type="date" required/>
+                                    </div>
+                                  </div>
                               
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <label for="travelHours">Total Travel Hours</label>
+                                      <input id="travelHours" placeholder="4" name="travelHours" size="20" type="number" required/>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="laborHours">Total Labor Hours</label>
+                                      <input id="laborHours" placeholder="4" name="laborHours" size="20" type="number" required/>
+                                    </div>
+                                  </div>
+
                                   <div class="row">
                                     <div class="col-md-6">
                                       <label for="timeIn">Time in</label>
@@ -193,15 +213,17 @@ function gtag(){dataLayer.push(arguments);}
                                     </div>
                                   </div>
                               
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <label for="date">Date</label>
-                                      <input id="date" name="date" size="20" type="date" required/>
-                                    </div>
-                                  </div>
+                                  
 
                                    <!-- Captcha -->
-                    
+                            <div class="row" style="padding-bottom: 20px;">
+                                <div class="col-md-12">
+                                  <input type=hidden name='captcha_settings' value='{"keyname":"techunifiv2attempt3","fallback":"true","orgId":"00DHo000002fpJX","ts":""}' required>
+                                  <input type=hidden name="oid" value="00DHo000002fpJX">
+                                  <input type=hidden name="retURL" value="http://">
+                                  <div class="g-recaptcha" data-sitekey="6LfnZs4pAAAAAI9TPACWBCvx4O5CGV0tB7jHNRt1"></div>
+                                </div>
+                              </div>
                               
                                 </div>
 
@@ -375,31 +397,31 @@ form.addEventListener('submit', async (event) => {
         timeIn: form.timeIn.value,
         timeOut: form.timeOut.value,
         date: form.date.value,
+        travelHours: form.travelHours.value,
+        laborHours: form.laborHours.value
     };
 
     try {
-    const response = await fetch('https://test-site-techunifi.onrender.com/submit-timesheet', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    });
+        const response = await fetch('https://test-site-techunifi-q0im.onrender.com/submit-timesheet', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
 
-    if (response.ok) {
-        const result = await response.json();
-        alert(result.message || 'Form submitted successfully!');
-        form.reset(); // Clear fields
-    } else {
-        const error = await response.json();
+        if (response.ok) {
+            const result = await response.json();
+            alert('Form submitted successfully!');
+            form.reset(); // Clears all input fields
+        } else {
+            const error = await response.json();
+            alert('Error: ' + error.error);
+        }
+    } catch (error) {
         console.error('Error:', error);
-        alert('Server Error: ' + (error.error || 'Unknown Error'));
+        alert('Failed to submit form.');
     }
-} catch (error) {
-    console.error('Network Error:', error);
-    alert('Failed to submit form. Please check your network or try again later.');
-}
-
 });
       
 

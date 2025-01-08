@@ -149,8 +149,11 @@ function gtag(){dataLayer.push(arguments);}
                     <div class="prod-heading aos-init">
                       <h3>Hoja de Tiempo del Contratista</h3>
                     </div>
-                    <p class="tabs-para aos-init">
-                        Por favor, ingrese la siguiente información. Asegúrese de que la fecha, hora, duración y la información de la propiedad sean precisas y correctas.
+                    <p class="tabs-para aos-init" style="line-height: 2; font-weight: 500;">
+                      Instrucciones para la hoja de tiempo:<br>
+1. Utilice este enlace para completar una solicitud por cada propiedad.<br>
+2. Después de completar la hoja de tiempo de una propiedad, envíela antes de comenzar con la siguiente.<br>
+Si necesita ayuda, envíeme un mensaje o llámeme al  <a href="tel:336-601-6502" style="padding: 0; color: #2A7AFF; text-decoration: underline;">336-601-6502</a>.
                     </p>
                   </div>
                   <!--  -->
@@ -181,7 +184,26 @@ function gtag(){dataLayer.push(arguments);}
                                       <textarea id="description" name="description" rows="7" placeholder="Enter Work Details" required></textarea>
                                     </div>
                                   </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="date">Fecha</label>
+                                      <input id="date" name="date" size="20" type="date" required/>
+                                    </div>
+                                  </div>
                               
+                                  
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <label for="travelHours">Total de horas de viaje</label>
+                                      <input id="travelHours" placeholder="4" name="travelHours" size="20" type="number" required/>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="laborHours">Total de horas de trabajo</label>
+                                      <input id="laborHours" placeholder="4" name="laborHours" size="20" type="number" required/>
+                                    </div>
+                                  </div>
+
                                   <div class="row">
                                     <div class="col-md-6">
                                       <label for="timeIn">Hora de entrada</label>
@@ -193,12 +215,6 @@ function gtag(){dataLayer.push(arguments);}
                                     </div>
                                   </div>
                               
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <label for="date">Fecha</label>
-                                      <input id="date" name="date" size="20" type="date" required/>
-                                    </div>
-                                  </div>
 
                                    <!-- Captcha -->
                             <div class="row" style="padding-bottom: 20px;">
@@ -383,36 +399,37 @@ function gtag(){dataLayer.push(arguments);}
             timeIn: form.timeIn.value,
             timeOut: form.timeOut.value,
             date: form.date.value,
+            travelHours: form.travelHours.value,
+            laborHours: form.laborHours.value
         };
     
-       try {
-    const response = await fetch('https://test-site-techunifi.onrender.com/submit-timesheet', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-        const result = await response.json();
-        alert(result.message || 'Form submitted successfully!');
-        form.reset(); // Clear fields
-    } else {
-        const error = await response.json();
-        console.error('Error:', error);
-        alert('Server Error: ' + (error.error || 'Unknown Error'));
-    }
-} catch (error) {
-    console.error('Network Error:', error);
-    alert('Failed to submit form. Please check your network or try again later.');
-}
-
+        try {
+            const response = await fetch('https://test-site-techunifi-q0im.onrender.com/submit-timesheet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+    
+            if (response.ok) {
+                const result = await response.json();
+                alert('Form submitted successfully!');
+                form.reset(); // Clears all input fields
+            } else {
+                const error = await response.json();
+                alert('Error: ' + error.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to submit form.');
+        }
     });
           
     
      </script>
- 
+    
+    
 
 </body>
 </html>
