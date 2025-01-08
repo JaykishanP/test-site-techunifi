@@ -341,6 +341,9 @@ section {
   display: none;
   margin-left: 15px;
 }
+.login-icon img {
+  max-width: 29px;
+}
 
 @media (max-width: 993px) {
   .nav-end .raise-btn {

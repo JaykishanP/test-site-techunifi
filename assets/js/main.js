@@ -317,9 +317,18 @@ function toggleUnderline(event) {
 }
 
 
+/* ==== Header profile icon color change ==== */
+document.addEventListener('DOMContentLoaded', function() {
+  const image = document.querySelector('.login-icon img'); // Correct way to select using class and tag
 
+  image.addEventListener('mouseenter', function() {
+    image.src = 'assets/img/account_circle_orange.svg'; // Change image source on hover
+  });
 
-/* ==== Header navitem color change ==== */
+  image.addEventListener('mouseleave', function() {
+    image.src = 'assets/img/account_circle.svg'; // Revert to the original image when hover ends
+  });
+});
 
 
 /* ==== how it works redirection ==== */
@@ -1586,7 +1595,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-
 /* ===== Change order Modal ===== */
 
 /* ===== Password Modal ===== */
@@ -2057,51 +2065,6 @@ const searchInput = document.getElementById('searchInput');
 searchInput.addEventListener('input', performSearch);
 
 
-/* ========= Lowvoltage Structure cabling popup  ==========  */
-
-document.addEventListener('DOMContentLoaded', function () {
-  var modal = document.getElementById("image-modal");
-  var body = document.querySelector("body");
-  
-  if (modal) {
-    var modalImg = document.getElementById("modal-image");
-    var images = document.querySelectorAll('.low-structure-img img');
-    var mediaQuery = window.matchMedia("(max-width: 767px)");
-    
-    images.forEach(function (img) {
-      img.onclick = function () {
-        modal.style.display = "block";
-        modalImg.src = this.src;
-        
-        if (mediaQuery.matches) {
-          body.style.overflow = "hidden"; // Disable scrolling on body
-          window.scrollTo(0, 0); // Scroll to top when modal opens only on small screens
-          setTimeout(function () {
-            body.style.overflow = "hidden"; // Ensure scrolling is still disabled
-          }, 0);
-        } else {
-          body.style.overflow = "hidden"; // Disable scrolling on body
-        }
-      };
-    });
-
-    var span = document.querySelector(".close");
-
-    if (span) {
-      span.addEventListener('click', function () {
-        modal.style.display = "none";
-        body.style.overflow = "auto"; // Re-enable scrolling on body
-      });
-    }
-
-    modal.addEventListener('click', function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-        body.style.overflow = "auto"; // Re-enable scrolling on body
-      }
-    });
-  }
-});
 
 /* ==== Event Close ==== */
 
