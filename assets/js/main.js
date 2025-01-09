@@ -316,10 +316,13 @@ function toggleUnderline(event) {
   event.target.classList.add('underline');
 }
 
+//hamburger
+
+
 
 /* ==== Header profile icon color change ==== */
 document.addEventListener('DOMContentLoaded', function() {
-  const image = document.querySelector('.login-icon img'); // Correct way to select using class and tag
+  const image = document.querySelector('.profile-icon img'); // Correct way to select using class and tag
 
   image.addEventListener('mouseenter', function() {
     image.src = 'assets/img/account_circle_orange.svg'; // Change image source on hover
