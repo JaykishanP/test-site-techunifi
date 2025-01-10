@@ -198,6 +198,7 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 /* .logo img {
@@ -210,12 +211,21 @@ section {
   align-items: center;
 }
 
+.nav-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .nav-end {
   justify-content: flex-end;
 }
 
 /* Menu Styling */
 .header-nav .menu {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -224,6 +234,7 @@ section {
 .header-nav .menu-bar {
   display: flex;
   align-items: center;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -249,7 +260,7 @@ section {
   font-weight: 700;
 }
 
-a.nav-link.raise-btn {
+/* a.nav-link.raise-btn {
   background-color: var(--blue);
   padding: 10px 20px;
   border-radius: 100px;
@@ -262,22 +273,13 @@ a.nav-link.raise-btn:hover{
   background-color: var(--gray);
   border: 1px solid var(--black);
   transition: .5s;
-}
+} */
 
 .menu-bar .nav-link.raise-btn:hover {
   color: var(--black);
   background-color: var(--gray);
   border: 1px solid var(--black);
   transition: 0.5s ease;
-}
-
-/* Profile Icon */
-.search-site img {
-  margin: 0 15px;
-}
-
-.search-site img, .profile-icon img{
-  max-width: 33px;
 }
 
 /* Dropdown Menu */
@@ -403,6 +405,71 @@ a.nav-link.raise-btn:hover{
   transform: scale(1.05);
 }
 
+/* hover icons */
+
+a.nav-link.search-site.mobile-search {
+  margin: 0 15px;
+}
+
+.nav-end a {
+  width: 40px;
+}
+
+.nav-end a:hover {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #313D53; /* Dark background color */
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 5px 17px 5px 10px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  white-space: nowrap;
+  position: relative;
+  min-width: 40px;
+  justify-content: flex-start;
+  width: 160px;
+}
+
+.nav-end a.search-site:hover {
+  width: 115px;
+}
+
+.nav-end a.profile-icon:hover {
+  width: 110px;
+}
+
+.nav-end a:active{
+  background-color: var(--orange);
+}
+
+/* Text is hidden initially */
+.nav-end a span {
+  display: none;
+  opacity: 0;
+  transform: translateX(-20%);
+  transition: all 0.4s ease;
+  white-space: nowrap;
+}
+
+/* Reveal text on hover */
+.nav-end a:hover span {
+  opacity: 1;
+  transform: translateX(0);
+  color: white;
+  display: inline-block;
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1199px){
+  .menu-bar .nav-link {
+    font-size: 12px;
+    margin: 0 0.4rem;
+  }
+}
 
 /*--------------------------------------------------------------
 # Hero Section
