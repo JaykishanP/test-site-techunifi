@@ -82,6 +82,7 @@ function gtag(){dataLayer.push(arguments);}
 <body class="homePage">
 
    <!-- ======= Header ======= -->
+
   <header id="nav-menu" class="header-nav" aria-label="navigation bar">
     <div class="container">
       <div class="nav-start">
@@ -100,12 +101,17 @@ function gtag(){dataLayer.push(arguments);}
       </div>
   
       <div class="nav-end">
-        <a class="nav-link raise-btn" href="submit.html" onclick="toggleUnderline(event)">Submit A Ticket</a>
+        <a class="nav-link raise-btn" href="submit.html" onclick="toggleUnderline(event)">
+          <img src="assets/img/submit_icon.svg" alt="techunifi" title="Submit">
+          <span>Submit A Ticket</span>
+        </a>
         <a class="nav-link search-site mobile-search" href="javascript:void(0)" onclick="toggleModal()">
           <img src="assets/img/search-icon.svg" alt="techunifi" title="Search">
+          <span>Search</span>
         </a>
         <a class="nav-link profile-icon" href="https://connect.ebizcharge.net/(S(nltki3tr3mxc3a0ya4rsesky))/EbizLogin.aspx?ReturnUrl=%2fTechunifi" target="_blank" onclick="toggleUnderline(event)">
           <img src="assets/img/account_circle.svg" alt="techunifi" title="Login">
+          <span>Login  <i style="padding: 0 5px;">&gt</i></span>
         </a>
         <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
           <i class="bx bx-menu" aria-hidden="true"></i>
