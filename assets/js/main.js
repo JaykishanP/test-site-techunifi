@@ -319,21 +319,6 @@ function toggleUnderline(event) {
 //hamburger
 
 
-
-/* ==== Header profile icon color change ==== */
-document.addEventListener('DOMContentLoaded', function() {
-  const image = document.querySelector('.profile-icon img'); // Correct way to select using class and tag
-
-  image.addEventListener('mouseenter', function() {
-    image.src = 'assets/img/account_circle_orange.svg'; // Change image source on hover
-  });
-
-  image.addEventListener('mouseleave', function() {
-    image.src = 'assets/img/account_circle.svg'; // Revert to the original image when hover ends
-  });
-});
-
-
 /* ==== how it works redirection ==== */
 document.addEventListener('DOMContentLoaded', function() {
   const howItWorksLink = document.querySelector('a[href="#how-it-works"]');
