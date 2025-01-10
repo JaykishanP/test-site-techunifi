@@ -316,8 +316,55 @@ function toggleUnderline(event) {
   event.target.classList.add('underline');
 }
 
-//hamburger
+/* === On Press === */
 
+//profile icon
+document.querySelector('.nav-end .profile-icon').addEventListener('mousedown', function() {
+  const img = this.querySelector('img');
+  img.src = 'assets/img/account_circle_orange.svg'; // Change image src on mouse down (active state)
+});
+
+document.querySelector('.nav-end a').addEventListener('mouseup', function() {
+  const img = this.querySelector('img');
+  img.src = 'assets/img/account_circle.svg'; // Revert image src on mouse up (inactive state)
+});
+
+document.querySelector('.nav-end a').addEventListener('mouseout', function() {
+  const img = this.querySelector('img');
+  img.src = 'assets/img/account_circle.svg'; // Ensure the image src is reverted if the mouse leaves the area
+});
+
+//search icon
+document.querySelector('.nav-end .search-site').addEventListener('mousedown', function() {
+  const img = this.querySelector('img');
+  img.src = 'assets/img/search-icon-orange.svg'; // Change image src on mouse down (active state)
+});
+
+document.querySelector('.nav-end a').addEventListener('mouseup', function() {
+  const img = this.querySelector('img');
+  img.src = 'assets/img/search-icon.svg'; // Revert image src on mouse up (inactive state)
+});
+
+document.querySelector('.nav-end a').addEventListener('mouseout', function() {
+  const img = this.querySelector('img');
+  img.src = 'assets/img/search-icon.svg'; // Ensure the image src is reverted if the mouse leaves the area
+});
+
+//Submit icon
+document.querySelector('.nav-end .raise-btn').addEventListener('mousedown', function() {
+  const img = this.querySelector('img');
+  img.src = 'assets/img/submit_icon_orange.svg'; // Change image src on mouse down (active state)
+});
+
+document.querySelector('.nav-end a').addEventListener('mouseup', function() {
+  const img = this.querySelector('img');
+  img.src = 'assets/img/submit_icon.svg'; // Revert image src on mouse up (inactive state)
+});
+
+document.querySelector('.nav-end a').addEventListener('mouseout', function() {
+  const img = this.querySelector('img');
+  img.src = 'assets/img/submit_icon.svg'; // Ensure the image src is reverted if the mouse leaves the area
+});
 
 /* ==== how it works redirection ==== */
 document.addEventListener('DOMContentLoaded', function() {
