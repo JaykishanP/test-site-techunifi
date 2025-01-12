@@ -415,6 +415,16 @@ a.nav-link.search-site.mobile-search {
   width: 40px;
 }
 
+.nav-end a img{
+  background-color: #313D53;
+  border-radius: 50%;
+  display: block;
+  width: 29px;
+  height: 29px;
+  object-fit: scale-down;
+  padding: 0;
+}
+
 .nav-end a:hover {
   display: inline-flex;
   align-items: center;
@@ -443,7 +453,8 @@ a.nav-link.search-site.mobile-search {
   width: 110px;
 }
 
-.nav-end a:active{
+.nav-end a:active,
+.nav-end a:active img{
   background-color: var(--orange);
 }
 
