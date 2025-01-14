@@ -3239,6 +3239,10 @@ body.modal-open {
   line-height: 1.5;
 }
 
+.search-main #searchResults li::marker{
+  font-size: 0;
+}
+
 .search-main #searchResults li .highlight {
   background-color: yellow;
   font-weight: bold;
