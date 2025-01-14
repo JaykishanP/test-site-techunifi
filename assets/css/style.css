@@ -3847,6 +3847,9 @@ input#textBox {
   padding: 10px 15px;
   font-size: 12px;
 }
+.search-main .modal-content {
+  width: 90%;
+}
 
 }
 
@@ -4184,6 +4187,9 @@ input#newsInput {
 }
 .quoteModal .modal-content {
   width: 88%;
+}
+.search-main .modal-content {
+  width: 90%;
 }
 }
 
