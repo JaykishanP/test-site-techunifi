@@ -83,7 +83,7 @@ function gtag(){dataLayer.push(arguments);}
       <div class="container">
         <div class="nav-start">
           <a class="logo" href="https://www.techunifi.com/">
-            <img src="assets/img/logo (1).png" title="techunifi" alt="Logo" />
+            <img src="assets/img/logo.png" title="techunifi" alt="Logo" />
           </a>
           <nav class="menu">
             <ul class="menu-bar">
@@ -98,14 +98,14 @@ function gtag(){dataLayer.push(arguments);}
     
         
       <div class="nav-end">
-        <a class="nav-link raise-btn" href="submit.html" onclick="toggleUnderline(event)">
+        <a class="nav-link raise-btn" href="submit.html" onclick="toggleUnderline(event)" style="margin: 0 10px;">
           <img src="assets/img/submit_icon.svg" alt="techunifi" title="Submit">
           <span>Submit A Ticket</span>
         </a>
-        <a class="nav-link search-site mobile-search" href="javascript:void(0)" onclick="toggleModal()">
+        <!-- <a class="nav-link search-site mobile-search" href="javascript:void(0)" onclick="toggleModal()">
           <img src="assets/img/search-icon.svg" alt="techunifi" title="Search">
           <span>Search</span>
-        </a>
+        </a> -->
         <a class="nav-link profile-icon" href="https://connect.ebizcharge.net/(S(nltki3tr3mxc3a0ya4rsesky))/EbizLogin.aspx?ReturnUrl=%2fTechunifi" target="_blank" onclick="toggleUnderline(event)">
           <img src="assets/img/account_circle.svg" alt="techunifi" title="Login">
           <span>Login  <i style="padding: 0 5px;">&gt</i></span>
@@ -137,7 +137,8 @@ function gtag(){dataLayer.push(arguments);}
           />
           <button onclick="clearSearch()">Clear</button>
         </div>
-        <ul id="searchResults"></ul>
+        <!-- <ul id="searchResults"></ul> -->
+        <div id="searchResults" class="list-group"></div>
       </div>
     </div>
   </div>
