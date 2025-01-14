@@ -87,7 +87,7 @@ function gtag(){dataLayer.push(arguments);}
     <div class="container">
       <div class="nav-start">
         <a class="logo" href="https://www.techunifi.com/">
-          <img src="assets/img/logo (1).png" title="techunifi" alt="Logo" />
+          <img src="assets/img/logo.png" title="techunifi" alt="Logo" />
         </a>
         <nav class="menu">
           <ul class="menu-bar">
@@ -101,7 +101,7 @@ function gtag(){dataLayer.push(arguments);}
       </div>
   
       <div class="nav-end">
-        <a class="nav-link raise-btn" href="submit.html" onclick="toggleUnderline(event)">
+        <a class="nav-link raise-btn" href="submit.html" onclick="toggleUnderline(event)" style="margin: 0 10px;">
           <img src="assets/img/submit_icon.svg" alt="techunifi" title="Submit">
           <span>Submit A Ticket</span>
         </a>
@@ -138,7 +138,8 @@ function gtag(){dataLayer.push(arguments);}
           />
           <button onclick="clearSearch()">Clear</button>
         </div>
-        <ul id="searchResults"></ul>
+        <!-- <ul id="searchResults"></ul> -->
+        <div id="searchResults" class="list-group"></div>
       </div>
     </div>
   </div>
