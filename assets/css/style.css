@@ -205,6 +205,10 @@ section {
   max-width: 50%;
 } */
 
+.logo img {
+  max-width: 48px;
+}
+
 .nav-start,
 .nav-end {
   display: flex;
@@ -3251,6 +3255,9 @@ input#searchInput {
   padding: 10px 20px;
   max-width: 83%;
   width: 100%;
+}
+.search-main #searchResults li a span {
+  color: var(--black);
 }
 
 /* ============ Responsive ==============*/
