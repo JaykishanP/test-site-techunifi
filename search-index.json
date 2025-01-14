@@ -1,0 +1,23 @@
+[
+    {
+      "title": "Home",
+      "url": "index.html",
+      "content": "Welcome to TechUnifi. Explore our products and services."
+    },
+    {
+      "title": "About Us",
+      "url": "about.html",
+      "content": "Learn more about TechUnifi and our mission to innovate."
+    },
+    {
+      "title": "Product 1",
+      "url": "products/product1.html",
+      "content": "Product 1 description. Innovative solutions for your business."
+    },
+    {
+      "title": "Contact",
+      "url": "contact.html",
+      "content": "Get in touch with TechUnifi. We're here to help."
+    }
+  ]
+  
