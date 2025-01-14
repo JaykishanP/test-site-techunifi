@@ -1965,7 +1965,6 @@ textareas.forEach(textarea => {
 
 
 /* ====== Site Search Functionality ====== */
-
 // Function to toggle the modal and manage background scrolling
 function toggleModal() {
   const modal = document.getElementById('searchModal');
@@ -1982,12 +1981,22 @@ function toggleModal() {
 }
 
 // Close the modal if user clicks outside
-window.onclick = function(event) {
+window.onclick = function (event) {
   const modal = document.getElementById('searchModal');
   if (event.target === modal) {
     toggleModal();
   }
 };
+
+// Close the modal with Escape key
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    const modal = document.getElementById('searchModal');
+    if (modal.style.display === 'block') {
+      toggleModal();
+    }
+  }
+});
 
 // Function to clear the search input and results
 function clearSearch() {
@@ -1996,62 +2005,69 @@ function clearSearch() {
 }
 
 // Function to perform search dynamically on the current page content
+let searchIndex = [];
+
+// Load the search index
+fetch('search-index.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Failed to load search index: ${response.statusText}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    searchIndex = data;
+  })
+  .catch(error => console.error('Error fetching search index:', error));
+
+// Function to perform search dynamically using JSON
 function performSearch(event) {
   const query = event.target.value.toLowerCase();
   const searchResults = document.getElementById('searchResults');
   searchResults.innerHTML = ''; // Clear previous results
 
   if (query) {
-    // Get all elements containing text (consider using dompurify for sanitization)
-    const textElements = document.querySelectorAll('p, h1, h2, h3, span');
+    const results = searchIndex.filter(item =>
+      item.title.toLowerCase().includes(query) ||
+      item.content.toLowerCase().includes(query)
+    );
 
-    // Split the query into individual words
-    const queryWords = query.split(/\s+/).filter(word => word.length > 0);
-
-    let hasResults = false;
-    const searchResultsList = [];
-    const elementPositions = []; // Store element positions for navigation
-
-    textElements.forEach((element, index) => {
-      const textContent = element.textContent.toLowerCase();
-      let snippet = "";
-
-      // Check if any query word is found in the element's text
-      queryWords.forEach(word => {
-        if (textContent.includes(word)) {
-          hasResults = true;
-          snippet = textContent.replace(word, `<b>${word}</b>`); // Highlight matched word
-        }
-      });
-
-      if (snippet) {
-        elementPositions.push(index); // Store element position
-        searchResultsList.push(`<li onclick="navigateToResult(${index})">... ${snippet} ...</li>`);
-      }
-    });
-
-    if (hasResults) {
-      searchResults.innerHTML = searchResultsList.join('');
+    if (results.length > 0) {
+      searchResults.innerHTML = results
+        .map(result => `
+          <li>
+            <a href="${result.url}" target="_blank">
+              <strong>${result.title}</strong><br>
+              <span>${highlightQuery(result.content, query)}</span>
+            </a>
+          </li>
+        `)
+        .join('');
     } else {
       searchResults.innerHTML = '<li>No results found.</li>';
     }
   }
 }
 
-// Function to navigate to the search result's position on the page
-function navigateToResult(index) {
-  const textElements = document.querySelectorAll('p, h1, h2, h3, span, div, a, h4, h5, h6, ');
-  const targetElement = textElements[index];
-
-  if (targetElement) {
-    targetElement.scrollIntoView({ behavior: 'smooth' });
-  }
+// Function to highlight matched query in results
+function highlightQuery(text, query) {
+  const regex = new RegExp(`(${query})`, 'gi');
+  return text.replace(regex, '<span class="highlight">$1</span>');
 }
 
-// Attach event listener to the search input
-const searchInput = document.getElementById('searchInput');
-searchInput.addEventListener('input', performSearch);
+// Debounce function
+function debounce(func, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+}
 
+// Attach debounced event listener to the search input
+const searchInput = document.getElementById('searchInput');
+const debouncedPerformSearch = debounce(performSearch, 300);
+searchInput.addEventListener('input', debouncedPerformSearch);
 
 
 /* ==== Event Close ==== */
