@@ -7,7 +7,23 @@
     {
       "title": "About Us",
       "url": "about.html",
-      "content": "News, Clients, Learn more about TechUnifi and our mission to innovate."
+      "content": "Learn more about TechUnifi and our mission to innovate. Client, Clients, ClientList"
+    },
+    {
+      "title": "Services",
+      "url": "https://www.techunifi.com/#landing-services",
+      "content": "Low Voltage, Telecom, Security, Auido-Video, Network, Wifi, Lighting, Energy, It Solutions,WIFI"
+    },
+    {
+      "title": "News",
+      "url": "https://www.techunifi.com/about.html?tab=news",
+      "content": "News, Latest News, New Changes"
+    },
+    
+    {
+      "title": "Hotel, Accomodation",
+      "url": "https://www.techunifi.com/about.html?tab=news",
+      "content": "Hilton, Sheraton, Marriott, Home Suites, Home2 Suites, Homewood, Holiday Inn, Hampton, Best Westren, Courtyard Inn, Hyatt House, Country Inn, Tru, Spark, Fairfield Inn Marriott, Courtyard by Marriot, HITEC, Springhill Suites, Walk-a-thon(Baps Charity), New Port Beach Resort, AAHOACON 24, Dual Brand Hilton, Premier Petroleum Hospitality, Brew Pointe Cafe"
     },
     {
       "title": "Product",
@@ -69,6 +85,71 @@
         "url": "takeoff.html",
         "content": "Take Off"
       },
+      {
+        "title": "How It Works",
+        "url": "https://www.techunifi.com/#how-it-works",
+        "content": "Design, Construction, Install, Go Live, Operations"
+      },
+      {
+        "title": "Login, Profile",
+        "url": "https://connect.ebizcharge.net/(S(m0bznjppezsmujzremg1hx3y))/EbizLogin.aspx?ReturnUrl=%2fTechunifi",
+        "content": "Login, EbizChanrge"
+      },
+      {
+        "title": "How It Works",
+        "url": "https://www.techunifi.com/#how-it-works",
+        "content": "Design, Construction, Install, Go Live, Operations"
+      },
+      {
+        "title": "ICC",
+        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
+        "content": "Provider of innovative connectivity solutions for networking infrastructure."
+      },
+      {
+        "title": "Legrand",
+        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
+        "content": "Leading global specialist in electrical and digital building infrastructures."
+      },
+      {
+        "title": "Leviton",
+        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
+        "content": "Trusted manufacturer of electrical wiring devices, lighting controls, and network solutions."
+      },
+      {
+        "title": "C2G",
+        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
+        "content": "Supplier of high-quality connectivity solutions for audio/video, PC, and data networking applications."
+      },
+      {
+        "title": "Panduit",
+        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
+        "content": "Innovator in network infrastructure and industrial electrical solutions."
+      },
+      {
+        "title": "Corning",
+        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
+        "content": "Leading provider of optical communications and glass solutions."
+      },
+      {
+        "title": "CommScope",
+        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
+        "content": "Global leader in network infrastructure solutions for connectivity."
+      },
+      {
+        "title": "Chatsworth Products",
+        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
+        "content": "Manufacturer of IT infrastructure and cable management solutions."
+      },
+      {
+        "title": "Arlington",
+        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
+        "content": "Provider of electrical and communication products for construction."
+      },
+      {
+        "title": "Structured Cabling",
+        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
+        "content": "Structured cabling is the backbone of your IT infrastructure, providing a standardized method for managing and connecting all your network devices, from data centers to office floors."
+      },
     {
         "title": "Bittel",
         "url": "https://www.techunifi.com/products.html?section=telecom",
@@ -118,51 +199,6 @@
         "title": "VSR Cloud Communications",
         "url": "https://www.techunifi.com/products.html?section=telecom",
         "content": "Cloud-based communication solutions"
-      },
-      {
-        "title": "ICC",
-        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
-        "content": "Provider of innovative connectivity solutions for networking infrastructure."
-      },
-      {
-        "title": "Legrand",
-        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
-        "content": "Leading global specialist in electrical and digital building infrastructures."
-      },
-      {
-        "title": "Leviton",
-        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
-        "content": "Trusted manufacturer of electrical wiring devices, lighting controls, and network solutions."
-      },
-      {
-        "title": "C2G",
-        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
-        "content": "Supplier of high-quality connectivity solutions for audio/video, PC, and data networking applications."
-      },
-      {
-        "title": "Panduit",
-        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
-        "content": "Innovator in network infrastructure and industrial electrical solutions."
-      },
-      {
-        "title": "Corning",
-        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
-        "content": "Leading provider of optical communications and glass solutions."
-      },
-      {
-        "title": "CommScope",
-        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
-        "content": "Global leader in network infrastructure solutions for connectivity."
-      },
-      {
-        "title": "Chatsworth Products",
-        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
-        "content": "Manufacturer of IT infrastructure and cable management solutions."
-      },
-      {
-        "title": "Arlington",
-        "url": "https://www.techunifi.com/products.html?section=low-Voltage",
-        "content": "Provider of electrical and communication products for construction."
       },
       {
         "title": "Hikvision",
