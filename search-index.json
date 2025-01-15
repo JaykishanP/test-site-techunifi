@@ -93,12 +93,7 @@
       {
         "title": "Login, Profile",
         "url": "https://connect.ebizcharge.net/(S(m0bznjppezsmujzremg1hx3y))/EbizLogin.aspx?ReturnUrl=%2fTechunifi",
-        "content": "Login, EbizChanrge"
-      },
-      {
-        "title": "How It Works",
-        "url": "https://www.techunifi.com/#how-it-works",
-        "content": "Design, Construction, Install, Go Live, Operations"
+        "content": "Login, EbizCharge"
       },
       {
         "title": "ICC",
@@ -199,6 +194,11 @@
         "title": "VSR Cloud Communications",
         "url": "https://www.techunifi.com/products.html?section=telecom",
         "content": "Cloud-based communication solutions"
+      },
+      {
+        "title": "Telecom - Cordless Phones, Corded Phones, Clocks",
+        "url": "https://www.techunifi.com/products.html?section=telecom",
+        "content": "Cordless Phones, Corded Phones, Clocks, cloud telephone systems(PBX), VIOP, SIP & ISP Solutions"
       },
       {
         "title": "Hikvision",
