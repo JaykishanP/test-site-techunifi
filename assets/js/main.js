@@ -2044,7 +2044,7 @@ function performSearch(event) {
         `)
         .join('');
     } else {
-      searchResults.innerHTML = `<li>No results found. <a href="https://www.techunifi.com/new-inquiry.html">Contact Here</a> </li>`;
+      searchResults.innerHTML = `<li>No results found. <a href="https://www.techunifi.com/new-inquiry.html" style="text-decoration:underline; font-weight:600; margin-left:5px;">Contact Here</a> </li>`;
     }
   }
 }
