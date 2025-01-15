@@ -231,7 +231,7 @@
         "content": "Provider of enterprise video surveillance management systems."
       },
       {
-        "title": "Genetec",
+        "title": "Ring",
         "url": "https://www.techunifi.com/products.html?section=security",
         "content": "Developer of open-platform software, hardware, and cloud-based services for security."
       },
@@ -239,6 +239,36 @@
         "title": "Hanwha Vision",
         "url": "https://www.techunifi.com/products.html?section=security",
         "content": "Supplier of advanced video surveillance solutions."
+      },
+      {
+        "title": "LTS",
+        "url": "https://www.techunifi.com/products.html?section=security",
+        "content": "Supplier of advanced video surveillance equipments."
+      },
+      {
+        "title": "Digital Watchdog",
+        "url": "https://www.techunifi.com/products.html?section=security",
+        "content": "Manufacturer of high performance video surveillance"
+      },
+      {
+        "title": "Security",
+        "url": "https://www.techunifi.com/products.html?section=security",
+        "content": "IP Cameras, Specialty Cameras(MEGApix® IP Cameras), LPR Cameras, Firewalls"
+      },
+      {
+        "title": "IP Cameras",
+        "url": "https://www.techunifi.com/products.html?section=security",
+        "content": "Luma™ X20 4MP IP PTZ Camera With 4X Optical Zoom and Active Deterrence - Black, Digital Watchdog MegaPix® 2.1MP PTZ IP Camera, Luma Surveillance™ 820 Series 8MP Dome IP Outdoor Motorized Camera | Black, Luma Surveillance™ 820 Series 8MP Bullet IP Outdoor Camera | Black, Luma Surveillance™ 110 Series Bullet IP Outdoor Camera | White"
+      },
+      {
+        "title": "Specialty Cameras",
+        "url": "https://www.techunifi.com/products.html?section=security",
+        "content": "Digital Watchdog MegaPix® 5MP IVA+ Vandal Turret IP Camera, Digital Watchdog MegaPix® 2.1MP PTZ IP Camera, Digital Watchdog MegaPix® 8MP Ultra Wide Bullet IP Camera"
+      },
+      {
+        "title": "LPR Cameras",
+        "url": "https://www.techunifi.com/products.html?section=security",
+        "content": "4 MP ColorVu DeepinView Varifocal Dome Network Camera, 8 MP DeepinView Multi-sensor (TandemVu) Bullet Camera, 4 MP LPR IR Varifocal Bullet Network Camera, IDS-2CD7046G0/EP-IHSY 11-40MM"
       },
       {
         "title": "JBL",
@@ -306,6 +336,11 @@
         "content": "Innovator in consumer electronics, appliances, and mobile communications."
       },
       {
+        "title": "Audio - Video",
+        "url": "https://www.techunifi.com/products.html?section=audio-video",
+        "content": "Distributed Audio, Conference Room Solutions, Digital Signage, Pro AV"
+      },
+      {
         "title": "EV Passport",
         "url": "https://www.techunifi.com/products.html?section=energy",
         "content": "Provider of electric vehicle charging solutions."
@@ -322,13 +357,28 @@
       },
       {
         "title": "Lutron",
-        "url": "https://www.techunifi.com/products.html?section=light",
+        "url": "https://www.techunifi.com/products.html?section=energy",
         "content": "Leader in lighting control solutions and automated shading systems."
       },
       {
         "title": "Blink",
-        "url": "https://www.techunifi.com/products.html?section=light",
+        "url": "https://www.techunifi.com/products.html?section=energy",
         "content": "Provider of wireless home security cameras and monitoring systems."
+      },
+      {
+        "title": "Energy",
+        "url": "https://www.techunifi.com/products.html?section=energy",
+        "content": "Smart Thermostats, EV chargers, eSaaS"
+      },
+      {
+        "title": "Smart Thermostats",
+        "url": "https://www.techunifi.com/products.html?section=energy",
+        "content": "T6 PRO PROGRAMMABLE THERMOSTAT UP TO 3 HEAT/2 COOL, T6 PRO SMART THERMOSTAT MULTI-STAGE 3 HEAT/2 COOL"
+      },
+      {
+        "title": "EV chargers",
+        "url": "https://www.techunifi.com/products.html?section=energy",
+        "content": "ROSA, LLOYD, LILY, Series 8 Level 2 EV Charging Station, Series 9 - 30kW DC Fast Charging Station"
       },
       {
         "title": "Aruba",
@@ -368,6 +418,46 @@
       {
         "title": "IONOS",
         "url": "https://www.techunifi.com/products.html?section=other-info",
+        "content": "Provider of web hosting and cloud services."
+      },
+      {
+        "title": "IT Management",
+        "url": "https://www.techunifi.com/products.html?section=other-info",
+        "content": "Cloud, Network Management, IT Partner, Firewalls"
+      },
+      {
+        "title": "Wattbox",
+        "url": "https://www.techunifi.com/products.html?section=wifi",
+        "content": "Provider of web hosting and cloud services."
+      },
+      {
+        "title": "OVrC",
+        "url": "https://www.techunifi.com/products.html?section=wifi",
+        "content": "Provider of web hosting and cloud services."
+      },
+      {
+        "title": "Tejas Networks",
+        "url": "https://www.techunifi.com/products.html?section=wifi",
+        "content": "Provider of web hosting and cloud services."
+      },
+      {
+        "title": "TP-Link",
+        "url": "https://www.techunifi.com/products.html?section=wifi",
+        "content": "Provider of web hosting and cloud services."
+      },
+      {
+        "title": "Omada",
+        "url": "https://www.techunifi.com/products.html?section=wifi",
+        "content": "Provider of web hosting and cloud services."
+      },
+      {
+        "title": "Logitech",
+        "url": "https://www.techunifi.com/products.html?section=wifi",
+        "content": "Provider of web hosting and cloud services."
+      },
+      {
+        "title": "Fortinet",
+        "url": "https://www.techunifi.com/products.html?section=wifi",
         "content": "Provider of web hosting and cloud services."
       }
     
