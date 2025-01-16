@@ -205,6 +205,17 @@ Si necesita ayuda, envíeme un mensaje o llámeme al  <a href="tel:336-601-6502"
                                   </div>
 
                                   <div class="row">
+                                    <div class="col-md-6">
+                                      <label for="receipt">Receipt</label>
+                                      <input id="receipt" placeholder="$4.32" name="receipt" size="20" type="number"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label for="fileAttach">Attach Image of Receipt</label>
+                                      <input id="fileAttach" placeholder="4" name="fileAttach" size="20" type="file"/>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
                                     <div class="col-md-12">
                                       <label for="date">Fecha</label>
                                       <input id="date" name="date" size="20" type="date" required/>
@@ -403,7 +414,7 @@ Si necesita ayuda, envíeme un mensaje o llámeme al  <a href="tel:336-601-6502"
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
 
-      
+     
 <script>
   const form = document.getElementById('timesheet-form');
 
@@ -419,7 +430,9 @@ form.addEventListener('submit', async (event) => {
     timeOut: form.timeOut.value,
     date: form.date.value,
     travelHours: form.travelHours.value,
-    laborHours: form.laborHours.value
+    laborHours: form.laborHours.value,
+    receipt: form.receipt.value,
+    fileAttach: form.fileAttach.value
   };
 
   try {
@@ -467,6 +480,8 @@ function generatePDF(data) {
     ['Labor Hours', data.laborHours],
     ['Time In', data.timeIn],
     ['Time Out', data.timeOut],
+    ['Receipt', data.receipt],
+    ['File', data.fileAttach]
   ];
 
   // Add table using autoTable plugin
