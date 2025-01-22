@@ -3212,8 +3212,12 @@ button#confirmSubmit:hover {
   display: flex;
   justify-content: space-between;
 }
+#reviewModal .list-group-item div{
+  display: contents;
+}
 #reviewModal .list-group-item strong{
-   font-weight: 600;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 #reviewModal .bi-pencil-square:hover {
   color: #007bff;
