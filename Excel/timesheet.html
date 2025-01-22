@@ -207,8 +207,8 @@ If you need help, message or call me at <a href="tel:336-601-6502" style="paddin
                                       <input id="receipt" placeholder="$4.32" name="receipt" size="20" type="number" step="any"/>
                                     </div>
                                     <div class="col-md-6">
-                                      <label for="fileAttach">Attach Image of Receipt</label>
-                                      <input id="fileAttach" placeholder="4" name="fileAttach" size="20" type="file"/>
+                                      <label for="fileAttach"class="fileAttach"><img src="../assets/img/attach_file.svg">Attach Image of Receipt</label>
+                                      <input id="fileAttach" placeholder="4" name="fileAttach" size="20" type="file" hidden/>
                                     </div>
                                   </div>
 
@@ -440,14 +440,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const reviewDetails = document.getElementById('reviewDetails');
   const confirmSubmitButton = document.getElementById('confirmSubmit');
 
-  // Function to populate the review modal
   // Function to populate the review modal with labels and edit icons
 function populateReviewModal(data) {
   reviewDetails.innerHTML = ''; // Clear previous data
 
   Object.entries(data).forEach(([key, value]) => {
     const item = document.createElement('div');
-    item.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+    item.classList.add('list-group-item');
 
     // Add label and value
     const label = document.createElement('div');
@@ -464,7 +463,7 @@ function populateReviewModal(data) {
       if (field) {
         reviewModal.hide();
         field.focus();
-        alert(`Please edit the field: ${key}`);
+        // alert(`Please edit the field: ${key}`);
       }
     });
 
