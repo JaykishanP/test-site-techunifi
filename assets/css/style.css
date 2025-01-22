@@ -3215,6 +3215,9 @@ button#confirmSubmit:hover {
 #reviewModal .list-group-item strong{
    font-weight: 600;
 }
+#reviewModal .bi-pencil-square:hover {
+  color: #007bff;
+}
 
 .timePage .modal-backdrop.show {
   display: none;
