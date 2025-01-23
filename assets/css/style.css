@@ -487,6 +487,14 @@ a.nav-link.search-site.mobile-search {
   }
 }
 
+
+@media only screen and (min-width: 1200px) and (max-width: 1300px){
+  .menu-bar .nav-link {
+    font-size: 12px;
+    margin: 0 0.4rem;
+  }
+}
+
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
@@ -3217,10 +3225,14 @@ button#confirmSubmit:hover {
 }
 #reviewModal .list-group-item strong{
   font-weight: 600;
-  text-transform: capitalize;
+  text-transform: uppercase;
+}
+
+#reviewModal .bi.bi-pencil-square{
+  color: var(--blue) !important;
 }
 #reviewModal .bi-pencil-square:hover {
-  color: #007bff;
+  color: var(--orange) !important;
 }
 
 .timePage .modal-backdrop.show {
@@ -3375,11 +3387,78 @@ input#searchInput {
 .hero-aahoa img {
   width: 100%;
 }
+.aahoaPage #hero {
+  padding-bottom: 0;
+}
+.aahoaPage .bg-color-services-main {
+  padding: 90px 0;
+  margin: -10px 0 0 0;
+}
+.aahoa-logo {
+  max-width: 60%;
+}
+.aahoa-text {
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: 600;
+  color: #fff;
+  padding: 20px 0;
+}
+.details-aahoa span {
+  color: #fff;
+  font-weight: 500;
+  margin-left: 20px;
+}
+.details-aahoa {
+  padding: 0 0 20px 0;
+}
+.location-aahoa strong {
+  color: #fff;
+  margin-left: 20px;
+  font-weight: 900;
+}
+.location-aahoa span {
+  margin-left: 68px;
+  display: block;
+}
+.aahoa-left {
+  padding: 0 10px;
+}
+.calendly-implementation {
+  height: 293px;
+  border: none;
+  overflow: hidden;
+}
+.aahoa-right .aahoa-text{
+  margin: 40px 0 0 0;
+}
+
+
 
 /* ============ Responsive ==============*/
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
+  div#reviewModal {
+    padding-left: 20px !important;
+}
+.aahoa-left {
+  padding: 0 10px 25px 10px;
+}
+.hero-aahoa {
+  padding: 33px 0 0 0;
+}
+.aahoaPage .bg-color-services-main {
+  padding: 50px 0;
+  margin: -3px 0 0 0;
+}
+.aahoa-right .aahoa-text{
+  margin: unset;
+}
+.aahoa-right {
+  padding: 0 10px;
+}
+
   .news-section .month-heading {
     display: block;
   }
