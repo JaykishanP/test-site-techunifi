@@ -2070,6 +2070,23 @@ const debouncedPerformSearch = debounce(performSearch, 300);
 searchInput.addEventListener('input', debouncedPerformSearch);
 
 
+/* IT Management */
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth <= 767) {
+        const prodOtherInfo = document.getElementById("prod-other-info");
+        if (prodOtherInfo) {
+            prodOtherInfo.addEventListener("click", function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+        }
+    }
+});
+
+
+
 /* ==== Event Close ==== */
 
 // document.addEventListener('DOMContentLoaded', function() {
