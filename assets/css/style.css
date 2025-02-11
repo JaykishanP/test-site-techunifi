@@ -611,6 +611,30 @@ a.nav-link.search-site.mobile-search {
   margin: 5px 0;
 }
 
+.aahoacon-banner {
+  background-color: var(--blue);
+  border-radius: 25px 0 0 25px;
+}
+.aahoacon-banner img {
+  max-width: 100%;
+  padding: 15px 0 15px 15px;
+}
+.aahoacon-banner p{
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.aahoa-location-img {
+  display: flex;
+  align-items: stretch;
+}
+.aahoa-location-img img {
+  border-radius: 0 25px 25px 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 .hero-logo {
   max-width: 415px;
 }
