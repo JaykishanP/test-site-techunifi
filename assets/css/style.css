@@ -3751,16 +3751,16 @@ section.sub-tab-section {
   .sale-text img {
     max-width: 74%;
   }
-  .home-aahoa {
+  /* .home-aahoa {
     flex-direction: column-reverse;
     display: flex;
-  }
+  } */
   .aahoa-location-img img {
     border-radius: unset;
+    margin-top: -5px;
   }
   .aahoacon-banner {
     border-radius: unset;
-    margin-top: -5px;
   }
   .hero-logo {
     max-width: 67%;
