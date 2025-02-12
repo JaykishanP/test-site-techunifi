@@ -1048,6 +1048,20 @@ form.addEventListener('input', checkFields);
 
   </main><!-- End #main -->
 
+  <!-- =============== chat bot ================== -->
+  <button id="chatbotIcon" onclick="toggleChat()">💬</button>
+  <div id="chatPopup" class="card">
+      <div class="card-body d-flex flex-column" id="chatbox">
+          <!-- Chat messages will appear here -->
+      </div>
+      <div class="card-footer">
+          <div class="input-group">
+              <input type="text" id="userInput" class="form-control" placeholder="Type a message...">
+              <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+          </div>
+      </div>
+  </div>
+
   <!-- ======= Footer ======= -->
   <footer class="footer" role="contentinfo" id="footers">
     <div class="container">
@@ -1189,6 +1203,46 @@ form.addEventListener('input', checkFields);
             });
         });
   </script>
+
+<script>
+  const predefinedQA = {
+      "What services does Techunifi offer?": "Techunifi provides services like structured cabling, telecom solutions, security systems, network solutions, audio & video installations, lighting design, energy solutions, and IT solutions.",
+      "How does the process work at Techunifi?": "Our process includes Design, Construction, Install, Go Live, and Operations phases to ensure seamless service delivery.",
+      "Can you provide examples of Techunifi's clients?": "Yes! Some of our clients include Marriott, Sheraton, Hyatt, and Aloft hotels across various locations.",
+      "What products does Techunifi offer?": "We provide Network Solutions, Audio & Video equipment, and Energy Management technologies.",
+      "How can I contact Techunifi?": "You can reach us through the 'Contact Us' page on our website.",
+      "Where is Techunifi located?": "Techunifi is based in High Point, NC.",
+      "Does Techunifi offer energy-efficient solutions?": "Yes, we provide solar installations and EV charging stations.",
+      "What is eSaaS offered by Techunifi?": "Energy Savings as a Service (eSaaS) is a program that provides businesses with energy-efficient solutions without upfront capital investment.",
+      "What network solutions does Techunifi provide?": "We offer WiFi 6 network solutions, IT management, and secure telecommunications support.",
+      "What audio and video solutions are available at Techunifi?": "Our AV Design Team provides distributed audio, conference room setups, and digital signage solutions."
+  };
+
+  function toggleChat() {
+      const chatPopup = document.getElementById("chatPopup");
+      chatPopup.style.display = chatPopup.style.display === "none" || chatPopup.style.display === "" ? "flex" : "none";
+  }
+
+  function sendMessage() {
+      const userInput = document.getElementById("userInput").value;
+      if (!userInput) return;
+
+      addMessage(userInput, 'user');
+      document.getElementById("userInput").value = "";
+
+      const botReply = predefinedQA[userInput] || "Sorry, I don't have an answer for that. Please visit our website for more details.";
+      addMessage(botReply, 'bot');
+  }
+
+  function addMessage(text, sender) {
+      const chatbox = document.getElementById("chatbox");
+      const messageDiv = document.createElement("div");
+      messageDiv.classList.add("chat-bubble", sender);
+      messageDiv.textContent = text;
+      chatbox.appendChild(messageDiv);
+      chatbox.scrollTop = chatbox.scrollHeight;
+  }
+</script>
 
 
 </body>
