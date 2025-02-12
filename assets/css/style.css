@@ -494,6 +494,7 @@ a.nav-link.search-site.mobile-search {
   transform: translateX(-20%);
   transition: all 0.4s ease;
   white-space: nowrap;
+  font-weight: 300;
 }
 
 /* Reveal text on hover */
@@ -503,7 +504,19 @@ a.nav-link.search-site.mobile-search {
   color: white;
   display: inline-block;
   margin: 0 0 0 9px;
+  font-weight: 600;
+  animation: reveal 1s cubic-bezier(0.77, 0, 0.175, 1) 0.5s;
 }
+
+@keyframes reveal {
+  0% {
+    transform: translateX(0,100%);
+  }
+  100% {
+    transform: translateX(0,0);
+  }
+}
+
 
 @media (max-width: 993px) {
   .nav-link.raise-btn::before {
@@ -547,11 +560,14 @@ a.nav-link.search-site.mobile-search {
 .event-anchor {
   margin: 0 0 35px;
   display: block;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+  padding: 0;
+  border-radius: 25px;
 }
 
 .event-section{
   position: relative;
-  padding: 20px 0;
+  margin: 20px 0;
 }
 
 .event-close {
@@ -3756,11 +3772,11 @@ section.sub-tab-section {
     display: flex;
   } */
   .aahoa-location-img img {
-    border-radius: unset;
+    border-radius: 0 0 25px 25px;
     margin-top: -5px;
   }
   .aahoacon-banner {
-    border-radius: unset;
+    border-radius: 25px 25px 0 0;
   }
   .hero-logo {
     max-width: 67%;
