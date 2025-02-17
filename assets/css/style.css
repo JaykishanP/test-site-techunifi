@@ -81,6 +81,8 @@ img{
   opacity: 0;
   right: 15px;
   bottom: 15px;
+  right: 80px;
+  bottom: 20px;
   z-index: 996;
   border: var(--border);
   width: 40px;
@@ -479,7 +481,7 @@ a.nav-link.search-site.mobile-search {
 }
 
 .nav-end a.profile-icon:hover {
-  width: 105px;
+  width: 109px;
 }
 
 .nav-end a:active,
@@ -492,9 +494,13 @@ a.nav-link.search-site.mobile-search {
   display: none;
   opacity: 0;
   transform: translateX(-20%);
-  transition: all 0.4s ease;
-  white-space: nowrap;
   font-weight: 300;
+  display: inline-block;
+  max-width: 0%;
+  vertical-align: bottom;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 1s ease-in-out;
 }
 
 /* Reveal text on hover */
@@ -506,6 +512,7 @@ a.nav-link.search-site.mobile-search {
   margin: 0 0 0 9px;
   font-weight: 600;
   animation: reveal 1s cubic-bezier(0.77, 0, 0.175, 1) 0.5s;
+  max-width: 100%;
 }
 
 @keyframes reveal {
@@ -5146,6 +5153,7 @@ ul.menu-bar {
   position: fixed;
   bottom: 22px;
   right: 20px;
+  z-index: 1000;
   background-color: var(--orange);
   color: white;
   border: none;
@@ -5183,11 +5191,35 @@ ul.menu-bar {
   max-width: 80%;
 }
 .user {
-  background-color: #007bff;
+  background-color: var(--blue);
   color: white;
   align-self: flex-end;
 }
 .bot {
   background-color: #f1f1f1;
   align-self: flex-start;
+}
+.card p {
+  text-align: center;
+  font-size: 28px;
+  color: var(--blue);
+  font-weight: 700;
+  padding-top: 15px;
+  margin-bottom: 10px;
+}
+.card p span {
+  color: var(--orange);
+}
+.card-footer .input-group input.form-control:focus{
+  outline: 0;
+  box-shadow: none;
+  border: 1px solid var(--blue);
+}
+.card-footer .input-group button,
+.card-footer .input-group button:focus-visible,
+.card-footer .input-group button:active{
+  background-color: var(--blue);
+  border: 1px solid var(--blue);
+  outline: 0;
+  box-shadow: none;
 }
