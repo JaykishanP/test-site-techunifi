@@ -5225,3 +5225,9 @@ ul.menu-bar {
   outline: 0;
   box-shadow: none;
 }
+.chat-bubble.bot a {
+  padding: 0;
+  text-decoration: underline;
+  color: var(--orange);
+  font-weight: 600;
+}
