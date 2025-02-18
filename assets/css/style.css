@@ -85,6 +85,8 @@ img{
   bottom: 20px;
   z-index: 996;
   border: var(--border);
+  border-color: var(--orange);
+  background-color: var(--orange);
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -93,18 +95,18 @@ img{
 
 .back-to-top i {
   font-size: 28px;
-  color: var(--black);
+  color: #fff;
   line-height: 0;
 }
 
-.back-to-top:hover {
+/* .back-to-top:hover {
   border: var(--border);
   background-color: var(--blue);
 }
 
 .back-to-top:hover i{
-  color: var(--gray);
-}
+  color: #fff;
+} */
 
 .back-to-top.active {
   visibility: visible;
@@ -5158,9 +5160,9 @@ ul.menu-bar {
   color: white;
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
