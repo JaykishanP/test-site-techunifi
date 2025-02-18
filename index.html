@@ -1206,20 +1206,29 @@ form.addEventListener('input', checkFields);
         });
   </script>
 
+
 <!-- ====== chatbot ====== -->
+
 
 <script>
   const predefinedQA = {
-      "What services does Techunifi offer?": "Techunifi provides services like structured cabling, telecom solutions, security systems, network solutions, audio & video installations, lighting design, energy solutions, and IT solutions.",
-      "How does the process work at Techunifi?": "Our process includes Design, Construction, Install, Go Live, and Operations phases to ensure seamless service delivery.",
-      "Can you provide examples of Techunifi's clients?": "Yes! Some of our clients include Marriott, Sheraton, Hyatt, and Aloft hotels across various locations.",
-      "What products does Techunifi offer?": "We provide Network Solutions, Audio & Video equipment, and Energy Management technologies.",
-      "How can I contact Techunifi?": "You can reach us through the 'Contact Us' page on our website.",
-      "Where is Techunifi located?": "Techunifi is based in High Point, NC.",
-      "Does Techunifi offer energy-efficient solutions?": "Yes, we provide solar installations and EV charging stations.",
-      "What is eSaaS offered by Techunifi?": "Energy Savings as a Service (eSaaS) is a program that provides businesses with energy-efficient solutions without upfront capital investment.",
-      "What network solutions does Techunifi provide?": "We offer WiFi 6 network solutions, IT management, and secure telecommunications support.",
-      "What audio and video solutions are available at Techunifi?": "Our AV Design Team provides distributed audio, conference room setups, and digital signage solutions."
+      "services": "Techunifi provides services like structured cabling, telecom solutions, security systems, network solutions, audio & video installations, lighting design, energy solutions, and IT solutions. Learn more: [Techunifi Services](https://www.techunifi.com/#landing-services)",
+      "process": "Our process includes Design, Construction, Install, Go Live, and Operations phases to ensure seamless service delivery. Learn more: [Our Process](https://www.techunifi.com/#how-it-works)",
+      "clients": "Yes! Some of our clients include Marriott, Sheraton, Hyatt, and Aloft hotels across various locations. See more: [Our Clients](https://www.techunifi.com/about.html?tab=clientList)",
+      "products": "We provide Network Solutions, Audio & Video equipment, and Energy Management technologies. Check them here: [Techunifi Products](https://www.techunifi.com/products.html)",
+      "contact": "You can reach us through the 'Contact Us' page on our website: [Contact Us](https://www.techunifi.com/new-inquiry.html)",
+      "location": "Techunifi is based in High Point, NC. Visit us: [Our Location](https://www.techunifi.com/#footers)",
+      "audio": "Our AV Design Team provides distributed audio, conference room setups, and digital signage solutions. Explore here: [Audio & Video Solutions](https://www.techunifi.com/solutions)"
+  };
+
+  const synonyms = {
+      "services": ["service"],
+      "process": ["steps", "procedure"],
+      "clients": ["customer", "companies"],
+      "products": ["product", "items"],
+      "contact": ["reach", "inquiry"],
+      "location": ["address", "place"],
+      "audio": ["sound", "speakers", "av"]
   };
 
   function toggleChat() {
@@ -1228,26 +1237,45 @@ form.addEventListener('input', checkFields);
   }
 
   function sendMessage() {
-      const userInput = document.getElementById("userInput").value;
+      const userInput = document.getElementById("userInput").value.trim();
       if (!userInput) return;
 
       addMessage(userInput, 'user');
       document.getElementById("userInput").value = "";
 
-      const botReply = predefinedQA[userInput] || "Sorry, I don't have an answer for that. Please visit our website for more details.";
-      addMessage(botReply, 'bot');
+      const response = getBotResponse(userInput.toLowerCase());
+      addMessage(response, 'bot');
+  }
+
+  function getBotResponse(userInput) {
+      for (const key in predefinedQA) {
+          if (userInput.includes(key) || userInput.includes(key.slice(0, -1))) {
+              return predefinedQA[key];
+          }
+
+          if (synonyms[key] && synonyms[key].some(syn => userInput.includes(syn))) {
+              return predefinedQA[key];
+          }
+      }
+
+      return "Sorry, I don't have an exact answer for that. Please visit our website for more details: <a href='https://www.techunifi.com/' target='_blank'>Techunifi</a>";
   }
 
   function addMessage(text, sender) {
       const chatbox = document.getElementById("chatbox");
       const messageDiv = document.createElement("div");
       messageDiv.classList.add("chat-bubble", sender);
-      messageDiv.textContent = text;
+
+      if (sender === 'bot') {
+          messageDiv.innerHTML = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
+      } else {
+          messageDiv.textContent = text;
+      }
+
       chatbox.appendChild(messageDiv);
       chatbox.scrollTop = chatbox.scrollHeight;
   }
 </script>
-
 
 </body>
 
