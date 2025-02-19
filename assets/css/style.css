@@ -5179,6 +5179,7 @@ ul.menu-bar {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: none;
   flex-direction: column;
+  z-index: 3;
 }
 #chatbox {
   flex-grow: 1;
