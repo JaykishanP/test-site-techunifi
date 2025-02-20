@@ -566,6 +566,10 @@ a.nav-link.search-site.mobile-search {
   margin: 0 auto;
 }
 
+.hero-home-main-section .hero-sub {
+  padding: 100px  0 0 0;
+}
+
 .event-anchor {
   margin: 0 0 112px;
   display: block;
