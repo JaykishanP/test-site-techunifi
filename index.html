@@ -146,7 +146,7 @@ function gtag(){dataLayer.push(arguments);}
 <!-- ======= Search Modal ======= -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero-home-main-section">`
+  <section id="hero" class="hero-home-main-section">
     <!-- Hero sub -->
     <div class="hero-sub">
 
@@ -1049,20 +1049,26 @@ form.addEventListener('input', checkFields);
   </main><!-- End #main -->
 
   <!-- =============== chat bot ================== -->
-  <button id="chatbotIcon" onclick="toggleChat()">💬</button>
-  <div id="chatPopup" class="card">
-    <p>Tech<span>unifi</span></p>
-      <div class="card-body d-flex flex-column" id="chatbox">
-
-          <!-- Chat messages will appear here -->
-      </div>
-      <div class="card-footer">
-          <div class="input-group">
-              <input type="text" id="userInput" class="form-control" placeholder="Type a message...">
-              <button class="btn btn-primary" onclick="sendMessage()">Send</button>
-          </div>
-      </div>
-  </div>
+   
+  <div class="chat-bot">
+    <button id="chatbotIcon" onclick="toggleChat()">💬</button>
+    <div id="chatPopup" class="card">
+        <p>Tech<span>unifi</span></p>
+        <div class="card-body d-flex flex-column" id="chatbox">
+            <!-- Chat messages will appear here -->
+            <div class="chat-bubble bot">
+              Hi, I'm the chatbot. How can I help you today? Would you like to know more about our <a href="https://www.techunifi.com/#landing-services" target="_blank">Services</a>, <a href="https://www.techunifi.com/products.html" target="_blank">Products</a>, or <a href="https://www.techunifi.com/inquiry.html" target="_blank">Inquire</a> about your needs? 
+            </div>
+             
+        </div>
+        <div class="card-footer">
+            <div class="input-group">
+                <input type="text" id="userInput" class="form-control" placeholder="Type a message...">
+                <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
 
   <!-- ============= Footer =============== -->
   <footer class="footer" role="contentinfo" id="footers">
@@ -1206,76 +1212,6 @@ form.addEventListener('input', checkFields);
         });
   </script>
 
-
-<!-- ====== chatbot ====== -->
-
-
-<script>
-  const predefinedQA = {
-      "services": "Techunifi provides services like structured cabling, telecom solutions, security systems, network solutions, audio & video installations, lighting design, energy solutions, and IT solutions. Learn more: [Techunifi Services](https://www.techunifi.com/#landing-services)",
-      "process": "Our process includes Design, Construction, Install, Go Live, and Operations phases to ensure seamless service delivery. Learn more: [Our Process](https://www.techunifi.com/#how-it-works)",
-      "clients": "Yes! Some of our clients include Marriott, Sheraton, Hyatt, and Aloft hotels across various locations. See more: [Our Clients](https://www.techunifi.com/about.html?tab=clientList)",
-      "products": "We provide Network Solutions, Audio & Video equipment, and Energy Management technologies. Check them here: [Techunifi Products](https://www.techunifi.com/products.html)",
-      "contact": "You can reach us through the 'Contact Us' page on our website: [Contact Us](https://www.techunifi.com/new-inquiry.html)",
-      "location": "Techunifi is based in High Point, NC. Visit us: [Our Location](https://www.techunifi.com/#footers)",
-      "audio": "Our AV Design Team provides distributed audio, conference room setups, and digital signage solutions. Explore here: [Audio & Video Solutions](https://www.techunifi.com/solutions)"
-  };
-
-  const synonyms = {
-      "services": ["service"],
-      "process": ["steps", "procedure"],
-      "clients": ["customer", "companies"],
-      "products": ["product", "items"],
-      "contact": ["reach", "inquiry"],
-      "location": ["address", "place"],
-      "audio": ["sound", "speakers", "av"]
-  };
-
-  function toggleChat() {
-      const chatPopup = document.getElementById("chatPopup");
-      chatPopup.style.display = chatPopup.style.display === "none" || chatPopup.style.display === "" ? "flex" : "none";
-  }
-
-  function sendMessage() {
-      const userInput = document.getElementById("userInput").value.trim();
-      if (!userInput) return;
-
-      addMessage(userInput, 'user');
-      document.getElementById("userInput").value = "";
-
-      const response = getBotResponse(userInput.toLowerCase());
-      addMessage(response, 'bot');
-  }
-
-  function getBotResponse(userInput) {
-      for (const key in predefinedQA) {
-          if (userInput.includes(key) || userInput.includes(key.slice(0, -1))) {
-              return predefinedQA[key];
-          }
-
-          if (synonyms[key] && synonyms[key].some(syn => userInput.includes(syn))) {
-              return predefinedQA[key];
-          }
-      }
-
-      return "Sorry, I don't have an exact answer for that. Please visit our website for more details: <a href='https://www.techunifi.com/' target='_blank'>Techunifi</a>";
-  }
-
-  function addMessage(text, sender) {
-      const chatbox = document.getElementById("chatbox");
-      const messageDiv = document.createElement("div");
-      messageDiv.classList.add("chat-bubble", sender);
-
-      if (sender === 'bot') {
-          messageDiv.innerHTML = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
-      } else {
-          messageDiv.textContent = text;
-      }
-
-      chatbox.appendChild(messageDiv);
-      chatbox.scrollTop = chatbox.scrollHeight;
-  }
-</script>
 
 </body>
 
