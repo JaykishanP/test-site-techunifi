@@ -2221,107 +2221,100 @@ const synonyms = {
   "email": ["call", "phone", "number", "mail", "location", "address", "pincode", "social","media", "instagram", "linkedin", "facebook", "youtube", "pinterest"]
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  clearChatIfNewDay(); // Clear chat history if it's a new day
+  loadChatMessages();  // Load previous messages (if any)
+});
 
 function toggleChat() {
   const chatPopup = document.getElementById("chatPopup");
 
   if (chatPopup.style.display === "none" || chatPopup.style.display === "") {
-    const lastInteractionDate = localStorage.getItem('lastInteractionDate');
+    chatPopup.style.display = "flex";
+
+    loadChatMessages(); // Load messages when chat opens
+
+    const lastInteractionDate = localStorage.getItem("lastInteractionDate");
     const today = new Date().toLocaleDateString();
 
+    // Show greeting message only once per day
     if (!lastInteractionDate || lastInteractionDate !== today) {
-      localStorage.setItem('lastInteractionDate', today);
-      const greetingMessage = "Hi, I'm the chatbot. How can I help you today? Would you like to know more about our services, products, or check the status of a ticket?";
-      addMessage(greetingMessage, 'bot');
+      localStorage.setItem("lastInteractionDate", today);
+      
+      // Check if chat is empty and add greeting
+      if (!localStorage.getItem("chatMessages")) {
+        const greetingMessage =
+          "Hi, I'm the chatbot. How can I help you today? Would you like to know more about our [services](https://www.techunifi.com/#landing-services), [products](https://www.techunifi.com/products.html), or [inquire](https://www.techunifi.com/new-inquiry.html) about your needs?";
+        addMessage(greetingMessage, "bot");
+      }
     }
-
-    chatPopup.style.display = "flex";
   } else {
     chatPopup.style.display = "none";
   }
 }
 
-
-
 function sendMessage() {
-
   const userInput = document.getElementById("userInput").value.trim();
-
   if (!userInput) return;
 
-
-
-  addMessage(userInput, 'user');
-
+  addMessage(userInput, "user");
   document.getElementById("userInput").value = "";
 
-
-
   const response = getBotResponse(userInput.toLowerCase());
-
-  addMessage(response, 'bot');
-
+  addMessage(response, "bot");
 }
-
 
 function getBotResponse(userInput) {
-
   for (const key in predefinedQA) {
-
-      if (userInput.includes(key) || userInput.includes(key.slice(0, -1))) {
-
-          return predefinedQA[key];
-
-      }
-
-
-
-      if (synonyms[key] && synonyms[key].some(syn => userInput.includes(syn))) {
-
-          return predefinedQA[key];
-
-      }
-
+    if (userInput.includes(key) || userInput.includes(key.slice(0, -1))) {
+      return predefinedQA[key];
+    }
+    if (synonyms[key] && synonyms[key].some((syn) => userInput.includes(syn))) {
+      return predefinedQA[key];
+    }
   }
-
-
-
   return "Sorry, I don't have an exact answer for that. Please visit our website for more details: <a href='https://www.techunifi.com/' target='_blank'>Techunifi</a>";
-
 }
 
-
 function addMessage(text, sender) {
-
   const chatbox = document.getElementById("chatbox");
 
   const messageDiv = document.createElement("div");
-
   messageDiv.classList.add("chat-bubble", sender);
 
-
-
-  if (sender === 'bot') {
-
-      messageDiv.innerHTML = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
-
+  if (sender === "bot") {
+    messageDiv.innerHTML = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
   } else {
-
-      messageDiv.textContent = text;
-
+    messageDiv.textContent = text;
   }
 
-
-
   chatbox.appendChild(messageDiv);
-
   chatbox.scrollTop = chatbox.scrollHeight;
 
+  saveChatMessages(); // Save chat history
 }
 
+function saveChatMessages() {
+  const chatMessages = document.getElementById("chatbox").innerHTML;
+  localStorage.setItem("chatMessages", chatMessages);
+}
 
+function loadChatMessages() {
+  const storedMessages = localStorage.getItem("chatMessages");
+  if (storedMessages) {
+    document.getElementById("chatbox").innerHTML = storedMessages;
+  }
+}
 
+function clearChatIfNewDay() {
+  const lastInteractionDate = localStorage.getItem("lastInteractionDate");
+  const today = new Date().toLocaleDateString();
 
+  if (lastInteractionDate !== today) {
+    localStorage.removeItem("chatMessages");
+    localStorage.setItem("lastInteractionDate", today);
+  }
+}
 
 
 /* ==== Event Close ==== */
