@@ -2105,7 +2105,6 @@ const predefinedQA = {
   "terms_and_conditions": "Terms, Conditions, Policy, CopyRight [Terms and Conditions](https://www.techunifi.com/terms-conditions.html)",
   "brands": "Introducing Techunifi: a brand built on the pillars of reliability, sustainability, and support. Our identity is a reflection of these values, guiding everything we do. With a focus on forging enduring connections, we offer solutions that not only meet but exceed expectations. Committed to sustainability, we strive to minimize our environmental impact while maximizing the effectiveness of our innovations. Our sleek and modern aesthetic mirrors our dedication to simplicity and sophistication, ensuring that our brand remains both contemporary and refined. From cutting-edge technology to unparalleled customer support, Techunifi is here to navigate the digital landscape alongside you, where connectivity is reliable and assistance is always at hand. [Brands](https://www.techunifi.com/brands.html)",
   "contact_us": "Contact, Connect [Contact Us](https://www.techunifi.com/new-inquiry.html)",
-  "footer___call_social_links_email_facebook_instagram_youtube_linkedin_x(twitter)_pinterest": "Address, Location, Call, Social Links, Email, Facebook, Instagram, Youtube, LinkedIn, X(Twitter), Pinterest [Footer - Call, Social Links, Email, Facebook, Instagram, Youtube, LinkedIn, X(Twitter), Pinterest](https://www.techunifi.com#footers)",
   "standard": "Site Standard [Standard](https://www.techunifi.com/standard.html)",
   "take_off": "Take Off [Take-Off](https://www.techunifi.com/takeoff.html)",
   "how_it_works": "Design, Construction, Install, Go Live, Operations [How It Works](https://www.techunifi.com/#how-it-works)",
@@ -2224,12 +2223,24 @@ const synonyms = {
 
 
 function toggleChat() {
-
   const chatPopup = document.getElementById("chatPopup");
 
-  chatPopup.style.display = chatPopup.style.display === "none" || chatPopup.style.display === "" ? "flex" : "none";
+  if (chatPopup.style.display === "none" || chatPopup.style.display === "") {
+    const lastInteractionDate = localStorage.getItem('lastInteractionDate');
+    const today = new Date().toLocaleDateString();
 
+    if (!lastInteractionDate || lastInteractionDate !== today) {
+      localStorage.setItem('lastInteractionDate', today);
+      const greetingMessage = "Hi, I'm the chatbot. How can I help you today? Would you like to know more about our services, products, or check the status of a ticket?";
+      addMessage(greetingMessage, 'bot');
+    }
+
+    chatPopup.style.display = "flex";
+  } else {
+    chatPopup.style.display = "none";
+  }
 }
+
 
 
 function sendMessage() {
