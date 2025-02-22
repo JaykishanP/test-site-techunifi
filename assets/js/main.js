@@ -2290,7 +2290,7 @@ function addMessage(text, sender) {
 
 
 
-  if (sender === 'bot') 
+  if (sender === 'bot') {
 
       messageDiv.innerHTML = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
 
@@ -2306,6 +2306,7 @@ function addMessage(text, sender) {
 
   chatbox.scrollTop = chatbox.scrollHeight;
 
+}
 
 
 
@@ -2343,5 +2344,4 @@ function addMessage(text, sender) {
 //       }
 //   });
 // });
-
 
