@@ -2105,7 +2105,6 @@ const predefinedQA = {
   "terms_and_conditions": "Terms, Conditions, Policy, CopyRight [Terms and Conditions](https://www.techunifi.com/terms-conditions.html)",
   "brands": "Introducing Techunifi: a brand built on the pillars of reliability, sustainability, and support. Our identity is a reflection of these values, guiding everything we do. With a focus on forging enduring connections, we offer solutions that not only meet but exceed expectations. Committed to sustainability, we strive to minimize our environmental impact while maximizing the effectiveness of our innovations. Our sleek and modern aesthetic mirrors our dedication to simplicity and sophistication, ensuring that our brand remains both contemporary and refined. From cutting-edge technology to unparalleled customer support, Techunifi is here to navigate the digital landscape alongside you, where connectivity is reliable and assistance is always at hand. [Brands](https://www.techunifi.com/brands.html)",
   "contact_us": "Contact, Connect [Contact Us](https://www.techunifi.com/new-inquiry.html)",
-  "footer___call_social_links_email_facebook_instagram_youtube_linkedin_x(twitter)_pinterest": "Address, Location, Call, Social Links, Email, Facebook, Instagram, Youtube, LinkedIn, X(Twitter), Pinterest [Footer - Call, Social Links, Email, Facebook, Instagram, Youtube, LinkedIn, X(Twitter), Pinterest](https://www.techunifi.com#footers)",
   "standard": "Site Standard [Standard](https://www.techunifi.com/standard.html)",
   "take_off": "Take Off [Take-Off](https://www.techunifi.com/takeoff.html)",
   "how_it_works": "Design, Construction, Install, Go Live, Operations [How It Works](https://www.techunifi.com/#how-it-works)",
@@ -2222,95 +2221,100 @@ const synonyms = {
   "email": ["call", "phone", "number", "mail", "location", "address", "pincode", "social","media", "instagram", "linkedin", "facebook", "youtube", "pinterest"]
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  clearChatIfNewDay(); // Clear chat history if it's a new day
+  loadChatMessages();  // Load previous messages (if any)
+});
 
 function toggleChat() {
-
   const chatPopup = document.getElementById("chatPopup");
 
-  chatPopup.style.display = chatPopup.style.display === "none" || chatPopup.style.display === "" ? "flex" : "none";
+  if (chatPopup.style.display === "none" || chatPopup.style.display === "") {
+    chatPopup.style.display = "flex";
 
+    loadChatMessages(); // Load messages when chat opens
+
+    const lastInteractionDate = localStorage.getItem("lastInteractionDate");
+    const today = new Date().toLocaleDateString();
+
+    // Show greeting message only once per day
+    if (!lastInteractionDate || lastInteractionDate !== today) {
+      localStorage.setItem("lastInteractionDate", today);
+      
+      // Check if chat is empty and add greeting
+      if (!localStorage.getItem("chatMessages")) {
+        const greetingMessage =
+          "Hi, I'm the chatbot. How can I help you today? Would you like to know more about our [services](https://www.techunifi.com/#landing-services), [products](https://www.techunifi.com/products.html), or [inquire](https://www.techunifi.com/new-inquiry.html) about your needs?";
+        addMessage(greetingMessage, "bot");
+      }
+    }
+  } else {
+    chatPopup.style.display = "none";
+  }
 }
-
 
 function sendMessage() {
-
   const userInput = document.getElementById("userInput").value.trim();
-
   if (!userInput) return;
 
-
-
-  addMessage(userInput, 'user');
-
+  addMessage(userInput, "user");
   document.getElementById("userInput").value = "";
 
-
-
   const response = getBotResponse(userInput.toLowerCase());
-
-  addMessage(response, 'bot');
-
+  addMessage(response, "bot");
 }
-
 
 function getBotResponse(userInput) {
-
   for (const key in predefinedQA) {
-
-      if (userInput.includes(key) || userInput.includes(key.slice(0, -1))) {
-
-          return predefinedQA[key];
-
-      }
-
-
-
-      if (synonyms[key] && synonyms[key].some(syn => userInput.includes(syn))) {
-
-          return predefinedQA[key];
-
-      }
-
+    if (userInput.includes(key) || userInput.includes(key.slice(0, -1))) {
+      return predefinedQA[key];
+    }
+    if (synonyms[key] && synonyms[key].some((syn) => userInput.includes(syn))) {
+      return predefinedQA[key];
+    }
   }
-
-
-
   return "Sorry, I don't have an exact answer for that. Please visit our website for more details: <a href='https://www.techunifi.com/' target='_blank'>Techunifi</a>";
-
 }
 
-
 function addMessage(text, sender) {
-
   const chatbox = document.getElementById("chatbox");
 
   const messageDiv = document.createElement("div");
-
   messageDiv.classList.add("chat-bubble", sender);
 
-
-
-  if (sender === 'bot') {
-
-      messageDiv.innerHTML = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
-
+  if (sender === "bot") {
+    messageDiv.innerHTML = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
   } else {
-
-      messageDiv.textContent = text;
-
+    messageDiv.textContent = text;
   }
 
-
-
   chatbox.appendChild(messageDiv);
-
   chatbox.scrollTop = chatbox.scrollHeight;
 
+  saveChatMessages(); // Save chat history
 }
 
+function saveChatMessages() {
+  const chatMessages = document.getElementById("chatbox").innerHTML;
+  localStorage.setItem("chatMessages", chatMessages);
+}
 
+function loadChatMessages() {
+  const storedMessages = localStorage.getItem("chatMessages");
+  if (storedMessages) {
+    document.getElementById("chatbox").innerHTML = storedMessages;
+  }
+}
 
+function clearChatIfNewDay() {
+  const lastInteractionDate = localStorage.getItem("lastInteractionDate");
+  const today = new Date().toLocaleDateString();
 
+  if (lastInteractionDate !== today) {
+    localStorage.removeItem("chatMessages");
+    localStorage.setItem("lastInteractionDate", today);
+  }
+}
 
 
 /* ==== Event Close ==== */
@@ -2344,4 +2348,5 @@ function addMessage(text, sender) {
 //       }
 //   });
 // });
+
 
