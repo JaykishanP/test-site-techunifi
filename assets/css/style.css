@@ -5185,6 +5185,9 @@ ul.menu-bar {
   flex-direction: column;
   z-index: 3;
 }
+.productPage #chatPopup{
+  z-index: 11;
+}
 #chatbox {
   flex-grow: 1;
   padding: 10px;
