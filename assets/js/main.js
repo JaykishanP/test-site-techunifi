@@ -2218,7 +2218,7 @@ const synonyms = {
   "contact": ["reach", "inquiry", "support"],
   "location": ["address", "place", "venue"],
   "audio": ["sound", "speakers", "av"],
-  "Hi": ["hi", "hello", "Hello", "hey", "Hey", "Help", "Good Morning", "Good Evening", "Morning", "evening", "afternoon"],
+  "Hi": ["hi", "hello", "Hello", "Hey", "Help", "help", "Morning", "Evening", "Afternoon"],
   "email": ["call", "phone", "number", "mail", "location", "address", "pincode", "social","media", "instagram", "linkedin", "facebook", "youtube", "pinterest"]
 };
 
