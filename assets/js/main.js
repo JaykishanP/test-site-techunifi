@@ -2182,8 +2182,8 @@ const predefinedQA = {
   "omada": "Provider of web hosting and cloud services. [Omada](https://www.techunifi.com/products.html?section=wifi)",
   "logitech": "Provider of web hosting and cloud services. [Logitech](https://www.techunifi.com/products.html?section=wifi)",
   "fortinet": "Provider of web hosting and cloud services. [Fortinet](https://www.techunifi.com/products.html?section=wifi)",
-  "email": "Address, Location, Call, Social Links, Email, Facebook, Instagram, Youtube, LinkedIn, X(Twitter), Pinterest. [Details](https://www.techunifi.com#footers)"
-
+  "email": "Address, Location, Call, Social Links, Email, Facebook, Instagram, Youtube, LinkedIn, X(Twitter), Pinterest. [Details](https://www.techunifi.com#footers)",
+  "Hi":"Hi, I'm the chatbot. How can I help you today? Would you like to know more about our [services](https://www.techunifi.com/#landing-services), [products](https://www.techunifi.com/products.html), or [inquire](https://www.techunifi.com/new-inquiry.html) about your needs?"
 
 };
 
@@ -2218,6 +2218,7 @@ const synonyms = {
   "contact": ["reach", "inquiry", "support"],
   "location": ["address", "place", "venue"],
   "audio": ["sound", "speakers", "av"],
+  "Hi": ["hi", "hello", "Hello", "hey", "Hey", "Help", "Good Morning", "Good Evening", "Morning", "evening", "afternoon"],
   "email": ["call", "phone", "number", "mail", "location", "address", "pincode", "social","media", "instagram", "linkedin", "facebook", "youtube", "pinterest"]
 };
 
