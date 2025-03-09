@@ -7,6 +7,16 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
+const cors = require('cors');
+app.use(cors());
+
+app.use(cors({
+    origin: '*', // Allow all origins (not recommended for production)
+    methods: ['GET', 'POST'], // Allow only specific methods
+    allowedHeaders: ['Content-Type'], // Allow specific headers
+}));
+
+
 // **Set up AWS S3 Client (v3)**
 const s3 = new S3Client({ region: "us-east-1" });
 
