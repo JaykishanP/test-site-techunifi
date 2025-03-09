@@ -101,6 +101,27 @@ function gtag(){dataLayer.push(arguments);}
   
 
   <!-- End Header -->
+    <!-- ====== Search Modal ======= -->
+  <div class="search-main">
+    <div id="searchModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="toggleModal()">✕</span>
+        <h3>Search the Site</h3>
+        <div class="search-input-container">
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Type your search..." 
+            oninput="performSearch(event)" 
+          />
+          <button onclick="clearSearch()">Clear</button>
+        </div>
+        <!-- <ul id="searchResults"></ul> -->
+        <div id="searchResults" class="list-group"></div>
+      </div>
+    </div>
+  </div>
+<!-- ======= Search Modal ======= -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">

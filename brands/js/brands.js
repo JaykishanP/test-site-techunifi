@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function validateLogin() {
     var password = document.getElementById("protected-password").value;
-    var validPassword = "Brand_Unifi$2024";
+    var validPassword = "Change_Order$2024";
     if (password === validPassword) {
         modal.style.display = "none";
         document.body.style.overflow = ""; // Reset body overflow property
