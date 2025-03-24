@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// Middlewares
 const allowedOrigins = ['https://www.techunifi.com']; // Add allowed frontend origins here
 
 app.use(
