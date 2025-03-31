@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(cors()); // Single CORS setup
 
 app.use(cors({
-    origin: ['https://jaykishanp.github.io/test-site-techunifi/AWS/form.html'], // Replace with your actual frontend domain
+    origin: ['https://jaykishanp.github.io/'], // Replace with your actual frontend domain
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
