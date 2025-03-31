@@ -9,6 +9,13 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors()); // Single CORS setup
 
+app.use(cors({
+    origin: ['https://jaykishanp.github.io/test-site-techunifi/AWS/form.html'], // Replace with your actual frontend domain
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
+}));
+
+
 // AWS Configuration
 const dynamoDB = new DynamoDBClient({
     region: process.env.AWS_REGION, // Set in .env
