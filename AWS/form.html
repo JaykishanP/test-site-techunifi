@@ -18,31 +18,31 @@
     </form>
 
     <script>
-        document.getElementById("demoForm").addEventListener("submit", function(event) {
+        document.getElementById("demoForm").addEventListener("submit", async function(event) {
             event.preventDefault();
 
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email')
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value
             };
 
-            fetch('http://localhost:3000/saveData', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                alert('Data saved successfully!');
-            })
-            .catch((error) => {
+            try {
+                const response = await fetch('http://localhost:3000/saveData', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Data saved successfully!');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            } catch (error) {
                 console.error('Error:', error);
-                alert('Error saving data!');
-            });
+                alert('Network error. Try again later.');
+            }
         });
     </script>
 </body>
