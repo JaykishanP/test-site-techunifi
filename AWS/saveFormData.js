@@ -2,7 +2,7 @@ const dynamoDB = require('./aws-config');
 
 const saveFormData = async (formData) => {
   const params = {
-    TableName: 'FormData', // Your table name
+    TableName: 'SubmitATicket', // Your table name
     Item: {
       id: Date.now().toString(), // Generate a unique ID
       name: formData.name,
