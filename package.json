@@ -1,7 +1,0 @@
-{"scripts":
-{
-    "start": "npx concurrently \"cd Excel && npm start\" \"cd AWS && node index.js\"",
-    "test":"echo \"Error: no test specified\" && exit 1"
-},
-    "dependencies":{"concurrently":"^9.1.2"}
-}
