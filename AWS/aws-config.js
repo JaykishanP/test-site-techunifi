@@ -1,13 +1,12 @@
-const AWS = require('aws-sdk');
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+require('dotenv').config();
 
-// Configure AWS
-AWS.config.update({
-  region: 'us-east-1', // Change to your region
-  accessKeyId: 'YOUR_ACCESS_KEY', // Replace with actual key
-  secretAccessKey: 'YOUR_SECRET_KEY' // Replace with actual key
+const dynamoDB = new DynamoDBClient({
+    region: process.env.AWS_REGION,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    },
 });
-
-// Create DynamoDB Document Client
-const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 module.exports = dynamoDB;
