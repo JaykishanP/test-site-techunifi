@@ -5256,28 +5256,29 @@ ul.menu-bar {
 #other-info.product-tabcontent .head-para-row,
 #audi-vide.product-tabcontent .head-para-row,
 #wifi.product-tabcontent .head-para-row,
-#security.product-tabcontent .head-para-row {
+#security.product-tabcontent .head-para-row,
+#energy.product-tabcontent .head-para-row {
     background-color: #CDD9F5;
     border-radius: 8px;
 }
 #other-info .sub-Inquiry,
 #audi-vide .sub-Inquiry,
 #wifi .sub-Inquiry,
-#security .sub-Inquiry{
+#security .sub-Inquiry,
+#energy .sub-Inquiry{
    background-color: var(--orange);
    border-color: var(--orange)
 }
 #audi-vide .image-right-banner{
     align-items: end;
 }
-#audi-vide .image-right-banner img {
+#audi-vide .image-right-banner img,
+#wifi .image-right-banner img,
+#energy .image-right-banner img{
     max-width: 100%;
 }
 #audi-vide .submit-head-para {
     padding: 0 0 60px 30px;
-}
-#wifi .image-right-banner img{
-    max-width: 100%;
 }
 #wifi .submit-head-para {
     padding: 30px 0 0 0;
@@ -5302,6 +5303,11 @@ ul.menu-bar {
 #security .submit-head-para {
     padding-top: 30px;
 }
+#energy .image-right-banner {
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-left:0;
+}
 
 /*============Mobile============*/
 @media only screen and (max-width: 767.9px) {
@@ -5325,7 +5331,8 @@ ul.menu-bar {
 #other-info .image-right-banner{
     padding-bottom: 30px;
 }
+#energy .submit-head-para {
+    margin: 30px 0 20px 0;
+ }
     
-
-
 }
