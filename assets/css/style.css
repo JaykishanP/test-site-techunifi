@@ -5241,7 +5241,8 @@ ul.menu-bar {
 }
 
 
-/* ======================  
+/* ========= Blue Product CSS =============  */
+
 #other-info .image-right-banner,
 #wifi .image-right-banner{
     display: flex;
@@ -5264,6 +5265,7 @@ ul.menu-bar {
 #wifi .sub-Inquiry,
 #security .sub-Inquiry{
    background-color: var(--orange);
+   border-color: var(--orange)
 }
 #audi-vide .image-right-banner{
     align-items: end;
@@ -5301,7 +5303,7 @@ ul.menu-bar {
     padding-top: 30px;
 }
 
-//============Mobile============
+/*============Mobile============*/
 @media only screen and (max-width: 767.9px) {
    
 #security.product-tabcontent .head-para-row::before {
@@ -5324,4 +5326,6 @@ ul.menu-bar {
     padding-bottom: 30px;
 }
     
+
+
 }
