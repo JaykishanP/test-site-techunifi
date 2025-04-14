@@ -5257,7 +5257,8 @@ ul.menu-bar {
 #audi-vide.product-tabcontent .head-para-row,
 #wifi.product-tabcontent .head-para-row,
 #security.product-tabcontent .head-para-row,
-#energy.product-tabcontent .head-para-row {
+#energy.product-tabcontent .head-para-row,
+#low-Voltage.product-tabcontent .head-para-row {
     background-color: #CDD9F5;
     border-radius: 8px;
 }
@@ -5265,7 +5266,8 @@ ul.menu-bar {
 #audi-vide .sub-Inquiry,
 #wifi .sub-Inquiry,
 #security .sub-Inquiry,
-#energy .sub-Inquiry{
+#energy .sub-Inquiry,
+#low-Voltage .sub-Inquiry{
    background-color: var(--orange);
    border-color: var(--orange)
 }
@@ -5274,7 +5276,8 @@ ul.menu-bar {
 }
 #audi-vide .image-right-banner img,
 #wifi .image-right-banner img,
-#energy .image-right-banner img{
+#energy .image-right-banner img,
+#low-Voltage .image-right-banner img{
     max-width: 100%;
 }
 #audi-vide .submit-head-para {
@@ -5290,7 +5293,7 @@ ul.menu-bar {
    padding-top:0;
 }
 #security.product-tabcontent .head-para-row::before {
-    background-image: url('https://jaykishanp.github.io/test-site-techunifi/assets/img/illustrations/illustration-5.png');
+    background-image: url('assets/img/illustrations/illustration-5.png');
     position: absolute;
     background-repeat: no-repeat;
     content: '';
@@ -5303,7 +5306,8 @@ ul.menu-bar {
 #security .submit-head-para {
     padding-top: 30px;
 }
-#energy .image-right-banner {
+#energy .image-right-banner,
+#low-Voltage .image-right-banner {
     align-items: flex-end;
     justify-content: flex-start;
     padding-left:0;
@@ -5334,5 +5338,9 @@ ul.menu-bar {
 #energy .submit-head-para {
     margin: 30px 0 20px 0;
  }
-    
+#low-Voltage .submit-head-para {
+    margin: 31px 0 20px 0;
+}
+
+
 }
