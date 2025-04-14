@@ -5239,3 +5239,82 @@ ul.menu-bar {
   color: var(--orange);
   font-weight: 600;
 }
+
+
+/* ======================  */
+#other-info .image-right-banner,
+#wifi .image-right-banner{
+    display: flex;
+    align-items: flex-start;
+    justify-content: unset;
+    padding-left: 0;
+}
+#other-info .image-right-banner img{
+    max-width: 95%;
+}
+#other-info.product-tabcontent .head-para-row,
+#audi-vide.product-tabcontent .head-para-row,
+#wifi.product-tabcontent .head-para-row,
+#security.product-tabcontent .head-para-row {
+    background-color: #CDD9F5;
+}
+#audi-vide .image-right-banner{
+    align-items: end;
+}
+#audi-vide .image-right-banner img {
+    max-width: 100%;
+}
+#audi-vide .submit-head-para {
+    padding: 0 0 60px 30px;
+}
+#wifi .image-right-banner img{
+    max-width: 100%;
+}
+#wifi .submit-head-para {
+    padding: 30px 0 0 0;
+}
+#wifi.product-tabcontent .head-para-row {
+    padding-top: 0;
+}
+#security.product-tabcontent .head-para-row{
+   padding-top:0;
+}
+#security.product-tabcontent .head-para-row::before {
+    background-image: url('assets/img/illustrations/illustration-5.png');
+    position: absolute;
+    background-repeat: no-repeat;
+    content: '';
+    width: 100%;
+    height: 78%;
+    max-width: 76%;
+    background-size: 83%;
+    margin: 0 0 0 29px;
+}
+#security .submit-head-para {
+    padding-top: 30px;
+}
+
+//============Mobile============
+@media only screen and (max-width: 767.9px) {
+   
+#security.product-tabcontent .head-para-row::before {
+    max-width: 100%;
+    background-size: 100%;
+    margin: 0 0 0 0; 
+}
+
+#security .submit-head-para {
+    padding-top: 99px;
+}
+
+#wifi .submit-head-para {
+    padding: 0;
+}
+#audi-vide .submit-head-para {
+    padding: 0;
+}
+#other-info .image-right-banner{
+    padding-bottom: 30px;
+}
+
+}
