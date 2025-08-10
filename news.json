@@ -1,0 +1,23 @@
+[
+  {
+      "date": "2024-05-10",
+      "title": "Example News Article 1",
+      "location": "Miami",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et massa non mauris aliquam facilisis. Proin efficitur, nisl quis rutrum ultrices, eros leo tincidunt dui, a eleifend est nunc at libero.",
+      "image": "https://example.com/image1.jpg"
+  },
+  {
+      "date": "2024-05-10",
+      "title": "Example News Article 2",
+      "location": "LA",
+      "content": "Sed nec luctus justo. Ut id diam non urna laoreet vulputate. Nulla a purus vehicula, tempus ante id, laoreet sem. Suspendisse potenti.",
+      "image": "https://example.com/image2.jpg"
+  },
+  {
+      "date": "2024-05-10",
+      "title": "Example News Article 3",
+      "location": "Dallas",
+      "content": "Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.",
+      "image": "https://example.com/image3.jpg"
+  }
+]
