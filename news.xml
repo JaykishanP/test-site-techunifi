@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Example News Feed</title>
+    <link>https://example.com/news</link>
+    <description>Latest news updates</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Aug 2025 00:00:00 GMT</lastBuildDate>
+
+    <item>
+      <title>Example News Article 1 - Miami</title>
+      <link>https://example.com/news/article1</link>
+      <pubDate>Fri, 10 May 2024 00:00:00 GMT</pubDate>
+      <description><![CDATA[
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et massa non mauris aliquam facilisis. Proin efficitur, nisl quis rutrum ultrices, eros leo tincidunt dui, a eleifend est nunc at libero.</p>
+        <img src="https://example.com/image1.jpg" alt="News Image 1" />
+      ]]></description>
+    </item>
+
+    <item>
+      <title>Example News Article 2 - LA</title>
+      <link>https://example.com/news/article2</link>
+      <pubDate>Fri, 10 May 2024 00:00:00 GMT</pubDate>
+      <description><![CDATA[
+        <p>Sed nec luctus justo. Ut id diam non urna laoreet vulputate. Nulla a purus vehicula, tempus ante id, laoreet sem. Suspendisse potenti.</p>
+        <div>
+          <img src="https://example.com/image1.jpg" alt="Image 1" />
+          <img src="https://example.com/image2.jpg" alt="Image 2" />
+          <img src="https://example.com/image3.jpg" alt="Image 3" />
+          <img src="https://example.com/image4.jpg" alt="Image 4" />
+        </div>
+      ]]></description>
+    </item>
+
+    <item>
+      <title>Example News Article 3 - Dallas</title>
+      <link>https://example.com/news/article3</link>
+      <pubDate>Fri, 10 May 2024 00:00:00 GMT</pubDate>
+      <description><![CDATA[
+        <p>Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.</p>
+        <img src="https://example.com/image3.jpg" alt="News Image 3" />
+      ]]></description>
+    </item>
+
+    <item>
+      <title>Example News Article 4 - Dallas</title>
+      <link>https://example.com/news/article4</link>
+      <pubDate>Fri, 10 May 2024 00:00:00 GMT</pubDate>
+      <description><![CDATA[
+        <p>Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.</p>
+        <div>
+          <img src="https://example.com/image1.jpg" alt="Image 1" />
+          <img src="https://example.com/image2.jpg" alt="Image 2" />
+          <img src="https://example.com/image3.jpg" alt="Image 3" />
+          <img src="https://example.com/image4.jpg" alt="Image 4" />
+        </div>
+      ]]></description>
+    </item>
+
+    <item>
+      <title>Example News Article 5 - Dallas</title>
+      <link>https://example.com/news/article5</link>
+      <pubDate>Fri, 10 May 2024 00:00:00 GMT</pubDate>
+      <description><![CDATA[
+        <p>Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.</p>
+        <img src="https://example.com/image5.jpg" alt="News Image 5" />
+      ]]></description>
+    </item>
+
+    <item>
+      <title>Example News Article 6 - Dallas</title>
+      <link>https://example.com/news/article6</link>
+      <pubDate>Fri, 10 May 2024 00:00:00 GMT</pubDate>
+      <description><![CDATA[
+        <p>Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.</p>
+        <img src="https://example.com/image6.jpg" alt="News Image 6" />
+      ]]></description>
+    </item>
+
+    <item>
+      <title>Example News Article 7 - Dallas</title>
+      <link>https://example.com/news/article7</link>
+      <pubDate>Fri, 10 May 2024 00:00:00 GMT</pubDate>
+      <description><![CDATA[
+        <p>Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.</p>
+        <img src="https://example.com/image6.jpg" alt="News Image 6" />
+      ]]></description>
+    </item>
+
+    <item>
+      <title>Example News Article 8 - Dallas</title>
+      <link>https://example.com/news/article8</link>
+      <pubDate>Fri, 10 May 2024 00:00:00 GMT</pubDate>
+      <description><![CDATA[
+        <p>Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.</p>
+        <img src="https://example.com/image6.jpg" alt="News Image 6" />
+      ]]></description>
+    </item>
+
+  </channel>
+</rss>
