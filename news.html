@@ -72,26 +72,29 @@
     }
 
     function setupPagination() {
-        const pagination = document.getElementById('pagination');
-        pagination.innerHTML = '';
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
 
-        let totalPages = Math.ceil(filteredData.length / itemsPerPage);
+    let totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-        if (totalPages <= 1) return; // no pagination needed
+    if (totalPages <= 1) return; // No pagination needed
 
-        for (let i = 1; i <= totalPages; i++) {
-            let li = document.createElement('li');
-            li.classList.add('page-item', i === currentPage ? 'active' : '');
-            li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-            li.addEventListener('click', function (e) {
-                e.preventDefault();
-                currentPage = i;
-                displayNews();
-                setupPagination();
-            });
-            pagination.appendChild(li);
+    for (let i = 1; i <= totalPages; i++) {
+        let li = document.createElement('li');
+        li.classList.add('page-item');
+        if (i === currentPage) {
+            li.classList.add('active');
         }
+        li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+        li.addEventListener('click', function (e) {
+            e.preventDefault();
+            currentPage = i;
+            displayNews();
+            setupPagination();
+        });
+        pagination.appendChild(li);
     }
+}
 
     document.getElementById('searchInput').addEventListener('input', function () {
         const searchText = this.value.toLowerCase();
