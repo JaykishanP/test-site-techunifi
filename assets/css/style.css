@@ -3,10 +3,6 @@
 # General
 --------------------------------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
 :root{
   --darkgray:#d9d9d9;
   --gray: #e4e4e4;
@@ -91,6 +87,7 @@ img{
   height: 40px;
   border-radius: 100%;
   transition: all 0.4s;
+  font-size: 0;
 }
 
 .back-to-top i {
@@ -528,6 +525,12 @@ a.nav-link.search-site.mobile-search {
 
 
 @media (max-width: 993px) {
+  .nav-link.search-site.mobile-search::before {
+    margin: 2px 0 0 8px;
+  }
+  .nav-link.profile-icon::before {
+    margin: 1.6px 0 0 7.3px;
+  }
   .nav-link.raise-btn::before {
     margin: 6px 0 0 8.2px;
   }
@@ -560,15 +563,21 @@ a.nav-link.search-site.mobile-search {
   padding-top: 82px;
 }
 
+.seo-heading {
+    color: #ededed;
+    font-size: 1px;
+    margin: 0;
+}
+
 .hero-sub {
   padding: 150px 0 0 0;
   text-align: center;
   margin: 0 auto;
 }
 
-.hero-home-main-section .hero-sub {
+/* .hero-home-main-section .hero-sub {
   padding: 30px  0 0 0;
-}
+} */
 
 .event-anchor {
   margin: 0 0 112px;
@@ -1730,6 +1739,11 @@ section.ticket-form {
   min-height: 178px;
 }
 
+.sub-tab2-section .ticket-form form .change-order-div  select {
+    min-height: unset;
+    overflow-y: auto;
+}
+
 ::-ms-input-placeholder {
   color: lightgrey;
 }
@@ -2667,7 +2681,7 @@ span.hr-rule {
   padding: 20px 0 0 80px;
 }
 .prod-head-text .prod-para p {
-  max-width: 431px;
+  max-width: 531px;
 }
 .prod-head-text .prod-para a {
   color: #fff;
@@ -2906,6 +2920,9 @@ span.hr-rule {
   max-height: 100%;
   border-radius: 8px;
 }
+.news-home-section .news-company{
+  font-size: 22px;
+}
 .full-news-page a {
   padding: 0;
   font-weight: 600;
@@ -3100,10 +3117,10 @@ body.productPage.modal-open {
   line-height: 22px;
 }
 /* Structure Cabling Image popup */
-#low-Voltage .image-modal {
+#low-voltage .image-modal {
   z-index: 11;
 }
-#low-Voltage .image-modal .modal-content {
+#low-voltage .image-modal .modal-content {
   top: 20%;
 }
 
@@ -3535,6 +3552,10 @@ input#searchInput {
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
+  #submitTicketForm #zsCaptcha {
+    display: flex;
+    align-items: center;
+}
   .submit-sub-section {
     padding: 25px 15px 15px;
 }
@@ -3614,6 +3635,9 @@ h3#termsModalLabel {
   left: 0;
 }
 .news-company {
+  font-size: 16px;
+}
+.news-home-section .news-company{
   font-size: 16px;
 }
   .full-news-page a {
@@ -3742,7 +3766,7 @@ section.sub-tab-section {
     padding: 45px 0 0 0;
   }
   .hero-home-main-section .hero-sub {
-    padding: 50px 0 0 0;
+    padding: 70px 0 0 0;
   }
   .event-section{
     /* padding: 0px 0 50px 0; */
@@ -4111,7 +4135,7 @@ section.ticket-form {
 .low-structure-img .col-md-4 {
   width: unset;
 }
-div#low-Voltage {
+div#low-voltage {
   padding: 44px 12px 0;
 }
 .image-modal {
@@ -4137,11 +4161,11 @@ div#low-Voltage {
   padding: 10px;
   width: 95%;
 }
-#low-Voltage .image-modal .modal-content {
+#low-voltage .image-modal .modal-content {
   top: 5%;
   padding: 0 10px;
 }
-#low-Voltage .image-modal .close {
+#low-voltage .image-modal .close {
   top: 50px;
 }
 input#textBox {
@@ -5234,14 +5258,14 @@ ul.menu-bar {
   box-shadow: none;
 }
 .chat-bubble.bot a {
-  padding: 0;
+  padding: 0 0 0 4px;
   text-decoration: underline;
   color: var(--orange);
   font-weight: 600;
 }
 
 
-/* ========= Blue Product CSS =============  */
+/* ======= Blue Product CSS */
 
 #other-info .image-right-banner,
 #wifi .image-right-banner{
@@ -5258,7 +5282,7 @@ ul.menu-bar {
 #wifi.product-tabcontent .head-para-row,
 #security.product-tabcontent .head-para-row,
 #energy.product-tabcontent .head-para-row,
-#low-Voltage.product-tabcontent .head-para-row {
+#low-voltage.product-tabcontent .head-para-row {
     background-color: #CDD9F5;
     border-radius: 8px;
 }
@@ -5267,7 +5291,7 @@ ul.menu-bar {
 #wifi .sub-Inquiry,
 #security .sub-Inquiry,
 #energy .sub-Inquiry,
-#low-Voltage .sub-Inquiry{
+#low-voltage .sub-Inquiry{
    background-color: var(--orange);
    border-color: var(--orange)
 }
@@ -5277,7 +5301,7 @@ ul.menu-bar {
 #audi-vide .image-right-banner img,
 #wifi .image-right-banner img,
 #energy .image-right-banner img,
-#low-Voltage .image-right-banner img{
+#low-voltage .image-right-banner img{
     max-width: 100%;
 }
 #audi-vide .submit-head-para {
@@ -5293,7 +5317,7 @@ ul.menu-bar {
    padding-top:0;
 }
 #security.product-tabcontent .head-para-row::before {
-    background-image: url('https://jaykishanp.github.io/test-site-techunifi/assets/img/illustrations/illustration-5.png');
+    background-image: url('https://www.techunifi.com/assets/img/illustrations/illustration-5.png');
     position: absolute;
     background-repeat: no-repeat;
     content: '';
@@ -5307,7 +5331,7 @@ ul.menu-bar {
     padding-top: 30px;
 }
 #energy .image-right-banner,
-#low-Voltage .image-right-banner {
+#low-voltage .image-right-banner {
     align-items: flex-end;
     justify-content: flex-start;
     padding-left:0;
@@ -5338,7 +5362,7 @@ ul.menu-bar {
 #energy .submit-head-para {
     margin: 30px 0 20px 0;
  }
-#low-Voltage .submit-head-para {
+#low-voltage .submit-head-para {
     margin: 31px 0 20px 0;
 }
 
