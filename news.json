@@ -40,5 +40,20 @@
       "location": "Dallas",
       "content": "Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.",
       "image": "https://example.com/image6.jpg"
+  },
+  {
+      "date": "2024-05-10",
+      "title": "Example News Article 7",
+      "location": "Dallas",
+      "content": "Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.",
+      "image": "https://example.com/image6.jpg"
+  },
+  {
+      "date": "2024-05-10",
+      "title": "Example News Article 8",
+      "location": "Dallas",
+      "content": "Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.",
+      "image": "https://example.com/image6.jpg"
   }
+  
 ]
