@@ -11,7 +11,12 @@
       "title": "Example News Article 2",
       "location": "LA",
       "content": "Sed nec luctus justo. Ut id diam non urna laoreet vulputate. Nulla a purus vehicula, tempus ante id, laoreet sem. Suspendisse potenti.",
-      "image": "https://example.com/image2.jpg"
+      "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg",
+      "https://example.com/image4.jpg"
+    ]
   },
   {
       "date": "2024-05-10",
@@ -25,7 +30,12 @@
       "title": "Example News Article 4",
       "location": "Dallas",
       "content": "Fusce ultricies orci nec ex volutpat varius. Vestibulum sit amet tincidunt odio, eget condimentum velit. Mauris ullamcorper nunc non pharetra vestibulum.",
-      "image": "https://example.com/image4.jpg"
+      "image": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg",
+      "https://example.com/image4.jpg"
+    ]
   },
   {
       "date": "2024-05-10",
