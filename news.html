@@ -44,7 +44,7 @@
             .catch(err => console.error("Error loading news:", err));
     }
 
-    function displayNews() {
+function displayNews() {
     const newsSection = document.getElementById('newsSection');
     newsSection.innerHTML = '';
 
@@ -57,71 +57,56 @@
         return;
     }
 
-    let row;
-    paginatedItems.forEach((article, index) => {
-        if (index % 2 === 0) {
-            row = document.createElement('div');
-            row.classList.add('row', 'mb-3');
-            newsSection.appendChild(row);
-        }
+    paginatedItems.forEach(article => {
+        // Normalize images into an array (supports article.images[] or article.image)
+        const images = Array.isArray(article.images)
+            ? article.images
+            : Array.isArray(article.image)
+                ? article.image
+                : (article.image ? [article.image] : []);
 
-        let col = document.createElement('div');
-        col.classList.add('col-md-6', 'mb-3');
-
-        // Article HTML
+        // Build gallery HTML: 2 images per row
         let imagesHTML = '';
-        if (article.images && article.images.length > 0) {
-            let imgRow;
-            article.images.forEach((img, i) => {
-                if (i % 2 === 0) {
-                    imgRow = document.createElement('div');
-                    imgRow.classList.add('row', 'mb-2');
-                    col.appendChild(imgRow);
+        if (images.length > 0) {
+            imagesHTML += '<div class="container-fluid mt-3">';
+            for (let i = 0; i < images.length; i += 2) {
+                imagesHTML += '<div class="row mb-2">';
+                // first image in the row
+                imagesHTML += `
+                    <div class="col-12 col-sm-6 mb-2">
+                        <img src="${images[i]}" class="img-fluid rounded" alt="${article.title || ''}" loading="lazy">
+                    </div>
+                `;
+                // second image in the row (if exists)
+                if (i + 1 < images.length) {
+                    imagesHTML += `
+                        <div class="col-12 col-sm-6 mb-2">
+                            <img src="${images[i + 1]}" class="img-fluid rounded" alt="${article.title || ''}" loading="lazy">
+                        </div>
+                    `;
+                } else {
+                    // If odd number, keep the second column empty (keeps layout consistent)
+                    imagesHTML += `<div class="col-12 col-sm-6 mb-2"></div>`;
                 }
-                let imgCol = document.createElement('div');
-                imgCol.classList.add('col-md-6', 'mb-2');
-                imgCol.innerHTML = `<img src="${img}" class="img-fluid rounded" alt="${article.title}">`;
-                imgRow.appendChild(imgCol);
-            });
+                imagesHTML += '</div>'; // close row
+            }
+            imagesHTML += '</div>'; // close container-fluid
         }
 
-        col.innerHTML = `
-            <div class="card h-100">
+        // Render the card with the images gallery inserted
+        newsSection.innerHTML += `
+            <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">${article.title}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${article.location} - ${article.date}</h6>
-                    <p class="card-text">${article.content}</p>
+                    <h5 class="card-title">${article.title || ''}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">${article.location || ''} - ${article.date || ''}</h6>
+                    <p class="card-text">${article.content || ''}</p>
+                    ${imagesHTML}
                 </div>
             </div>
         `;
-
-        // Add images below card body
-        let card = col.querySelector('.card');
-        if (article.images && article.images.length > 0) {
-            let galleryContainer = document.createElement('div');
-            galleryContainer.classList.add('p-3');
-            
-            // Build gallery rows
-            for (let i = 0; i < article.images.length; i += 2) {
-                let galleryRow = document.createElement('div');
-                galleryRow.classList.add('row', 'mb-2');
-                
-                for (let j = i; j < i + 2 && j < article.images.length; j++) {
-                    let imgCol = document.createElement('div');
-                    imgCol.classList.add('col-md-6', 'mb-2');
-                    imgCol.innerHTML = `<img src="${article.images[j]}" class="img-fluid rounded" alt="${article.title}">`;
-                    galleryRow.appendChild(imgCol);
-                }
-                
-                galleryContainer.appendChild(galleryRow);
-            }
-
-            card.appendChild(galleryContainer);
-        }
-
-        row.appendChild(col);
     });
 }
+
 
     function setupPagination() {
     const pagination = document.getElementById('pagination');
@@ -165,3 +150,4 @@
 
 </body>
 </html>
+
