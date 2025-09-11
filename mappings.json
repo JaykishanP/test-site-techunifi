@@ -1,0 +1,14 @@
+[
+  {
+    "qboType": "Invoice",
+    "qboId": "12345",
+    "zohoModule": "invoices",
+    "zohoId": "67890"
+  },
+  {
+    "qboType": "Bill",
+    "qboId": "54321",
+    "zohoModule": "bills",
+    "zohoId": "98765"
+  }
+]
