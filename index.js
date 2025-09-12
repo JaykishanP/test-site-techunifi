@@ -117,16 +117,23 @@ async function createZohoCustomer(accessToken, qbCustomer) {
 
 // ---------- Zoho Find or Create Customer ----------
 async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
-  const searchUrl = `${ZOHO_API_BASE}/contacts?email=${encodeURIComponent(
-    qbCustomer.PrimaryEmailAddr?.Address || ""
-  )}`;
+  let searchUrl;
+
+  // Prefer email search if a valid email exists
+  if (qbCustomer.PrimaryEmailAddr?.Address && qbCustomer.PrimaryEmailAddr.Address.includes("@")) {
+    searchUrl = `${ZOHO_API_BASE}/contacts?organization_id=${ZOHO_ORG_ID}&email=${encodeURIComponent(
+      qbCustomer.PrimaryEmailAddr.Address
+    )}`;
+  } else {
+    // Fall back to search by contact_name if no valid email
+    searchUrl = `${ZOHO_API_BASE}/contacts?organization_id=${ZOHO_ORG_ID}&contact_name=${encodeURIComponent(
+      qbCustomer.DisplayName
+    )}`;
+  }
 
   // 1. Try to find existing contact in Zoho
   const searchRes = await axios.get(searchUrl, {
-    headers: {
-      Authorization: `Zoho-oauthtoken ${accessToken}`,
-      "X-com-zoho-books-organizationid": ZOHO_ORG_ID,
-    },
+    headers: { Authorization: `Zoho-oauthtoken ${accessToken}` },
   });
 
   if (searchRes.data.contacts && searchRes.data.contacts.length > 0) {
@@ -138,9 +145,7 @@ async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
   const customerData = {
     contact_name: qbCustomer.DisplayName,
     company_name: qbCustomer.CompanyName || qbCustomer.DisplayName,
-    email: qbCustomer.PrimaryEmailAddr?.Address || "",
-    phone: qbCustomer.PrimaryPhone?.FreeFormNumber || "",
-    contact_type: "customer",
+    email: qbCustomer.PrimaryEmailAddr?.Address || undefined, // only include if valid
   };
 
   const createRes = await axios.post(createUrl, customerData, {
@@ -154,6 +159,7 @@ async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
   console.log(`👤 Created new Zoho customer: ${customerData.contact_name}`);
   return createRes.data.contact.contact_id;
 }
+
 
 // ---------- Zoho Invoices ----------
 async function createZohoInvoice(accessToken, invoiceData) {
