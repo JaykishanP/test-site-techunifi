@@ -57,7 +57,7 @@ async function getZohoAccessToken() {
 
 // ---------- QuickBooks Data ----------
 async function getQuickBooksData(accessToken) {
-  const url = `https://quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/query?query=select%20*%20from%20Invoice%20maxresults%2010`;
+  const url = `https://sandbox-quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/query?query=select%20*%20from%20Invoice%20maxresults%2010`;
   const response = await axios.get(url, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
