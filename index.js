@@ -22,25 +22,33 @@ const ZOHO_ORG_ID = process.env.ZOHO_ORG_ID;
 const ZOHO_API_BASE = process.env.ZOHO_API_BASE || "https://www.zohoapis.com/books/v3";
 
 // ---------- QuickBooks Auth ----------
-async function getQuickBooksAccessToken() {
+import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
+
+async function getQuickBooksAccessToken(refreshToken) {
   const tokenUrl = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
-  const response = await axios.post(
-    tokenUrl,
-    new URLSearchParams({
-      grant_type: "refresh_token",
-      refresh_token: QBO_REFRESH_TOKEN,
-    }),
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${Buffer.from(
-          `${QBO_CLIENT_ID}:${QBO_CLIENT_SECRET}`
-        ).toString("base64")}`,
-      },
-    }
-  );
-  return response.data.access_token;
+
+  // Encode clientId:clientSecret as Base64
+  const basicAuth = Buffer.from(
+    `${process.env.QBO_CLIENT_ID}:${process.env.QBO_CLIENT_SECRET}`
+  ).toString("base64");
+
+  const params = new URLSearchParams({
+    grant_type: "refresh_token",
+    refresh_token: refreshToken,
+  });
+
+  const res = await axios.post(tokenUrl, params.toString(), {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: `Basic ${basicAuth}`,
+    },
+  });
+
+  return res.data;
 }
+
 
 // ---------- Zoho Auth ----------
 async function getZohoAccessToken() {
