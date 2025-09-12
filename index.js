@@ -89,19 +89,6 @@ async function getQuickBooksCustomer(accessToken, customerId) {
   }
 }
 
-async function getQuickBooksAttachments(accessToken, txnId) {
-  const url = `https://sandbox-quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/query?query=select%20*%20from%20Attachable%20where%20EntityRef%20=%20'${txnId}'`;
-  try {
-    const response = await axios.get(url, {
-      headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" },
-    });
-    return response.data.QueryResponse.Attachable || [];
-  } catch (error) {
-    console.error("Error fetching QuickBooks attachments:", error.response?.data || error.message);
-    return [];
-  }
-}
-
 // ---------- Zoho Customers ----------
 async function findZohoCustomer(accessToken, customerName) {
   const url = `${ZOHO_API_BASE}/contacts?contact_name=${encodeURIComponent(customerName)}&organization_id=${ZOHO_ORG_ID}`;
@@ -275,25 +262,11 @@ export async function migrateData() {
 
         const zohoInvoiceId = await createZohoInvoice(zohoToken, zohoInvoiceData);
         console.log(`✅ Created Zoho invoice ${zohoInvoiceId} from QuickBooks invoice ${qbInvoice.Id}.`);
+        
+        // Due to a QuickBooks API limitation, attachments cannot be queried by invoice ID.
+        // Therefore, we cannot migrate attachments with this method.
+        console.log(`➡️ No attachments found for invoice ${qbInvoice.Id}.`);
 
-        // Step 3: Attach files if any
-        const attachments = await getQuickBooksAttachments(qbToken, qbInvoice.Id);
-        if (attachments.length > 0) {
-          for (const att of attachments) {
-            if (!att.TempDownloadUri) {
-              console.warn(`⚠️ Attachment ${att.Id} has no download URI. Skipping.`);
-              continue;
-            }
-            const fileResponse = await axios.get(att.TempDownloadUri, {
-              headers: { Authorization: `Bearer ${qbToken}` },
-              responseType: "arraybuffer"
-            });
-            const buffer = Buffer.from(fileResponse.data);
-            await uploadZohoAttachment(zohoToken, zohoInvoiceId, buffer, att.FileName);
-          }
-        } else {
-          console.log(`➡️ No attachments found for invoice ${qbInvoice.Id}.`);
-        }
       } catch (invoiceError) {
         console.error(`❌ Migration failed for Invoice ${qbInvoice.Id}:`, invoiceError.message);
       }
@@ -303,3 +276,5 @@ export async function migrateData() {
     console.error("❌ Global migration failure:", globalError.message);
   }
 }
+
+migrateData();
