@@ -76,7 +76,6 @@ async function getQuickBooksInvoices(accessToken) {
   }
 }
 
-// FIX #3: Added a new function to fetch a specific customer from QuickBooks.
 async function getQuickBooksCustomer(accessToken, customerId) {
   const url = `https://sandbox-quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/customer/${customerId}`;
   try {
@@ -104,7 +103,6 @@ async function getQuickBooksAttachments(accessToken, txnId) {
 }
 
 // ---------- Zoho Customers ----------
-// FIX #2: Updated findZohoCustomer to consistently use the organization ID in the URL.
 async function findZohoCustomer(accessToken, customerName) {
   const url = `${ZOHO_API_BASE}/contacts?contact_name=${encodeURIComponent(customerName)}&organization_id=${ZOHO_ORG_ID}`;
   try {
@@ -147,7 +145,6 @@ async function createZohoCustomer(accessToken, qbCustomer) {
 }
 
 // ---------- Zoho Find or Create Customer ----------
-// FIX #2: Simplified logic to use the dedicated findZohoCustomer and createZohoCustomer functions.
 async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
   let zohoCustomerId = await findZohoCustomer(accessToken, qbCustomer.DisplayName);
   if (zohoCustomerId) {
@@ -167,7 +164,7 @@ async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
 }
 
 // ---------- Zoho Invoices ----------
-async function createZohoInvoice(accessToken, invoiceData) {
+async function createZohoInvoice(accessToken, invoiceData, isRetry = false) {
   const url = `${ZOHO_API_BASE}/invoices?organization_id=${ZOHO_ORG_ID}`;
   try {
     const response = await axios.post(url, invoiceData, {
@@ -179,14 +176,19 @@ async function createZohoInvoice(accessToken, invoiceData) {
     });
     return response.data.invoice.invoice_id;
   } catch (error) {
+    // Check if the error is due to invoice number conflict (Zoho error code 4097)
+    if (error.response?.status === 400 && error.response?.data?.code === 4097 && !isRetry) {
+      console.warn("⚠️ Invoice number conflict detected. Retrying without invoice_number field...");
+      const retryInvoiceData = { ...invoiceData };
+      delete retryInvoiceData.invoice_number;
+      return createZohoInvoice(accessToken, retryInvoiceData, true);
+    }
     console.error("Error creating Zoho invoice:", error.response?.data || error.message);
     throw error;
   }
 }
 
 // ---------- Zoho Attachments ----------
-// FIX #2: Updated uploadZohoAttachment URL to include organization ID.
-// Also added error handling.
 async function uploadZohoAttachment(accessToken, zohoInvoiceId, fileBuffer, fileName) {
   const url = `${ZOHO_API_BASE}/invoices/${zohoInvoiceId}/attachments?organization_id=${ZOHO_ORG_ID}`;
 
@@ -225,7 +227,6 @@ export async function migrateData() {
       console.log(`➡️ Migrating Invoice ${qbInvoice.Id}`);
 
       try {
-        // FIX #4: Fetch the full QuickBooks customer object based on CustomerRef.
         const customerId = qbInvoice.CustomerRef?.value;
         if (!customerId) {
           console.warn(`⚠️ Invoice ${qbInvoice.Id} has no customer reference. Skipping.`);
@@ -242,15 +243,13 @@ export async function migrateData() {
           invoice_number: qbInvoice.DocNumber,
           date: qbInvoice.TxnDate,
           due_date: qbInvoice.DueDate,
-          // FIX #5: Refined line item mapping for better data integrity.
           line_items: qbInvoice.Line?.map((line) => {
             const itemDetail = line.SalesItemLineDetail;
             const itemRef = itemDetail?.ItemRef;
             const amount = line.Amount;
             const quantity = itemDetail?.Qty || 1;
-            const rate = amount / quantity; // Calculate rate
+            const rate = amount / quantity;
 
-            // Only map items with a positive rate to avoid errors
             if (rate > 0) {
               return {
                 name: itemRef?.name || "Migrated Item",
@@ -258,9 +257,8 @@ export async function migrateData() {
                 quantity: quantity,
               };
             }
-            return null; // Exclude zero-rate items
+            return null;
           }).filter(Boolean) || [
-            // Fallback for invoices with no line items
             {
               name: "Migrated Item",
               rate: qbInvoice.TotalAmt,
@@ -286,7 +284,6 @@ export async function migrateData() {
               console.warn(`⚠️ Attachment ${att.Id} has no download URI. Skipping.`);
               continue;
             }
-            // FIX #1: Added QuickBooks access token to the attachment download request headers.
             const fileResponse = await axios.get(att.TempDownloadUri, {
               headers: { Authorization: `Bearer ${qbToken}` },
               responseType: "arraybuffer"
