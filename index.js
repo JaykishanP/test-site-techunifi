@@ -64,7 +64,8 @@ async function getZohoAccessToken() {
 
 // ---------- QuickBooks Data ----------
 async function getQuickBooksInvoices(accessToken) {
-  const url = `https://sandbox-quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/query?query=select%20*%20from%20Invoice%20maxresults%205`;
+  // Use the live production endpoint
+  const url = `https://quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/query?query=select%20*%20from%20Invoice%20maxresults%205`;
   try {
     const response = await axios.get(url, {
       headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" },
@@ -77,7 +78,8 @@ async function getQuickBooksInvoices(accessToken) {
 }
 
 async function getQuickBooksCustomer(accessToken, customerId) {
-  const url = `https://sandbox-quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/customer/${customerId}`;
+  // Use the live production endpoint
+  const url = `https://quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/customer/${customerId}`;
   try {
     const response = await axios.get(url, {
       headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" },
@@ -171,28 +173,6 @@ async function createZohoInvoice(accessToken, invoiceData, isRetry = false) {
       return createZohoInvoice(accessToken, retryInvoiceData, true);
     }
     console.error("Error creating Zoho invoice:", error.response?.data || error.message);
-    throw error;
-  }
-}
-
-// ---------- Zoho Attachments ----------
-async function uploadZohoAttachment(accessToken, zohoInvoiceId, fileBuffer, fileName) {
-  const url = `${ZOHO_API_BASE}/invoices/${zohoInvoiceId}/attachments?organization_id=${ZOHO_ORG_ID}`;
-
-  const form = new FormData();
-  form.append("attachment", fileBuffer, fileName);
-
-  try {
-    await axios.post(url, form, {
-      headers: {
-        ...form.getHeaders(),
-        Authorization: `Zoho-oauthtoken ${accessToken}`,
-        "X-com-zoho-books-organizationid": ZOHO_ORG_ID,
-      },
-    });
-    console.log(`📎 Uploaded attachment to Zoho invoice ${zohoInvoiceId}: ${fileName}`);
-  } catch (error) {
-    console.error(`Error uploading attachment "${fileName}" to Zoho invoice ${zohoInvoiceId}:`, error.response?.data || error.message);
     throw error;
   }
 }
