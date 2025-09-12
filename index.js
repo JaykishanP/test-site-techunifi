@@ -116,16 +116,20 @@ async function createZohoCustomer(accessToken, qbCustomer) {
 }
 
 // ---------- Zoho Find or Create Customer ----------
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return email && emailRegex.test(email);
+}
+
 async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
   let searchUrl;
+  let email;
 
-  // Prefer email search if a valid email exists
-  if (qbCustomer.PrimaryEmailAddr?.Address && qbCustomer.PrimaryEmailAddr.Address.includes("@")) {
-    searchUrl = `${ZOHO_API_BASE}/contacts?organization_id=${ZOHO_ORG_ID}&email=${encodeURIComponent(
-      qbCustomer.PrimaryEmailAddr.Address
-    )}`;
+  if (isValidEmail(qbCustomer.PrimaryEmailAddr?.Address)) {
+    email = qbCustomer.PrimaryEmailAddr.Address;
+    searchUrl = `${ZOHO_API_BASE}/contacts?organization_id=${ZOHO_ORG_ID}&email=${encodeURIComponent(email)}`;
   } else {
-    // Fall back to search by contact_name if no valid email
+    // Fallback: search by DisplayName
     searchUrl = `${ZOHO_API_BASE}/contacts?organization_id=${ZOHO_ORG_ID}&contact_name=${encodeURIComponent(
       qbCustomer.DisplayName
     )}`;
@@ -145,7 +149,7 @@ async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
   const customerData = {
     contact_name: qbCustomer.DisplayName,
     company_name: qbCustomer.CompanyName || qbCustomer.DisplayName,
-    email: qbCustomer.PrimaryEmailAddr?.Address || undefined, // only include if valid
+    ...(isValidEmail(email) ? { email } : {}), // include only if valid
   };
 
   const createRes = await axios.post(createUrl, customerData, {
