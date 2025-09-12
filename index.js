@@ -115,14 +115,44 @@ async function createZohoCustomer(accessToken, qbCustomer) {
   return response.data.contact.contact_id;
 }
 
+// ---------- Zoho Find or Create Customer ----------
 async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
-  const existingId = await findZohoCustomer(accessToken, qbCustomer.DisplayName);
-  if (existingId) {
-    console.log(`✅ Found existing Zoho customer for ${qbCustomer.DisplayName}`);
-    return existingId;
+  const searchUrl = `${ZOHO_API_BASE}/contacts?email=${encodeURIComponent(
+    qbCustomer.PrimaryEmailAddr?.Address || ""
+  )}`;
+
+  // 1. Try to find existing contact in Zoho
+  const searchRes = await axios.get(searchUrl, {
+    headers: {
+      Authorization: `Zoho-oauthtoken ${accessToken}`,
+      "X-com-zoho-books-organizationid": ZOHO_ORG_ID,
+    },
+  });
+
+  if (searchRes.data.contacts && searchRes.data.contacts.length > 0) {
+    return searchRes.data.contacts[0].contact_id;
   }
-  console.log(`➕ Creating new Zoho customer for ${qbCustomer.DisplayName}`);
-  return await createZohoCustomer(accessToken, qbCustomer);
+
+  // 2. If not found, create customer in Zoho
+  const createUrl = `${ZOHO_API_BASE}/contacts`;
+  const customerData = {
+    contact_name: qbCustomer.DisplayName,
+    company_name: qbCustomer.CompanyName || qbCustomer.DisplayName,
+    email: qbCustomer.PrimaryEmailAddr?.Address || "",
+    phone: qbCustomer.PrimaryPhone?.FreeFormNumber || "",
+    contact_type: "customer",
+  };
+
+  const createRes = await axios.post(createUrl, customerData, {
+    headers: {
+      Authorization: `Zoho-oauthtoken ${accessToken}`,
+      "X-com-zoho-books-organizationid": ZOHO_ORG_ID,
+      "Content-Type": "application/json",
+    },
+  });
+
+  console.log(`👤 Created new Zoho customer: ${customerData.contact_name}`);
+  return createRes.data.contact.contact_id;
 }
 
 // ---------- Zoho Invoices ----------
@@ -161,62 +191,65 @@ export async function migrateData() {
   console.log("🔑 Getting QuickBooks access token...");
   const qbToken = await getQuickBooksAccessToken();
 
-  console.log("📥 Fetching QuickBooks customers...");
-  const qbCustomers = await getQuickBooksCustomers(qbToken);
+  console.log("📥 Fetching invoices from QuickBooks...");
+  const qbInvoices = await getQuickBooksInvoices(qbToken);
 
   console.log("🔑 Getting Zoho access token...");
   const zohoToken = await getZohoAccessToken();
 
-  // Map QBO CustomerId → Zoho CustomerId
-  const customerMap = {};
-  for (const qbCustomer of qbCustomers) {
-    const zohoId = await getOrCreateZohoCustomer(zohoToken, qbCustomer);
-    customerMap[qbCustomer.Id] = zohoId;
-  }
-
-  console.log("📥 Fetching QuickBooks invoices...");
-  const qbInvoices = await getQuickBooksInvoices(qbToken);
-
   for (const qbInvoice of qbInvoices) {
     console.log(`➡️ Migrating Invoice ${qbInvoice.Id}`);
 
-    const zohoCustomerId = customerMap[qbInvoice.CustomerRef?.value];
-    if (!zohoCustomerId) {
-      console.warn(`⚠️ No mapped customer found for Invoice ${qbInvoice.Id}, skipping.`);
-      continue;
-    }
+    // Step 0: Prepare QuickBooks customer
+    const qbCustomer = qbInvoice.CustomerRef
+      ? {
+          DisplayName: qbInvoice.CustomerRef.name,
+          CompanyName: qbInvoice.CustomerRef.name,
+          PrimaryEmailAddr: { Address: `${qbInvoice.CustomerRef.name || "customer"}@example.com` },
+        }
+      : { DisplayName: "Unknown Customer" };
 
-    // Step 1: Create Invoice in Zoho
+    // Step 1: Ensure Zoho customer exists
+    const zohoCustomerId = await getOrCreateZohoCustomer(zohoToken, qbCustomer);
+
+    // Step 2: Create Invoice in Zoho
     const zohoInvoiceData = {
       customer_id: zohoCustomerId,
-      line_items: qbInvoice.Line
-        ? qbInvoice.Line.filter(l => l.SalesItemLineDetail).map(l => ({
-            name: l.SalesItemLineDetail?.ItemRef?.name || "Migrated Item",
-            rate: l.Amount,
-            quantity: l.SalesItemLineDetail?.Qty || 1,
-          }))
-        : [
-            {
-              name: "Migrated Item",
-              rate: qbInvoice.TotalAmt,
-              quantity: 1,
-            },
-          ],
+      invoice_number: qbInvoice.DocNumber,
+      date: qbInvoice.TxnDate,
+      due_date: qbInvoice.DueDate,
+      line_items:
+        qbInvoice.Line?.map((line, index) => ({
+          name: line.SalesItemLineDetail?.ItemRef?.name || `Item ${index + 1}`,
+          description: line.Description || "Migrated from QuickBooks",
+          rate: line.Amount / (line.SalesItemLineDetail?.Qty || 1),
+          quantity: line.SalesItemLineDetail?.Qty || 1,
+        })) || [
+          {
+            name: "Migrated Item",
+            rate: qbInvoice.TotalAmt,
+            quantity: 1,
+          },
+        ],
+      custom_fields: [
+        {
+          label: "QuickBooks Invoice ID",
+          value: qbInvoice.Id,
+        },
+      ],
     };
 
     const zohoInvoiceId = await createZohoInvoice(zohoToken, zohoInvoiceData);
 
-    // Step 2: Fetch and Upload Attachments
+    // Step 3: Attach files if any
     const attachments = await getQuickBooksAttachments(qbToken, qbInvoice.Id);
     for (const att of attachments) {
       if (!att.TempDownloadUri) continue;
-
       const fileResponse = await axios.get(att.TempDownloadUri, { responseType: "arraybuffer" });
       const buffer = Buffer.from(fileResponse.data);
-
       await uploadZohoAttachment(zohoToken, zohoInvoiceId, buffer, att.FileName);
     }
   }
 
-  console.log("🎉 Migration complete: Customers + Invoices + Attachments!");
+  console.log("🎉 Migration complete with customers + invoices + attachments!");
 }
