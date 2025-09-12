@@ -3,30 +3,23 @@ import axios from "axios";
 
 dotenv.config();
 
-// ---------- Helper to decode Base64 ----------
-function decodeB64(val) {
-  return Buffer.from(val || "", "base64").toString("utf8").trim();
-}
-
 // ---------- QuickBooks Credentials ----------
-const QBO_CLIENT_ID = decodeB64(process.env.QBO_CLIENT_ID_B64);
-const QBO_CLIENT_SECRET = decodeB64(process.env.QBO_CLIENT_SECRET_B64);
+const QBO_CLIENT_ID = process.env.QBO_CLIENT_ID;
+const QBO_CLIENT_SECRET = process.env.QBO_CLIENT_SECRET;
 const QBO_REFRESH_TOKEN = process.env.QBO_REFRESH_TOKEN;
 const QBO_REALM_ID = process.env.QBO_REALM_ID;
 
 // ---------- Zoho Credentials ----------
-const ZOHO_CLIENT_ID = decodeB64(process.env.ZOHO_CLIENT_ID_B64);
-const ZOHO_CLIENT_SECRET = decodeB64(process.env.ZOHO_CLIENT_SECRET_B64);
+const ZOHO_CLIENT_ID = process.env.ZOHO_CLIENT_ID;
+const ZOHO_CLIENT_SECRET = process.env.ZOHO_CLIENT_SECRET;
 const ZOHO_REFRESH_TOKEN = process.env.ZOHO_REFRESH_TOKEN;
 const ZOHO_ORG_ID = process.env.ZOHO_ORG_ID;
 const ZOHO_API_BASE = process.env.ZOHO_API_BASE || "https://www.zohoapis.com/books/v3";
 
 // ---------- QuickBooks Auth ----------
-// ---------- QuickBooks Auth ----------
 async function getQuickBooksAccessToken(refreshToken = QBO_REFRESH_TOKEN) {
   const tokenUrl = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
 
-  // Use the decoded values here
   const basicAuth = Buffer.from(
     `${QBO_CLIENT_ID}:${QBO_CLIENT_SECRET}`
   ).toString("base64");
@@ -43,9 +36,8 @@ async function getQuickBooksAccessToken(refreshToken = QBO_REFRESH_TOKEN) {
     },
   });
 
-  return res.data.access_token; // return only the token
+  return res.data.access_token;
 }
-
 
 // ---------- Zoho Auth ----------
 async function getZohoAccessToken() {
