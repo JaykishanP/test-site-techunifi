@@ -127,7 +127,7 @@ const CONFIG = {
     scope: "com.intuit.quickbooks.accounting",
     clientId: process.env.QBO_CLIENT_ID,
     clientSecret: process.env.QBO_CLIENT_SECRET,
-    redirectUri: "http://localhost:3000/callback/qbo",
+    redirectUri: "https://test-site-techunifi-ynkd.onrender.com/callback/qbo",
     state: "secureRandomString123", // required by QuickBooks
   },
   zoho: {
@@ -136,7 +136,7 @@ const CONFIG = {
     scope: "ZohoBooks.fullaccess.all",
     clientId: process.env.ZOHO_CLIENT_ID,
     clientSecret: process.env.ZOHO_CLIENT_SECRET,
-    redirectUri: "http://localhost:3000/callback/zoho", // must match Zoho Console
+    redirectUri: "https://test-site-techunifi-ynkd.onrender.com/callback/zoho", // must match Zoho Console
   },
 };
 
@@ -213,6 +213,6 @@ app.get("/callback/:service", async (req, res) => {
 // ==================== START ====================
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log("👉 QuickBooks Auth URL: http://localhost:3000/auth/qbo");
-  console.log("👉 Zoho Auth URL:       http://localhost:3000/auth/zoho");
+  console.log("👉 QuickBooks Auth URL: https://test-site-techunifi-ynkd.onrender.com/auth/qbo");
+  console.log("👉 Zoho Auth URL:       https://test-site-techunifi-ynkd.onrender.com/auth/zoho");
 });
