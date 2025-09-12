@@ -1,5 +1,6 @@
 // server.js
-const express = require("express");
+// const express = require("express");
+import express from 'express'
 const { migrateData } = require("./index"); // import migration function
 const app = express();
 const PORT = process.env.PORT || 3000;
