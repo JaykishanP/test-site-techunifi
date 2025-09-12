@@ -22,16 +22,13 @@ const ZOHO_ORG_ID = process.env.ZOHO_ORG_ID;
 const ZOHO_API_BASE = process.env.ZOHO_API_BASE || "https://www.zohoapis.com/books/v3";
 
 // ---------- QuickBooks Auth ----------
-import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
-
-async function getQuickBooksAccessToken(refreshToken) {
+// ---------- QuickBooks Auth ----------
+async function getQuickBooksAccessToken(refreshToken = QBO_REFRESH_TOKEN) {
   const tokenUrl = "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer";
 
-  // Encode clientId:clientSecret as Base64
+  // Use the decoded values here
   const basicAuth = Buffer.from(
-    `${process.env.QBO_CLIENT_ID}:${process.env.QBO_CLIENT_SECRET}`
+    `${QBO_CLIENT_ID}:${QBO_CLIENT_SECRET}`
   ).toString("base64");
 
   const params = new URLSearchParams({
@@ -46,7 +43,7 @@ async function getQuickBooksAccessToken(refreshToken) {
     },
   });
 
-  return res.data;
+  return res.data.access_token; // return only the token
 }
 
 
