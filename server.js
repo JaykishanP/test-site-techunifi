@@ -1,12 +1,13 @@
 // server.js
-// const express = require("express");
-import express from 'express'
-const { migrateData } = require("./index"); // import migration function
+import express from "express";
+import { migrateData } from "./index.js";
+import attachAuthRoutes from "./fetch-tokens.js";
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Attach token fetcher routes
-require("./fetch-tokens")(app); 
+attachAuthRoutes(app);
 
 // Migration trigger
 app.get("/migrate", async (req, res) => {
@@ -14,11 +15,14 @@ app.get("/migrate", async (req, res) => {
     await migrateData();
     res.send("✅ Migration completed successfully!");
   } catch (err) {
+    console.error(err);
     res.status(500).send("❌ Migration failed: " + err.message);
   }
 });
 
 app.listen(PORT, () => {
-  console.log("👉 OAuth endpoints ready");
-  console.log("👉 Trigger migration at /migrate");
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log("👉 QuickBooks Auth URL: https://test-site-techunifi-ynkd.onrender.com/auth/qbo");
+  console.log("👉 Zoho Auth URL:       https://test-site-techunifi-ynkd.onrender.com/auth/zoho");
+  console.log("👉 Trigger migration:   https://test-site-techunifi-ynkd.onrender.com/migrate");
 });
