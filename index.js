@@ -229,11 +229,16 @@ export async function migrateData() {
 
     // Map attachments by entity ID for easy lookup
     const attachmentsByEntityId = qbAttachments.reduce((acc, attachment) => {
-      const entityId = attachment.AttachableRef.value;
-      if (!acc[entityId]) {
-        acc[entityId] = [];
+      // Safely access the value and ensure it exists before adding to the map
+      const entityId = attachment.AttachableRef?.value;
+      if (entityId) {
+        if (!acc[entityId]) {
+          acc[entityId] = [];
+        }
+        acc[entityId].push(attachment);
+      } else {
+        console.warn(`⚠️ Skipping attachment ${attachment.FileName} with no entity reference.`);
       }
-      acc[entityId].push(attachment);
       return acc;
     }, {});
 
