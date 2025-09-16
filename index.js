@@ -125,13 +125,40 @@ async function findZohoCustomer(accessToken, customerName) {
 
 async function createZohoCustomer(accessToken, qbCustomer) {
   const url = `${ZOHO_API_BASE}/contacts?organization_id=${ZOHO_ORG_ID}`;
+
+  // Build the payload with conditional email and address
   const payload = {
     contact_name: qbCustomer.DisplayName,
     company_name: qbCustomer.CompanyName || qbCustomer.DisplayName,
-    email: qbCustomer.PrimaryEmailAddr?.Address || qbCustomer.BillEmail?.Address || "",
-    phone: qbCustomer.PrimaryPhone?.FreeFormNumber || qbCustomer.Mobile?.FreeFormNumber || "",
     contact_type: "customer",
   };
+
+  // Basic email validation regex
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const email = qbCustomer.PrimaryEmailAddr?.Address || qbCustomer.BillEmail?.Address;
+  
+  if (email && typeof email === 'string' && emailRegex.test(email.trim())) {
+    payload.email = email;
+  }
+
+  // Add phone number if it exists
+  const phone = qbCustomer.PrimaryPhone?.FreeFormNumber || qbCustomer.Mobile?.FreeFormNumber;
+  if (phone) {
+    payload.phone = phone;
+  }
+
+  // Add billing address if it exists
+  const billAddr = qbCustomer.BillAddr;
+  if (billAddr) {
+    payload.billing_address = {
+      address: billAddr.Line1,
+      city: billAddr.City,
+      state: billAddr.CountrySubDivisionCode,
+      zip: billAddr.PostalCode,
+      country: billAddr.Country,
+    };
+  }
+
   try {
     const response = await axios.post(url, payload, {
       headers: {
@@ -142,8 +169,9 @@ async function createZohoCustomer(accessToken, qbCustomer) {
     });
     return response.data.contact.contact_id;
   } catch (error) {
-    console.error("Error creating Zoho customer:", error.response?.data || error.message);
-    throw error;
+    console.error(`Error creating Zoho customer for "${qbCustomer.DisplayName}":`, error.response?.data || error.message);
+    // Returning null instead of throwing an error allows the migration to continue
+    return null; 
   }
 }
 
@@ -155,15 +183,12 @@ async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
     return zohoCustomerId;
   }
   
-  try {
-    // If not found, create it
-    zohoCustomerId = await createZohoCustomer(accessToken, qbCustomer);
+  // If not found, create it
+  zohoCustomerId = await createZohoCustomer(accessToken, qbCustomer);
+  if (zohoCustomerId) {
     console.log(`👤 Created new Zoho customer: ${qbCustomer.DisplayName}`);
-    return zohoCustomerId;
-  } catch (error) {
-    console.error(`Error creating Zoho customer for "${qbCustomer.DisplayName}":`, error.message);
-    throw error;
   }
+  return zohoCustomerId;
 }
 
 async function uploadZohoAttachment(accessToken, zohoInvoiceId, qbAttachment) {
@@ -258,6 +283,12 @@ export async function migrateData() {
 
         // Step 1: Ensure Zoho customer exists
         const zohoCustomerId = await getOrCreateZohoCustomer(zohoToken, qbCustomer);
+        
+        // If customer creation failed, skip this invoice
+        if (!zohoCustomerId) {
+          console.error(`❌ Cannot migrate invoice ${qbInvoice.Id} because customer creation failed. Skipping.`);
+          continue;
+        }
 
         // Step 2: Create Invoice in Zoho
         const zohoInvoiceData = {
