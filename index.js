@@ -114,8 +114,8 @@ async function createZohoCustomer(accessToken, qbCustomer) {
   const payload = {
     contact_name: qbCustomer.DisplayName,
     company_name: qbCustomer.CompanyName || qbCustomer.DisplayName,
-    email: qbCustomer.PrimaryEmailAddr?.Address || "",
-    phone: qbCustomer.PrimaryPhone?.FreeFormNumber || "",
+    email: qbCustomer.PrimaryEmailAddr?.Address || qbCustomer.BillEmail?.Address || "",
+    phone: qbCustomer.PrimaryPhone?.FreeFormNumber || qbCustomer.Mobile?.FreeFormNumber || "",
     contact_type: "customer",
   };
   try {
