@@ -77,6 +77,20 @@ async function getQuickBooksInvoices(accessToken) {
   }
 }
 
+async function getQuickBooksCustomers(accessToken) {
+  const url = `https://quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/query?query=select%20*%20from%20Customer`;
+  try {
+    const response = await axios.get(url, {
+      headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" },
+    });
+    return response.data.QueryResponse.Customer || [];
+  } catch (error) {
+    console.error("Error fetching QuickBooks customers:", error.response?.data || error.message);
+    throw error;
+  }
+}
+
+
 async function getQuickBooksCustomer(accessToken, customerId) {
   // Use the live production endpoint
   const url = `https://quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/customer/${customerId}`;
@@ -298,7 +312,26 @@ export async function migrateData() {
     console.log("🔑 Getting QuickBooks access token...");
     const qbToken = await getQuickBooksAccessToken();
 
-    console.log("📥 Fetching invoices from QuickBooks...");
+    console.log("📥 Fetching all customers from QuickBooks...");
+    const qbCustomers = await getQuickBooksCustomers(qbToken);
+    console.log(`✅ Found ${qbCustomers.length} customers to migrate.`);
+    
+    // Step 1: Migrate all customers first
+    const customerMap = {};
+    for (const qbCustomer of qbCustomers) {
+        try {
+            const zohoCustomerId = await getOrCreateZohoCustomer(qbToken, qbCustomer);
+            if (zohoCustomerId) {
+                customerMap[qbCustomer.Id] = zohoCustomerId;
+            }
+        } catch (customerError) {
+            console.error(`❌ Customer migration failed for "${qbCustomer.DisplayName}":`, customerError.message);
+        }
+    }
+    console.log("✅ All customers have been migrated or updated.");
+
+    // Step 2: Now migrate invoices
+    console.log("\n📥 Fetching invoices from QuickBooks...");
     const qbInvoices = await getQuickBooksInvoices(qbToken);
     console.log(`✅ Found ${qbInvoices.length} invoices to migrate.`);
 
@@ -334,15 +367,9 @@ export async function migrateData() {
           continue;
         }
         
-        const qbCustomer = await getQuickBooksCustomer(qbToken, customerId);
-        console.log("QuickBooks Customer Data:", JSON.stringify(qbCustomer, null, 2));
-
-        // Step 1: Ensure Zoho customer exists
-        const zohoCustomerId = await getOrCreateZohoCustomer(zohoToken, qbCustomer);
-        
-        // If customer creation failed, skip this invoice
+        const zohoCustomerId = customerMap[customerId];
         if (!zohoCustomerId) {
-          console.error(`❌ Cannot migrate invoice ${qbInvoice.Id} because customer creation failed. Skipping.`);
+          console.error(`❌ Cannot migrate invoice ${qbInvoice.Id} because the customer was not found in the initial migration. Skipping.`);
           continue;
         }
 
