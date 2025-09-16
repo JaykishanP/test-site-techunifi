@@ -123,10 +123,8 @@ async function findZohoCustomer(accessToken, customerName) {
   }
 }
 
-async function createZohoCustomer(accessToken, qbCustomer) {
-  const url = `${ZOHO_API_BASE}/contacts?organization_id=${ZOHO_ORG_ID}`;
-
-  // Build the payload
+// Helper function to create payload for both create and update
+function createZohoCustomerPayload(qbCustomer) {
   const payload = {
     contact_name: qbCustomer.DisplayName,
     company_name: qbCustomer.CompanyName || qbCustomer.DisplayName,
@@ -184,6 +182,13 @@ async function createZohoCustomer(accessToken, qbCustomer) {
     };
   }
 
+  return payload;
+}
+
+async function createZohoCustomer(accessToken, qbCustomer) {
+  const url = `${ZOHO_API_BASE}/contacts?organization_id=${ZOHO_ORG_ID}`;
+  const payload = createZohoCustomerPayload(qbCustomer);
+  
   try {
     const response = await axios.post(url, payload, {
       headers: {
@@ -199,79 +204,46 @@ async function createZohoCustomer(accessToken, qbCustomer) {
   }
 }
 
+async function updateZohoCustomer(accessToken, zohoCustomerId, qbCustomer) {
+  const url = `${ZOHO_API_BASE}/contacts/${zohoCustomerId}?organization_id=${ZOHO_ORG_ID}`;
+  const payload = createZohoCustomerPayload(qbCustomer);
+  
+  try {
+    const response = await axios.put(url, payload, {
+      headers: {
+        Authorization: `Zoho-oauthtoken ${accessToken}`,
+        "X-com-zoho-books-organizationid": ZOHO_ORG_ID,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data.contact.contact_id;
+  } catch (error) {
+    console.error(`❌ Error updating Zoho customer ${zohoCustomerId} for "${qbCustomer.DisplayName}":`, error.response?.data || error.message);
+    return null;
+  }
+}
+
 // ---------- Zoho Find or Create Customer ----------
 async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
   console.log(`🔎 Checking for existing Zoho customer: ${qbCustomer.DisplayName}`);
   let zohoCustomerId = await findZohoCustomer(accessToken, qbCustomer.DisplayName);
-  if (zohoCustomerId) {
-    console.log(`✅ Found existing Zoho customer: ${qbCustomer.DisplayName}`);
-    return zohoCustomerId;
-  }
   
-  // If not found, try to create it
-  console.log(`➡️ Creating new Zoho customer: ${qbCustomer.DisplayName}`);
   const payloadToLog = createZohoCustomerPayload(qbCustomer);
   console.log("Zoho Customer Payload:", JSON.stringify(payloadToLog, null, 2));
   
+  if (zohoCustomerId) {
+    console.log(`✅ Found existing Zoho customer: ${qbCustomer.DisplayName}. Attempting to update...`);
+    await updateZohoCustomer(accessToken, zohoCustomerId, qbCustomer);
+    return zohoCustomerId;
+  }
+  
+  // If not found, create a new one
+  console.log(`➡️ Creating new Zoho customer: ${qbCustomer.DisplayName}`);
   zohoCustomerId = await createZohoCustomer(accessToken, qbCustomer);
   if (zohoCustomerId) {
     console.log(`✅ Created new Zoho customer: ${qbCustomer.DisplayName}`);
   }
   return zohoCustomerId;
-}
-
-// Helper function to create payload for logging purposes
-function createZohoCustomerPayload(qbCustomer) {
-  const payload = {
-    contact_name: qbCustomer.DisplayName,
-    company_name: qbCustomer.CompanyName || qbCustomer.DisplayName,
-    contact_type: "customer",
-  };
-
-  const contactPerson = {};
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const email = qbCustomer.PrimaryEmailAddr?.Address || qbCustomer.BillEmail?.Address;
-  if (email && typeof email === 'string' && emailRegex.test(email.trim())) {
-    contactPerson.email = email;
-  }
-
-  const phone = qbCustomer.PrimaryPhone?.FreeFormNumber || qbCustomer.Mobile?.FreeFormNumber;
-  if (phone) {
-    contactPerson.phone = phone;
-  }
-
-  const mobile = qbCustomer.Mobile?.FreeFormNumber;
-  if (mobile) {
-    contactPerson.mobile = mobile;
-  }
-
-  if (Object.keys(contactPerson).length > 0) {
-    payload.contact_persons = [contactPerson];
-  }
-
-  const billAddr = qbCustomer.BillAddr;
-  if (billAddr && billAddr.Line1) {
-    payload.billing_address = {
-      address: billAddr.Line1,
-      city: billAddr.City,
-      state: billAddr.CountrySubDivisionCode,
-      zip: billAddr.PostalCode,
-      country: billAddr.Country,
-    };
-  }
-  
-  const shipAddr = qbCustomer.ShipAddr;
-  if (shipAddr && shipAddr.Line1) {
-    payload.shipping_address = {
-      address: shipAddr.Line1,
-      city: shipAddr.City,
-      state: shipAddr.CountrySubDivisionCode,
-      zip: shipAddr.PostalCode,
-      country: shipAddr.Country,
-    };
-  }
-
-  return payload;
 }
 
 async function uploadZohoAttachment(accessToken, zohoInvoiceId, qbAttachment) {
@@ -294,7 +266,6 @@ async function uploadZohoAttachment(accessToken, zohoInvoiceId, qbAttachment) {
     throw error;
   }
 }
-
 
 // ---------- Zoho Invoices ----------
 async function createZohoInvoice(accessToken, invoiceData, isRetry = false) {
