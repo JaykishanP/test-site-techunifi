@@ -312,6 +312,9 @@ export async function migrateData() {
     console.log("🔑 Getting QuickBooks access token...");
     const qbToken = await getQuickBooksAccessToken();
 
+    console.log("🔑 Getting Zoho access token...");
+    const zohoToken = await getZohoAccessToken();
+    
     console.log("📥 Fetching all customers from QuickBooks...");
     const qbCustomers = await getQuickBooksCustomers(qbToken);
     console.log(`✅ Found ${qbCustomers.length} customers to migrate.`);
@@ -320,7 +323,8 @@ export async function migrateData() {
     const customerMap = {};
     for (const qbCustomer of qbCustomers) {
         try {
-            const zohoCustomerId = await getOrCreateZohoCustomer(qbToken, qbCustomer);
+            // Correctly using the Zoho token here
+            const zohoCustomerId = await getOrCreateZohoCustomer(zohoToken, qbCustomer);
             if (zohoCustomerId) {
                 customerMap[qbCustomer.Id] = zohoCustomerId;
             }
@@ -353,9 +357,6 @@ export async function migrateData() {
       }
       return acc;
     }, {});
-
-    console.log("🔑 Getting Zoho access token...");
-    const zohoToken = await getZohoAccessToken();
 
     for (const qbInvoice of qbInvoices) {
       console.log(`\n➡️ Migrating Invoice ${qbInvoice.Id}`);
