@@ -126,38 +126,61 @@ async function findZohoCustomer(accessToken, customerName) {
 async function createZohoCustomer(accessToken, qbCustomer) {
   const url = `${ZOHO_API_BASE}/contacts?organization_id=${ZOHO_ORG_ID}`;
 
-  // Build the payload with conditional email and address
+  // Build the payload
   const payload = {
     contact_name: qbCustomer.DisplayName,
     company_name: qbCustomer.CompanyName || qbCustomer.DisplayName,
     contact_type: "customer",
   };
 
+  const contactPerson = {};
+
   // Basic email validation regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const email = qbCustomer.PrimaryEmailAddr?.Address || qbCustomer.BillEmail?.Address;
   
   if (email && typeof email === 'string' && emailRegex.test(email.trim())) {
-    payload.email = email;
+    contactPerson.email = email;
   }
 
   // Add phone number if it exists
   const phone = qbCustomer.PrimaryPhone?.FreeFormNumber || qbCustomer.Mobile?.FreeFormNumber;
   if (phone) {
-    payload.phone = phone;
+    contactPerson.phone = phone;
+  }
+  
+  // Add mobile number if it exists
+  const mobile = qbCustomer.Mobile?.FreeFormNumber;
+  if (mobile) {
+    contactPerson.mobile = mobile;
+  }
+
+  // Add contact person to payload if any contact info is present
+  if (Object.keys(contactPerson).length > 0) {
+    payload.contact_persons = [contactPerson];
   }
 
   // Add billing address if it exists
   const billAddr = qbCustomer.BillAddr;
   if (billAddr && billAddr.Line1) {
     payload.billing_address = {
-      attention: billAddr.Line1,
-      address: billAddr.Line2 || billAddr.Line1,
-      street2: billAddr.Line3,
+      address: billAddr.Line1,
       city: billAddr.City,
       state: billAddr.CountrySubDivisionCode,
       zip: billAddr.PostalCode,
       country: billAddr.Country,
+    };
+  }
+
+  // Add shipping address if it exists
+  const shipAddr = qbCustomer.ShipAddr;
+  if (shipAddr && shipAddr.Line1) {
+    payload.shipping_address = {
+      address: shipAddr.Line1,
+      city: shipAddr.City,
+      state: shipAddr.CountrySubDivisionCode,
+      zip: shipAddr.PostalCode,
+      country: shipAddr.Country,
     };
   }
 
@@ -171,8 +194,7 @@ async function createZohoCustomer(accessToken, qbCustomer) {
     });
     return response.data.contact.contact_id;
   } catch (error) {
-    console.error(`Error creating Zoho customer for "${qbCustomer.DisplayName}":`, error.response?.data || error.message);
-    // Returning null instead of throwing an error allows the migration to continue
+    console.error(`❌ Error creating Zoho customer for "${qbCustomer.DisplayName}":`, error.response?.data || error.message);
     return null; 
   }
 }
@@ -188,11 +210,68 @@ async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
   
   // If not found, try to create it
   console.log(`➡️ Creating new Zoho customer: ${qbCustomer.DisplayName}`);
+  const payloadToLog = createZohoCustomerPayload(qbCustomer);
+  console.log("Zoho Customer Payload:", JSON.stringify(payloadToLog, null, 2));
+  
   zohoCustomerId = await createZohoCustomer(accessToken, qbCustomer);
   if (zohoCustomerId) {
     console.log(`✅ Created new Zoho customer: ${qbCustomer.DisplayName}`);
   }
   return zohoCustomerId;
+}
+
+// Helper function to create payload for logging purposes
+function createZohoCustomerPayload(qbCustomer) {
+  const payload = {
+    contact_name: qbCustomer.DisplayName,
+    company_name: qbCustomer.CompanyName || qbCustomer.DisplayName,
+    contact_type: "customer",
+  };
+
+  const contactPerson = {};
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const email = qbCustomer.PrimaryEmailAddr?.Address || qbCustomer.BillEmail?.Address;
+  if (email && typeof email === 'string' && emailRegex.test(email.trim())) {
+    contactPerson.email = email;
+  }
+
+  const phone = qbCustomer.PrimaryPhone?.FreeFormNumber || qbCustomer.Mobile?.FreeFormNumber;
+  if (phone) {
+    contactPerson.phone = phone;
+  }
+
+  const mobile = qbCustomer.Mobile?.FreeFormNumber;
+  if (mobile) {
+    contactPerson.mobile = mobile;
+  }
+
+  if (Object.keys(contactPerson).length > 0) {
+    payload.contact_persons = [contactPerson];
+  }
+
+  const billAddr = qbCustomer.BillAddr;
+  if (billAddr && billAddr.Line1) {
+    payload.billing_address = {
+      address: billAddr.Line1,
+      city: billAddr.City,
+      state: billAddr.CountrySubDivisionCode,
+      zip: billAddr.PostalCode,
+      country: billAddr.Country,
+    };
+  }
+  
+  const shipAddr = qbCustomer.ShipAddr;
+  if (shipAddr && shipAddr.Line1) {
+    payload.shipping_address = {
+      address: shipAddr.Line1,
+      city: shipAddr.City,
+      state: shipAddr.CountrySubDivisionCode,
+      zip: shipAddr.PostalCode,
+      country: shipAddr.Country,
+    };
+  }
+
+  return payload;
 }
 
 async function uploadZohoAttachment(accessToken, zohoInvoiceId, qbAttachment) {
