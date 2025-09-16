@@ -149,9 +149,11 @@ async function createZohoCustomer(accessToken, qbCustomer) {
 
   // Add billing address if it exists
   const billAddr = qbCustomer.BillAddr;
-  if (billAddr) {
+  if (billAddr && billAddr.Line1) {
     payload.billing_address = {
-      address: billAddr.Line1,
+      attention: billAddr.Line1,
+      address: billAddr.Line2 || billAddr.Line1,
+      street2: billAddr.Line3,
       city: billAddr.City,
       state: billAddr.CountrySubDivisionCode,
       zip: billAddr.PostalCode,
@@ -177,16 +179,18 @@ async function createZohoCustomer(accessToken, qbCustomer) {
 
 // ---------- Zoho Find or Create Customer ----------
 async function getOrCreateZohoCustomer(accessToken, qbCustomer) {
+  console.log(`🔎 Checking for existing Zoho customer: ${qbCustomer.DisplayName}`);
   let zohoCustomerId = await findZohoCustomer(accessToken, qbCustomer.DisplayName);
   if (zohoCustomerId) {
-    console.log(`👤 Found existing Zoho customer: ${qbCustomer.DisplayName}`);
+    console.log(`✅ Found existing Zoho customer: ${qbCustomer.DisplayName}`);
     return zohoCustomerId;
   }
   
-  // If not found, create it
+  // If not found, try to create it
+  console.log(`➡️ Creating new Zoho customer: ${qbCustomer.DisplayName}`);
   zohoCustomerId = await createZohoCustomer(accessToken, qbCustomer);
   if (zohoCustomerId) {
-    console.log(`👤 Created new Zoho customer: ${qbCustomer.DisplayName}`);
+    console.log(`✅ Created new Zoho customer: ${qbCustomer.DisplayName}`);
   }
   return zohoCustomerId;
 }
@@ -271,7 +275,7 @@ export async function migrateData() {
     const zohoToken = await getZohoAccessToken();
 
     for (const qbInvoice of qbInvoices) {
-      console.log(`➡️ Migrating Invoice ${qbInvoice.Id}`);
+      console.log(`\n➡️ Migrating Invoice ${qbInvoice.Id}`);
 
       try {
         const customerId = qbInvoice.CustomerRef?.value;
@@ -279,7 +283,9 @@ export async function migrateData() {
           console.warn(`⚠️ Invoice ${qbInvoice.Id} has no customer reference. Skipping.`);
           continue;
         }
+        
         const qbCustomer = await getQuickBooksCustomer(qbToken, customerId);
+        console.log("QuickBooks Customer Data:", JSON.stringify(qbCustomer, null, 2));
 
         // Step 1: Ensure Zoho customer exists
         const zohoCustomerId = await getOrCreateZohoCustomer(zohoToken, qbCustomer);
