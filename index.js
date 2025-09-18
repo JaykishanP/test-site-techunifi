@@ -342,7 +342,7 @@ export async function migrateData() {
     
     console.log("📥 Fetching all attachments from QuickBooks...");
     const qbAttachments = await getQuickBooksAttachments(qbToken);
-    console.log(`✅ Found ${qbAttachments.length} attachments to migrate.`);
+    let skippedAttachmentCount = 0;
     
     // Map attachments by entity type and ID for easy lookup
     const attachmentsByEntityId = qbAttachments.reduce((acc, attachment) => {
@@ -356,10 +356,15 @@ export async function migrateData() {
         }
         acc[key].push(attachment);
       } else {
-        console.warn(`⚠️ Skipping attachment ${attachment.FileName} with no entity reference or type.`);
+        skippedAttachmentCount++;
+        console.warn(`⚠️ Skipping attachment "${attachment.FileName}" because it has no entity reference or type.`);
+        console.log("   - Attachment data:", JSON.stringify(attachment, null, 2));
       }
       return acc;
     }, {});
+    
+    console.log(`✅ Found ${qbAttachments.length} total attachments.`);
+    console.log(`➡️ ${skippedAttachmentCount} attachments were skipped due to missing entity data.`);
 
 
     // Step 1: Migrate all customers first, along with their attachments
