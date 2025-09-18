@@ -62,61 +62,47 @@ async function getZohoAccessToken() {
   }
 }
 
-// ---------- QuickBooks Data ----------
+// ---------- QuickBooks Data (Paginated Fetch) ----------
+async function fetchPaginatedQuickBooksData(accessToken, entity, limit = 100) {
+    let allData = [];
+    let startPosition = 1;
+    let hasMore = true;
+
+    while (hasMore) {
+        const url = `https://quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/query?query=select%20*%20from%20${entity}%20startposition%20${startPosition}%20maxresults%20${limit}`;
+        try {
+            const response = await axios.get(url, {
+                headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" },
+            });
+            const entityName = entity.toLowerCase();
+            const responseData = response.data.QueryResponse[entity] || response.data.QueryResponse[entityName] || [];
+            
+            if (responseData.length > 0) {
+                allData = allData.concat(responseData);
+                startPosition += responseData.length;
+            }
+
+            hasMore = responseData.length === limit;
+
+        } catch (error) {
+            console.error(`Error fetching paginated QuickBooks ${entity} data:`, error.response?.data || error.message);
+            throw error;
+        }
+    }
+
+    return allData;
+}
+
 async function getQuickBooksInvoices(accessToken) {
-  // Removing maxresults to fetch all invoices
-  const url = `https://quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/query?query=select%20*%20from%20Invoice`;
-  try {
-    const response = await axios.get(url, {
-      headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" },
-    });
-    return response.data.QueryResponse.Invoice || [];
-  } catch (error) {
-    console.error("Error fetching QuickBooks invoices:", error.response?.data || error.message);
-    throw error;
-  }
+  return fetchPaginatedQuickBooksData(accessToken, 'Invoice');
 }
 
 async function getQuickBooksCustomers(accessToken) {
-  const url = `https://quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/query?query=select%20*%20from%20Customer`;
-  try {
-    const response = await axios.get(url, {
-      headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" },
-    });
-    return response.data.QueryResponse.Customer || [];
-  } catch (error) {
-    console.error("Error fetching QuickBooks customers:", error.response?.data || error.message);
-    throw error;
-  }
-}
-
-
-async function getQuickBooksCustomer(accessToken, customerId) {
-  // Use the live production endpoint
-  const url = `https://quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/customer/${customerId}`;
-  try {
-    const response = await axios.get(url, {
-      headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" },
-    });
-    return response.data.Customer;
-  } catch (error) {
-    console.error(`Error fetching QuickBooks customer ${customerId}:`, error.response?.data || error.message);
-    throw error;
-  }
+  return fetchPaginatedQuickBooksData(accessToken, 'Customer');
 }
 
 async function getQuickBooksAttachments(accessToken) {
-  // This function will fetch all attachments to be processed later
-  const url = `https://quickbooks.api.intuit.com/v3/company/${QBO_REALM_ID}/query?query=select%20*%20from%20Attachable`;
-  try {
-    const response = await axios.get(url, {
-      headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" },
-    });
-    return response.data.QueryResponse.Attachable || [];
-  } catch (error) {
-    console.error("Error fetching QuickBooks attachments:", error.response?.data || error.message);
-    return [];
-  }
+  return fetchPaginatedQuickBooksData(accessToken, 'Attachable');
 }
 
 // ---------- Zoho Customers ----------
