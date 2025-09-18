@@ -327,6 +327,39 @@ async function createZohoInvoice(accessToken, invoiceData, isRetry = false) {
   }
 }
 
+async function getOrCreateZohoUncategorizedContact(accessToken) {
+    const contactName = "QuickBooks Uncategorized Attachments";
+    console.log(`🔎 Checking for existing Zoho contact: "${contactName}"`);
+    let zohoContactId = await findZohoCustomer(accessToken, contactName); // Re-using findZohoCustomer
+    
+    if (zohoContactId) {
+        console.log(`✅ Found existing contact: "${contactName}".`);
+        return zohoContactId;
+    }
+
+    console.log(`➡️ Creating new Zoho contact: "${contactName}"`);
+    try {
+        const url = `${ZOHO_API_BASE}/contacts?organization_id=${ZOHO_ORG_ID}`;
+        const payload = {
+            contact_name: contactName,
+            contact_type: "customer",
+        };
+        const response = await axios.post(url, payload, {
+            headers: {
+                Authorization: `Zoho-oauthtoken ${accessToken}`,
+                "X-com-zoho-books-organizationid": ZOHO_ORG_ID,
+                "Content-Type": "application/json",
+            },
+        });
+        console.log(`✅ Created new Zoho contact: "${contactName}".`);
+        return response.data.contact.contact_id;
+    } catch (error) {
+        console.error(`❌ Error creating Zoho contact for uncategorized attachments:`, error.response?.data || error.message);
+        return null;
+    }
+}
+
+
 // ---------- Migration Process ----------
 export async function migrateData() {
   try {
@@ -344,27 +377,33 @@ export async function migrateData() {
     const qbAttachments = await getQuickBooksAttachments(qbToken);
     let skippedAttachmentCount = 0;
     
-    // Map attachments by entity type and ID for easy lookup
-    const attachmentsByEntityId = qbAttachments.reduce((acc, attachment) => {
-      const entityId = attachment.AttachableRef?.value;
-      const entityType = attachment.AttachableRef?.type;
-      
-      if (entityId && entityType) {
-        const key = `${entityType}-${entityId}`;
-        if (!acc[key]) {
-          acc[key] = [];
+    const categorizedAttachments = [];
+    const uncategorizedAttachments = [];
+
+    // Separate attachments into two groups
+    for (const attachment of qbAttachments) {
+        if (attachment.AttachableRef?.value && attachment.AttachableRef?.type) {
+            categorizedAttachments.push(attachment);
+        } else {
+            uncategorizedAttachments.push(attachment);
         }
-        acc[key].push(attachment);
-      } else {
-        skippedAttachmentCount++;
-        console.warn(`⚠️ Skipping attachment "${attachment.FileName}" because it has no entity reference or type.`);
-        console.log("   - Attachment data:", JSON.stringify(attachment, null, 2));
-      }
-      return acc;
-    }, {});
+    }
     
     console.log(`✅ Found ${qbAttachments.length} total attachments.`);
-    console.log(`➡️ ${skippedAttachmentCount} attachments were skipped due to missing entity data.`);
+    console.log(`➡️ ${uncategorizedAttachments.length} attachments are uncategorized and will be migrated to a special contact.`);
+    
+    // Map categorized attachments by entity type and ID for easy lookup
+    const attachmentsByEntityId = categorizedAttachments.reduce((acc, attachment) => {
+      const entityId = attachment.AttachableRef.value;
+      const entityType = attachment.AttachableRef.type;
+      
+      const key = `${entityType}-${entityId}`;
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(attachment);
+      return acc;
+    }, {});
 
 
     // Step 1: Migrate all customers first, along with their attachments
@@ -468,6 +507,21 @@ export async function migrateData() {
         console.error(`❌ Migration failed for Invoice ${qbInvoice.Id}:`, invoiceError.message);
       }
     }
+    console.log("✅ All invoices and their attachments have been migrated or updated.");
+    
+    // Step 3: Migrate uncategorized attachments
+    console.log("\n➡️ Migrating uncategorized attachments...");
+    if (uncategorizedAttachments.length > 0) {
+        const zohoUncategorizedContactId = await getOrCreateZohoUncategorizedContact(zohoToken);
+        if (zohoUncategorizedContactId) {
+            for (const attachment of uncategorizedAttachments) {
+                await uploadZohoContactAttachment(zohoToken, zohoUncategorizedContactId, attachment);
+            }
+        }
+    } else {
+        console.log("➡️ No uncategorized attachments to migrate.");
+    }
+    
     console.log("🎉 Migration process completed.");
   } catch (globalError) {
     console.error("❌ Global migration failure:", globalError.message);
