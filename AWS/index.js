@@ -1,59 +1,85 @@
-const express = require('express');
-const { DynamoDBClient, PutItemCommand } = require("@aws-sdk/client-dynamodb");
-const { v4: uuidv4 } = require('uuid');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-require('dotenv').config(); // Load environment variables
+const express = require("express");
+const serverless = require("aws-serverless-express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { DynamoDBDocumentClient, PutCommand } = require("@aws-sdk/lib-dynamodb");
+require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors()); // Single CORS setup
 
+// CORS Middleware
 app.use(cors({
-    origin: ['https://jaykishanp.github.io/'], // Replace with your actual frontend domain
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type']
+  origin: "https://www.techunifi.com",
+  methods: ["OPTIONS", "POST"],
+  allowedHeaders: ["Content-Type"]
 }));
 
+// DynamoDB Init
+const client = new DynamoDBClient({});
+const dynamoDB = DynamoDBDocumentClient.from(client);
+const TABLE_NAME = process.env.DYNAMO_TABLE_NAME;
 
-// AWS Configuration
-const dynamoDB = new DynamoDBClient({
-    region: process.env.AWS_REGION, // Set in .env
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    }
+// Handle Preflight
+app.options('/saveData', (req, res) => {
+  res.set({
+    'Access-Control-Allow-Origin': 'https://www.techunifi.com',
+    'Access-Control-Allow-Methods': 'OPTIONS, POST',
+    'Access-Control-Allow-Headers': 'Content-Type'
+  });
+  res.status(200).send();
 });
 
-const TABLE_NAME = process.env.DYNAMO_TABLE_NAME; // Set table name in .env
+// Save Ticket
+app.post("/saveData", async (req, res) => {
+  res.set({
+    'Access-Control-Allow-Origin': 'https://www.techunifi.com',
+    'Access-Control-Allow-Methods': 'OPTIONS, POST',
+    'Access-Control-Allow-Headers': 'Content-Type'
+  });
 
-// API Endpoint to Save Data
-app.post('/saveData', async (req, res) => {
-    const { name, email } = req.body;
-    if (!name || !email) {
-        return res.status(400).json({ message: "Name and Email are required!" });
+  const {
+    submitTicket,
+    name,
+    email,
+    company,
+    phone,
+    subject,
+    services,
+    modelNumber,
+    description
+  } = req.body;
+
+  if (!submitTicket || !name || !email || !subject || !Array.isArray(services) || services.length === 0) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+
+  const params = new PutCommand({
+    TableName: TABLE_NAME,
+    Item: {
+      submitTicket,
+      name,
+      email,
+      company: company || "",
+      phone: phone || "",
+      subject,
+      services,
+      modelNumber: modelNumber || "",
+      description: description || "",
+      createdAt: new Date().toISOString()
     }
+  });
 
-    const params = {
-        TableName: TABLE_NAME,
-        Item: {
-            id: { S: uuidv4() },
-            name: { S: name },
-            email: { S: email },
-        },
-    };
-
-    try {
-        await dynamoDB.send(new PutItemCommand(params));
-        res.status(200).json({ message: 'Data saved successfully!' });
-    } catch (error) {
-        console.error('DynamoDB Error:', error);
-        res.status(500).json({ message: 'Error saving data.' });
-    }
+  try {
+    await dynamoDB.send(params);
+    res.status(200).json({ message: "Data saved successfully!" });
+  } catch (error) {
+    console.error("DynamoDB Error:", error);
+    res.status(500).json({ message: "Error saving data", error: error.message });
+  }
 });
 
-// Start Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+// Export Lambda
+const server = serverless.createServer(app);
+exports.handler = (event, context) => serverless.proxy(server, event, context);

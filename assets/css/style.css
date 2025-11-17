@@ -3,10 +3,6 @@
 # General
 --------------------------------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
 :root{
   --darkgray:#d9d9d9;
   --gray: #e4e4e4;
@@ -91,6 +87,7 @@ img{
   height: 40px;
   border-radius: 100%;
   transition: all 0.4s;
+  font-size: 0;
 }
 
 .back-to-top i {
@@ -528,6 +525,12 @@ a.nav-link.search-site.mobile-search {
 
 
 @media (max-width: 993px) {
+  .nav-link.search-site.mobile-search::before {
+    margin: 2px 0 0 8px;
+  }
+  .nav-link.profile-icon::before {
+    margin: 1.6px 0 0 7.3px;
+  }
   .nav-link.raise-btn::before {
     margin: 6px 0 0 8.2px;
   }
@@ -560,15 +563,21 @@ a.nav-link.search-site.mobile-search {
   padding-top: 82px;
 }
 
+.seo-heading {
+    color: #ededed;
+    font-size: 1px;
+    margin: 0;
+}
+
 .hero-sub {
   padding: 150px 0 0 0;
   text-align: center;
   margin: 0 auto;
 }
 
-.hero-home-main-section .hero-sub {
+/* .hero-home-main-section .hero-sub {
   padding: 30px  0 0 0;
-}
+} */
 
 .event-anchor {
   margin: 0 0 112px;
@@ -1730,6 +1739,11 @@ section.ticket-form {
   min-height: 178px;
 }
 
+.sub-tab2-section .ticket-form form .change-order-div  select {
+    min-height: unset;
+    overflow-y: auto;
+}
+
 ::-ms-input-placeholder {
   color: lightgrey;
 }
@@ -2667,7 +2681,7 @@ span.hr-rule {
   padding: 20px 0 0 80px;
 }
 .prod-head-text .prod-para p {
-  max-width: 431px;
+  max-width: 531px;
 }
 .prod-head-text .prod-para a {
   color: #fff;
@@ -2906,6 +2920,9 @@ span.hr-rule {
   max-height: 100%;
   border-radius: 8px;
 }
+.news-home-section .news-company{
+  font-size: 22px;
+}
 .full-news-page a {
   padding: 0;
   font-weight: 600;
@@ -3100,10 +3117,10 @@ body.productPage.modal-open {
   line-height: 22px;
 }
 /* Structure Cabling Image popup */
-#low-Voltage .image-modal {
+#low-voltage .image-modal {
   z-index: 11;
 }
-#low-Voltage .image-modal .modal-content {
+#low-voltage .image-modal .modal-content {
   top: 20%;
 }
 
@@ -3535,6 +3552,10 @@ input#searchInput {
 /* Mobile */
 
 @media only screen and (max-width: 767.9px){
+  #submitTicketForm #zsCaptcha {
+    display: flex;
+    align-items: center;
+}
   .submit-sub-section {
     padding: 25px 15px 15px;
 }
@@ -3614,6 +3635,9 @@ h3#termsModalLabel {
   left: 0;
 }
 .news-company {
+  font-size: 16px;
+}
+.news-home-section .news-company{
   font-size: 16px;
 }
   .full-news-page a {
@@ -3742,7 +3766,7 @@ section.sub-tab-section {
     padding: 45px 0 0 0;
   }
   .hero-home-main-section .hero-sub {
-    padding: 50px 0 0 0;
+    padding: 70px 0 0 0;
   }
   .event-section{
     /* padding: 0px 0 50px 0; */
@@ -4111,7 +4135,7 @@ section.ticket-form {
 .low-structure-img .col-md-4 {
   width: unset;
 }
-div#low-Voltage {
+div#low-voltage {
   padding: 44px 12px 0;
 }
 .image-modal {
@@ -4137,11 +4161,11 @@ div#low-Voltage {
   padding: 10px;
   width: 95%;
 }
-#low-Voltage .image-modal .modal-content {
+#low-voltage .image-modal .modal-content {
   top: 5%;
   padding: 0 10px;
 }
-#low-Voltage .image-modal .close {
+#low-voltage .image-modal .close {
   top: 50px;
 }
 input#textBox {
@@ -5156,21 +5180,26 @@ ul.menu-bar {
 
 /* ========== Chat bot ============ */
 #chatbotIcon {
-  position: fixed;
-  bottom: 22px;
-  right: 20px;
-  z-index: 1000;
-  background-color: var(--orange);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+    position: fixed;
+    bottom: 22px;
+    right: 20px;
+    z-index: 1000;
+    background-color: var(--orange);
+    /* color: white; */
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    /* font-size: 22px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+#chatbotIcon img {
+    width: 25px;
+    height: 25px;
 }
 #chatPopup {
   position: fixed;
@@ -5234,8 +5263,283 @@ ul.menu-bar {
   box-shadow: none;
 }
 .chat-bubble.bot a {
-  padding: 0;
+  padding: 0 0 0 4px;
   text-decoration: underline;
   color: var(--orange);
   font-weight: 600;
+}
+
+@media only screen and (max-width: 767.9px) {
+  #chatPopup{
+    right: 12px;
+    position: fixed;
+  }
+}
+
+
+/* ======= Blue Product CSS */
+
+#other-info .image-right-banner,
+#wifi .image-right-banner{
+    display: flex;
+    align-items: flex-start;
+    justify-content: unset;
+    padding-left: 0;
+}
+#other-info .image-right-banner img{
+    max-width: 95%;
+}
+#other-info.product-tabcontent .head-para-row,
+#audi-vide.product-tabcontent .head-para-row,
+#wifi.product-tabcontent .head-para-row,
+#security.product-tabcontent .head-para-row,
+#energy.product-tabcontent .head-para-row,
+#low-voltage.product-tabcontent .head-para-row {
+    background-color: #CDD9F5;
+    border-radius: 8px;
+}
+#other-info .sub-Inquiry,
+#audi-vide .sub-Inquiry,
+#wifi .sub-Inquiry,
+#security .sub-Inquiry,
+#energy .sub-Inquiry,
+#low-voltage .sub-Inquiry{
+   background-color: var(--orange);
+   border-color: var(--orange)
+}
+#audi-vide .image-right-banner{
+    align-items: end;
+}
+#audi-vide .image-right-banner img,
+#wifi .image-right-banner img,
+#energy .image-right-banner img,
+#low-voltage .image-right-banner img{
+    max-width: 100%;
+}
+#audi-vide .submit-head-para {
+    padding: 0;
+}
+#wifi .submit-head-para {
+    padding: 30px 0 0 0;
+}
+#wifi.product-tabcontent .head-para-row {
+    padding-top: 0;
+}
+#security.product-tabcontent .head-para-row{
+   padding-top:0;
+}
+#security.product-tabcontent .head-para-row::before {
+    background-image: url('https://www.techunifi.com/assets/img/illustrations/illustration-5.png');
+    position: absolute;
+    background-repeat: no-repeat;
+    content: '';
+    width: 100%;
+    height: 78%;
+    max-width: 76%;
+    background-size: 83%;
+    margin: 0 0 0 29px;
+}
+#security .submit-head-para {
+    padding-top: 30px;
+}
+#energy .image-right-banner,
+#low-voltage .image-right-banner {
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding-left:0;
+}
+
+/*============Mobile============*/
+@media only screen and (max-width: 767.9px) {
+   
+#security.product-tabcontent .head-para-row::before {
+    max-width: 100%;
+    background-size: 100%;
+    margin: 0 0 0 0; 
+}
+
+#security .submit-head-para {
+    padding-top: 155px;
+}
+
+#wifi .submit-head-para {
+    padding: 0;
+}
+#audi-vide .submit-head-para {
+    padding: 0;
+}
+#other-info .image-right-banner{
+    padding-bottom: 30px;
+}
+#energy .submit-head-para {
+    margin: 30px 0 20px 0;
+ }
+#low-voltage .submit-head-para {
+    margin: 31px 0 20px 0;
+}
+
+
+}
+
+/* ============================================================= */
+/* --- Original Styles (Modified for Animation) --- */
+.we-text-col a {
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background-color: var(--orange);
+  border: 1px solid var(--orange);
+  padding: 10px 25px;
+  max-width: fit-content;
+  display: block;
+  margin: 0 0 35px 0;
+  
+  /* ADDITIONS for Hover Animation Setup */
+  position: relative; /* 1. Essential for positioning pseudo-elements */
+  overflow: hidden; /* 2. Essential to hide the initial state of the pseudo-elements */
+  z-index: 1; /* 3. Ensures text is above the filling layers */
+  transition: color 0.35s; /* 4. Only transition the text color */
+}
+
+
+.hero-text a {
+  border-radius: var(--border-radius);
+}
+
+.hero-text a:hover {
+  /* Original hover styles */
+  color: var(--gray);
+  /* The background-color change is now handled by the :after pseudo-element */
+  background-color: transparent; /* Set original background to transparent to reveal layers */
+}
+
+
+/* --- ADDITIONS for Top-Down Fill Animation --- */
+
+/* 1. Define the filling layers (pseudo-elements) */
+.we-text-col a::before,
+.we-text-col a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -100%; /* Start 100% (the height of the link) above the link */
+  left: 0;
+  z-index: -1; /* Place the fill layers behind the text */
+  transition: top 0.35s; /* Animate the movement */
+}
+
+/* 2. Style the first layer (for opacity effect) */
+.we-text-col a::before {
+  background: var(--gray); /* Use the new hover color for the layers */
+  opacity: 0.5;
+}
+
+/* 3. Style the second layer (the solid fill) */
+.we-text-col a::after {
+  background: var(--blue); /* Use the new hover color */
+  transition-delay: 0.2s; /* Delay the second layer to create the double sweep effect */
+}
+
+/* 4. Hover State: Move the filling layers */
+.we-text-col a:hover::before,
+.we-text-col a:hover::after {
+  top: 0; /* Move the layers down to cover the button */
+}
+
+/* ======================================= */
+
+.prod-head-text .prod-para a {
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1px;
+    background-color: var(--orange);
+    border: 1px solid var(--orange);
+    padding: 10px 25px;
+
+    /* Additions for Animation Setup */
+    display: inline-block; /* Essential for containing the pseudo-element and setting margins/padding correctly */
+    text-decoration: none; /* Ensure link underline is off */
+    position: relative; /* Context for positioning the border pseudo-element */
+    overflow: hidden; /* Important: Hides the border when it's outside the button area */
+    transition: color 0.3s ease; /* Smooth transition for the text color */
+    z-index: 1; /* Ensures text is on top */
+}
+
+/* 1. Define the Border Element */
+.prod-head-text .prod-para a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px; /* Thickness of the border */
+    background-color: var(--blue); /* The color the border slides in with */
+    transform: translateX(-100%); /* Initial state: Move completely off to the left */
+    transition: transform 0.3s ease-out; /* Smooth transition for the sliding movement */
+    z-index: -1; /* Keep it behind the main button text */
+}
+
+/* 2. Hover State */
+.prod-head-text .prod-para a:hover {
+    color: var(--blue); /* Text color changes to blue on hover */
+    background-color: var(--orange); /* Keep the background color */
+    border-color: var(--blue); /* Change the border color to match the slide-out effect */
+}
+
+/* 3. Animate the Border */
+.prod-head-text .prod-para a:hover::after {
+    transform: translateX(0); /* Final state: Slide the border fully into place */
+}
+
+
+/* ============================== */
+.client-button-home a {
+    background-color: var(--blue);
+    color: var(--gray);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    margin: 0 auto 50px;
+    display: block;
+    max-width: fit-content;
+    padding: 10px 50px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    /* ADDITIONS for Animation Setup */
+    text-decoration: none;
+    position: relative; /* Essential for positioning ::before */
+    overflow: hidden; /* Essential to hide the initial state of the sweep */
+    transition: color 0.4s ease; /* Only transition the text color */
+    z-index: 1; /* Ensures text is always on top */
+} 
+
+/* Define the sweeping layer (initial state) */
+.client-button-home a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%; /* Make it wider to ensure it covers the diagonal sweep */
+    height: 100%;
+    background-color: var(--gray); /* The hover background color */
+    z-index: -1; /* Place it behind the text */
+    
+    /* Diagonal effect: Skew the element */
+    transform-origin: bottom left; /* Anchor point for rotation/skew */
+    transform: skewX(-45deg) translateX(-100%); /* Skew and move completely off to the left */
+    
+    /* Animation speed */
+    transition: transform 0.4s ease-out; 
+}
+
+/* Hover State: Change Text Color and Animate Sweep */
+.client-button-home a:hover {
+    color: var(--black); /* Text color changes to the desired hover color */
+    background-color: var(--blue); /* Keep the base background color, as the sweep covers it */
+}
+
+/* Animate the Sweep */
+.client-button-home a:hover::before {
+    transform: skewX(-45deg) translateX(0); /* Slide the skewed element into view */
 }

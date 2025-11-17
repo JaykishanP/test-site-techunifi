@@ -352,26 +352,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* ===== Meta OG ===== */
-$(document).ready(function() {
-  // Function to set meta tags based on screen size
-  function setMetaTags() {
-    const screenWidth = window.innerWidth;
-    const desktopMetaTags = $('[id^="desktop_"]');
-    const mobileMetaTags = $('[id^="mobile_"]');
-    
-    if (screenWidth >= 1024) {
-      desktopMetaTags.css('display', 'block');
-      mobileMetaTags.css('display', 'none');
-    } else {
-      desktopMetaTags.css('display', 'none');
-      mobileMetaTags.css('display', 'block');
-    }
-  }
 
-  // Call the function initially and on window resize
-  setMetaTags();
-  $(window).resize(setMetaTags);
-});
 
 /* ===== domain/index.html ===== */
 $(document).ready(function() {
@@ -444,11 +425,11 @@ function openTab(evt, tabName) {
   }
 }
 
-/* ==== Home to ClientList - About Page ==== */
+/* ==== Home to Clientlist - About Page ==== */
 document.addEventListener('DOMContentLoaded', function() {
   var urlParams = new URLSearchParams(window.location.search);
   var tabParam = urlParams.get('tab');
-  if (tabParam === 'clientList') {
+  if (tabParam === 'clientlist') {
     openTab(null, 'tab4'); // Assuming 'tab2' is the ID of the News tab
     var tabLinks = document.getElementsByClassName('tablinks');
     for (var i = 0; i < tabLinks.length; i++) {
@@ -1085,146 +1066,6 @@ $(document).ready(function() {
 
 /* ==== Form Validation ====  */
 
-/* ======= Submit a Ticket ======= */
-if (window.location.pathname === '/submit.html') {
-  $(document).ready(function() {
-
-    function submitgenerateRandomNumbers() {
-      var submitnum1 = Math.floor(Math.random() * 10);
-      var submitnum2 = Math.floor(Math.random() * 10);
-      return [submitnum1, submitnum2];
-    }
-
-    function submitupdateMathSumQuestion() {
-      var submitrandomNumbers = submitgenerateRandomNumbers();
-      var submitnum1 = submitrandomNumbers[0];
-      var submitnum2 = submitrandomNumbers[1];
-      $('#mathSumQuestion').text('What is ' + submitnum1 + ' + ' + submitnum2 + '?');
-      $('#mathSum').data('submitexpectedSum', submitnum1 + submitnum2);
-    }
-    submitupdateMathSumQuestion();
-
-    function validateSubmitForm() {
-      var formValid = true;
-      $('#submitTicketForm input, #submitTicketForm select, #submitTicketForm textarea').each(function() {
-        if ($(this).hasClass('not-required')) {
-          return true;
-        }
-        if (!$(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length === 0)) {
-          formValid = false;
-          $(this).css('border-color', 'red');
-          $('html, body').animate({
-            scrollTop: $(this).offset().top - 160
-          }, 500);
-          return false;
-        } else {
-          $(this).css('border-color', 'green');
-        }
-      });
-      var submitmathSumInput = $('#mathSum');
-      var submitmathSumValue = submitmathSumInput.val();
-      var submitexpectedSum = submitmathSumInput.data('submitexpectedSum');
-      if (!submitmathSumValue || parseInt(submitmathSumValue) !== submitexpectedSum) {
-        submitmathSumInput.css('border-color', 'red');
-        formValid = false;
-      } else {
-        submitmathSumInput.css('border-color', 'green');
-      }
-      if (!formValid) {
-        return false;
-      }
-      return true;
-    }
-    $('#submitTicketForm').submit(function() {
-      return validateSubmitForm();
-    });
-    $('#submitTicketForm').on('reset', function() {
-      submitupdateMathSumQuestion();
-    });
-    $('#submitTicketForm input, #submitTicketForm select, #submitTicketForm textarea').on('input change blur', function() {
-      if (!$(this).hasClass('not-required')) {
-        if ($(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length !== 0)) {
-          $(this).css('border-color', 'green');
-        } else {
-          $(this).css('border-color', 'red');
-        }
-      }
-    });
-  });
-}
-
-
-/* === New Inquiry Form === */
-
-$(document).ready(function() {
-
-    function inquirygenerateRandomNumbers() {
-      var inquirynum1 = Math.floor(Math.random() * 10);
-      var inquirynum2 = Math.floor(Math.random() * 10);
-      return [inquirynum1, inquirynum2]
-    }
-  
-    function inquiryupdateMathSumQuestion() {
-      var inquiryrandomNumbers = inquirygenerateRandomNumbers();
-      var inquirynum1 = inquiryrandomNumbers[0];
-      var inquirynum2 = inquiryrandomNumbers[1];
-      $('#inquirymathSumQuestion').text('What is ' + inquirynum1 + ' + ' + inquirynum2 + '?');
-      $('#inquirymathSum').data('inquiryexpectedSum', inquirynum1 + inquirynum2)
-    }
-    inquiryupdateMathSumQuestion();
-  
-    function validateInquiryForm() {
-      var formValid = !0;
-      $('#myInquiryForm input, #myInquiryForm select, #myInquiryForm textarea').each(function() {
-        if ($(this).hasClass('not-required')) {
-          return !0
-        }
-        if (!$(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length === 0)) {
-          formValid = !1;
-          $(this).css('border-color', 'red');
-          $('html, body').animate({
-            scrollTop: $(this).offset().top - 160
-          }, 500);
-          return !1
-        } else {
-          $(this).css('border-color', 'green')
-        }
-      });
-      var inquirymathSumInput = $('#inquirymathSum');
-      var inquirymathSumValue = inquirymathSumInput.val();
-      var inquiryexpectedSum = inquirymathSumInput.data('inquiryexpectedSum');
-      if (!inquirymathSumValue || parseInt(inquirymathSumValue) !== inquiryexpectedSum) {
-        inquirymathSumInput.css('border-color', 'red');
-        formValid = !1
-      } else {
-        inquirymathSumInput.css('border-color', 'green')
-      }
-      if (!formValid) {
-        return !1
-      }
-      return !0
-    }
-    $('#myInquiryForm').submit(function() {
-      return validateInquiryForm()
-    });
-    $('#submitTicketForm').on('reset', function() {
-      inquiryupdateMathSumQuestion()
-    });
-    $('#myInquiryForm input, #myInquiryForm select, #myInquiryForm textarea').on('input change blur', function() {
-      if (!$(this).hasClass('not-required')) {
-        if ($(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length !== 0)) {
-          $(this).css('border-color', 'green')
-        } else {
-          $(this).css('border-color', 'red')
-        }
-      }
-    })
-
-
-
-  });
-
-
 /* ==== Tooltip ==== */
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -1449,25 +1290,43 @@ document.addEventListener('DOMContentLoaded', function() {
    
 /* ==== Captcha Implementation==== */
 function timestamp() {
-  var response = document.getElementById("g-recaptcha-response");
-  if (!response) {
-      console.warn("g-recaptcha-response element not found");
-      return;
-  }
-  
-  if (response.value.trim() === "") {
-      var captchaSettingsElem = document.getElementsByName("captcha_settings")[0];
-      if (captchaSettingsElem) {
-          var elems = JSON.parse(captchaSettingsElem.value);
-          elems["ts"] = new Date().getTime(); // no need to stringify here
-          captchaSettingsElem.value = JSON.stringify(elems);
-      }
-  }
+    var response = document.getElementById("g-recaptcha-response");
+    if (!response) {
+        
+        console.warn("g-recaptcha-response element not found within timestamp function.");
+        return;
+    }
+
+    if (response.value.trim() === "") {
+        var captchaSettingsElem = document.getElementsByName("captcha_settings")[0];
+        if (captchaSettingsElem) {
+            var elems = JSON.parse(captchaSettingsElem.value);
+            elems["ts"] = new Date().getTime();
+            captchaSettingsElem.value = JSON.stringify(elems);
+        }
+    }
 }
 
-// Optionally, adjust or replace setInterval based on your needs
-setInterval(timestamp, 500);
+// Function to check for reCAPTCHA presence and initialize the timestamp function
+function initializeRecaptchaTimestamp() {
+    var recaptchaContainer = document.querySelector('.g-recaptcha');
+    var recaptchaResponseElement = document.getElementById('g-recaptcha-response');
 
+    if (recaptchaContainer || recaptchaResponseElement) {
+        setInterval(timestamp, 500);
+        console.log("reCAPTCHA detected. Timestamp function initialized.");
+    } else {
+        console.log("reCAPTCHA not found on this page. Timestamp function not initialized.");
+    }
+}
+
+if (document.readyState === 'loading') {
+    // Loading hasn't finished yet
+    document.addEventListener('DOMContentLoaded', initializeRecaptchaTimestamp);
+} else {
+    // `DOMContentLoaded` has already fired
+    initializeRecaptchaTimestamp();
+}
 
 /* =========  Product heading to Modal Popup new Inquiry ========== */
 
@@ -1586,35 +1445,52 @@ document.addEventListener('DOMContentLoaded', function () {
 /* ===== Change order Modal ===== */
 
 /* ===== Password Modal ===== */
-var modal = document.getElementById("passwordModal");
-var errorMessage = document.getElementById("brand-error-message");
+// Get the current page's filename
+var path = window.location.pathname;
+var pageName = path.split("/").pop();
 
-document.addEventListener("DOMContentLoaded", function() {
-    modal.style.display = "block";
-    document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
-});
+// Define the specific pages where the code should run
+var allowedPages = ["change-order.html", "brands.html", "standard.html", "takeoff.html"];
 
-function validateLogin() {
-    var password = document.getElementById("protected-password").value;
-    var validPassword = "Change_Order$2024";
-    if (password === validPassword) {
-        modal.style.display = "none";
-        document.body.style.overflow = ""; // Reset body overflow property
-    } else {
-        errorMessage.style.display = "block";
+// Check if the current page is one of the allowed pages
+if (allowedPages.includes(pageName)) {
+    var modal = document.getElementById("passwordModal");
+    var errorMessage = document.getElementById("brand-error-message");
+
+    // Only proceed if the modal and error message elements exist on the page
+    if (modal && errorMessage) {
+        document.addEventListener("DOMContentLoaded", function() {
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+        });
+
+        function validateLogin() {
+            var password = document.getElementById("protected-password").value;
+            var validPassword = "Change_Order$2024";
+            if (password === validPassword) {
+                modal.style.display = "none";
+                document.body.style.overflow = ""; // Reset body overflow property
+            } else {
+                errorMessage.style.display = "block";
+            }
+        }
+
+        function hideErrorMessage() {
+            errorMessage.style.display = "none";
+        }
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                validateLogin();
+            }
+        });
+
+        // Make validateLogin and hideErrorMessage globally accessible if needed for inline HTML events
+        window.validateLogin = validateLogin;
+        window.hideErrorMessage = hideErrorMessage;
     }
 }
-
-function hideErrorMessage() {
-    errorMessage.style.display = "none"; 
-}
-
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        validateLogin();
-    }
-});
 
 /* === Toggle Password Eye === */
 function togglePasswordVisibility() {
@@ -1635,310 +1511,10 @@ function togglePasswordVisibility() {
 
 /* ===== Digital Signature ===== */
 // Run this script only on the "change-order.html" page
-if (window.location.pathname === "/change-order.html") {
-  var canvas = document.getElementById("signature-pad");
-
-  function resizeCanvas() {
-      var ratio = Math.max(window.devicePixelRatio || 1, 1);
-      canvas.width = canvas.offsetWidth * ratio;
-      canvas.height = canvas.offsetHeight * ratio;
-      canvas.getContext("2d").scale(ratio, ratio);
-  }
-
-  window.onresize = resizeCanvas;
-  resizeCanvas();
-
-  var signaturePad = new SignaturePad(canvas, {
-      backgroundColor: 'rgb(250,250,250)'
-  });
-
-  document.getElementById("clear").addEventListener('click', function() {
-      signaturePad.clear();
-  });
-}
-
 
 /* ===== Change Order ===== */
 // JavaScript for change-order.html
 
-if(window.location.pathname === '/change-order.html'){
-
-  $(document).ready(function () {
-    // Function to generate random numbers for math validation
-    function generateRandomNumbers() {
-      var num1 = Math.floor(Math.random() * 10);
-      var num2 = Math.floor(Math.random() * 10);
-      return [num1, num2];
-    }
-  
-    // Function to update the math sum question with new numbers
-    function updateMathSumQuestion() {
-      var randomNumbers = generateRandomNumbers();
-      var num1 = randomNumbers[0];
-      var num2 = randomNumbers[1];
-      $('#mathSumQuestion').text('What is ' + num1 + ' + ' + num2 + '?');
-      $('#mathSum').data('expectedSum', num1 + num2);
-    }
-  
-    updateMathSumQuestion();
-  
-    // Function to validate the form
-    function validateTicketForm() {
-      var formValid = true;
-  
-      // Validate all inputs
-      $('#submitTicketForm input, #submitTicketForm checkbox, #submitTicketForm select, #submitTicketForm textarea').each(function () {
-        if ($(this).hasClass('not-required')) return true;
-  
-        if (!$(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length === 0)) {
-          formValid = false;
-          $(this).css('border-color', 'red');
-          $('html, body').animate({ scrollTop: $(this).offset().top - 200 }, 500);
-          return false; // Stop validation loop
-        } else {
-          $(this).css('border-color', 'green');
-        }
-      });
-  
-      // Signature validation
-      if (signaturePad.isEmpty()) {
-        formValid = false;
-        alert('Please provide your signature.');
-        $('html, body').animate({ scrollTop: $('#signature-pad').offset().top - 200 }, 500);
-      }
-  
-      // Math validation
-      var mathSumInput = $('#mathSum');
-      var mathSumValue = mathSumInput.val();
-      var expectedSum = mathSumInput.data('expectedSum');
-      if (!mathSumValue || parseInt(mathSumValue) !== expectedSum) {
-        mathSumInput.css('border-color', 'red');
-        formValid = false;
-      } else {
-        mathSumInput.css('border-color', 'green');
-      }
-  
-      // CAPTCHA validation
-      var captchaResponse = grecaptcha.getResponse();
-      if (!captchaResponse) {
-        formValid = false;
-        $('.g-recaptcha').css('border-color', 'red');
-        alert('Please complete the CAPTCHA');
-      } else {
-        $('.g-recaptcha').css('border-color', 'green');
-      }
-  
-      return formValid;
-    }
-  
-    // Handle form submission
-    $('#submitTicketForm').on('submit', function (event) {
-      event.preventDefault(); // Prevent default form submission
-  
-      if (!validateTicketForm()) {
-        console.log('Form validation failed.');
-        return; // Stop if validation fails
-      }
-  
-      // Generate the PDF
-      try {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        const pageHeight = doc.internal.pageSize.height || 297; // A4 page height (in mm)
-        const pageWidth = doc.internal.pageSize.width || 210; // A4 page width (in mm)
-        const headerHeight = 40;
-        const footerHeight = 30;
-      
-        // Function to add the header with logo
-        function addHeader(doc) {
-          return new Promise((resolve, reject) => {
-            const imgUrl = 'https://www.techunifi.com/assets/img/hero-img.png';
-            const img = new Image();
-            img.src = imgUrl;
-      
-            img.onload = function () {
-              doc.addImage(img, 'PNG', 60, 10, 90, 30); // Adjust x, y, width, height as necessary
-              resolve();
-            };
-      
-            img.onerror = function () {
-              reject('Image failed to load');
-            };
-          });
-        }
-      
-        // Function to add the footer with contact details
-        function addFooter(doc) {
-          doc.setFontSize(12);
-          doc.setTextColor(0, 0, 0);
-          doc.text('2638 Willard Dairy Road, Suite 112 High Point, NC 27265', pageWidth / 2, pageHeight - footerHeight + 10, null, null, 'center');
-          doc.text('+1 (336) 860-6061 | techunifi.com | Info@techunifi.com', pageWidth / 2, pageHeight - footerHeight + 20, null, null, 'center');
-          doc.setLineWidth(0.5);
-          doc.line(10, pageHeight - footerHeight, pageWidth - 10, pageHeight - footerHeight); // x1, y1, x2, y2
-        }
-      
-        // Function to add form data content
-      // Function to add form data content
-  function addContent(doc, y) {
-    const formData = $('#submitTicketForm').serializeArray();
-    const filteredFormData = formData.filter(field => 
-      field.name !== 'orgId' && 
-      field.name !== 'retURL' && 
-      field.name !== 'mathSum' && 
-      field.name !== '00NUm000009SCKP' && 
-      field.name !== 'g-recaptcha-response'
-    );
-  
-    const lineHeight = 10; // Line height for text
-    const valueIndent = 90; // Increase indent for values to avoid overlap
-    const maxWidth = pageWidth - valueIndent - 10; // Maximum width for text wrapping
-  
-    filteredFormData.forEach(field => {
-      const label = $(`label[for='${field.name}']`).text();
-      const value = field.value;
-  
-      // Check for page break
-      if (y + lineHeight > pageHeight - footerHeight - 10) {
-        doc.addPage();
-        y = headerHeight; // Reset y for the new page
-        addHeader(doc); // Add header to the new page
-      }
-  
-      // Exclude specific values
-      if (!value.includes('00DHo000002fpJX') && !value.includes('{"keyname":"casev2","fallback":"true","orgId":"00DHo000002fpJX","ts"')) {
-        // Set bold font for the label text
-        doc.setFont('helvetica', 'bold');
-        doc.text(`${label}:`, 10, y); // Print label
-        
-        // Set regular font for the value
-        doc.setFont('helvetica', 'normal');
-  
-        // Split value text into multiple lines if it's too long
-        const valueLines = doc.splitTextToSize(value, maxWidth);
-  
-        // Print each line of the value
-        valueLines.forEach(line => {
-          if (y + lineHeight > pageHeight - footerHeight - 10) {
-            doc.addPage();
-            y = headerHeight; // Reset y for the new page
-            addHeader(doc); // Add header to the new page
-          }
-          doc.text(line, valueIndent, y);
-          y += lineHeight; // Move to the next line
-        });
-      }
-    });
-  
-    return y; // Return updated y position
-  }
-  
-      
-        // Function to add Terms and Conditions
-        function addTermsAndConditions(doc, y) {
-          if (y + 60 > pageHeight - footerHeight - 10) {
-            doc.addPage();
-            y = headerHeight; // Reset y for the new page
-            addHeader(doc); // Add header to the new page
-          }
-      
-          doc.setFontSize(14);
-          doc.setFont('helvetica', 'bold'); // Normal font for terms and conditions
-          doc.text('Terms and Conditions', 10, y);
-          y += 10;
-          doc.setFont('helvetica', 'normal'); // Normal font for terms and conditions
-          doc.text('1. Total payment due 30 days after completion of work.', 10, y);
-          y += 10;
-          doc.text('2. Refer to the W.O. # in all correspondence and in your payment.', 10, y);
-          y += 10;
-          doc.text('3. Please send correspondence regarding this work order to:', 10, y);
-          y += 10;
-          doc.text('   Suzanne Blair - suzanne.blair@techunifi.com.', 10, y);
-          y += 10;
-      
-          // Add hyperlink to the word "website"
-          doc.setTextColor(6, 98, 187); // Set text color to #0662BB
-          doc.textWithLink('View full terms and conditions', 10, y, { url: 'https://www.techunifi.com/terms-conditions.html' });
-          y += 20; // Space before the signature
-      
-          return y; // Return updated y position
-        }
-      
-        // Start generating the PDF
-        async function generatePDF() {
-          let y = headerHeight;
-      
-          // Add header and wait for image to load
-          await addHeader(doc);
-      
-          y+=25; 
-  
-          // Add form content
-          y = addContent(doc, y);
-      
-          y+=10
-          // Add Terms and Conditions
-          y = addTermsAndConditions(doc, y);
-      
-          // Add signature if available
-          if (!signaturePad.isEmpty()) {
-            const signatureImage = signaturePad.toDataURL();
-            if (y + 40 > pageHeight - footerHeight - 10) { // Ensure there's enough space for the signature
-              doc.addPage();
-              y = headerHeight;
-              await addHeader(doc); // Add header to the new page
-            }
-            doc.addImage(signatureImage, 'PNG', 10, y, 190, 30);
-            y += 40; // Adjust space after signature
-          }
-      
-          // Add footer to the last page
-          addFooter(doc);
-      
-          // Save the PDF
-          doc.save('techunifi-changeOrder-data.pdf');
-          console.log('PDF downloaded successfully.');
-        }
-      
-        // Generate the PDF
-        generatePDF();
-      
-      } catch (error) {
-        console.error('Error generating PDF:', error);
-        alert('An error occurred while generating the PDF. Please try again.');
-      }
-      
-      
-      
-      
-      // Submit the form using the native JavaScript submit method to avoid conflicts
-      setTimeout(() => {
-        var form = document.getElementById('submitTicketForm');
-        if (form && form.tagName === 'FORM') {
-          HTMLFormElement.prototype.submit.call(form); // Native form submission
-        } else {
-          console.error('Form not found or not a valid form element.');
-        }
-      }, 1000);
-    });
-  
-    // Event listener to update math sum question when the form is reset
-    $('#submitTicketForm').on('reset', function () {
-      updateMathSumQuestion();
-    });
-  
-    // Event listener to update border color on input changes
-    $('#submitTicketForm input, #submitTicketForm select, #submitTicketForm textarea').on('input change blur', function () {
-      if (!$(this).hasClass('not-required')) {
-        if ($(this).val() || ($(this).is('select[multiple]') && $(this).find('option:selected').length !== 0)) {
-          $(this).css('border-color', 'green');
-        } else {
-          $(this).css('border-color', 'red');
-        }
-      }
-    });
-  });
-
-}
 
 /* ======= Textarea ======= */
 
@@ -2079,7 +1655,7 @@ const predefinedQA = {
 
   "process": "Our process includes Design, Construction, Install, Go Live, and Operations phases to ensure seamless service delivery. Learn more: [Our Process](https://www.techunifi.com/#how-it-works)",
 
-  "clients": "Yes! Some of our clients include Marriott, Sheraton, Hyatt, and Aloft hotels across various locations. See more: [Our Clients](https://www.techunifi.com/about.html?tab=clientList)",
+  "clients": "Yes! Some of our clients include Marriott, Sheraton, Hyatt, and Aloft hotels across various locations. See more: [Our Clients](https://www.techunifi.com/about.html?tab=clientlist)",
 
   "products": "We provide Network Solutions, Audio & Video equipment, and Energy Management technologies. Check them here: [Techunifi Products](https://www.techunifi.com/products.html)",
 
@@ -2091,7 +1667,7 @@ const predefinedQA = {
   "home": "Welcome to TechUnifi. Explore our products and services. [Home](https://www.techunifi.com)",
   "about": "Learn more about TechUnifi and our mission to innovate. [About Us](https://www.techunifi.com/about.html)",
   "home": "Welcome to TechUnifi. Explore our products and services. [Home](https://www.techunifi.com/index.html)",
-  "about_us": "Learn more about TechUnifi and our mission to innovate. Client, Clients, ClientList [About Us](https://www.techunifi.com/about.html)",
+  "about_us": "Learn more about TechUnifi and our mission to innovate. Client, Clients, Clientlist [About Us](https://www.techunifi.com/about.html)",
   "services": "Low Voltage, Telecom, Security, Auido-Video, Network, Wifi, Lighting, Energy, It Solutions,WIFI [Services](https://www.techunifi.com/#landing-services)",
   "news": "News, Latest News, New Changes [News](https://www.techunifi.com/about.html?tab=news)",
   "aahoacon": "aahoacon25, AAHOACON25, Aahoacon25 [aahoacon25, AAHOACON25, Aahoacon25](https://www.techunifi.com/aahoacon25.html)",
@@ -2109,16 +1685,16 @@ const predefinedQA = {
   "take_off": "Take Off [Take-Off](https://www.techunifi.com/takeoff.html)",
   "how_it_works": "Design, Construction, Install, Go Live, Operations [How It Works](https://www.techunifi.com/#how-it-works)",
   "login_profile": "Login, EbizCharge [Login, Profile](https://connect.ebizcharge.net/(S(m0bznjppezsmujzremg1hx3y))/EbizLogin.aspx?ReturnUrl=%2fTechunifi)",
-  "icc": "Provider of innovative connectivity solutions for networking infrastructure. [ICC](https://www.techunifi.com/products.html?section=low-Voltage)",
-  "legrand": "Leading global specialist in electrical and digital building infrastructures. [Legrand](https://www.techunifi.com/products.html?section=low-Voltage)",
-  "leviton": "Trusted manufacturer of electrical wiring devices, lighting controls, and network solutions. [Leviton](https://www.techunifi.com/products.html?section=low-Voltage)",
-  "c2g": "Supplier of high-quality connectivity solutions for audio/video, PC, and data networking applications. [C2G](https://www.techunifi.com/products.html?section=low-Voltage)",
-  "panduit": "Innovator in network infrastructure and industrial electrical solutions. [Panduit](https://www.techunifi.com/products.html?section=low-Voltage)",
-  "corning": "Leading provider of optical communications and glass solutions. [Corning](https://www.techunifi.com/products.html?section=low-Voltage)",
-  "commscope": "Global leader in network infrastructure solutions for connectivity. [CommScope](https://www.techunifi.com/products.html?section=low-Voltage)",
-  "chatsworth_products": "Manufacturer of IT infrastructure and cable management solutions. [Chatsworth Products](https://www.techunifi.com/products.html?section=low-Voltage)",
-  "arlington": "Provider of electrical and communication products for construction. [Arlington](https://www.techunifi.com/products.html?section=low-Voltage)",
-  "structured_cabling": "Structured cabling is the backbone of your IT infrastructure, providing a standardized method for managing and connecting all your network devices, from data centers to office floors. [Structured Cabling](https://www.techunifi.com/products.html?section=low-Voltage>)",
+  "icc": "Provider of innovative connectivity solutions for networking infrastructure. [ICC](https://www.techunifi.com/products.html?section=low-voltage)",
+  "legrand": "Leading global specialist in electrical and digital building infrastructures. [Legrand](https://www.techunifi.com/products.html?section=low-voltage)",
+  "leviton": "Trusted manufacturer of electrical wiring devices, lighting controls, and network solutions. [Leviton](https://www.techunifi.com/products.html?section=low-voltage)",
+  "c2g": "Supplier of high-quality connectivity solutions for audio/video, PC, and data networking applications. [C2G](https://www.techunifi.com/products.html?section=low-voltage)",
+  "panduit": "Innovator in network infrastructure and industrial electrical solutions. [Panduit](https://www.techunifi.com/products.html?section=low-voltage)",
+  "corning": "Leading provider of optical communications and glass solutions. [Corning](https://www.techunifi.com/products.html?section=low-voltage)",
+  "commscope": "Global leader in network infrastructure solutions for connectivity. [CommScope](https://www.techunifi.com/products.html?section=low-voltage)",
+  "chatsworth_products": "Manufacturer of IT infrastructure and cable management solutions. [Chatsworth Products](https://www.techunifi.com/products.html?section=low-voltage)",
+  "arlington": "Provider of electrical and communication products for construction. [Arlington](https://www.techunifi.com/products.html?section=low-voltage)",
+  "structured_cabling": "Structured cabling is the backbone of your IT infrastructure, providing a standardized method for managing and connecting all your network devices, from data centers to office floors. [Structured Cabling](https://www.techunifi.com/products.html?section=low-voltage>)",
   "bittel": "Smart home automation and IoT solutions [Bittel](https://www.techunifi.com/products.html?section=telecom)",
   "yealink": "Unified communication solutions [Yealink](https://www.techunifi.com/products.html?section=telecom)",
   "mitel": "Business communications (cloud and on-premise) [Mitel](https://www.techunifi.com/products.html?section=telecom)",
@@ -2316,6 +1892,7 @@ function clearChatIfNewDay() {
     localStorage.setItem("lastInteractionDate", today);
   }
 }
+
 
 
 /* ==== Event Close ==== */
