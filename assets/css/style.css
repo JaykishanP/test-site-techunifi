@@ -5384,67 +5384,75 @@ ul.menu-bar {
 /* ============================================================= */
 /* --- Original Styles (Modified for Animation) --- */
 .we-text-col a {
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: 1px;
-  background-color: var(--orange);
-  border: 1px solid var(--orange);
-  padding: 10px 25px;
-  max-width: fit-content;
-  display: block;
-  margin: 0 0 35px 0;
-  
-  /* ADDITIONS for Hover Animation Setup */
-  position: relative; /* 1. Essential for positioning pseudo-elements */
-  overflow: hidden; /* 2. Essential to hide the initial state of the pseudo-elements */
-  z-index: 1; /* 3. Ensures text is above the filling layers */
-  transition: color 0.35s; /* 4. Only transition the text color */
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1px;
+    background-color: var(--orange);
+    border: 1px solid var(--orange);
+    padding: 10px 25px;
+    max-width: fit-content;
+    display: block;
+    margin: 0 0 35px 0;
+
+    /* REQUIRED for Animation Setup */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease; 
+    text-decoration: none;
 }
 
-
 .hero-text a {
-  border-radius: var(--border-radius);
+    border-radius: var(--border-radius);
 }
 
 .hero-text a:hover {
-  /* Original hover styles */
-  color: var(--gray);
-  /* The background-color change is now handled by the :after pseudo-element */
-  background-color: transparent; /* Set original background to transparent to reveal layers */
+    color: var(--gray);
+    background-color: transparent;
 }
 
+/* --- MODIFIED for Vertical Split Wipe Animation --- */
 
-/* --- ADDITIONS for Top-Down Fill Animation --- */
-
-/* 1. Define the filling layers (pseudo-elements) */
+/* 1. Define the filling layers */
 .we-text-col a::before,
 .we-text-col a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -100%; /* Start 100% (the height of the link) above the link */
-  left: 0;
-  z-index: -1; /* Place the fill layers behind the text */
-  transition: top 0.35s; /* Animate the movement */
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    
+    /* Both start with 0 width, making them invisible lines */
+    width: 0; 
+    
+    z-index: -1;
+    /* Transition the width for the horizontal wipe/expansion */
+    transition: width 0.35s cubic-bezier(0.86, 0, 0.07, 1); /* Quick start, slow end */
 }
 
-/* 2. Style the first layer (for opacity effect) */
+/* 2. Style the Left Layer (::before) */
 .we-text-col a::before {
-  background: var(--gray); /* Use the new hover color for the layers */
-  opacity: 0.5;
+    background: var(--blue);
+    left: 0;
+    transform-origin: left center; /* Ensure expansion happens to the right */
 }
 
-/* 3. Style the second layer (the solid fill) */
+/* 3. Style the Right Layer (::after) */
 .we-text-col a::after {
-  background: var(--blue); /* Use the new hover color */
-  transition-delay: 0.2s; /* Delay the second layer to create the double sweep effect */
+    background: var(--orange);
+    right: 0;
+    transform-origin: right center; /* Ensure expansion happens to the left */
+    transition-delay: 0.05s; /* Slight delay to make them fill consecutively */
 }
 
-/* 4. Hover State: Move the filling layers */
-.we-text-col a:hover::before,
+/* 4. Hover State: Expand the layers */
+.we-text-col a:hover::before {
+    /* Expand the left layer to cover 50% of the button */
+    width: 50%;
+}
+
 .we-text-col a:hover::after {
-  top: 0; /* Move the layers down to cover the button */
+    /* Expand the right layer to cover 50% of the button */
+    width: 50%;
 }
 
 /* ======================================= */
