@@ -5381,6 +5381,44 @@ ul.menu-bar {
 
 }
 
+
+/* ===============New CSS================= */
+
+/* Navbar Links */
+
+/* Border X get width  */
+.menu-bar .nav-link:before, .menu-bar .nav-link:after
+{
+    position: absolute;
+    opacity: 0;
+    width: 0%;
+    height: 2px;
+    content: '';
+    background: var(--orange);
+    transition: all 0.3s;
+}
+
+.menu-bar .nav-link:before
+{
+    left: 0px;
+    top: 0px;
+}
+
+.menu-bar .nav-link:after
+{
+    right: 0px;
+    bottom: 0px;
+}
+
+.menu-bar .nav-link:hover:before, .menu-bar .nav-link:hover:after
+{
+    opacity: 1;
+    width: 100%;
+    font-weight: normal;
+}
+
+
+
 /* ============================================================= */
 /* --- Original Styles (Modified for Animation) --- */
 .we-text-col a {
@@ -5544,7 +5582,7 @@ ul.menu-bar {
 /* Hover State: Change Text Color and Animate Sweep */
 .client-button-home a:hover {
     color: var(--black); /* Text color changes to the desired hover color */
-    background-color: var(--blue); /* Keep the base background color, as the sweep covers it */
+    background-color: var(--orange); /* Keep the base background color, as the sweep covers it */
 }
 
 /* Animate the Sweep */
