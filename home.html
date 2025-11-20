@@ -248,7 +248,7 @@ function gtag(){dataLayer.push(arguments);}
       </div>
 
     <!-- Gsap -->
-
+      
 <div class="wrapp">
 		<!-- header .header -->
 		<header class="header">
@@ -346,10 +346,8 @@ function gtag(){dataLayer.push(arguments);}
 			<!-- section .section END -->
 
 		</main>
-		<!-- main .main END -->
+
 	</div>
-
-
    <!-- Gsap  -->
 
     </div>
@@ -1613,77 +1611,83 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Gsap -->
 
-<script>
-    $(function () {
-
-	'use strict';
-
-
-	//Lenis Smooth scroll
-	const lenis = new Lenis({
-		duration: 1.2
-	})
-
-	lenis.on('scroll', (e) => {
-		console.log(e)
-	})
-	function raf(time) {
-		lenis.raf(time)
-		requestAnimationFrame(raf)
-	}
-	requestAnimationFrame(raf)
-
-	//Integration Lenis on GSAP ScrollTrigger
-	lenis.on('scroll', ScrollTrigger.update)
-
-	gsap.ticker.add((time) => {
-		lenis.raf(time * 1000)
-	})
-
-	//Create animation ScrollTrigger
-	function scrollTrig() {
-
-		gsap.registerPlugin(ScrollTrigger);
-
-		let gsapBl = $('.gsap__bl').width();
-
-		//On full width
-		// $('.gsap__item').css('width', gsapBl + 'px');
-
-		//Transform slider track
-		let gsapTrack = $('.gsap__track').width();
-		let scrollSliderTransform = gsapTrack - gsapBl
-
-		//Create ScrollTrigger
-		gsap.to('.gsap__track', {
-			scrollTrigger: {
-				trigger: '.gsap_slider',
-				start: 'center center',
-				end: () => '+=' + gsapTrack,
-				pin: true,
-				scrub: true
-			},
-			x: '-=' + scrollSliderTransform + 'px'
-		});
-
-	}
-	scrollTrig();
-
-	//resize window
-	const debouncedResize = _.debounce(onWindowResize, 500);
-	function onWindowResize() {
-		console.log('Window resized!');
-		location.reload();
-	}
-	$(window).on('resize', debouncedResize);
-});
-</script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.0/bundled/lenis.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
+<script>
+$(function () {
+
+    'use strict';
+
+    // ---------------- LENIS ----------------
+    const lenis = new Lenis({
+        duration: 1.3,
+        smooth: true,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // ---------------- GSAP ------------------
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Make ScrollTrigger compatible with Lenis
+    lenis.on('scroll', ScrollTrigger.update);
+
+    ScrollTrigger.defaults({
+        pinType: document.body.style.transform ? "transform" : "fixed"
+    });
+
+    // -------- SLIDER SCROLLTRIGGER --------
+    function createSlider() {
+
+        const track = document.querySelector(".gsap__track");
+        const block = document.querySelector(".gsap__bl");
+        const section = document.querySelector(".section-slider");
+
+        const blWidth = block.getBoundingClientRect().width;
+        const trackWidth = track.scrollWidth;
+        const dist = trackWidth - blWidth;
+
+        // Prevent collapse – the only height fix needed
+        gsap.set(section, { height: window.innerHeight });
+
+        gsap.to(track, {
+            x: -dist,
+            ease: "none",
+            scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: "+=" + (dist + 200),
+                pin: true,
+                scrub: 1,
+                anticipatePin: 1.2,
+                invalidateOnRefresh: true,
+            }
+        });
+    }
+
+    // Run ONCE
+    createSlider();
+
+    // On resize → refresh only
+    const debounced = _.debounce(() => {
+        ScrollTrigger.refresh();
+    }, 250);
+
+    window.addEventListener("resize", debounced);
+
+});
+</script>
+
+
 
 <!-- Gsap -->
 
