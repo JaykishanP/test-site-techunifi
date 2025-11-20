@@ -199,97 +199,19 @@ function gtag(){dataLayer.push(arguments);}
 
       
     <!-- Gsap -->
-      
-<div class="wrapp">
+  <div class="slider">
+  <div class="slider-track">
+    <div class="slide"><img src="assets/img/services/animation/low-voltage.jpg"><span>Low Voltage</span></div>
+    <div class="slide"><img src="assets/img/services/animation/telecom.webp"><span>Telecom</span></div>
+    <div class="slide"><img src="assets/img/services/animation/security.jpg"><span>Security</span></div>
+    <div class="slide"><img src="assets/img/services/animation/network.jpg"><span>Network</span></div>
+    <div class="slide"><img src="assets/img/services/animation/lighting.png"><span>Lighting</span></div>
+    <div class="slide"><img src="assets/img/services/animation/audio-video.png"><span>Audio-Video</span></div>
+    <div class="slide"><img src="assets/img/services/animation/energy.png"><span>Energy</span></div>
+    <div class="slide"><img src="assets/img/services/animation/it-solution.jpg"><span>IT Solution</span></div>
+  </div>
+</div>
 
-		<!-- main .main -->
-		<main class="main">
-
-			<!-- section .section-slider -->
-			<section class="section-slider gsap_slider">
-
-				<div class="content">
-
-					<div class="section__slider gsap_h">
-
-						<!-- gsap__bl -->
-						<div class="gsap__bl">
-
-							<div class="gsap__inner">
-
-								<div class="gsap__track">
-
-									<div class="gsap__item">
-										<span class="gsap__item-num">Low Voltage</span>
-										<img src="assets/img/services/animation/low-voltage.jpg" alt="1">
-										<span class="gsap__item-img">
-											<img src="assets/img/services/animation/low-voltage.jpg" alt="1">
-										</span>
-									</div>
-									<div class="gsap__item">
-										<span class="gsap__item-num">Telecom</span>
-										<img src="assets/img/services/animation/telecom.webp" alt="2">
-										<span class="gsap__item-img">
-											<img src="assets/img/services/animation/telecom.webp" alt="2">
-										</span>
-									</div>
-									<div class="gsap__item">
-										<span class="gsap__item-num">Security</span>
-										<img src="assets/img/services/animation/security.jpg" alt="3">
-										<span class="gsap__item-img">
-											<img src="assets/img/services/animation/security.jpg" alt="3">
-										</span>
-									</div>
-									<div class="gsap__item">
-										<span class="gsap__item-num">Network</span>
-										<img src="assets/img/services/animation/network.jpg" alt="4">
-										<span class="gsap__item-img">
-											<img src="assets/img/services/animation/network.jpg" alt="4">
-										</span>
-									</div>
-									<div class="gsap__item">
-										<span class="gsap__item-num">Lighting</span>
-										<img src="assets/img/services/animation/lighting.png" alt="5">
-										<span class="gsap__item-img">
-											<img src="assets/img/services/animation/lighting.png" alt="5">
-										</span>
-									</div>
-									<div class="gsap__item">
-										<span class="gsap__item-num">Audio-Video</span>
-										<img src="assets/img/services/animation/audio-video.png" alt="6">
-										<span class="gsap__item-img">
-											<img src="assets/img/services/animation/audio-video.png" alt="6">
-										</span>
-									</div>
-									<div class="gsap__item">
-										<span class="gsap__item-num">Energy</span>
-										<img src="assets/img/services/animation/energy.png" alt="7">
-										<span class="gsap__item-img">
-											<img src="assets/img/services/animation/energy.png" alt="7">
-										</span>
-									</div>
-									<div class="gsap__item">
-										<span class="gsap__item-num">IT Solution</span>
-										<img src="assets/img/services/animation/it-solution.jpg" alt="8">
-										<span class="gsap__item-img">
-											<img src="assets/img/services/animation/it-solution.jpg" alt="8">
-										</span>
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
-						<!-- gsap__bl END -->
-					</div>
-				</div>
-			</section>
-			<!-- section .section END -->
-
-		</main>
-
-	</div>
    <!-- Gsap  -->
      
       <div class="container">
@@ -1602,104 +1524,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <!-- Gsap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const track = document.querySelector(".slider-track");
+    // 1. Get ONLY the original slides before cloning
+    const originalSlides = [...track.children]; 
+    
+    // 2. Measure gap from CSS
+    // Use window.getComputedStyle for reliable reading of CSS values
+    const gap = parseInt(window.getComputedStyle(track).gap) || 0;
+    
+    let totalWidth = 0;
+
+    // 3. Calculate width of all 8 original slides + all 8 gaps
+    originalSlides.forEach(slide => {
+        // This calculates (Slide Width + Gap) 8 times
+        totalWidth += slide.offsetWidth + gap; 
+    });
+    
+    // 4. CRITICAL: Subtract the one extra gap added after the last slide.
+    // This gives the exact distance for a perfect loop (8 slides + 7 gaps).
+    totalWidth -= gap;
 
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.0/bundled/lenis.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
- 
-  <script>
-$(function () {
-
-    'use strict';
-
-    // ---------------- LENIS ----------------
-    const lenis = new Lenis({
-        duration: 1.3,
-        smooth: true,
+    // 5. Clone the original slides for the seamless loop
+    originalSlides.forEach(slide => track.appendChild(slide.cloneNode(true)));
+    
+    // SEAMLESS LOOP
+    gsap.to(track, {
+        x: -totalWidth, // Move exactly one track's worth of content
+        duration: 35,
+        ease: "none",
+        repeat: -1,
+        modifiers: {
+            x: (x) => {
+                x = parseFloat(x);
+                // Wrap the position back to 0 when it reaches the end of the original content
+                const wrapped = x % -totalWidth; 
+                return wrapped + "px";
+            }
+        }
     });
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // ---------------- GSAP ------------------
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Kill existing ScrollTriggers just in case
-    ScrollTrigger.getAll().forEach(t => t.kill());
-
-    // -------- SEAMLESS AUTO LOOP SLIDER IMPLEMENTATION --------
-
-    function createSeamlessAutoLoopSlider() {
-        const track = document.querySelector(".gsap__track");
-        const originalItems = gsap.utils.toArray(".gsap__item");
-        
-        // --- 1. Clone Items for Seamless Loop ---
-        // Duplicate the items within the track to create the illusion of infinite content.
-        if (track.dataset.cloned !== "true") {
-             originalItems.forEach(item => {
-                track.appendChild(item.cloneNode(true));
-            });
-            track.dataset.cloned = "true"; // Mark the track so we don't clone again on resize
-        }
-        
-        // --- 2. Calculate the Width of the Original Content ---
-        let originalContentWidth = 0;
-        
-        // Temporarily set display: inline-flex to force the browser to measure the full width accurately
-        gsap.set(track, { display: 'inline-flex' }); 
-
-        // Get the width of the original items + margin (50px defined in CSS)
-        originalItems.forEach(item => {
-            originalContentWidth += item.offsetWidth + 50; 
-        });
-        
-        // Remove the extra margin from the last item
-        originalContentWidth -= 50; 
-
-        // Remove the temporary style
-        gsap.set(track, { display: '' });
-
-        // --- 3. Set up the GSAP Animation ---
-        const loopDuration = 30; // Seconds for one visible loop. Adjust this for speed.
-        
-        // Kill existing tweens on the track before creating a new one
-        gsap.killTweensOf(track); 
-
-        gsap.to(track, {
-            x: -originalContentWidth, // Animate exactly the width of the original content
-            ease: "none",
-            duration: loopDuration,
-            repeat: -1, 
-            onRepeat: () => {
-                // Instantly reset the x position to 0 when the animation repeats.
-                // Because the duplicated content is now where the original was, 
-                // the reset is invisible and the flow appears continuous.
-                gsap.set(track, { x: 0 });
-            },
-        });
-    }
-
-    // Run the Auto Loop
-    createSeamlessAutoLoopSlider();
-
-    // On resize → refresh/recreate the loop animation
-    const debounced = _.debounce(() => {
-        // We only need to kill tweens and recreate the animation, 
-        // as the cloning step is now protected by the 'data-cloned' attribute.
-        gsap.killTweensOf(".gsap__track"); 
-        createSeamlessAutoLoopSlider();
-        ScrollTrigger.refresh(true); 
-    }, 250);
-
-    window.addEventListener("resize", debounced);
-
 });
+
 </script>
 
 <!-- Gsap -->
