@@ -5437,136 +5437,35 @@ ul.menu-bar {
 }
 
 /* ================================================================== */
-
-:root {
-	--pr-color: #fff;
-	--second-color: #0a0a0a;
-	--color-n3: var(--orange);
-	--cubicbz: cubic-bezier(.9, 0, .1, 1);
-	--fz-big: 90px;
-	--indent: 50px;
-	--indent2: 100px;
-}
-.wrapp {
-	position: relative;
-	width: 100%;
-	height: auto;
-	overflow: hidden;
+.slider {
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
 }
 
-.title {
-	position: relative;
-	margin: 0;
-	font-size: 50px;
-	line-height: 1;
-	color: var(--pr-color);
-	text-transform: uppercase;
-	/* mix-blend-mode: difference; */
-	z-index: 2;
+.slider-track {
+    display: flex;
+    gap: 50px; /* <-- Crucial value for the calculation! */
+    will-change: transform;
 }
 
-.title.stroke {
-	display: block;
-	color: transparent;
-	-webkit-text-stroke: 1px var(--color-n3);
+.slide {
+    position: relative;
+    min-width: 450px; /* <-- Must be consistent */
 }
 
-.main {
-	padding-bottom: var(--indent2);
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.content {
-	width: 100%;
-	height: auto;
-	padding: 0 var(--indent);
-}
-
-.section-text {
-	margin-top: var(--indent2);
-}
-
-
-/* scroll trigger *************************/
-/*****************************************/
-  .section-slider {
-    height: auto;
-    padding: 30px 0;
-  }
-
-  .gsap__slider {
-    height: 80vh;
-  }
-
-.gsap__bl {
-	width: 100%;
-}
-
-.gsap__inner,
-.gsap__track {
-	display: flex;
-}
-
-.gsap__inner {
-	width: calc(100% + var(--indent));
-}
-
-.gsap__track {
-	will-change: transform;
-}
-
-.gsap__item {
-	position: relative;
-	flex: 0 0 auto;
-	width: 450px;
-	background: #000;
-	will-change: transform;
-}
-
-.gsap__item+.gsap__item {
-	margin-left: var(--indent);
-}
-
-.gsap__item img {
-	position: relative;
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	z-index: 2;
-}
-
-.gsap__item-img {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	opacity: .4;
-	filter: blur(15px);
-	/* transform: scale(1.3); */
-	z-index: 1;
-}
-
-.gsap__item-num {
-	position: absolute;
-	top: 15px;
-	left: 40px;
-	font-size: 50px;
-	color: var(--color-n3);
-  font-weight: bolder;
-	/* opacity: .5; */
-	z-index: 3;
-}
-
-
-.gsap_slider .content,
-.gsap_h,
-.gsap__bl,
-.gsap__inner,
-.gsap__item {
-	height: 100%;
-}
-
-.hero-sub {
-    padding: 38px 0 0 0;
+.slide span {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  font-size: 38px;
+  font-weight: bold;
+  color: orange;
 }
