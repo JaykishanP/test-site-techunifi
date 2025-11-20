@@ -196,69 +196,11 @@ function gtag(){dataLayer.push(arguments);}
     <h1 class="seo-heading">Index Techunifi</h1><h2 class="seo-heading">Index website</h2>
     <!-- Hero sub -->
     <div class="hero-sub">
-     
-      <div class="container">
-<!--         
-        <a href="aahoacon25.html" class="event-anchor" target="_blank">
-         <div class="row hero-img event-section">
-          <div class="col-md-12">
-            <span class="event-close"><i class="bi bi-x"></i></span>
-            <img src="assets/img/home-banner-new.png" title="techunifi" alt="hero-logo" class="hero-banner-img d-none d-xl-block">
-            <img src="assets/img/home-banner-new-mobile.png" title="techunifi" alt="hero-logo" class="hero-banner-img d-block d-xl-none">
-            <div class="sale-text">
-              <span class="sale-sub-text">Booth Number: 859</span>
-              <h1>On June 24- 27</h1>
-              <p>Come see us at </p>
-              <img src="assets/img/home-banner-new-subimg.png" title="techunifi" alt="home-sale-banner" >
-              <h1><a href="about.html?tab=news" onclick="redirectToNews(event)">News</a></h1>
 
-               <div class="row home-aahoa">
-
-                <div class="col-md-6 aahoacon-banner">
-                      <img src="assets/img/aahoa-banner.svg" title="techunifi" alt="hero-logo" class="">
-                      <br>
-                      <p>
-                        <strong>Booth #334</strong> |<strong>April 15–17, 2025</strong> | New Orleans
-                      </p>
-                </div>
-
-                <div class="col-md-6 aahoa-location-img" style="padding: 0;">
-                  <img src="assets/img/aahoacon-bg.svg" title="techunifi" alt="hero-logo" class="hero-banner-img">
-                  <img src="assets/img/aahoacon-bg.svg" title="techunifi" alt="hero-logo" class="hero-banner-img d-block d-xl-none">
-                </div>
-
-               </div>
-
-            </div>
-          </div>
-      </a> -->
-
-        <div class="row hero-img">
-          <div class="col-md-12 banner-container">
-            <img src="assets/img/hero-img.svg" title="techunifi" alt="hero-logo" loading="lazy" class="hero-logo banner-img" loading="eager">
-          </div>
-        </div>
-
-        <div class="row hero-line-parent">
-          <div class="col-md-12">
-           <div class="hero-line"></div>
-          </div>
-        </div>
-
-      </div>
-
+      
     <!-- Gsap -->
       
 <div class="wrapp">
-		<!-- header .header -->
-		<header class="header">
-			<div class="content">
-                <br>
-				<h1 class="title stroke">Techunifi Services</h1>
-                <br>
-			</div>
-		</header>
-		<!-- header .header END -->
 
 		<!-- main .main -->
 		<main class="main">
@@ -349,6 +291,56 @@ function gtag(){dataLayer.push(arguments);}
 
 	</div>
    <!-- Gsap  -->
+     
+      <div class="container">
+<!--         
+        <a href="aahoacon25.html" class="event-anchor" target="_blank">
+         <div class="row hero-img event-section">
+          <div class="col-md-12">
+            <span class="event-close"><i class="bi bi-x"></i></span>
+            <img src="assets/img/home-banner-new.png" title="techunifi" alt="hero-logo" class="hero-banner-img d-none d-xl-block">
+            <img src="assets/img/home-banner-new-mobile.png" title="techunifi" alt="hero-logo" class="hero-banner-img d-block d-xl-none">
+            <div class="sale-text">
+              <span class="sale-sub-text">Booth Number: 859</span>
+              <h1>On June 24- 27</h1>
+              <p>Come see us at </p>
+              <img src="assets/img/home-banner-new-subimg.png" title="techunifi" alt="home-sale-banner" >
+              <h1><a href="about.html?tab=news" onclick="redirectToNews(event)">News</a></h1>
+
+               <div class="row home-aahoa">
+
+                <div class="col-md-6 aahoacon-banner">
+                      <img src="assets/img/aahoa-banner.svg" title="techunifi" alt="hero-logo" class="">
+                      <br>
+                      <p>
+                        <strong>Booth #334</strong> |<strong>April 15–17, 2025</strong> | New Orleans
+                      </p>
+                </div>
+
+                <div class="col-md-6 aahoa-location-img" style="padding: 0;">
+                  <img src="assets/img/aahoacon-bg.svg" title="techunifi" alt="hero-logo" class="hero-banner-img">
+                  <img src="assets/img/aahoacon-bg.svg" title="techunifi" alt="hero-logo" class="hero-banner-img d-block d-xl-none">
+                </div>
+
+               </div>
+
+            </div>
+          </div>
+      </a> -->
+
+        <div class="row hero-img">
+          <div class="col-md-12 banner-container">
+            <img src="assets/img/hero-img.svg" title="techunifi" alt="hero-logo" loading="lazy" class="hero-logo banner-img" loading="eager">
+          </div>
+        </div>
+
+        <div class="row hero-line-parent">
+          <div class="col-md-12">
+           <div class="hero-line"></div>
+          </div>
+        </div>
+
+      </div>
 
     </div>
 
@@ -1617,8 +1609,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-
-<script>
+ 
+  <script>
 $(function () {
 
     'use strict';
@@ -1638,56 +1630,77 @@ $(function () {
     // ---------------- GSAP ------------------
     gsap.registerPlugin(ScrollTrigger);
 
-    // Make ScrollTrigger compatible with Lenis
-    lenis.on('scroll', ScrollTrigger.update);
+    // Kill existing ScrollTriggers just in case
+    ScrollTrigger.getAll().forEach(t => t.kill());
 
-    ScrollTrigger.defaults({
-        pinType: document.body.style.transform ? "transform" : "fixed"
-    });
+    // -------- SEAMLESS AUTO LOOP SLIDER IMPLEMENTATION --------
 
-    // -------- SLIDER SCROLLTRIGGER --------
-    function createSlider() {
-
+    function createSeamlessAutoLoopSlider() {
         const track = document.querySelector(".gsap__track");
-        const block = document.querySelector(".gsap__bl");
-        const section = document.querySelector(".section-slider");
+        const originalItems = gsap.utils.toArray(".gsap__item");
+        
+        // --- 1. Clone Items for Seamless Loop ---
+        // Duplicate the items within the track to create the illusion of infinite content.
+        if (track.dataset.cloned !== "true") {
+             originalItems.forEach(item => {
+                track.appendChild(item.cloneNode(true));
+            });
+            track.dataset.cloned = "true"; // Mark the track so we don't clone again on resize
+        }
+        
+        // --- 2. Calculate the Width of the Original Content ---
+        let originalContentWidth = 0;
+        
+        // Temporarily set display: inline-flex to force the browser to measure the full width accurately
+        gsap.set(track, { display: 'inline-flex' }); 
 
-        const blWidth = block.getBoundingClientRect().width;
-        const trackWidth = track.scrollWidth;
-        const dist = trackWidth - blWidth;
+        // Get the width of the original items + margin (50px defined in CSS)
+        originalItems.forEach(item => {
+            originalContentWidth += item.offsetWidth + 50; 
+        });
+        
+        // Remove the extra margin from the last item
+        originalContentWidth -= 50; 
 
-        // Prevent collapse – the only height fix needed
-        gsap.set(section, { height: window.innerHeight });
+        // Remove the temporary style
+        gsap.set(track, { display: '' });
+
+        // --- 3. Set up the GSAP Animation ---
+        const loopDuration = 30; // Seconds for one visible loop. Adjust this for speed.
+        
+        // Kill existing tweens on the track before creating a new one
+        gsap.killTweensOf(track); 
 
         gsap.to(track, {
-            x: -dist,
+            x: -originalContentWidth, // Animate exactly the width of the original content
             ease: "none",
-            scrollTrigger: {
-                trigger: section,
-                start: "top top",
-                end: "+=" + (dist + 200),
-                pin: true,
-                scrub: 1,
-                anticipatePin: 1.2,
-                invalidateOnRefresh: true,
-            }
+            duration: loopDuration,
+            repeat: -1, 
+            onRepeat: () => {
+                // Instantly reset the x position to 0 when the animation repeats.
+                // Because the duplicated content is now where the original was, 
+                // the reset is invisible and the flow appears continuous.
+                gsap.set(track, { x: 0 });
+            },
         });
     }
 
-    // Run ONCE
-    createSlider();
+    // Run the Auto Loop
+    createSeamlessAutoLoopSlider();
 
-    // On resize → refresh only
+    // On resize → refresh/recreate the loop animation
     const debounced = _.debounce(() => {
-        ScrollTrigger.refresh();
+        // We only need to kill tweens and recreate the animation, 
+        // as the cloning step is now protected by the 'data-cloned' attribute.
+        gsap.killTweensOf(".gsap__track"); 
+        createSeamlessAutoLoopSlider();
+        ScrollTrigger.refresh(true); 
     }, 250);
 
     window.addEventListener("resize", debounced);
 
 });
 </script>
-
-
 
 <!-- Gsap -->
 
