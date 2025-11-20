@@ -5566,3 +5566,7 @@ ul.menu-bar {
 .gsap__item {
 	height: 100%;
 }
+
+.hero-sub {
+    padding: 38px 0 0 0;
+}
