@@ -5418,16 +5418,16 @@ ul.menu-bar {
 }
 
 .banner-img {
-  width: 60%;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeFloat 2s ease-out forwards;
+  width: 40%;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
-@keyframes fadeFloat {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.95; }
+  100% { transform: scale(1); opacity: 1; }
 }
+
 
 /* ======================================================================== */
 /* Buttons */
@@ -5598,4 +5598,239 @@ a.animated-link:hover {
 @keyframes scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(calc(-1 * ((450px + 50px) * 8))); }
+}
+
+
+/* =============================================================================== */
+/* Banner Carousel Slider */
+.banner-slider {
+
+  position: relative;
+
+  width: 100%;
+
+  height: 100vh;
+
+  display: flex;
+
+  padding: 100px 0 0 0;
+
+}
+
+
+
+/* Make side-by-side layout */
+
+.banner-slider .slider-wrapper {
+
+  display: flex;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+
+
+/* MAIN SLIDER (Left) */
+
+.banner-slider .main-slider {
+
+  width: 80%;     /* left area */
+
+  height: 100%;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+
+/* THUMB SLIDER (Right Side) */
+
+.banner-slider .nav-slider {
+
+  width: 20%;      /* right area */
+
+  height: 100%;
+
+  overflow-y: auto;
+
+  background: #000;
+
+}
+
+
+
+/* Thumbnail slides */
+
+.nav-slider .swiper-slide {
+
+  height: 20%;     /* exactly 5 slides visible */
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-bottom: 1px solid #222;
+
+  cursor: pointer;
+
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Add transitions for smooth effect */
+
+}
+
+
+
+/* --- NEW STYLES FOR THUMBNAIL VISIBILITY --- */
+
+
+
+/* Default (Inactive) Thumbnail Style: Blur and Lower Opacity */
+
+.nav-slider .swiper-slide {
+
+    opacity: 0.5; /* Reduce opacity for inactive slides */
+
+    filter: blur(2px); /* Apply a slight blur effect */
+
+}
+
+
+
+/* Active Thumbnail Style: Clear and Full Opacity */
+
+.nav-slider .swiper-slide-thumb-active {
+
+    opacity: 1; /* Full opacity for the active slide */
+
+    filter: blur(0); /* Remove blur for the active slide */
+
+    border-left: 5px solid var(--orange, #FFA500); /* Optional: Highlight with a colored border */
+
+}
+
+
+
+/* --- END NEW STYLES --- */
+
+
+
+/* Full background images */
+
+.slide-bgimg {
+
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+  top: 0;
+
+  left: 0;
+
+  background-size: cover;
+
+  background-position: center;
+
+}
+
+
+
+/* hide demo image */
+
+.entity-img {
+
+  display: none;
+
+}
+
+
+
+/* TEXT in main slider */
+
+.main-slider .content {
+
+  position: absolute;
+
+  bottom: 15%;
+
+  left: 5%;
+
+  width: 50%;
+
+  color: #fff;
+
+}
+
+
+
+.main-slider .content .title {
+
+  font-size: 90px;
+
+  font-weight: bold;
+
+  color: var(--orange);
+
+}
+
+
+
+.main-slider .content .caption {
+
+  font-size: 50px;
+
+  opacity: 0;
+
+  transform: translateY(20px);
+
+  transition: 0.4s ease;
+
+  color: var(--orange);
+
+  font-weight: 500;
+
+}
+
+
+
+.main-slider .swiper-slide-active .caption {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+
+
+/* Arrows */
+
+.swiper-button-next,
+
+.swiper-button-prev {
+
+  color: #fff;
+
+  opacity: 0;
+
+  transition: 0.3s;
+
+}
+
+
+
+.main-slider:hover .swiper-button-next,
+
+.main-slider:hover .swiper-button-prev {
+
+  opacity: 1;
+
 }
