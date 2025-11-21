@@ -251,11 +251,11 @@ section {
 
 .menu-bar .nav-link {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 1px;
   padding: 0.3rem;
   margin: 0 0.6rem;
-  color: var(--black);
+  color: var(--blue);
   text-decoration: none;
   transition: 300ms;
 }
@@ -1063,7 +1063,7 @@ section#home-clients {
   margin: 50px 0 30px;
 }
 
-.client-button-home a{
+/* .client-button-home a{
   background-color: var(--blue);
   color: var(--gray);
   border: var(--border);
@@ -1078,15 +1078,7 @@ section#home-clients {
 .client-button-home a:hover{
   background-color: var(--gray);
   color: var(--black);
-}
-.client-button-home span{
-    max-width: 500px;
-    background-color: var(--blue);
-    display: block;
-    height: 4px;
-    margin: 0 auto;
-    border-radius: 50px;
-}
+} */
 
 .form-group {
   margin-bottom: 20px;
@@ -2697,10 +2689,10 @@ span.hr-rule {
 }
 /* Styling for links */
 .we-text-col a {
-  color: #fff;
-  font-weight: 500;
+  /* color: #fff; */
+  font-weight: 700;
   letter-spacing: 1px;
-  background-color: var(--orange);
+  /* background-color: var(--orange); */
   border: 1px solid var(--orange);
   padding: 10px 25px;
   max-width: fit-content;
@@ -5418,6 +5410,7 @@ ul.menu-bar {
 }
 
 /* ============================================================================= */
+/* Banner */
 .banner-container {
   width: 100%;
   text-align: center;
@@ -5436,7 +5429,137 @@ ul.menu-bar {
   100% { opacity: 1; transform: translateY(0); }
 }
 
+/* ======================================================================== */
+/* Buttons */
+ .prod-head-text .prod-para a, .client-button-home a {
+    /* Base styles from your first block */
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1px;
+    background-color: var(--orange);
+    border: 1px solid var(--orange);
+    padding: 10px 25px;
+
+    /* Styles essential for the animated effect to work correctly */
+    text-decoration: none;
+    display: inline-flex; /* Required for .link-text and .link-icon to align */
+    align-items: center;
+    position: relative; /* Essential for positioning ::before and .link-icon */
+    z-index: 1; /* Keep content above ::before */
+    border-radius: var(--border-radius); /* Applied via .prod-para a, .how-work-text a */
+    cursor: pointer;
+
+    /* Base transition for text color and padding */
+    transition:
+        color 0.3s ease,
+        padding-right 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.client-button-home {
+    display: flex;
+    justify-content: center;
+}
+
+.animated-link {
+    text-decoration: none;
+    display: inline-flex;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+
+    /* Initial state */
+    background-color: var(--orange);
+    color: #fff;
+
+    cursor: pointer;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+
+    transition:
+        color 0.3s ease,
+        padding-right 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+ .animated-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+
+    background-color: var(--gray);
+    border-radius: inherit;
+    z-index: -1;
+
+    transition: width 0.3s ease-out;
+}
+
+.link-text {
+    white-space: nowrap;
+}
+
+/* ----------------------------------------------------
+ * Arrow Icon Animation (Updated Timing)
+ * ----------------------------------------------------
+ */
+.link-icon {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%) translateX(50%);
+    opacity: 0;
+
+    /* Slower entrance + delayed start */
+    /* transition:
+        transform 0.45s ease,
+        opacity 0.45s ease; */
+
+    /* transition-delay: 0s;  */
+
+    font-size: 20px;
+    color: var(--orange);
+    z-index: 2;
+}
+
+/* ----------------------------------------------------
+ * Hover Trigger
+ * ----------------------------------------------------
+ */
+a.animated-link:hover {
+    color: var(--orange);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding-right: 40px;
+}
+
+.animated-link:hover::before {
+    width: 100%;
+}
+
+/* Arrow enters AFTER background starts */
+.animated-link:hover .link-icon {
+    transform: translateY(-50%) translateX(0);
+    opacity: 1;
+
+    /* Delay only on hover-in */
+    /* transition-delay: 0s; */
+}
+
+/* Arrow exits FIRST when hover ends */
+.animated-link .link-icon {
+    transition-delay: 0s !important;
+}
+
+
 /* ================================================================== */
+/* Slider Banner */
+.hero-sub {
+    padding: 50px 0 0 0;
+}
+
 .slider {
   width: 100%;
   overflow: hidden;
@@ -5444,14 +5567,15 @@ ul.menu-bar {
 }
 
 .slider-track {
-    display: flex;
-    gap: 50px; /* <-- Crucial value for the calculation! */
-    will-change: transform;
+  display: flex;
+  gap: 50px;
+  width: calc((450px + 50px) * 16); /* (slide width + gap) * number of slides */
+  animation: scroll 30s linear infinite;
 }
 
 .slide {
-    position: relative;
-    min-width: 450px; /* <-- Must be consistent */
+  position: relative;
+  min-width: 450px;
 }
 
 .slide img {
@@ -5468,4 +5592,10 @@ ul.menu-bar {
   font-size: 38px;
   font-weight: bold;
   color: orange;
+}
+
+/* Animation */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * ((450px + 50px) * 8))); }
 }
