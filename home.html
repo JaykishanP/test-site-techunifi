@@ -199,8 +199,19 @@ function gtag(){dataLayer.push(arguments);}
 
       
     <!-- Gsap -->
-  <div class="slider">
+ <div class="slider">
   <div class="slider-track">
+    <!-- Original Slides -->
+    <div class="slide"><img src="assets/img/services/animation/low-voltage.jpg"><span>Low Voltage</span></div>
+    <div class="slide"><img src="assets/img/services/animation/telecom.webp"><span>Telecom</span></div>
+    <div class="slide"><img src="assets/img/services/animation/security.jpg"><span>Security</span></div>
+    <div class="slide"><img src="assets/img/services/animation/network.jpg"><span>Network</span></div>
+    <div class="slide"><img src="assets/img/services/animation/lighting.png"><span>Lighting</span></div>
+    <div class="slide"><img src="assets/img/services/animation/audio-video.png"><span>Audio-Video</span></div>
+    <div class="slide"><img src="assets/img/services/animation/energy.png"><span>Energy</span></div>
+    <div class="slide"><img src="assets/img/services/animation/it-solution.jpg"><span>IT Solution</span></div>
+
+    <!-- Duplicate Slides (for infinite loop) -->
     <div class="slide"><img src="assets/img/services/animation/low-voltage.jpg"><span>Low Voltage</span></div>
     <div class="slide"><img src="assets/img/services/animation/telecom.webp"><span>Telecom</span></div>
     <div class="slide"><img src="assets/img/services/animation/security.jpg"><span>Security</span></div>
@@ -211,6 +222,7 @@ function gtag(){dataLayer.push(arguments);}
     <div class="slide"><img src="assets/img/services/animation/it-solution.jpg"><span>IT Solution</span></div>
   </div>
 </div>
+
 
    <!-- Gsap  -->
      
@@ -270,7 +282,7 @@ function gtag(){dataLayer.push(arguments);}
     <div class="bg-color-services-main">
       <div class="container">
 
-        <div class="row hero-text hero-heading we-do-it aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+        <div class="row hero-text hero-heading we-do-it">
           <div class="col-md-6">
             <div class="section-container we-head">
                <h3 data-target="section1">We Do it <br>All</h3>
@@ -281,7 +293,12 @@ function gtag(){dataLayer.push(arguments);}
            <div>
             <p>Techunifi collaborates with renowned industry leaders, known for their innovative contributions to the tech landscape. As your trusted partner, we strive to empower you in making informed decisions tailored to your business requirements. Below, we've curated a selection of products and brands categorized by service. Don't hesitate to contact us for further information or to inquire about any specific product. We're here to assist you every step of the way in finding the perfect tech solutions for your business.</p>
           </div>
-            <a href="#landing-services">Our Services</a>
+            <!-- <a href="#landing-services">Our Services</a> -->
+
+            <a href="#landing-services" class="animated-link">
+              <span class="link-text">Our Services</span>
+              <span class="link-icon">➔</span>
+            </a>
           </div>
         </div>
       </div>
@@ -535,7 +552,14 @@ function gtag(){dataLayer.push(arguments);}
 
            <div class="col-md-6 prod-para">
              <p>Techunifi is your strategic partner in modern technology, specializing in low-voltage systems, telecom, networking, lighting, energy solutions, and smart IT management. We deliver tailored, eco-friendly solutions and offer products as a service to enhance your infrastructure, boost efficiency, and support growth. Partnering with leading tech innovators, we help businesses make informed, strategic decisions. Explore our curated selection of products by service category, and contact us for personalized guidance—your ideal solution is just a conversation away.</p>
-             <a href="products.html">Our Products</a>
+             <!-- <a href="products.html">Our Products</a> -->
+
+             
+            <a href="products.html" class="animated-link">
+              <span class="link-text">Our Products</span>
+              <span class="link-icon">➔</span>
+            </a>
+
             </div>
          </div>
          <span class="prod-below-hr" data-aos="zoom-in" data-aos-delay="50"></span>
@@ -761,8 +785,13 @@ function gtag(){dataLayer.push(arguments);}
         </div>
       
         <div class="client-button-home" data-aos="zoom-in" data-aos-delay="50">
-          <a href="about.html?tab=clientlist">Our Clients</a>
-          <span class="d-none"></span>
+          <!-- <a href="about.html?tab=clientlist">Our Clients</a> -->
+
+            <a href="about.html?tab=clientlist" class="animated-link">
+              <span class="link-text">Our Clients</span>
+              <span class="link-icon">➔</span>
+            </a>
+
         </div>
 
         </div>
@@ -1522,59 +1551,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-
-<!-- Gsap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-<script>
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const track = document.querySelector(".slider-track");
-    // 1. Get ONLY the original slides before cloning
-    const originalSlides = [...track.children]; 
-    
-    // 2. Measure gap from CSS
-    // Use window.getComputedStyle for reliable reading of CSS values
-    const gap = parseInt(window.getComputedStyle(track).gap) || 0;
-    
-    let totalWidth = 0;
-
-    // 3. Calculate width of all 8 original slides + all 8 gaps
-    originalSlides.forEach(slide => {
-        // This calculates (Slide Width + Gap) 8 times
-        totalWidth += slide.offsetWidth + gap; 
-    });
-    
-    // 4. CRITICAL: Subtract the one extra gap added after the last slide.
-    // This gives the exact distance for a perfect loop (8 slides + 7 gaps).
-    totalWidth -= gap;
-
-
-    // 5. Clone the original slides for the seamless loop
-    originalSlides.forEach(slide => track.appendChild(slide.cloneNode(true)));
-    
-    // SEAMLESS LOOP
-    gsap.to(track, {
-        x: -totalWidth, // Move exactly one track's worth of content
-        duration: 35,
-        ease: "none",
-        repeat: -1,
-        modifiers: {
-            x: (x) => {
-                x = parseFloat(x);
-                // Wrap the position back to 0 when it reaches the end of the original content
-                const wrapped = x % -totalWidth; 
-                return wrapped + "px";
-            }
-        }
-    });
-
-});
-
-</script>
-
-<!-- Gsap -->
 
 </body>
 
