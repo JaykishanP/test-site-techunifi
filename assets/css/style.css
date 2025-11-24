@@ -5840,7 +5840,48 @@ a.animated-link:hover {
 
 /* ======================================================================= */
 /* Illustration Animation  */
+/* 1. New CSS Class for the Animated 'Active' state */
+.info-box{
+  border: 1px dotted var(--orange);
+  background-color: var(--darkgray);
+  color: var(--orange);
+}
 
-/* ---------------------------------------------------- */
-/*  MAIN DIAGRAM CONTAINER */
-/* ---------------------------------------------------- */
+.imagemap .area.active-animate {
+  /* This ensures the dot itself stops pulsing and the hover elements appear */
+  display: inline-block;
+  animation: unset !important; /* Stop the dot's original pulse */
+  border: 0;
+  background-color: transparent;
+}
+
+.imagemap .area.active-animate .hover-display {
+  /* Force the hover display to be visible and animated */
+  display: flex !important;
+  align-items: center;
+  flex-direction: column;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.imagemap .area.active-animate .hoverImage,
+.imagemap .area.active-animate .info-box {
+    /* Optional: Add a subtle pulse to the continuously displayed image/box */
+    animation: pulse-scale 2s infinite ease-in-out; 
+}
+
+/* 2. Define the pulse animation for the active state */
+@keyframes pulse-scale {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05); /* Slight increase in size */
+    opacity: 1; /* Slight increase in opacity */
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
