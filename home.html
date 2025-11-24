@@ -440,7 +440,7 @@ function gtag(){dataLayer.push(arguments);}
                <div class="hover-display">
                  <img src="assets/img/services/home-image-map/ev-charging-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
                  <div class="info-box">
-                   <img src="assets/img/services/home-image-map/ev-charging.png" alt="EV Charging"  loading="lazy" title="techunifi">
+                   <img src="assets/img/services/home-image-map/hover/ev-charging.png" alt="EV Charging"  loading="lazy" title="techunifi">
                    <span>Energy Management</span>
                  </div>
                </div>
@@ -453,7 +453,7 @@ function gtag(){dataLayer.push(arguments);}
                <div class="hover-display">
                 <img src="assets/img/services/home-image-map/telecom-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
                 <div class="info-box">
-                  <img src="assets/img/services/home-image-map/telecom.png" alt="Telecom" loading="lazy" title="techunifi">
+                  <img src="assets/img/services/home-image-map/hover/telecom.png" alt="Telecom" loading="lazy" title="techunifi">
                   <span>Telecom</span>
               </div>
                </div>
@@ -466,7 +466,7 @@ function gtag(){dataLayer.push(arguments);}
                <div class="hover-display">
                 <img src="assets/img/services/home-image-map/lightning-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
                 <div class="info-box">
-                  <img src="assets/img/services/home-image-map/lightning.png" alt="Lightning" loading="lazy" title="techunifi">
+                  <img src="assets/img/services/home-image-map/hover/lightning.png" alt="Lightning" loading="lazy" title="techunifi">
                   <span>Lighting</span>
               </div>
                </div>
@@ -479,7 +479,7 @@ function gtag(){dataLayer.push(arguments);}
                <div class="hover-display">
                 <img src="assets/img/services/home-image-map/network-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
                 <div class="info-box">
-                  <img src="assets/img/services/home-image-map/wifi.png" alt="Network" loading="lazy" title="techunifi">
+                  <img src="assets/img/services/home-image-map/hover/wifi.png" alt="Network" loading="lazy" title="techunifi">
                   <span>Network</span>
               </div>
                </div>
@@ -492,7 +492,7 @@ function gtag(){dataLayer.push(arguments);}
                <div class="hover-display">
                 <img src="assets/img/services/home-image-map/it-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
                 <div class="info-box">
-                  <img src="assets/img/services/home-image-map/it.png" alt="IT Management" loading="lazy" title="techunifi">
+                  <img src="assets/img/services/home-image-map/hover/it.png" alt="IT Management" loading="lazy" title="techunifi">
                   <span>IT Management</span>
               </div>
                </div>
@@ -505,7 +505,7 @@ function gtag(){dataLayer.push(arguments);}
                <div class="hover-display">
                 <img src="assets/img/services/home-image-map/low-voltage-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
                 <div class="info-box">
-                  <img src="assets/img/services/home-image-map/lowvoltage.png" alt="Low Voltage" loading="lazy" title="techunifi">
+                  <img src="assets/img/services/home-image-map/hover/lowVoltage.png" alt="Low Voltage" loading="lazy" title="techunifi">
                   <span>Low Voltage</span>
               </div>
                </div>
@@ -518,7 +518,7 @@ function gtag(){dataLayer.push(arguments);}
                <div class="hover-display">
                 <img src="assets/img/services/home-image-map/audio-video-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
                 <div class="info-box">
-                  <img src="assets/img/services/home-image-map/audio-video.png" alt="Audio-Video" loading="lazy" title="techunifi">
+                  <img src="assets/img/services/home-image-map/hover/audi-vide.png" alt="Audio-Video" loading="lazy" title="techunifi">
                   <span>Audio-Video</span>
               </div>
                </div>
@@ -531,7 +531,7 @@ function gtag(){dataLayer.push(arguments);}
                <div class="hover-display">
                 <img src="assets/img/services/home-image-map/security-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
                 <div class="info-box">
-                  <img src="assets/img/services/home-image-map/security.png" alt="Security" loading="lazy" title="techunifi">
+                  <img src="assets/img/services/home-image-map/hover/security.png" alt="Security" loading="lazy" title="techunifi">
                   <span>Security</span>
               </div>
                </div>
@@ -647,6 +647,9 @@ function gtag(){dataLayer.push(arguments);}
       </div>
     </div>
 
+    <!-- Animation Illustration -->
+
+    <!-- Animation Illustration -->
 
   </section><!-- End Hero -->
 
@@ -1707,6 +1710,74 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+</script>
+
+
+<!-- ============= Animation Illustration ============== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const areas = document.querySelectorAll('.imagemap .area');
+    const areaCount = areas.length;
+    let currentIndex = 0;
+    let intervalId;
+    const cycleDuration = 3000; // Time in milliseconds (e.g., 3 seconds per service)
+
+    // Function to set the currently active element
+    function setActiveArea(index) {
+        // 1. Remove active class from all
+        areas.forEach(area => {
+            area.classList.remove('active-animate');
+        });
+
+        // 2. Add active class to the current one
+        areas[index].classList.add('active-animate');
+        
+        // 3. Update the index for the next loop
+        currentIndex = (index + 1) % areaCount;
+    }
+
+    // Function to start the continuous loop
+    function startLoop() {
+        // Start the first area immediately
+        setActiveArea(currentIndex); 
+        
+        // Then set the interval
+        intervalId = setInterval(() => {
+            setActiveArea(currentIndex);
+        }, cycleDuration);
+    }
+
+    // Function to stop the loop
+    function stopLoop() {
+        clearInterval(intervalId);
+    }
+
+    // Initialize the loop
+    startLoop();
+
+    // ----------------------------------------------------
+    // Event listeners to PAUSE loop when the user hovers
+    // ----------------------------------------------------
+    areas.forEach(area => {
+        // On mouse enter (hover), stop the animation
+        area.addEventListener('mouseenter', () => {
+            stopLoop();
+            // Important: Remove the active-animate class 
+            // so the standard CSS :hover styles take over immediately
+            area.classList.remove('active-animate'); 
+        });
+
+        // On mouse leave, restart the animation loop
+        area.addEventListener('mouseleave', () => {
+            // Find which index the loop should resume from
+            const hoveredIndex = Array.from(areas).indexOf(area);
+            currentIndex = (hoveredIndex + 1) % areaCount;
+            
+            // Resume the loop
+            startLoop(); 
+        });
+    });
+});
 </script>
 
 
