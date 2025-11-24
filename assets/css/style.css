@@ -2694,7 +2694,7 @@ span.hr-rule {
   letter-spacing: 1px;
   /* background-color: var(--orange); */
   border: 1px solid var(--orange);
-  padding: 10px 25px;
+  padding: 10px 40px;
   max-width: fit-content;
   display: block;
   margin: 0 0 35px 0;
@@ -5477,9 +5477,11 @@ ul.menu-bar {
     position: relative;
     z-index: 1;
 
+    /* --- UPDATED TRANSITION PROPERTY --- */
     transition:
         color 0.3s ease,
-        padding-right 0.3s ease,
+        /* Applied ease-in-out to padding-right for smooth start/end */
+        padding-right 0.4s ease-in-out, 
         box-shadow 0.3s ease;
 }
 
@@ -5495,7 +5497,7 @@ ul.menu-bar {
     border-radius: inherit;
     z-index: -1;
 
-    transition: width 0.3s ease-out;
+    /* transition: width 0.3s ease-out; */
 }
 
 .link-text {
@@ -5532,6 +5534,7 @@ ul.menu-bar {
 a.animated-link:hover {
     color: var(--orange);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* padding-right is now animated with ease-in-out */
     padding-right: 40px;
 }
 
@@ -5834,3 +5837,10 @@ a.animated-link:hover {
   opacity: 1;
 
 }
+
+/* ======================================================================= */
+/* Illustration Animation  */
+
+/* ---------------------------------------------------- */
+/*  MAIN DIAGRAM CONTAINER */
+/* ---------------------------------------------------- */
