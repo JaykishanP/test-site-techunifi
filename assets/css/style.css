@@ -6090,8 +6090,8 @@ a.animated-link:hover {
 }
 
 @keyframes glow-pulse {
-    0%   { box-shadow: 0 0 8px var(--gray); }
-    50%  { box-shadow: 0 0 16px var(--orange); }
-    100% { box-shadow: 0 0 8px var(--orange); }
+    0%   { box-shadow: 0 0 8px #45e242; }
+    50%  { box-shadow: 0 0 16px #ffffff; }
+    100% { box-shadow: 0 0 8px #45e242; }
 }
 
