@@ -2790,7 +2790,7 @@ span.hr-rule {
   border-radius: 25px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 6px 9px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  pointer-events: none;
+  pointer-events: cursor;
   white-space: nowrap;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -5846,6 +5846,8 @@ a.animated-link:hover {
   background-color: var(--darkgray);
   color: var(--orange);
 }
+/* --- New Global Line and Callout Styles --- */
+
 
 .imagemap .area.active-animate {
   /* This ensures the dot itself stops pulsing and the hover elements appear */
@@ -5885,3 +5887,211 @@ a.animated-link:hover {
     opacity: 0.8;
   }
 }
+
+/* ================= */
+
+/* ==========================================================
+   L-SHAPED ANIMATED CONNECTOR LINE
+   Appears for both hover + active autoplay state
+   ---------------------------------------------------------- */
+/* adjustment for each text */
+
+/* ev */
+.ev-charge-map .info-box {
+    left: -247px;
+    top: -81px;
+}
+.area.ev-charge-map .hover-display::before {
+    top: -67px;
+    left: -40px;
+    --line-w: 50px;
+}
+.area.ev-charge-map .hover-display::after {
+    top: -66px;
+    left: 9px;
+    --line-h: 79px;
+}
+
+/* telecom */
+.telecom-map .info-box {
+    left: 124px;
+    top: -211px;
+}
+.area.telecom-map .hover-display::before {
+    top: -197px;
+    left: 19px;
+    --line-w: 110px;
+
+}
+.area.telecom-map .hover-display::after {
+    top: -196px;
+    left: 19px;
+    --line-h: 194px;
+
+}
+
+/* lighting */
+.lightning-map .info-box {
+    left: 124px;
+    top: -136px;
+}
+.area.lightning-map .hover-display::before {
+    top: -120px;
+    left: 19px;
+    --line-w: 110px;
+
+}
+.area.lightning-map .hover-display::after {
+    top: -119px;
+    left: 19px;
+    --line-h: 97px;
+
+}
+
+/* IT */
+.itman-map .info-box {
+    left: 237px;
+    top: -136px;
+}
+.area.itman-map .hover-display::before {
+    top: -120px;
+    left: 19px;
+    --line-w: 219px;
+
+}
+.area.itman-map .hover-display::after {
+    top: -119px;
+    left: 19px;
+    --line-h: 97px;
+
+}
+
+/* Low Voltage */
+.lowvoltage-map .info-box {
+    left: 483px;
+    top: 22px;
+}
+.area.lowvoltage-map .hover-display::before {
+    top: 35px;
+    left: 19px;
+    --line-w: 464px;
+}
+.area.lowvoltage-map .hover-display::after {
+    top: -60px;
+    left: 19px;
+    --line-h: 97px;
+}
+
+/* Security */
+.security-map .info-box {
+    left: 290px;
+    top: 112px;
+}
+.area.security-map .hover-display::before {
+    top: 72px;
+    left: 186px;
+    --line-w: 166px;
+}
+.area.security-map .hover-display::after {
+    top: 72px;
+    left: 350px;
+    --line-h: 41px;
+}
+
+/* audi-vide */
+.audivide-map .info-box {
+    left: -393px;
+    top: -59px;
+}
+.area.audivide-map .hover-display::before {
+    top: -44px;
+    left: -256px;
+    --line-w: 266px;
+}
+.area.audivide-map .hover-display::after {
+    top: -43px;
+    left: 9px;
+    --line-h: 34px;
+}
+
+/* audi-vide */
+.network-map .info-box {
+    left: -229px;
+    top: -59px;
+}
+.area.network-map .hover-display::before {
+    top: -44px;
+    left: -113px;
+    --line-w: 123px;
+}
+.area.network-map .hover-display::after {
+    top: -43px;
+    left: 9px;
+    --line-h: 49px;
+}
+
+/* adjustment for each text */
+
+.area .hover-display {
+    position: relative;
+}
+
+/* Horizontal line */
+.area .hover-display::before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 0;
+    top: 50%;
+    left: calc(100% + 10px);
+
+    background: var(--orange);
+    opacity: 0;
+    pointer-events: none;
+
+    animation: draw-horizontal 0.5s forwards ease-out,
+               glow-pulse 1.6s infinite ease-in-out;
+}
+
+/* Vertical line */
+.area .hover-display::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 0;
+    top: 50%;
+    left: calc(100% + 10px + var(--line-w));
+
+    background: var(--orange);
+    opacity: 0;
+    pointer-events: none;
+
+    animation: draw-vertical 0.5s 0.3s forwards ease-out,
+               glow-pulse 1.6s infinite ease-in-out;
+}
+
+/* Make visible during hover & active autoplay */
+.area:hover .hover-display::before,
+.area:hover .hover-display::after,
+.area.active-animate .hover-display::before,
+.area.active-animate .hover-display::after {
+    opacity: 1;
+}
+
+/* Animation keyframes */
+@keyframes draw-horizontal {
+    from { width: 0; }
+    to   { width: var(--line-w); }
+}
+
+@keyframes draw-vertical {
+    from { height: 0; }
+    to   { height: var(--line-h); }
+}
+
+@keyframes glow-pulse {
+    0%   { box-shadow: 0 0 8px var(--gray); }
+    50%  { box-shadow: 0 0 16px var(--orange); }
+    100% { box-shadow: 0 0 8px var(--orange); }
+}
+
