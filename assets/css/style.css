@@ -5409,6 +5409,20 @@ ul.menu-bar {
     font-weight: normal;
 }
 
+/* =============================================================== */
+/* Video Animation */
+.video-background {
+  position: sticky; 
+  top: 0; 
+  width: 100%;
+  height: 100vh;
+  object-fit: cover; 
+}
+
+#video-container {
+  height: 500vh; 
+}
+
 /* ============================================================================= */
 /* Banner */
 .banner-container {
@@ -5848,9 +5862,7 @@ a.animated-link:hover {
 }
 /* --- New Global Line and Callout Styles --- */
 
-
 .imagemap .area.active-animate {
-  /* This ensures the dot itself stops pulsing and the hover elements appear */
   display: inline-block;
   animation: unset !important; /* Stop the dot's original pulse */
   border: 0;
@@ -5890,10 +5902,6 @@ a.animated-link:hover {
 
 /* ================= */
 
-/* ==========================================================
-   L-SHAPED ANIMATED CONNECTOR LINE
-   Appears for both hover + active autoplay state
-   ---------------------------------------------------------- */
 /* adjustment for each text */
 
 /* ev */
@@ -6094,4 +6102,3 @@ a.animated-link:hover {
     50%  { box-shadow: 0 0 16px #ffffff; }
     100% { box-shadow: 0 0 8px #45e242; }
 }
-
