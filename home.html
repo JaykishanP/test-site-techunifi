@@ -191,6 +191,13 @@ function gtag(){dataLayer.push(arguments);}
   </div>
 <!-- ======= Search Modal ======= -->
 
+<!-- ======== Video Animation ======== -->
+<div id="video-container">
+  <video src="https://assets.codepen.io/39255/output_960.mp4" playsinline="true" webkit-playsinline="true" preload="auto" muted="muted" class="video-background"></video>
+</div>
+
+<!-- ======= Video Animation ========= -->
+
 <!-- ======= Banner ======= -->
 
      <div class="banner-slider">
@@ -471,19 +478,6 @@ function gtag(){dataLayer.push(arguments);}
               </div>
                </div>
             </a>
-        
-            <!-- Link to Network -->
-            <a href="products.html?section=wifi" 
-               class="area network-map" 
-               style="top: 50.9%; left: 15.6%;">
-               <div class="hover-display">
-                <img src="assets/img/services/home-image-map/network-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
-                <div class="info-box">
-                  <img src="assets/img/services/home-image-map/hover/wifi.png" alt="Network" loading="lazy" title="techunifi">
-                  <span>Network</span>
-              </div>
-               </div>
-            </a>
             
             <!-- Link to IT Management -->
             <a href="products.html?section=other-info" 
@@ -510,20 +504,7 @@ function gtag(){dataLayer.push(arguments);}
               </div>
                </div>
             </a>
-            
-            <!-- Link to Audio-Video -->
-            <a href="products.html?section=audi-vide" 
-               class="area audivide-map" 
-               style="top: 71.9%; left: 38.6%;">
-               <div class="hover-display">
-                <img src="assets/img/services/home-image-map/audio-video-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
-                <div class="info-box">
-                  <img src="assets/img/services/home-image-map/hover/audi-vide.png" alt="Audio-Video" loading="lazy" title="techunifi">
-                  <span>Audio-Video</span>
-              </div>
-               </div>
-            </a>
-            
+
             <!-- Link to Security -->
             <a href="products.html?section=security" 
                class="area security-map" 
@@ -536,6 +517,33 @@ function gtag(){dataLayer.push(arguments);}
               </div>
                </div>
             </a>
+
+            <!-- Link to Audio-Video -->
+            <a href="products.html?section=audi-vide" 
+               class="area audivide-map" 
+               style="top: 71.9%; left: 38.6%;">
+               <div class="hover-display">
+                <img src="assets/img/services/home-image-map/audio-video-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
+                <div class="info-box">
+                  <img src="assets/img/services/home-image-map/hover/audi-vide.png" alt="Audio-Video" loading="lazy" title="techunifi">
+                  <span>Audio-Video</span>
+              </div>
+               </div>
+            </a>
+
+            <!-- Link to Network -->
+            <a href="products.html?section=wifi" 
+               class="area network-map" 
+               style="top: 50.9%; left: 15.6%;">
+               <div class="hover-display">
+                <img src="assets/img/services/home-image-map/network-hover-orange.png" class="hoverImage" title="techunifi" alt="techunifi" loading="lazy">
+                <div class="info-box">
+                  <img src="assets/img/services/home-image-map/hover/wifi.png" alt="Network" loading="lazy" title="techunifi">
+                  <span>Network</span>
+              </div>
+               </div>
+            </a>
+          
           </div>
         </div>
         
@@ -1632,6 +1640,8 @@ if (industrySelect && industryHidden) {
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script> -->
   <script src="assets/vendor/swiper/swiper-bundle.min.js" defer></script>
   <script src="assets/vendor/php-email-form/validate.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js" defer></script>
@@ -1779,6 +1789,62 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
+
+<!-- =============== Video Animation ============== -->
+<script>
+console.clear();
+const video = document.querySelector(".video-background");
+let src = video.currentSrc || video.src;
+console.log(video, src);
+
+function once(el, event, fn, opts) {
+  var onceFn = function (e) {
+    el.removeEventListener(event, onceFn);
+    fn.apply(this, arguments);
+  };
+  el.addEventListener(event, onceFn, opts);
+  return onceFn;
+}
+
+once(document.documentElement, "touchstart", function (e) {
+  video.play();
+  video.pause();
+});
+
+gsap.registerPlugin(ScrollTrigger);
+
+let tl = gsap.timeline({
+  defaults: { duration: 1 },
+  scrollTrigger: {
+    trigger: "#video-container",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: true
+  }
+});
+
+once(video, "loadedmetadata", () => {
+  tl.fromTo(video, { currentTime: 0 }, { currentTime: video.duration || 1 });
+});
+
+setTimeout(function () {
+  if (window["fetch"]) {
+    fetch(src)
+      .then((response) => response.blob())
+      .then((response) => {
+        var blobURL = URL.createObjectURL(response);
+        var t = video.currentTime;
+        once(document.documentElement, "touchstart", function (e) {
+          video.play();
+          video.pause();
+        });
+        video.setAttribute("src", blobURL);
+        video.currentTime = t + 0.01;
+      });
+  }
+}, 1000);
+</script>
+
 
 
 </body>
