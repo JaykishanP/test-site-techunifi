@@ -195,10 +195,10 @@ function gtag(){dataLayer.push(arguments);}
 
           <div class="col-md-2">
             <div class="tab">
-              <button class="tablinks" onclick="openTab(event, 'tab1')" id="defaultOpen">Our Story</button>
-              <button class="tablinks" onclick="openTab(event, 'tab2')">News</button>
-              <button class="tablinks d-none" onclick="openTab(event, 'tab3')">Testimonals</button>
-              <button class="tablinks" onclick="openTab(event, 'tab4')">Clients List</button>
+              <button class="tablinks" data-tab="tab1" onclick="openTab(event, 'tab1')" id="defaultOpen">Our Story</button>
+              <button class="tablinks" data-tab="tab2" onclick="openTab(event, 'tab2')">News</button>
+              <button class="tablinks d-none" data-tab="tab3" onclick="openTab(event, 'tab3')">Testimonals</button>
+              <button class="tablinks" data-tab="tab4" onclick="openTab(event, 'tab4')">Clients List</button>
             </div>
           </div>
 
@@ -297,9 +297,37 @@ As we focus on the future, our commitment remains strong. Our goal is not just t
         
                 </div>
 
-                  <!-- 36 -->
+                
+                  <!-- 37 -->
                   <!-- <div class="news-rows">
-                    <div class="news-date">Published: 01.12.25</div>
+                    <div class="news-date">Published: 05.12.25</div>
+                    <div class="news-company">Marriott</div>
+                    <div class="news-location">San Antonio, TX</div>
+                    <div class="news-content">
+                      <p style="padding-bottom: 0;">
+                        Techunifi is thrilled to announce the successful implementation of a comprehensive technology package at the Motto by Hilton Nashville Downtown, TN! Guests can now enjoy fast, reliable internet and a full suite of modern amenities, all powered by Techunifi’s cutting-edge solutions. We're proud to enhance the guest experience at this dynamic hotel in Nashville and look forward to supporting unforgettable stays!
+                      </p>
+                                          
+                      <div class="aahoacon-images" style="padding-bottom: 20px;">
+  
+                        <div class="row">
+                          <div class="col-md-12">        
+                            <br>              
+                            <img src="assets/img/about-images/news/marriot-san.webp" title="techunifi" alt="techunifi" loading="lazy">
+                          </div>
+                        </div>
+  
+                      
+                      </div>
+  
+                    </div>
+                    
+                </div> -->
+
+                <!-- ============================================= -->
+                  <!-- 36 -->
+                  <div class="news-rows">
+                    <div class="news-date">Published: 02.12.25</div>
                     <div class="news-company">Motto by Hilton</div>
                     <div class="news-location">Nashville, TN</div>
                     <div class="news-content">
@@ -321,10 +349,10 @@ As we focus on the future, our commitment remains strong. Our goal is not just t
   
                     </div>
                     
-                </div> -->
+                </div>
 
                  <!-- 35 -->
-                  <!-- <div class="news-rows">
+                   <div class="news-rows">
                     <div class="news-date">Published: 01.12.25</div>
                     <div class="news-company">Hampton Inn & Suites</div>
                     <div class="news-location">Hopkinsville, KY</div>
@@ -347,11 +375,11 @@ As we focus on the future, our commitment remains strong. Our goal is not just t
   
                     </div>
                     
-                </div> -->
+                </div> 
 
                  <!-- 34 -->
                   <div class="news-rows">
-                    <div class="news-date">Published: 01.12.25</div>
+                    <div class="news-date">Published: 28.11.25</div>
                     <div class="news-company">TownePlace Suites by Marriott</div>
                     <div class="news-location">Hopkinsville, KY</div>
                     <div class="news-content">
@@ -1669,6 +1697,11 @@ We’ll see you again next year. Until then, let’s keep building the future of
                         <p>Hampton Inn Roanoke <br>Rapids, NC</p>
                         <p>Hilton Garden Inn <br>Aberdeen, MD</p>
                         <p>Hampton Inn & Suites <br>Hopkinsville, KY</p>
+                        <p>Hampton Inn <br>Chesapeake, VA</p>
+                        <p>Hampton Inn Jupiter <br>Juno Beach, FL</p>
+                        <p>Hampton Inn & Suites <br>Port St. Lucie, FL</p>
+                        <p>Hampton Inn <br>Titusville, FL</p>
+                        <p>Hampton Inn <br>Melbourne, FL</p>
                       </div>
 
                       <div class="col-md-4 client-col">
@@ -1704,9 +1737,16 @@ We’ll see you again next year. Until then, let’s keep building the future of
                         <p>Homewood Suites <br>Raleigh, NC</p>
                         <p>Spark Winston <br>Salem, NC</p>  
                         <p>Spark <br>Sumter , SC</p>     
-                        <p>Spark Crystal <br>Lake, NC</p>             
+                        <p>Spark Crystal <br>Lake, NC</p>
+                        <p>Spark <br>Roanoke, VA</p> 
+                        <p>Spark <br>Charlotte, NC</p>
+                        <p>Spark <br>Smyrna, GA</p>
+                        <p>Spark <br>Wilmington, NC</p>
+                        <p>Spark <br>Garland, TX</p>
+                        <p>Spark <br>Carlisle, PA</p>            
                         <p>Tempo/Homewood Suites <br>Raleigh, NC</p>
                         <p>Tempo & Homewood <br>Raleigh, Downtown </p>
+                        <p>Homewood Suites <br>Chesapeake, VA</p>
                         <p>Tru Amarillo, <br>TX</p>
                         <p>Tru Charleston, <br>SC</p>
                         <p>Tru Charlotte, <br>NC</p>         
@@ -1787,12 +1827,14 @@ We’ll see you again next year. Until then, let’s keep building the future of
                           <p>Springhill Suites <br>Roanoke, VA</p>
                           <p>Springhill Suites <br>Wilmington, NC</p>
                           <p>Springhill Suites <br>Garner, NC</p>
+                          <p>SpringHill Suites <br>Bossier City, LA</p>
                           <p>TownePlace Suites <br>Asheville, NC</p>
                           <p>TownePlace Suites <br>Belcamp, MD</p>
                           <p>TownePlace Suites <br>Boone, NC</p>
                           <p>TownePlace Suites <br>Charleston, NC</p>
                           <p>TownePlace Suites <br>Kernersville, NC</p>
-                          <p>TownePlace Suites by Marriott <br>Hopkinsville, KY</p>
+                          <p>TownePlace Suites <br>Hopkinsville, KY</p>
+                          <p>TownePlace Suites <br>Aberdeen, NC</p>
                         </div>
   
                       </div>
@@ -1897,26 +1939,52 @@ We’ll see you again next year. Until then, let’s keep building the future of
                         <p>Best Western <br>Greensboro, NC</p>
                         <p>Best Western <br>Wilmington, NC</p>
                         <p>Cambria Suites <br>Rock Hill, SC</p>
+                        <p>SureStay by Best Western <br>Christiansburg, VA</p>
+                        <p>Spire Hospitality <br>Irving, TX</p>
+                        <p>Spoons Grill Restaurant <br>Lauderdale Lakes, FL</p>
+                        <p>Strand Hospitality Services <br>Myrtle Beach, SC</p>
+                        <p>Sweet Dreams Inn <br>Pensacola, FL</p>
+                        <p>Tapestry Healing <br>Lawrenceville, GA</p>
+                        <p>Techs 4 IT <br>Baltimore, MD</p>
+                        <p>The Dunhill Hotel <br>Charlotte, NC</p>
                       </div>
 
                       <div class="col-md-4 client-col">
                         <p>Comfort Suites <br>Sanford, NC</p>
-                        <p>Comfort Suites <br>Roanoke, VA</p>         
+                        <p>Comfort Suites <br>Roanoke, VA</p>
+                        <p>Comfort Inn <br>McLeansville, NC</p>         
                         <p>Country Inn and Suites <br>Aberdeen, MD</p>
                         <p>Country Inn and Suites <br>Cape Canaveral, FL</p>
                         <p>Country Inn and Suites <br>Charlotte, NC</p>
                         <p>Country Inn and Suites <br>Concord, NC</p>
                         <p>Country Inn and <br>Suites VA</p>
                         <p>Days Inn Greensboro, <br>NC</p>
+                        <p>Mountain Valley Inn, Dillard, GA</p>
+                        <p>The Ramsey Hotel and Convention Center <br>Pigeon Forge, TN</p>
+
                       </div>
 
                       <div class="col-md-4 client-col">
                         <p>Days Inn Haw <br>River, NC</p>
                         <p>Days Inn <br>Kodak, TN</p>         
                         <p>Days Inn <br>Yadkinville, NC</p>
+                        <p>Days Inn <br>Shorter, AL</p>
                         <p>Wingate Greensboro, <br>NC</p>
                         <p>Wyndham Garden <br>Greensboro, NC</p>
+                        <p>Microtel Inn & Suites by Wyndham <br>Cornelius, NC</p>
+                        <p>La Quinta Inn & Suites by Wyndham <br>Angleton, TX</p>
                         <p>Wingate High <br>Point, NC</p>
+                        <p>Super 8 by Wyndham <br>High Point, NC</p>
+                        <p>Super 8 <br> Eau Claire, WI</p>
+                        <p>Super 8 <br>Charlottesville, VA</p>
+                        <p>Super 8 <br>Greensboro, NC</p>
+                        <p>Super 8 <br>High Point, NC</p>
+                        <p>Super 8 <br>Hillsville, VA</p>
+                        <p>Super 8 <br>Wytheville, VA</p>
+                        <p>Grant Street Inn <br>Bloomington, IN</p>
+                        <p>3s Hospitality Group</p>
+                        <p>Bittel Americas <br>San Jose, CA</p>
+                        <p>Knights Inn <br>Chattanooga, TN</p>
                       </div>
 
                     </div>
@@ -1945,6 +2013,7 @@ We’ll see you again next year. Until then, let’s keep building the future of
                          <p>The Hotel Zags <br>Portland, OR</p>
                          <p>The Inn @ Blackstone <br>Resort VA</p>         
                          <p>Newport Beach Hotel & Resort Sunny <br>Isles Beach, FL</p>
+                         <p>Opal Hotel <br>Raleigh, NC</p>
                        </div>
  
                      </div>
@@ -2000,7 +2069,8 @@ We’ll see you again next year. Until then, let’s keep building the future of
 
                    
               </div>
-          </div>
+         
+            </div>
        
         </div>
 
