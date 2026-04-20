@@ -107,6 +107,64 @@ function gtag(){dataLayer.push(arguments);}
 
 </style>
 
+
+<style>
+  .carousel {
+    margin: 0 auto;
+    padding: 20px 0;
+    max-width: 700px;
+    overflow: hidden;
+    display: flex;
+      > * {
+      flex: 0 0 100%;
+    }&:hover .group {
+      animation-play-state: paused;
+    }
+  }
+.group {
+    display: flex;
+    gap: 20px;
+    /* Add padding to the right to create a gap between the last and first card. */
+    padding-right: 20px;
+  }
+  .card {
+    width: 100%;
+    color: white;
+    border-radius: 24px;
+    box-shadow: rgba(0, 0, 0, 10%) 5px 5px 20px 0;
+    padding: 20px;
+    font-size: xx-large;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+
+    &:nth-child(1) {
+      background: #7958ff;
+    }
+
+    &:nth-child(2) {
+      background: #5d34f2;
+    }
+
+    &:nth-child(3) {
+      background: #4300da;
+    }
+  }
+     .group {
+    animation: scrolling 10s linear infinite;
+  }
+
+  @keyframes scrolling {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>
+
+  
 </head>
 
 <body class="aboutUsPage">
@@ -2366,7 +2424,23 @@ We’ll see you again next year. Until then, let’s keep building the future of
           </div>
       </div>
   </div>
-  
+
+  <!-- ============================================= -->
+  <div class="carousel">
+  <div class="group">
+    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/motel-nc.jpg" alt="Techunifi"></div>
+    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/hampton-nc.webp" alt="Techunifi"></div>
+    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/residence-inn-nc.jpg" alt="Techunifi"></div>
+  </div>
+  <!-- Add `aria-hidden` to hide the duplicated cards from screen readers. -->
+  <div aria-hidden="" class="group">
+    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/motel-nc.jpg" alt="Techunifi"></div>
+    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/hampton-nc.webp" alt="Techunifi"></div>
+    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/residence-inn-nc.jpg" alt="Techunifi"></div>
+  </div>
+</div>
+
+
   
  <!-- ======= Footer ======= -->
  <footer class="footer" role="contentinfo" id="footers">
