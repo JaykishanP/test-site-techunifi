@@ -105,66 +105,58 @@ function gtag(){dataLayer.push(arguments);}
 }
 }
 
+/* ================ */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.wrapper {
+  overflow: hidden;
+  height: 60vh;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 10px;
+}
+
+.gallery {
+  overflow: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.gallery__img {
+  scroll-snap-align: start;
+  margin-bottom: 10px;
+  /* min-height: 50vh; */
+  /* object-fit: cover; */
+}
+
+.lil-nav {
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  a {
+    /* height: 200px; */
+    display: flex;
+    margin-bottom: 10px;
+  }
+}
+
+.lil-nav__img {
+  object-fit: cover;
+  filter: saturate(0);
+  transition: 0.3s ease all;
+
+  &:hover {
+    transform: scale(1.05);
+    filter: saturate(1);
+  }
+}
+
+
 </style>
 
-
-<style>
-  .carousel {
-    margin: 0 auto;
-    padding: 20px 0;
-    max-width: 700px;
-    overflow: hidden;
-    display: flex;
-      > * {
-      flex: 0 0 100%;
-    }&:hover .group {
-      animation-play-state: paused;
-    }
-  }
-.group {
-    display: flex;
-    gap: 20px;
-    /* Add padding to the right to create a gap between the last and first card. */
-    padding-right: 20px;
-  }
-  .card {
-    width: 100%;
-    color: white;
-    border-radius: 24px;
-    box-shadow: rgba(0, 0, 0, 10%) 5px 5px 20px 0;
-    padding: 20px;
-    font-size: xx-large;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-
-    &:nth-child(1) {
-      background: #7958ff;
-    }
-
-    &:nth-child(2) {
-      background: #5d34f2;
-    }
-
-    &:nth-child(3) {
-      background: #4300da;
-    }
-  }
-     .group {
-    animation: scrolling 10s linear infinite;
-  }
-
-  @keyframes scrolling {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-</style>
-
-  
 </head>
 
 <body class="aboutUsPage">
@@ -353,6 +345,98 @@ As we focus on the future, our commitment remains strong. Our goal is not just t
                       </span>
                     </div>
         
+                </div>
+
+                
+                 <!-- 41 -->
+                  <div class="news-rows">
+                    <div class="news-date">April 8 to April 10, 2026</div>
+                    <div class="news-company">Techunifi at AAOHA</div>
+                    <div class="news-location">Philadelphia, PA</div>
+                    <div class="news-content">
+                      <p style="padding-bottom: 0;">
+Techunifi attended AAHOA in 2026 in Philadelphia, a city rich in history and known as the place where the United States became a country, which made it even more meaningful as this year marks the USA 250 anniversary. The most meaningful part of the experience was connecting with clients and building genuine relationships. Over the course of the event, we formed many new friendships and strengthened existing ones while working to better understand the needs of AAHOA attendees. We also had the opportunity to engage with other exhibitors, exchanging ideas and learning from others across the industry.
+<br><br>
+Beyond the show floor, we truly enjoyed the full experience, from the food to the gala event, which brought everyone together in a memorable way. It was especially inspiring to see so many young people, highlighting the bright future of the hospitality industry.
+<br><br>
+For Techunifi, this marked our fifth year attending AAHOA, and each year continues to be more impactful than the last. We have made significant progress, deepened our presence within the community, and continue working toward delivering better solutions for hotel owners.
+<br><br>
+AAHOA is one of those events where, the more you attend, the more connected you become to the community of hoteliers, and we are already looking forward to California next spring.                      </p>
+                                          
+                      <div class="aahoacon-images" style="padding-bottom: 20px;">
+  
+                        <div class="row">
+                          <div class="col-md-12">        
+                            <br>              
+                            <!-- <img src="assets/img/about-images/news/super-high.webp" title="techunifi" alt="techunifi" loading="lazy"> -->
+        <div class="wrapper">
+  <nav class="lil-nav">
+    <a href="#image-1">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa1.png" alt="Techunifi" />
+    </a>
+    <a href="#image-2">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa2.png" alt="Techunifi" />
+    </a>
+    <a href="#image-3">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa3.png" alt="Techunifi" />
+    </a>
+    <a href="#image-4">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa4.png" alt="Techunifi" />
+    </a>
+    <a href="#image-5">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa5.png" alt="Techunifi" />
+    </a>
+    <a href="#image-6">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa6.png" alt="Techunifi" />
+    </a>
+    <a href="#image-7">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa7.png" alt="Techunifi" />
+    </a>
+    <a href="#image-8">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa8.png" alt="Techunifi" />
+    </a>
+    <a href="#image-9">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa9.png" alt="Techunifi" />
+    </a>
+    <a href="#image-10">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa10.png" alt="Techunifi" />
+    </a>
+    <a href="#image-11">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa11.png" alt="Techunifi" />
+    </a>
+    <a href="#image-12">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa12.png" alt="Techunifi" />
+    </a>
+    <a href="#image-13">
+      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa13.png" alt="Techunifi" />
+    </a>
+  </nav>
+
+  <div class="gallery">
+    <img class="gallery__img" id="image-1" src="assets/img/about-images/news/aahoa1.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-2" src="assets/img/about-images/news/aahoa2.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-3" src="assets/img/about-images/news/aahoa3.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-4" src="assets/img/about-images/news/aahoa4.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-5" src="assets/img/about-images/news/aahoa5.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-6" src="assets/img/about-images/news/aahoa6.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-7" src="assets/img/about-images/news/aahoa7.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-8" src="assets/img/about-images/news/aahoa8.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-9" src="assets/img/about-images/news/aahoa9.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-10" src="assets/img/about-images/news/aahoa10.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-11" src="assets/img/about-images/news/aahoa11.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-12" src="assets/img/about-images/news/aahoa12.png" alt="Techunifi" />
+    <img class="gallery__img" id="image-13" src="assets/img/about-images/news/aahoa13.png" alt="Techunifi" />
+  </div>
+</div>
+
+                          </div>
+                        </div>
+  
+                      
+                      </div>
+  
+                    </div>
+                    
                 </div>
 
                  <!-- 40 -->
@@ -1032,7 +1116,7 @@ As we focus on the future, our commitment remains strong. Our goal is not just t
                         <div class="col-md-6">
                           <br>
                           <img src="assets/img/about-images/news/terra.webp" title="techunifi" alt="techunifi" loading="lazy">
-                          <p class="text-center mb-0 pt-2 pb-1 fw-bold">Philadelphia, PA - Terra Philly : Cocktail Bar & Outdoor Dining Restaurant In Philadelphia</p>
+                          <p class="text-center mb-0 pt-2 pb-1 fw-bold">Philadelphia, PA - Terra Grill</p>
                         </div>
                       </div>
 
@@ -1826,255 +1910,255 @@ We’ll see you again next year. Until then, let’s keep building the future of
   
 <div class="client-list-section">
 
-    <div class="row list-parent hilton-stay">
-        <div class="col-md-12">
+  <!-- Hilton -->
+    <div class="row parent-client-list hilton-stay">
+     <div class="col-md-12">
 
-            <div class="list-img text-center">
-                <img src="assets/img/about-images/hilton-stay.png" title="techunifi" alt="techunifi" loading="lazy">
-            </div>
+       <div class="list-img text-center">
+<img src="assets/img/about-images/hilton-stay.png" title="techunifi" alt="techunifi" loading="lazy">
+       </div>
 
-            <div class="row parent-client-list">
-                <div class="col-md-4 client-col">
-                    <p>DoubleTree by Hilton Greenville <br>Woodruff Road, SC</p>
-                    <p>DoubleTree <br>Atlantic Beach, NC</p>
-                    <p>DoubleTree <br>Wilmington, NC</p>
-                    <p>Embassy Suites <br>Charlotte, NC</p>
-                    <p>Embassy Suites <br>Fayetteville, NC</p>
-                    <p>Hampton Inn <br>Chesapeake, VA</p>
-                    <p>Hampton Inn <br>Columbia, SC</p>
-                    <p>Hampton Inn <br>DFW, TX</p>
-                    <p>Hampton Inn <br>Elizabeth City, NC</p>
-                    <p>Hampton Inn <br>Fairburn, GA</p>
-                    <p>Hampton Inn <br>Fayetteville, NC</p>
-                    <p>Hampton Inn Fort <br>Mill, SC</p>
-                    <p>Hampton Inn <br>Franklin, NC</p>
-                    <p>Hampton Inn Gate City <br>Greensboro, NC</p>
-                    <p>Hampton Inn <br>Henderson, NC</p>
-                    <p>Hampton Inn <br>Hendersonville, NC</p>
-                </div>
+     <div class="row parent-client-list">
 
-                <div class="col-md-4 client-col">
-                    <p>Hampton Inn & Suites <br>Exmore Eastern Shore, VA</p>
-                    <p>Hampton Inn & Suites <br>Hopkinsville, KY</p>
-                    <p>Hampton Inn Jupiter <br>Juno Beach, FL</p>
-                    <p>Hampton Inn <br>Kinston, NC</p>
-                    <p>Hampton Inn <br>McLeansville, NC</p>
-                    <p>Hampton Inn <br>Melbourne, FL</p>
-                    <p>Hampton Inn <br>Myrtle Beach, SC</p>
-                    <p>Hampton Inn Vanderbilt <br>Nashville, TN</p>
-                    <p>Hampton Inn & Suites <br>Navarre, FL</p>
-                    <p>Hampton Inn <br>Navarre Beach, FL</p>
-                    <p>Hampton Inn <br>New Bern, NC</p>
-                    <p>Hampton Inn <br>Omaha, NC</p>
-                    <p>Hampton Inn & Suites <br>Port St. Lucie, FL</p>
-                    <p>Hampton Inn <br>Redmond, OR</p>
-                    <p>Hampton Inn Roanoke <br>Rapids, NC</p>
-                    <p>Hampton Inn <br>Rocky Mount, NC</p>
-                </div>
-                
-                <div class="col-md-4 client-col">
-                    <p>Hampton Inn <br>Sapphire, NC</p>
-                    <p>Hampton Inn & Suites Seattle/<br>Redmond, WA</p>
-                    <p>Hampton Inn <br>Statesboro, GA</p>
-                    <p>Hampton Inn <br>Titusville, FL</p>
-                    <p>Hampton Inn <br>Travelers Rest, SC</p>
-                    <p>Hampton Inn <br>Washington, NC</p>
-                    <p>Hampton Inn <br>Winston Salem, NC</p>
-                    <p>Hampton Inn <br>Wilson Downtown, NC</p>
-                    <p>Hampton Inn <br>Wilson I-95, NC</p>
-                    <p>Hilton Garden Inn <br>Aberdeen, MD</p>
-                    <p>Hilton Garden Inn <br>Bel Air, MD</p>
-                    <p>Hilton Garden Inn <br>Chesapeake, VA</p>
-                    <p>Hilton Garden Inn <br>Dallas, TX</p>
-                    <p>Hilton Garden Inn <br>Homestead, FL</p>
-                    <p>Hilton Garden Inn <br>Olive Branch, MS</p>
-                </div>
-            </div>
+  <!-- COLUMN 1 -->
+  <div class="col-md-4 client-col">
+    <p>DoubleTree by Hilton <br>Bloomfield, MI</p>
+    <p>DoubleTree by Hilton <br>Greensboro, NC</p>
+    <p>DoubleTree by Hilton <br>Greenville, NC</p>
+    <p>Embassy Suites <br>Charlotte, NC</p>
+    <p>Embassy Suites <br>Fayetteville, NC</p>
+    <p>Hampton Inn <br>Aberdeen, MD</p>
+    <p>Hampton Inn <br>Baton Rouge, LA</p>
+    <p>Hampton Inn <br>Chesapeake, VA</p>
+    <p>Hampton Inn <br>Christiansburg, VA</p>
+    <p>Hampton Inn <br>Columbia, SC</p>
+    <p>Hampton Inn <br>DFW, TX</p>
+    <p>Hampton Inn <br>Elizabeth City, NC</p>
+    <p>Hampton Inn <br>Fort Mill, SC</p>
+    <p>Hampton Inn <br>Greensboro, NC</p>
+    <p>Hampton Inn <br>Houston, TX</p>
+    <p>Hampton Inn <br>Kinston, NC</p>
+    <p>Hampton Inn <br>Lawrenceville, GA</p>
+    <p>Hampton Inn <br>McLeansville, NC</p>
+    <p>Hampton Inn <br>Medical Park, NC</p>
+    <p>Hampton Inn <br>Nashville, TN</p>
+    <p>Hampton Inn <br>Navarre Beach, FL</p>
+    <p>Hampton Inn <br>New Bern, NC</p>
+    <p>Hampton Inn <br>Omaha, NE</p>
+    <p>Hampton Inn <br>Redmond, OR</p>
+    <p>Hampton Inn <br>Roanoke, VA</p>
+    <p>Hampton Inn <br>Rocky Mount, NC</p>
+    <p>Hampton Inn <br>Statesboro, GA</p>
+    <p>Hampton Inn <br>Washington, NC</p>
+    <p>Hampton Inn <br>Wilmington, NC</p>
+    <p>Hampton Inn <br>Wilmington / University, NC</p>
+    <p>Hampton Inn <br>Winston-Salem, NC</p>
+    <p>Hampton Inn & Suites <br>Hopkinsville, KY</p>
+    <p>Hilton Curio Collection <br>Sunny Isles Beach, FL</p>
+    <p>Hilton Garden Inn <br>Aberdeen, MD</p>
+    <p>Hilton Garden Inn <br>Bel Air, MD</p>
+  </div>
 
-            <div class="row parent-client-list">
-                <div class="col-md-4 client-col">
-                    <p>Hilton Garden Inn <br>Raleigh, NC</p>
-                    <p>Hilton Memphis <br>Memphis, TN</p>
-                    <p>Home2 Suites <br>Belmont, NC</p>
-                    <p>Home2 Suites <br>Bend, OR</p>
-                    <p>Home2 Suites <br>Bristol, CT</p>
-                    <p>Home 2 Suites by Hilton Charlotte <br>University Research Park, NC</p>
-                    <p>Home2 Suites <br>Columbia, SC</p>
-                    <p>Home2 Suites <br>Dallas, TX</p>
-                    <p>Home2 Suites <br>Dania Beach, FL</p>
-                    <p>Home2 Suites <br>Greensboro, NC</p>
-                    <p>Home 2 Suites <br>Greenville, SC</p>
-                </div>
-                
-                <div class="col-md-4 client-col">
-                    <p>Home2 Suites <br>Hendersonville, NC</p>
-                    <p>Home2 Suites <br>Jacksonville, NC</p>
-                    <p>Home2 Suites <br>Mooresville, NC</p>
-                    <p>Home2 Suites <br>Paris, TX</p>
-                    <p>Home2 Suites <br>Pittsburg, CA</p>
-                    <p>Home2 Suites Port <br>Wentworth, GA</p>
-                    <p>Home 2 Suites <br>Raleigh, NC</p>
-                    <p>Home 2 Suites <br>Ridgeland, MS</p>
-                    <p>Home2 Suites <br>San Pablo, CA</p>
-                    <p>Home2 Suites <br>Vacaville, CA</p>
-                    <p>Home2/Tru College <br>Park, GA (ATL airport)</p>
-                    <p>Homewood Suites <br>Bel Air, MD</p>
-                </div>
+  <!-- COLUMN 2 -->
+  <div class="col-md-4 client-col">
+    <p>Hilton Garden Inn <br>Chesapeake, VA</p>
+    <p>Hilton Garden Inn <br>Charlotte North, NC</p>
+    <p>Hilton Garden Inn <br>Dallas, TX</p>
+    <p>Hilton Garden Inn <br>Durham Southpoint, NC</p>
+    <p>Hilton Garden Inn <br>Homestead, FL</p>
+    <p>Hilton Garden Inn <br>Olive Branch, MS</p>
+    <p>Hilton Garden Inn <br>Raleigh, NC</p>
+    <p>Hilton Garden Inn <br>Salt Lake City, UT</p>
+    <p>Home2 Suites <br>Belmont, NC</p>
+    <p>Home2 Suites <br>Bend, OR</p>
+    <p>Home2 Suites <br>Bristol, CT</p>
+    <p>Home2 Suites <br>Charlotte, NC</p>
+    <p>Home2 Suites <br>Cleveland, TN</p>
+    <p>Home2 Suites <br>Columbia, SC</p>
+    <p>Home2 Suites <br>Dallas, TX</p>
+    <p>Home2 Suites <br>Greensboro Airport, NC</p>
+    <p>Home2 Suites <br>Greenville, SC</p>
+    <p>Home2 Suites <br>Hendersonville, NC</p>
+    <p>Home2 Suites <br>Jacksonville, NC</p>
+    <p>Home2 Suites <br>Lynchburg, VA</p>
+    <p>Home2 Suites <br>Mooresville, NC</p>
+    <p>Home2 Suites <br>Paris, TX</p>
+    <p>Home2 Suites <br>Pittsburg, CA</p>
+    <p>Home2 Suites <br>Port Wentworth, GA</p>
+    <p>Home2 Suites <br>Roswell, GA</p>
+    <p>Home2 Suites <br>Tyler, TX</p>
+    <p>Home2/Tru <br>College Park, GA (ATL Airport)</p>
+    <p>Homewood Suites <br>Bel Air, MD</p>
+    <p>Homewood Suites <br>Chesapeake, VA</p>
+    <p>Homewood Suites <br>Charlotte, NC</p>
+    <p>Homewood Suites <br>DFW, TX</p>
+    <p>Homewood Suites <br>Greenville, NC</p>
+    <p>Homewood Suites <br>Jackson, MS</p>
+    <p>Homewood Suites <br>Lawrenceville, GA</p>
+    <p>Homewood Suites <br>Pinehurst, NC</p>
+  </div>
 
-                <div class="col-md-4 client-col">
-                    <p>Homewood Suites <br>Chesapeake, VA</p>
-                    <p>Homewood Suites <br>DFW, TX</p>
-                    <p>Homewood Suites <br>Greenville, NC</p>
-                    <p>Homewood Suites <br>Jackson, MS</p>
-                    <p>Homewood Suites <br>Raleigh, NC</p>
-                    <p>Motto by Hilton <br>Nashville, TN</p>
-                    <p>Spark by Hilton <br>California, MD</p>
-                    <p>Spark <br>Carlisle, PA</p>
-                    <p>Spark by Hilton <br>Chattanooga, TN</p>
-                    <p>Spark by Hilton Charlotte <br>Airport, NC</p>
-                    <p>Spark Crystal <br>Lake, NC</p>
-                </div>
-            </div>
+  <!-- COLUMN 3 -->
+  <div class="col-md-4 client-col">
+    <p>Homewood Suites <br>Raleigh, NC</p>
+    <p>Homewood Suites <br>Walker, MI</p>
+    <p>Motto by Hilton <br>Nashville, TN</p>
+    <p>Spark by Hilton <br>Chattanooga, TN</p>
+    <p>Spark <br>Carlisle, PA</p>
+    <p>Spark <br>Charlotte, NC</p>
+    <p>Spark <br>Crystal Lake, NC</p>
+    <p>Spark <br>Garland, TX</p>
+    <p>Spark <br>Kannapolis, NC</p>
+    <p>Spark <br>Kodak, TN</p>
+    <p>Spark <br>Lynchburg, VA</p>
+    <p>Spark <br>North Wilmington, NC</p>
+    <p>Spark <br>Odessa, TX</p>
+    <p>Spark <br>Roanoke, VA</p>
+    <p>Spark <br>Smyrna, GA</p>
+    <p>Spark <br>Spring Lake, NC</p>
+    <p>Spark <br>Sumter, SC</p>
+    <p>Spark <br>Wilmington, NC</p>
+    <p>Spark <br>Winston-Salem, NC</p>
+    <p>The AVA Hotel by Hilton <br>Paso Robles, CA</p>
+    <p>Tempo/Homewood Suites <br>Raleigh, NC</p>
+    <p>Tru <br>Amarillo, TX</p>
+    <p>Tru <br>Charleston, SC</p>
+    <p>Tru <br>Charlotte, NC</p>
+    <p>Tru <br>Chesapeake, VA</p>
+    <p>Tru <br>Dallas, TX</p>
+    <p>Tru <br>Greensboro, NC</p>
+    <p>Tru <br>Jacksonville, NC</p>
+    <p>Tru <br>Mobile, AL</p>
+    <p>Tru <br>Sumter, SC</p>
+    <p>Tru <br>Waco, TX</p>
+    <p>Tru <br>Wilmington, NC</p>
+    <p>Tru/Tapestry Collection <br>Wilmington, NC</p>
+    <p>Tru by Hilton <br>Bellefonte, PA</p>
+    <p>Tru by Hilton <br>Cleveland, TN</p>
+    <p>Tru by Hilton <br>Shippensburg, PA</p>
+  </div>
 
-            <div class="row parent-client-list">
-                <div class="col-md-4 client-col">
-                    <p>Spark <br>Garland, TX</p>
-                    <p>Spark By Hilton <br>Kannapolis, NC</p>
-                    <p>Spark by Hilton <br>Kodak, TN</p>
-                    <p>Spark <br>Lynchburg, VA</p>
-                    <p>Spark by Hilton <br>Odessa, TX</p>
-                    <p>Spark by Hilton <br>Omaha, NE</p>
-                    <p>Spark <br>Roanoke, VA</p>
-                    <p>Spark <br>Smyrna, GA</p>
-                    <p>Spark <br>Spring Lake, NC</p>
-                    <p>Spark <br>Sumter, SC</p>
-                    <p>Spark Wilmington <br>Market St, NC</p>
-                </div>
+</div>
 
-                <div class="col-md-4 client-col">
-                    <p>Spark By Hilton <br>Winston-Salem, NC</p>
-                    <p>Tempo/Homewood Suites <br>Raleigh, NC</p>
-                    <p>Tru Amarillo, <br>TX</p>
-                    <p>Tru Charleston, <br>SC</p>
-                    <p>Tru Charlotte, <br>NC</p>
-                    <p>Tru Chesapeake, <br>VA</p>
-                    <p>Tru Greensboro, <br>NC</p>
-                    <p>Tru Jacksonville, <br>NC</p>
-                    <p>Tru Mobile, <br>AL</p>
-                    <p>Tru Sumter, <br>SC</p>
-                    <p>Tru Waco, <br>TX</p>
-                </div>
 
-                <div class="col-md-4 client-col">
-                    <p>Tru/Tapestry Collection <br>Wilmington, NC</p>
-                </div>
-            </div>
-        </div>
-    </div>
+     </div>
+ 
+</div>
+
 
     <br>
-    <div class="row list-parent marriot-hotels">
-        <div class="col-md-12">
+<!-- Marriot -->
+    <div class="row parent-client-list marriot-hotels">
+       <div class="col-md-12">
 
-            <div class="list-img text-center">
-                <img src="assets/img/about-images/marriott-bonvoy.png" title="techunifi" alt="techunifi" loading="lazy">
-            </div>
+               <div class="list-img text-center">
+                <img src="assets/img/about-images/marriott-bonvoy.png" title="techunifi" alt="techunifi" loading="lazy">
+              </div>
 
-            <div class="row parent-client-list">
-                <div class="col-md-4 client-col">
-                    <p>AC Hotels <br>Dallas, TX</p>
-                    <p>AC Hotels <br>Houston, TX</p>
-                    <p>AC Hotels <br>Newark, CA</p>
-                    <p>AC Moxy <br>Dallas, TX</p>
-                    <p>Aloft Arlington, <br>TX</p>
-                    <p>Aloft Euless, <br>TX</p>
-                    <p>Courtyard by Marriott <br>Charleston, SC</p>
-                    <p>Courtyard by Marriott <br>Covington, GA</p>
-                    <p>Courtyard by Marriott <br>Dallas, TX</p>
-                    <p>Courtyard by Marriott <br>Greensboro, NC</p>
-                    <p>Courtyard by Marriott <br>Missoula, MT</p>
-                    <p>Courtyard by Marriott <br>Salisbury, NC</p>
-                    <p>Courtyard by Marriott <br>Vallejo, CA</p>
-                    <p>Courtyard by Marriott <br>Winston Salem, NC</p>
-                    <p>Courtyard Wilmington <br>Downtown Historic District, NC</p>
-                    <p>Courtyard <br>WindyHill/Ballpark, GA</p>
-                </div>
+              <div class="row parent-client-list">
 
-                <div class="col-md-4 client-col">
-                    <p>Element Hampton <br>Peninsula Town Center, VA</p>
-                    <p>Fairfield Inn and Suites <br>Archdale, NC</p>
-                    <p>Fairfield Inn and Suites <br>Conway, SC</p>
-                    <p>Fairfield Inn and Suites <br>Crestview, FL</p>
-                    <p>Fairfield Inn <br>Davenport, FL</p>
-                    <p>Fairfield Inn and Suites <br>Kingsport, TN</p>
-                    <p>Fairfield Inn <br>Lumberton, NC</p>
-                    <p>Fairfield Inn and Suites <br>Monroe, NC</p>
-                    <p>Fairfield Inn and Suites <br>Myrtle Beach, SC</p>
-                    <p>Fairfield Inn <br>Myrtle Beach North, SC</p>
-                    <p>Fairfield Inn and Suites <br>Orangeburg, SC</p>
-                    <p>Fairfield Inn and Suites <br>Omaha, NE</p>
-                    <p>Fairfield Inn and Suites <br>Rock Hill, SC</p>
-                    <p>Fairfield Inn and Suites <br>Scottsdale, AZ</p>
-                    <p>Fairfield Inn & Suites <br>Shelby, NC</p>
-                    <p>Fairfield Inn and Suites <br>Smithfield, NC</p>
-                </div>
+  <!-- COLUMN 1 -->
+  <div class="col-md-4 client-col">
+    <p>AC Hotels <br>Dallas, TX</p>
+    <p>AC Hotels <br>Houston, TX</p>
+    <p>AC Hotels <br>Newark, CA</p>
+    <p>AC/Moxy <br>Dallas, TX</p>
+    <p>Aloft <br>Arlington, TX</p>
+    <p>Aloft <br>Euless, TX</p>
+    <p>Courtyard by Marriott <br>Charleston, SC</p>
+    <p>Courtyard by Marriott <br>Covington, GA</p>
+    <p>Courtyard by Marriott <br>Dallas, TX</p>
+    <p>Courtyard by Marriott <br>Greensboro, NC</p>
+    <p>Courtyard by Marriott <br>Hammond, IN</p>
+    <p>Courtyard by Marriott <br>High Point, NC</p>
+    <p>Courtyard by Marriott <br>Missoula, MT</p>
+    <p>Courtyard by Marriott <br>Paducah, KY</p>
+    <p>Courtyard by Marriott <br>Raleigh, KY</p>
+    <p>Courtyard by Marriott <br>Salisbury, NC</p>
+    <p>Courtyard by Marriott <br>Vallejo, CA</p>
+    <p>Courtyard by Marriott <br>Winston-Salem, NC</p>
+    <p>Element <br>Hampton Peninsula Town Center, VA</p>
+    <p>Fairfield Inn & Suites <br>Archdale, NC</p>
+    <p>Fairfield Inn & Suites <br>Crestview, FL</p>
+    <p>Fairfield Inn & Suites <br>Davenport, FL</p>
+    <p>Fairfield Inn & Suites <br>Durham Southpoint, FL</p>
+    <p>Fairfield Inn & Suites <br>Kingsport, TN</p>
+    <p>Fairfield Inn & Suites <br>Monroe, NC</p>
+    <p>Fairfield Inn <br>Myrtle Beach, SC</p>
+    <p>Fairfield Inn & Suites <br>Omaha, NE</p>
+  </div>
 
-                <div class="col-md-4 client-col">
-                    <p>Fairfield Inn & Suites <br>Statesville, NC</p>
-                    <p>Four Points by Sheraton <br>Pineville, NC</p>
-                    <p>Four Points by Sheraton <br>Savannah Airport, GA</p>
-                    <p>Marriott San Antonio, <br>TX</p>
-                    <p>Marriott Vacation <br>Resort Myrtle Beach, SC</p>
-                    <p>Residence Inn <br>Birmingham, AL</p>
-                    <p>Residence Inn <br>Chapel Hill, NC</p>
-                    <p>Residence Inn <br>Charleston, SC</p>
-                    <p>Residence Inn Charlotte <br>Uptown, NC</p>
-                    <p>Residence Inn <br>Covington, GA</p>
-                    <p>Residence Inn <br>Dallas, TX</p>
-                    <p>Residence Inn <br>Greenville, NC</p>
-                    <p>Residence Inn <br>Greensboro, NC</p>
-                    <p>Residence Inn <br>Raleigh Crabtree, NC</p>
-                    <p>Residence Inn <br>Raleigh, Downtown</p>
-                </div>
-            </div>
-            
-            <div class="row parent-client-list">
-                <div class="col-md-4 client-col">
-                    <p>Residence Inn <br>Waco, TX</p>
-                    <p>Residence Inn <br>Woodbridge, NJ</p>
-                    <p>Sheraton Charlotte,<br> NC</p>
-                    <p>Sheraton Four Points <br>New River Hotels, NC</p>
-                    <p>Sheraton Raleigh, <br>NC</p>
-                    <p>Springhill Suites <br>Austin, TX</p>
-                    <p>SpringHill Suites <br>Bossier City, LA</p>
-                    <p>Springhill Suites <br>Columbia, MO</p>
-                    <p>Springhill Suites <br>Dawsonville, GA</p>
-                    <p>Springhill Suites <br>Garner, NC</p>
-                    <p>Springhill Suites <br>Greensboro, NC</p>
-                    <p>Springhill Suites <br>New Smyrna Beach, FL</p>
-                </div>
+  <!-- COLUMN 2 -->
+  <div class="col-md-4 client-col">
+    <p>Fairfield Inn & Suites <br>Orangeburg, SC</p>
+    <p>Fairfield Inn & Suites <br>Raleigh, NC</p>
+    <p>Fairfield Inn & Suites <br>Roanoke, VA</p>
+    <p>Fairfield Inn & Suites <br>Rock Hill, SC</p>
+    <p>Fairfield Inn & Suites <br>Scottsdale, AZ</p>
+    <p>Fairfield Inn & Suites <br>Shelby, NC</p>
+    <p>Fairfield Inn & Suites <br>Smithfield, NC</p>
+    <p>Fairfield Inn & Suites <br>Statesville, NC</p>
+    <p>Fairfield Inn <br>Winston-Salem Downtown, NC</p>
+    <p>Four Points by Sheraton <br>Savannah Airport, NC</p>
+    <p>Four Points by Sheraton <br>Pineville, NC</p>
+    <p>Marriott <br>San Antonio, TX</p>
+    <p>Marriott Vacation Resort <br>Myrtle Beach, SC</p>
+    <p>Residence Inn <br>Belmont, NC</p>
+    <p>Residence Inn <br>Birmingham, AL</p>
+    <p>Residence Inn <br>Charleston, SC</p>
+    <p>Residence Inn <br>Chapel Hill, NC</p>
+    <p>Residence Inn <br>Charlotte Uptown, NC</p>
+    <p>Residence Inn <br>Covington, GA</p>
+    <p>Residence Inn <br>Dallas, TX</p>
+    <p>Residence Inn <br>Greensboro Airport, NC</p>
+    <p>Residence Inn <br>Greenville, NC</p>
+    <p>Residence Inn <br>Hammond, IN</p>
+    <p>Residence Inn <br>Raleigh, NC</p>
+    <p>Residence Inn <br>Raleigh Downtown, NC</p>
+    <p>Residence Inn <br>Waco, TX</p>
+  </div>
 
-                <div class="col-md-4 client-col">
-                    <p>Springhill Suites <br>Orangeburg, SC</p>
-                    <p>Springhill Suites <br>Roanoke, VA</p>
-                    <p>Springhill Suites <br>Wilmington, NC</p>
-                    <p>TownePlace Suites <br>Aberdeen, NC</p>
-                    <p>TownePlace Suites <br>Asheville, NC</p>
-                    <p>TownePlace Suites <br>Belcamp, MD</p>
-                    <p>TownePlace Suites <br>Boone, NC</p>
-                    <p>TownePlace Suites <br>Charleston, NC</p>
-                    <p>TownePlace Suites <br>Hopkinsville, KY</p>
-                    <p>TownePlace Suites <br>Kernersville, NC</p>
-                    <p>TownePlace Suites <br>Norfolk, VA</p>
-                </div>
-                
-                <div class="col-md-4 client-col">
-                </div>
-            </div>
-        </div>
-    </div>
+  <!-- COLUMN 3 -->
+  <div class="col-md-4 client-col">
+    <p>Residence Inn <br>Wilmington, IN</p>
+    <p>Residence Inn <br>Woodbridge, NJ</p>
+    <p>Sheraton <br>Charlotte, NC</p>
+    <p>Sheraton <br>Raleigh, NC</p>
+    <p>Sheraton Four Points <br>New River Hotels, High Point, NC</p>
+    <p>SpringHill Suites <br>Austin, TX</p>
+    <p>SpringHill Suites <br>Boone, NC</p>
+    <p>SpringHill Suites <br>Bossier City, NC</p>
+    <p>SpringHill Suites <br>Columbia, MO</p>
+    <p>SpringHill Suites <br>Dawsonville, GA</p>
+    <p>SpringHill Suites <br>Garner, NC</p>
+    <p>SpringHill Suites <br>Greensboro, NC</p>
+    <p>SpringHill Suites <br>Greensboro Airport, NC</p>
+    <p>SpringHill Suites <br>New Smyrna Beach, FL</p>
+    <p>SpringHill Suites <br>Orangeburg, SC</p>
+    <p>SpringHill Suites <br>Roanoke, VA</p>
+    <p>SpringHill Suites <br>Wilmington, NC</p>
+    <p>TownePlace Suites <br>Asheville, NC</p>
+    <p>TownePlace Suites <br>Belcamp, MD</p>
+    <p>TownePlace Suites <br>Boone, NC</p>
+    <p>TownePlace Suites <br>Cary, NC</p>
+    <p>TownePlace Suites <br>Charleston, NC</p>
+    <p>TownePlace Suites <br>Hopkinsville, KY</p>
+    <p>TownePlace Suites <br>Kernersville, NC</p>
+    <p>TownePlace Suites <br>Olive Branch, MS</p>
+    <p>TownePlace Suites <br>Norfolk Airport, VA</p>
+    <p>TownePlace Suites <br>Roanoke, VA</p>
+  </div>
+
+</div>
+
+
+       </div>
+
+</div>
+
 
     <br>
+<!-- Hyatt -->
     <div class="row list-parent hyatt-hotels">
         <div class="col-md-12">
 
@@ -2082,40 +2166,51 @@ We’ll see you again next year. Until then, let’s keep building the future of
                 <img src="assets/img/about-images/hyatt.png" title="techunifi" alt="techunifi" loading="lazy">
             </div>
 
-            <div class="row parent-client-list">
-                <div class="col-md-4 client-col">
-                    <p>Hyatt House <br>Atlanta, GA</p>
-                    <p>Hyatt House BWI Airport / <br>Baltimore, MD</p>
-                    <p>Hyatt House <br>Bryan, TX</p>
-                    <p>Hyatt House <br>Houston, TX</p>
-                    <p>Hyatt House <br>Sandy Springs, GA</p>
-                    <p>Hyatt House The Woodlands / <br>Shenandoah, TX</p>
-                    <p>Hyatt Place <br>Allen, TX</p>
-                </div>
+        <div class="row parent-client-list">
 
-                <div class="col-md-4 client-col">
-                    <p>Hyatt Place Alliance <br>Ft Worth, TX</p>
-                    <p>Hyatt Place <br>Amarillo, TX</p>
-                    <p>Hyatt Place <br>Arden, NC</p>
-                    <p>Hyatt Place <br>Asheville, NC</p>
-                    <p>Hyatt Place Atlanta/Alpharetta/<br>North Point Mall, GA</p>
-                    <p>Hyatt Place <br>Eagle Pass, TX</p>
-                    <p>Hyatt Place <br>Flagstaff, AZ</p>
-                    <p>Hyatt Place Ft <br>Worth, TX</p>
-                </div>
+  <!-- COLUMN 1 -->
+  <div class="col-md-4 client-col">
+    <p>Hyatt House <br>Atlanta, GA</p>
+    <p>Hyatt House <br>BWI Airport, MD</p>
+    <p>Hyatt House <br>Bryan, TX</p>
+    <p>Hyatt House <br>DFW Airport, TX</p>
+    <p>Hyatt House <br>Durham Southpoint, TX</p>
+    <p>Hyatt House <br>Houston, TX</p>
+    <p>Hyatt House <br>Shenandoah, TX</p>
+  </div>
 
-                <div class="col-md-4 client-col">
-                    <p>Hyatt Place <br>Greensboro Downtown, NC</p>
-                    <p>Hyatt Place <br>Huntsville, AL</p>
-                    <p>Hyatt Place <br>Newark, CA</p>
-                    <p>Hyatt Place The <br>Colony, TX</p>
-                </div>
-            </div>
+  <!-- COLUMN 2 -->
+  <div class="col-md-4 client-col">
+    <p>Hyatt Place <br>Allen, TX</p>
+    <p>Hyatt Place <br>Alpharetta, GA</p>
+    <p>Hyatt Place <br>Amarillo, TX</p>
+    <p>Hyatt Place <br>Arden Airport, NC</p>
+    <p>Hyatt Place <br>Asheville, NC</p>
+    <p>Hyatt Place <br>Eagle Pass, TX</p>
+    <p>Hyatt Place <br>Flagstaff, AZ</p>
+  </div>
+
+  <!-- COLUMN 3 -->
+  <div class="col-md-4 client-col">
+    <p>Hyatt Place <br>Fort Worth, TX</p>
+    <p>Hyatt Place <br>Greensboro, NC</p>
+    <p>Hyatt Place <br>Greensboro Downtown, NC</p>
+    <p>Hyatt Place <br>Huntsville, AL</p>
+    <p>Hyatt Place <br>Newark, CA</p>
+    <p>Hyatt Place <br>The Colony, TX</p>
+    <p>Hyatt Regency <br>Frisco Dallas, TX</p>
+  </div>
+
+</div>
+
+
 
         </div>
       </div>
 
     <br>
+
+<!-- ihg -->
     <div class="row list-parent ihg-hotels">
         <div class="col-md-12">
 
@@ -2123,43 +2218,45 @@ We’ll see you again next year. Until then, let’s keep building the future of
                 <img src="assets/img/about-images/ihg-hotels-resorts.png" title="techunifi" alt="techunifi" loading="lazy">
             </div>
 
-            <div class="row parent-client-list">
-                <div class="col-md-4 client-col">
-                    <p>Candlewood Suites <br>Baltimore, MD</p>
-                    <p>Candlewood Suites <br>Charlotte, NC</p>
-                    <p>Candlewood Suites <br>Huntsville, AL</p>
-                    <p>Holiday Inn <br>Concord, NC</p>
-                    <p>Holiday Inn Express <br>Addison, TX</p>
-                    <p>Holiday Inn Express & Suites <br>Benson, NC</p>
-                    <p>Holiday Inn Express <br>Charlotte, NC</p>
-                    <p>Holiday Inn Express <br>Concord, NC</p>
-                </div>
+         <div class="row parent-client-list">
 
-                <div class="col-md-4 client-col">
-                    <p>Holiday Inn Express <br>Fayetteville, NC</p>
-                    <p>Holiday Inn Express <br>Greensboro, NC</p>
-                    <p>Holiday Inn Express <br>Greenville, NC</p>
-                    <p>Holiday Inn Express & Suites <br>Irving Convention Center, TX</p>
-                    <p>Holiday Inn Express & Suites <br>Kinston, NC</p>
-                    <p>Holiday Inn Express <br>Leesvile, LA</p>
-                    <p>Holiday Inn <br>Lumberton, NC</p>
-                    <p>Holiday Inn Express <br>Lumberton, NC</p>
-                </div>
+  <!-- COLUMN 1 -->
+  <div class="col-md-4 client-col">
+    <p>Candlewood Suites <br>Baltimore, MD</p>
+    <p>Candlewood Suites <br>Charlotte, NC</p>
+    <p>Candlewood Suites <br>Huntsville, AL</p>
+    <p>Holiday Inn Express <br>Addison, TX</p>
+    <p>Holiday Inn Express <br>Benson, NC</p>
+    <p>Holiday Inn Express <br>Charlotte, NC</p>
+  </div>
 
-                <div class="col-md-4 client-col">
-                    <p>Holiday inn express <br>Montgomery, AL</p>
-                    <p>Holiday Inn Express <br>North Lake, TX</p>
-                    <p>Holiday Inn Express <br>Raleigh, NC</p>
-                    <p>Holiday Inn <br>Rock Hill, SC</p>
-                    <p>Holiday Inn Express <br>Winston Salem, NC</p>
-                    <p>Staybridge Suites <br>Greenville, NC</p>
-                </div>
-            </div>
+  <!-- COLUMN 2 -->
+  <div class="col-md-4 client-col">
+    <p>Holiday Inn Express <br>Concord, NC</p>
+    <p>Holiday Inn Express <br>Fayetteville, NC</p>
+    <p>Holiday Inn Express <br>Greensboro, NC</p>
+    <p>Holiday Inn Express <br>Greenville, NC</p>
+    <p>Holiday Inn Express <br>Kinston, NC</p>
+  </div>
+
+  <!-- COLUMN 3 -->
+  <div class="col-md-4 client-col">
+    <p>Holiday Inn Express <br>Lumberton, NC</p>
+    <p>Holiday Inn Express <br>North Lake, TX</p>
+    <p>Holiday Inn Express <br>Raleigh, NC</p>
+    <p>Holiday Inn Express <br>Winston-Salem, NC</p>
+    <p>Staybridge Suites <br>Greenville, NC</p>
+  </div>
+
+</div>
+
+
 
         </div>
     </div>
 
     <br>
+<!-- others -->
     <div class="row list-parent hotels-others">
         <div class="col-md-12">
 
@@ -2168,152 +2265,67 @@ We’ll see you again next year. Until then, let’s keep building the future of
             </div>
 
             <div class="row parent-client-list">
-                <div class="col-md-4 client-col">
-                    <p>3s Hospitality Group</p>
-                    <p>America's Best Value <br>Canton, NC</p>
-                    <p>AmericInn Eau <br>Claire, WI</p>
-                    <p>AmericInn Marshfield, <br>WI</p>
-                    <p>Anusaya Fresh <br>Los Angeles, NC</p>
-                    <p>ARP Hospitality <br>Chesapeake, VA</p>
-                    <p>Audio Visual Designs <br>and Concepts, LLC, NJ</p>
-                    <p>Auto Owners Insurance <br>Greensboro, NC</p>
-                    <p>Ava Hotel Paso <br>Robles, CA</p>
-                    <p>Avid <br>Charlotte, NC</p>
-                    <p>Avid <br>Hermitage, TN</p>
-                    <p>BAPS <br>Raleigh, NC</p>
-                    <p>Baymont Hotel <br>Myrtle Beach, SC</p>
-                    <p>Best Western <br>Brunswick, GA</p>
-                    <p>Best Western B R Guest <br>Zanesville, OH</p>
-                    <p>Best Western <br>Charleston, SC</p>
-                    <p>Best Western <br>Enola, PA</p>
-                    <p>Best Western <br>Greensboro, NC</p>
-                    <p>Best Western <br>Marshall, TX</p>
-                    <p>Best Western Plus New <br>Cumberland Inn & Suites, PA</p>
-                    <p>Best Western North <br>Miami Beach, FL</p>
-                    <p>Best Western Plus <br>Rose City Conference Center Inn, GA</p>
-                    <p>Best Western Plus <br>Thomasville, GA</p>
-                    <p>Best Western Plus <br>Wilmington/Carolina Beach, NC</p>
-                    <p>Best Western <br>Veasley Street, NC</p>
-                    <p>Best Western <br>Wilmington, NC</p>
-                    <p>Big Charlies Truck Plaza <br>Virginia Beach, VA</p>
-                    <p>Bittel Americas <br>San Jose, CA</p>
-                    <p>Brawley Inc <br>Wilmington, NC</p>
-                    <p>Brew Pointe LLC <br>Atlanta, GA</p>
-                </div>
 
-                <div class="col-md-4 client-col">
-                    <p>Cambria Suites <br>Fort Mill, SC</p>
-                    <p>Cambria Suites <br>Rock Hill, SC</p>
-                    <p>City Center Inn <br>Newport news, VA</p>
-                    <p>Comfort Inn <br>Greensboro East, NC</p>
-                    <p>Comfort Inn <br>McLeansville, NC</p>
-                    <p>Comfort Inn <br>Wendover, NC</p>
-                    <p>Comfort Suites <br>Avenel, NJ</p>
-                    <p>Comfort Suites <br>Greenville, SC</p>
-                    <p>Comfort Suites <br>Johnson City, TN</p>
-                    <p>Comfort Suites <br>Roanoke, VA</p>
-                    <p>Comfort Suites <br>Sanford, NC</p>
-                    <p>Country Inn and Suites <br>Aberdeen, MD</p>
-                    <p>Country Inn and Suites <br>Cape Canaveral, FL</p>
-                    <p>Country Inn and Suites <br>Charlotte, NC</p>
-                    <p>Country Inn and Suites <br>Concord, NC</p>
-                    <p>Country Inn & Suites <br>Huntersville, NC</p>
-                    <p>Country Inn and Suites <br>Roanoke, VA</p>
-                    <p>Country Inn and <br>Suites VA</p>
-                    <p>Days Inn <br>Bainbridge, GA</p>
-                    <p>Days Inn & Suites <br>Needles, CA</p>
-                    <p>Days Inn By Wyndham <br>Haw River, NC</p>
-                    <p>Days Inn High Point <br>Archdale, NC</p>
-                    <p>Days Inn <br>Kodak, TN</p>
-                    <p>Days Inn Kodak <br>Microtel, TN</p>
-                    <p>Days Inn - Wyndham <br>Montgomery, AL</p>
-                    <p>Days Inn Greensboro, <br>NC</p>
-                    <p>Days Inn - Wyndham <br>Salisbury, NC</p>
-                    <p>Days Inn By Wyndham <br>Shorter, AL</p>
-                    <p>Days Inn Wyndham <br>Erick, OK</p>
-                    <p>Days Inn - Wyndham <br>Yadkinville, NC</p>
-                    <p>Econo Lodge Inn & Suites <br>Pilot Mountain, NC</p>
-                    <p>Economy Inn <br>Lexington, NC</p>
-                </div>
+  <!-- COLUMN 1 -->
+  <div class="col-md-4 client-col">
+    <p>AmericInn <br>Eau Claire, WI</p>
+    <p>AmericInn <br>Marshfield, WI</p>
+    <p>Best Western <br>Greensboro, NC</p>
+    <p>Best Western <br>New Cumberland, PA</p>
+    <p>Best Western <br>North Miami Beach, FL</p>
+    <p>Best Western <br>Wilmington, NC</p>
+    <p>Cambria Suites <br>Rock Hill, SC</p>
+    <p>Comfort Inn <br>McLeansville, NC</p>
+    <p>Comfort Suites <br>Roanoke, VA</p>
+    <p>Comfort Suites <br>Sanford, NC</p>
+    <p>Country Inn & Suites <br>Aberdeen, MD</p>
+    <p>Country Inn & Suites <br>Charlotte, NC</p>
+    <p>Country Inn & Suites <br>Concord, NC</p>
+    <p>Country Inn & Suites <br>Roanoke, VA</p>
+  </div>
 
-                <div class="col-md-4 client-col">
-                    <p>English Inn of <br>Charlottesville, VA</p>
-                    <p>Grant Street Inn <br>Bloomington, IN</p>
-                    <p>Knights Inn <br>Chattanooga, TN</p>
-                    <p>Knights Inn <br>Galax, VA</p>
-                    <p>La Quinta Inn and Suites <br>Aberdeen, MD</p>
-                    <p>La Quinta Inn and Suites <br>Angleton, TX</p>
-                    <p>LaQuinta Inn & Suites By Wyndham <br>Charlotte, NC</p>
-                    <p>La Quinta Inn and Suites <br>Greensboro, NC</p>
-                    <p>La Quinta <br>Oxford, AL</p>
-                    <p>La Quinta <br>San Antonio, TX</p>
-                    <p>LaQuinta <br>Seguin, TX</p>
-                    <p>La Quinta Inn <br>Tallahassee, FL</p>
-                    <p>La Quinta Inn and Suites <br>Winston Salem, NC</p>
-                    <p>Loop Inn Motel <br>Avenel, NJ</p>
-                    <p>LX Hotel <br>Manchester, TN</p>
-                    <p>Mainstay <br>Sterling, VA</p>
-                    <p>MainStay Suites <br>Florence, SC</p>
-                    <p>Microtel Inn & Suites by Wyndham <br>Cornelius, NC</p>
-                    <p>Microtel Inn <br>Wilson, NC</p>
-                    <p>Motel 6 <br>Greensboro, NC</p>
-                    <p>Motel6 <br>North Richland Hills, TX</p>
-                    <p>Motel 6 <br>Wytheville, VA</p>
-                    <p>Mountain Valley Inn, Dillard, GA</p>
-                    <p>Pinnace Communications <br>Fargo, ND</p>
-                    <p>Pop Shoppe <br>Greensboro, NC</p>
-                    <p>Post Road Inn Motel <br>Avenel, NJ</p>
-                    <p>Quality Inn <br>Christianburg, VA</p>
-                    <p>Quality Inn and Suites <br>Greenville, SC</p>
-                    <p>Quality Inn <br>Luray, VA</p>
-                    <p>Quality Inn <br>Winston-Salem, NC</p>
-                    <p>Quality Suites <br>Alta Vista, VA</p>
-                </div>
-            </div>
+  <!-- COLUMN 2 -->
+  <div class="col-md-4 client-col">
+    <p>Days Inn <br>Greensboro, NC</p>
+    <p>Days Inn <br>Haw River, NC</p>
+    <p>Days Inn <br>Kodak, TN</p>
+    <p>Days Inn <br>Shorter, AL</p>
+    <p>Days Inn <br>Yadkinville, NC</p>
+    <p>Grant Street Inn <br>Bloomington, IN</p>
+    <p>Knights Inn <br>Chattanooga, TN</p>
+    <p>La Quinta <br>Aberdeen, MD</p>
+    <p>La Quinta <br>Charlotte, NC</p>
+    <p>La Quinta <br>Greensboro, NC</p>
+    <p>La Quinta <br>Oxford, AL</p>
+    <p>La Quinta <br>San Antonio, TX</p>
+    <p>La Quinta <br>Seguin, TX</p>
+    <p>La Quinta <br>Whitsett, NC</p>
+  </div>
 
-            <div class="row parent-client-list">
-                <div class="col-md-4 client-col">
-                    <p>Ramada by Wyndham <br>Harrisburg, PA</p>
-                    <p>Red Carpet Inn <br>Kinston, NC</p>
-                    <p>Red Roof Inn <br>Greensboro, NC</p>
-                    <p>Red Roof Inn <br>Wytheville, VA</p>
-                    <p>Roadway Inn and Suites <br>Asheville, NC</p>
-                    <p>Roadway Inn <br>Wytheville, VA</p>
-                    <p>Sleep Inn <br>Mt Pleasant, SC</p>
-                    <p>Spoons Grill Restaurant <br>Lauderdale Lakes, FL</p>
-                    <p>Strand Hospitality Services <br>Myrtle Beach, SC</p>
-                    <p>Super 8 <br>Charlottesville, VA</p>
-                    <p>Super 8 <br>Eau Claire, WI</p>
-                    <p>Super 8 <br>Fayetteville, AR</p>
-                    <p>Super 8 <br>Greensboro, NC</p>
-                </div>
-                
-                <div class="col-md-4 client-col">
-                    <p>Super 8 by Wyndham <br>High Point, NC</p>
-                    <p>Super 8 <br>Hillsville, VA</p>
-                    <p>Super 8 <br>Wytheville, VA</p>
-                    <p>SureStay by Best Western <br>Christiansburg, VA</p>
-                    <p>Surestay by BW <br>Tarboro, NC</p>
-                    <p>Sweet Dreams Inn <br>Pensacola, FL</p>
-                    <p>Tapestry Healing <br>Lawrenceville, GA</p>
-                    <p>Techs 4 IT <br>Baltimore, MD</p>
-                    <p>The Dunhill Hotel <br>Charlotte, NC</p>
-                    <p>The Ramsey Hotel and Convention Center <br>Pigeon Forge, TN</p>
-                    <p>UrbanOak <br>Raleigh, NC</p>
-                    <p>Willow Brook Lodge <br>Pigeon Forge, TN</p>
-                    <p>Wingate by Wyndham <br>Raleigh, NC</p>
-                    <p>Wingate By Wyndham Greensboro <br>Coliseum, NC</p>
-            </div>
+  <!-- COLUMN 3 -->
+  <div class="col-md-4 client-col">
+    <p>La Quinta Inn <br>Tallahassee, FL</p>
+    <p>La Quinta Inn & Suites <br>Angleton, TX</p>
+    <p>La Quinta Inn & Suites <br>Charlotte, NC</p>
+    <p>La Quinta Inn & Suites <br>Greensboro, NC</p>
+    <p>La Quinta Inn & Suites <br>Manassas, VA</p>
+    <p>La Quinta Inn & Suites <br>Winston-Salem, NC</p>
+    <p>Microtel Inn & Suites by Wyndham <br>Cornelius, NC</p>
+    <p>Mountain Valley Inn <br>Dillard, GA</p>
+    <p>Super 8 by Wyndham <br>High Point, NC</p>
+    <p>SureStay by Best Western <br>Christiansburg, VA</p>
+    <p>Wingate <br>Greensboro, NC</p>
+    <p>Wingate <br>High Point, NC</p>
+    <p>Wyndham Garden <br>Greensboro, NC</p>
+  </div>
 
-                <div class="col-md-4 client-col">
-                    <p>Wingate High <br>Point, NC</p>
-                    <p>Wyndham Garden <br>Greensboro, NC</p>
-                </div>
-            </div>
+</div>
+
         </div>
     </div>
 
     <br>
+<!-- boutique Resorts -->
                      <div class="row list-parent boutique-resorts">
                    <div class="col-md-12">
  
@@ -2322,68 +2334,59 @@ We’ll see you again next year. Until then, let’s keep building the future of
                      </div>
  
                      <div class="row parent-client-list">
-                       <div class="col-md-6 client-col">
-                         <p>Hotel Alice Pine Knoll <br>Shores, NC</p>
-                         <p>Hotel Denim <br>Greensboro, NC</p>
-                         <p>Hotel Delano South <br>Beach, Miami, FL</p>
-                         <p>Hawthorne Inn and Conf Center<br> Winston Salem, NC</p>
-                       </div>
- 
-                       <div class="col-md-6 client-col">
-                         <p>The Hotel Zags <br>Portland, OR</p>
-                         <p>The Inn @ Blackstone <br>Resort VA</p>         
-                         <p>Newport Beach Hotel & Resort Sunny <br>Isles Beach, FL</p>
-                         <p>Opal Hotel <br>Raleigh, NC</p>
-                       </div>
- 
-                     </div>
+
+  <!-- COLUMN 1 -->
+  <div class="col-md-6 client-col">
+    <p>Hawthorne Inn and Conf Center <br>Winston-Salem, NC</p>
+    <p>Hotel Alice <br>Pine Knoll Shores, NC</p>
+    <p>Hotel Denim <br>Greensboro, NC</p>
+  </div>
+
+  <!-- COLUMN 2 -->
+  <div class="col-md-6 client-col">
+    <p>The Hotel Zags <br>Portland, OR</p>
+    <p>The Inn @ Blackstone Resort <br>VA</p>
+  </div>
+
+</div>
+
  
                    </div>
                   </div>
 
+<!-- MDU Offices -->
                                     <div class="row list-parent mdu-offices">
                     <div class="col-md-12">
   
                       <div class="list-img text-center">
-                        <h1>MDU & Offices</h1>
+                        <h1>MDU & Offices & Government Institutions</h1>
                       </div>
   
                       <div class="row parent-client-list">
-                        <div class="col-md-6 client-col">
-                          <p>The Choreograph Collection <br>MDU, FL</p>
-                          <p>The Corporate Office for BPR Properties <br>High Point, NC</p>
-                          <p>The Corporate Office for CN Hotels <br>High Point, NC</p>
-                        </div>
-  
-                        <div class="col-md-6 client-col">
-                          <p>The Corporate Office for JM Hospitality <br>Solutions Morrisville, NC</p>
-                          <p>The Corporate Office for Spire <br>Hospitality Irwin, TX</p>         
-                          <p>The Sage Station <br>MDU, VA</p>
-                        </div>
-  
-                      </div>
+
+  <!-- COLUMN 1 -->
+  <div class="col-md-6 client-col">
+    <p>Guilford County <br>NC</p>
+    <p>Marine Corp Air Station <br>Beaufort, SC</p>
+    <p>The Choreograph Collection <br>MDU, FL</p>
+    <p>The Corporate Office for BPR Properties <br>High Point, NC</p>
+  </div>
+
+  <!-- COLUMN 2 -->
+  <div class="col-md-6 client-col">
+    <p>The Corporate Office for CN Hotels <br>High Point, NC</p>
+    <p>The Corporate Office for JM Hospitality Solutions <br>Morrisville, NC</p>
+    <p>The Corporate Office for Spire Hospitality <br>Irwin, TX</p>
+    <p>The Sage Station <br>MDU, VA</p>
+  </div>
+
+</div>
+
   
                     </div>
                    </div>
 
-                                    <div class="row list-parent mdu-offices">
-                    <div class="col-md-12">
-  
-                      <div class="list-img text-center">
-                        <h1>Government Institutions</h1>
-                      </div>
-  
-                      <div class="row parent-client-list">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4 client-col">
-                          <p>Guilford County, NC</p>
-                          <p>Marine Corp Air Station <br>Beaufort, SC</p>
-                        </div>
-                        <div class="col-md-12"></div>
-                      </div>
-  
-                    </div>
-                   </div>
+                             
 
 </div>
 
@@ -2424,23 +2427,7 @@ We’ll see you again next year. Until then, let’s keep building the future of
           </div>
       </div>
   </div>
-
-  <!-- ============================================= -->
-  <div class="carousel">
-  <div class="group">
-    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/motel-nc.jpg" alt="Techunifi"></div>
-    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/hampton-nc.webp" alt="Techunifi"></div>
-    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/residence-inn-nc.jpg" alt="Techunifi"></div>
-  </div>
-  <!-- Add `aria-hidden` to hide the duplicated cards from screen readers. -->
-  <div aria-hidden="" class="group">
-    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/motel-nc.jpg" alt="Techunifi"></div>
-    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/hampton-nc.webp" alt="Techunifi"></div>
-    <div class="card"><img src="https://www.techunifi.com/assets/img/about-images/news/residence-inn-nc.jpg" alt="Techunifi"></div>
-  </div>
-</div>
-
-
+  
   
  <!-- ======= Footer ======= -->
  <footer class="footer" role="contentinfo" id="footers">
