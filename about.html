@@ -106,53 +106,135 @@ function gtag(){dataLayer.push(arguments);}
 }
 
 /* ================ */
-img {
-  display: block;
-  max-width: 100%;
+.carousel {
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
-.wrapper {
-  overflow: hidden;
-  height: 60vh;
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-  grid-gap: 10px;
+ul.slides {
+    display: block;
+    position: relative;
+    height: 600px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style: none;
 }
 
-.gallery {
-  overflow: scroll;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+.slides * {
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
-.gallery__img {
-  scroll-snap-align: start;
-  margin-bottom: 10px;
-  /* min-height: 50vh; */
-  /* object-fit: cover; */
+ul.slides input {
+    display: none; 
 }
 
-.lil-nav {
-  overflow-y: scroll;
-  overflow-x: hidden;
 
-  a {
-    /* height: 200px; */
-    display: flex;
-    margin-bottom: 10px;
-  }
+.slide-container { 
+    display: block; 
 }
 
-.lil-nav__img {
-  object-fit: cover;
-  filter: saturate(0);
-  transition: 0.3s ease all;
+.slide-image {
+    display: block;
+    position: absolute;
+    /* width: 100%; */
+    /* height: 100%; */
+    top: 0;
+    opacity: 0;
+    transition: all .7s ease-in-out;
+}   
 
-  &:hover {
-    transform: scale(1.05);
-    filter: saturate(1);
-  }
+.slide-image img {
+    width: auto;
+    min-width: 100%;
+    /* height: 100%; */
 }
+
+.carousel-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    font-size: 100px;
+    line-height: 600px;
+    color: #eb6d47;
+}
+
+.carousel-controls label {
+    display: none;
+    position: absolute;
+    padding: 0 20px;
+    opacity: 0;
+    transition: opacity .2s;
+    cursor: pointer;
+}
+
+.slide-image:hover + .carousel-controls label{
+    opacity: 0.5;
+}
+
+.carousel-controls label:hover {
+    opacity: 1;
+}
+
+.carousel-controls .prev-slide {
+    width: 49%;
+    text-align: left;
+    left: 0;
+}
+
+.carousel-controls .next-slide {
+    width: 49%;
+    text-align: right;
+    right: 0;
+}
+
+.carousel-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    z-index: 999;
+    text-align: center;
+}
+
+.carousel-dots .carousel-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #eb6d47;
+    opacity: 0.5;
+    margin: 10px;
+}
+
+input:checked + .slide-container .slide-image {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 1s ease-in-out;
+}
+
+input:checked + .slide-container .carousel-controls label {
+     display: block; 
+}
+
+input#img-1:checked ~ .carousel-dots label#img-dot-1,
+input#img-2:checked ~ .carousel-dots label#img-dot-2,
+input#img-3:checked ~ .carousel-dots label#img-dot-3,
+input#img-4:checked ~ .carousel-dots label#img-dot-4,
+input#img-5:checked ~ .carousel-dots label#img-dot-5,
+input#img-6:checked ~ .carousel-dots label#img-dot-6 {
+	opacity: 1;
+}
+
+
+input:checked + .slide-container .nav label { display: block; }
 
 
 </style>
@@ -369,63 +451,184 @@ AAHOA is one of those events where, the more you attend, the more connected you 
                           <div class="col-md-12">        
                             <br>              
                             <!-- <img src="assets/img/about-images/news/super-high.webp" title="techunifi" alt="techunifi" loading="lazy"> -->
-        <div class="wrapper">
-  <nav class="lil-nav">
-    <a href="#image-1">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa1.png" alt="Techunifi" />
-    </a>
-    <a href="#image-2">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa2.png" alt="Techunifi" />
-    </a>
-    <a href="#image-3">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa3.png" alt="Techunifi" />
-    </a>
-    <a href="#image-4">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa4.png" alt="Techunifi" />
-    </a>
-    <a href="#image-5">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa5.png" alt="Techunifi" />
-    </a>
-    <a href="#image-6">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa6.png" alt="Techunifi" />
-    </a>
-    <a href="#image-7">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa7.png" alt="Techunifi" />
-    </a>
-    <a href="#image-8">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa8.png" alt="Techunifi" />
-    </a>
-    <a href="#image-9">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa9.png" alt="Techunifi" />
-    </a>
-    <a href="#image-10">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa10.png" alt="Techunifi" />
-    </a>
-    <a href="#image-11">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa11.png" alt="Techunifi" />
-    </a>
-    <a href="#image-12">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa12.png" alt="Techunifi" />
-    </a>
-    <a href="#image-13">
-      <img class="lil-nav__img" src="assets/img/about-images/news/aahoa13.png" alt="Techunifi" />
-    </a>
-  </nav>
+        <div>
+  <div class="carousel">
+    <ul class="slides">
 
-  <div class="gallery">
-    <img class="gallery__img" id="image-1" src="assets/img/about-images/news/aahoa1.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-2" src="assets/img/about-images/news/aahoa2.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-3" src="assets/img/about-images/news/aahoa3.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-4" src="assets/img/about-images/news/aahoa4.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-5" src="assets/img/about-images/news/aahoa5.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-6" src="assets/img/about-images/news/aahoa6.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-7" src="assets/img/about-images/news/aahoa7.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-8" src="assets/img/about-images/news/aahoa8.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-9" src="assets/img/about-images/news/aahoa9.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-10" src="assets/img/about-images/news/aahoa10.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-11" src="assets/img/about-images/news/aahoa11.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-12" src="assets/img/about-images/news/aahoa12.png" alt="Techunifi" />
-    <img class="gallery__img" id="image-13" src="assets/img/about-images/news/aahoa13.png" alt="Techunifi" />
+      <!-- Slide 1 -->
+      <input type="radio" name="radio-buttons" id="img-1" checked />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa1.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-13" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-2" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 2 -->
+      <input type="radio" name="radio-buttons" id="img-2" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa2.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-1" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-3" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 3 -->
+      <input type="radio" name="radio-buttons" id="img-3" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa3.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-2" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-4" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 4 -->
+      <input type="radio" name="radio-buttons" id="img-4" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa4.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-3" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-5" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 5 -->
+      <input type="radio" name="radio-buttons" id="img-5" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa5.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-4" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-6" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 6 -->
+      <input type="radio" name="radio-buttons" id="img-6" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa6.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-5" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-7" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 7 -->
+      <input type="radio" name="radio-buttons" id="img-7" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa7.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-6" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-8" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 8 -->
+      <input type="radio" name="radio-buttons" id="img-8" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa8.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-7" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-9" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 9 -->
+      <input type="radio" name="radio-buttons" id="img-9" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa9.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-8" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-10" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 10 -->
+      <input type="radio" name="radio-buttons" id="img-10" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa10.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-9" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-11" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 11 -->
+      <input type="radio" name="radio-buttons" id="img-11" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa11.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-10" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-12" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 12 -->
+      <input type="radio" name="radio-buttons" id="img-12" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa12.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-11" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-13" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Slide 13 -->
+      <input type="radio" name="radio-buttons" id="img-13" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa13.png">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-12" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-1" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+      <!-- Dots -->
+      <div class="carousel-dots">
+        <label for="img-1" class="carousel-dot"></label>
+        <label for="img-2" class="carousel-dot"></label>
+        <label for="img-3" class="carousel-dot"></label>
+        <label for="img-4" class="carousel-dot"></label>
+        <label for="img-5" class="carousel-dot"></label>
+        <label for="img-6" class="carousel-dot"></label>
+        <label for="img-7" class="carousel-dot"></label>
+        <label for="img-8" class="carousel-dot"></label>
+        <label for="img-9" class="carousel-dot"></label>
+        <label for="img-10" class="carousel-dot"></label>
+        <label for="img-11" class="carousel-dot"></label>
+        <label for="img-12" class="carousel-dot"></label>
+        <label for="img-13" class="carousel-dot"></label>
+      </div>
+
+    </ul>
   </div>
 </div>
 
