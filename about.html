@@ -106,102 +106,79 @@ function gtag(){dataLayer.push(arguments);}
 }
 
 /* ================ */
+/* Container adjustments */
 .carousel {
     margin-left: 15%;
     margin-right: 15%;
+    position: relative;
 }
 
 ul.slides {
     display: block;
     position: relative;
-    height: 600px;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     list-style: none;
+    /* Removed fixed height to allow image to dictate size */
 }
 
-.slides * {
-    user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
-
-ul.slides input {
-    display: none; 
-}
-
-
+/* Slide Logic */
 .slide-container { 
-    display: block; 
+    display: none; /* Hide all by default */
+    width: 100%;
+}
+
+/* Show the active slide container */
+input:checked + .slide-container {
+    display: block;
 }
 
 .slide-image {
-    display: block;
-    position: absolute;
-    /* width: 100%; */
-    /* height: 100%; */
-    top: 0;
-    opacity: 0;
-    transition: all .7s ease-in-out;
-}   
-
-.slide-image img {
-    width: auto;
-    min-width: 100%;
-    /* height: 100%; */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    width: 100%;
 }
 
+.slide-image img {
+    max-width: 100%;
+    height: auto; /* Maintains aspect ratio */
+    display: block;
+}
+
+/* Controls - Centered vertically based on image height */
 .carousel-controls {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
     right: 0;
-    z-index: 999;
-    font-size: 100px;
-    line-height: 600px;
+    transform: translateY(-50%);
+    z-index: 1;
+    font-size: 80px;
+    line-height: 0; /* Reset line height */
     color: #eb6d47;
+    pointer-events: none; /* Allow clicking through to dots if needed */
 }
 
 .carousel-controls label {
-    display: none;
+    display: inline-block;
     position: absolute;
     padding: 0 20px;
-    opacity: 0;
-    transition: opacity .2s;
     cursor: pointer;
+    pointer-events: auto; /* Re-enable clicks for buttons */
+    transition: opacity .2s;
 }
 
-.slide-image:hover + .carousel-controls label{
-    opacity: 0.5;
-}
+.carousel-controls .prev-slide { left: -60px; } /* Pull arrows slightly out for better UI */
+.carousel-controls .next-slide { right: -60px; }
 
-.carousel-controls label:hover {
-    opacity: 1;
-}
-
-.carousel-controls .prev-slide {
-    width: 49%;
-    text-align: left;
-    left: 0;
-}
-
-.carousel-controls .next-slide {
-    width: 49%;
-    text-align: right;
-    right: 0;
-}
-
+/* Dots - Placed below the image */
 .carousel-dots {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 20px;
-    z-index: 999;
+    display: block;
+    position: relative; /* Moves out of the absolute overlay flow */
+    margin-top: 20px;   /* Space between image and dots */
     text-align: center;
+    width: 100%;
 }
 
 .carousel-dots .carousel-dot {
@@ -210,32 +187,52 @@ ul.slides input {
     height: 10px;
     border-radius: 50%;
     background-color: #eb6d47;
-    opacity: 0.5;
-    margin: 10px;
+    opacity: 0.3;
+    margin: 0 8px;
+    cursor: pointer;
 }
 
-input:checked + .slide-container .slide-image {
+.slides input{
+  visibility: hidden;
+}
+
+/* Highlight active dot */
+input#img-1:checked ~ .carousel-dots label[for="img-1"],
+input#img-2:checked ~ .carousel-dots label[for="img-2"],
+input#img-3:checked ~ .carousel-dots label[for="img-3"],
+input#img-4:checked ~ .carousel-dots label[for="img-4"],
+input#img-5:checked ~ .carousel-dots label[for="img-5"],
+input#img-6:checked ~ .carousel-dots label[for="img-6"],
+input#img-7:checked ~ .carousel-dots label[for="img-7"],
+input#img-8:checked ~ .carousel-dots label[for="img-8"],
+input#img-9:checked ~ .carousel-dots label[for="img-9"],
+input#img-10:checked ~ .carousel-dots label[for="img-10"],
+input#img-11:checked ~ .carousel-dots label[for="img-11"],
+input#img-12:checked ~ .carousel-dots label[for="img-12"],
+input#img-13:checked ~ .carousel-dots label[for="img-13"],
+input#img-14:checked ~ .carousel-dots label[for="img-14"] {
     opacity: 1;
-    transform: scale(1);
-    transition: opacity 1s ease-in-out;
 }
 
-input:checked + .slide-container .carousel-controls label {
-     display: block; 
+@media only screen and (max-width: 767.9px) {
+  .carousel-controls .next-slide {
+    right: -62px;
+  }
+  .carousel-controls .prev-slide {
+    left: -62px;
+  }
+  .carousel-controls label{
+    font-size: 50px;
+
+  }
+  .carousel-dots {
+    margin-top: 0;
+  }
+  .carousel-dots .carousel-dot{
+    width: 7px;
+    height: 7px;
+  }
 }
-
-input#img-1:checked ~ .carousel-dots label#img-dot-1,
-input#img-2:checked ~ .carousel-dots label#img-dot-2,
-input#img-3:checked ~ .carousel-dots label#img-dot-3,
-input#img-4:checked ~ .carousel-dots label#img-dot-4,
-input#img-5:checked ~ .carousel-dots label#img-dot-5,
-input#img-6:checked ~ .carousel-dots label#img-dot-6 {
-	opacity: 1;
-}
-
-
-input:checked + .slide-container .nav label { display: block; }
-
 
 </style>
 
@@ -451,7 +448,7 @@ AAHOA is one of those events where, the more you attend, the more connected you 
                           <div class="col-md-12">        
                             <br>              
                             <!-- <img src="assets/img/about-images/news/super-high.webp" title="techunifi" alt="techunifi" loading="lazy"> -->
-        <div>
+        <div class="news-slider-aahoa">
   <div class="carousel">
     <ul class="slides">
 
@@ -460,6 +457,7 @@ AAHOA is one of those events where, the more you attend, the more connected you 
       <li class="slide-container">
         <div class="slide-image">
           <img src="assets/img/about-images/news/aahoa1.png">
+          <img src="assets/img/about-images/news/aahoa2.png" class="d-none d-lg-block">
         </div>
         <div class="carousel-controls">
           <label for="img-13" class="prev-slide"><span>&lsaquo;</span></label>
@@ -472,6 +470,7 @@ AAHOA is one of those events where, the more you attend, the more connected you 
       <li class="slide-container">
         <div class="slide-image">
           <img src="assets/img/about-images/news/aahoa2.png">
+          <img src="assets/img/about-images/news/aahoa3.png" class="d-none d-lg-block">
         </div>
         <div class="carousel-controls">
           <label for="img-1" class="prev-slide"><span>&lsaquo;</span></label>
@@ -484,6 +483,7 @@ AAHOA is one of those events where, the more you attend, the more connected you 
       <li class="slide-container">
         <div class="slide-image">
           <img src="assets/img/about-images/news/aahoa3.png">
+          <img src="assets/img/about-images/news/aahoa4.png" class="d-none d-lg-block">
         </div>
         <div class="carousel-controls">
           <label for="img-2" class="prev-slide"><span>&lsaquo;</span></label>
@@ -496,6 +496,7 @@ AAHOA is one of those events where, the more you attend, the more connected you 
       <li class="slide-container">
         <div class="slide-image">
           <img src="assets/img/about-images/news/aahoa4.png">
+          <img src="assets/img/about-images/news/aahoa5.png" class="d-none d-lg-block">
         </div>
         <div class="carousel-controls">
           <label for="img-3" class="prev-slide"><span>&lsaquo;</span></label>
@@ -508,6 +509,7 @@ AAHOA is one of those events where, the more you attend, the more connected you 
       <li class="slide-container">
         <div class="slide-image">
           <img src="assets/img/about-images/news/aahoa5.png">
+          <img src="assets/img/about-images/news/aahoa1.png" class="d-none d-lg-block">
         </div>
         <div class="carousel-controls">
           <label for="img-4" class="prev-slide"><span>&lsaquo;</span></label>
@@ -607,6 +609,18 @@ AAHOA is one of those events where, the more you attend, the more connected you 
         </div>
         <div class="carousel-controls">
           <label for="img-12" class="prev-slide"><span>&lsaquo;</span></label>
+          <label for="img-14" class="next-slide"><span>&rsaquo;</span></label>
+        </div>
+      </li>
+
+        <!-- Slide 14 -->
+      <input type="radio" name="radio-buttons" id="img-14" />
+      <li class="slide-container">
+        <div class="slide-image">
+          <img src="assets/img/about-images/news/aahoa14.jpg">
+        </div>
+        <div class="carousel-controls">
+          <label for="img-13" class="prev-slide"><span>&lsaquo;</span></label>
           <label for="img-1" class="next-slide"><span>&rsaquo;</span></label>
         </div>
       </li>
@@ -626,6 +640,7 @@ AAHOA is one of those events where, the more you attend, the more connected you 
         <label for="img-11" class="carousel-dot"></label>
         <label for="img-12" class="carousel-dot"></label>
         <label for="img-13" class="carousel-dot"></label>
+        <label for="img-14" class="carousel-dot"></label>
       </div>
 
     </ul>
