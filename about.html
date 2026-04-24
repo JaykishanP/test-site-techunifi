@@ -306,16 +306,22 @@ function gtag(){dataLayer.push(arguments);}
         
       <div class="nav-end">
         <a class="nav-link expand-btn raise-btn" href="submit.html" onclick="toggleUnderline(event)">
-          <img src="assets/img/submit_icon.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Submit">
-          <span>Submit A Ticket</span>
+          <!-- <img src="assets/img/submit_icon.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Submit"> -->
+          <!-- <span>Submit A Ticket</span> -->
+           <span class="icon"></span>
+           <span class="label">Submit A Ticket</span>
         </a>
         <a class="nav-link expand-btn search-site mobile-search" href="javascript:void(0)" onclick="toggleModal()">
-          <img src="assets/img/search-icon.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Search">
-          <span>Search</span>
+          <!-- <img src="assets/img/search-icon.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Search"> -->
+          <!-- <span>Search</span> -->
+           <span class="icon"></span>
+           <span class="label">Search</span>
         </a>
         <a class="nav-link expand-btn profile-icon" href="https://connect.ebizcharge.net/(S(nltki3tr3mxc3a0ya4rsesky))/EbizLogin.aspx?ReturnUrl=%2fTechunifi" target="_blank" onclick="toggleUnderline(event)">
-          <img src="assets/img/account_circle.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Login">
-          <span>Login<img src="assets/img/login_arrow.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Login"></span>
+          <!-- <img src="assets/img/account_circle.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Login"> -->
+          <!-- <span>Login<img src="assets/img/login_arrow.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Login"></span> -->
+          <span class="icon"></span>
+          <span class="label">Login<img src="assets/img/login_arrow.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Login"></span>
         </a>
         <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
           <i class="bx bx-menu" aria-hidden="true"></i>
@@ -500,7 +506,7 @@ AAHOA is one of those events where, the more you attend, the more connected you 
       <input type="radio" name="radio-buttons" id="img-1" checked />
       <li class="slide-container">
         <div class="slide-image">
-          <img src="assets/img/about-images/news/aahoa1.png" style="border-radius: 8px 0 0 8px; -webkit-transform: scaleX(-1); transform: scaleX(-1);">
+          <img src="assets/img/about-images/news/aahoa1.png" style="border-radius: 0 8px 8px 0; -webkit-transform: scaleX(-1); transform: scaleX(-1);">
           <img src="assets/img/about-images/news/aahoa2.png" style="-webkit-transform: scaleX(-1); transform: scaleX(-1);">
           <img src="assets/img/about-images/news/aahoa3.png" style="border-radius: 0 8px 8px 0;">
         </div>
@@ -514,9 +520,9 @@ AAHOA is one of those events where, the more you attend, the more connected you 
       <input type="radio" name="radio-buttons" id="img-2" />
       <li class="slide-container">
         <div class="slide-image">
-          <img src="assets/img/about-images/news/aahoa4.png" style="border-radius: 8px 0 0 8px; -webkit-transform: scaleX(-1); transform: scaleX(-1);">
+          <img src="assets/img/about-images/news/aahoa4.png" style="border-radius: 0 8px 8px 0; -webkit-transform: scaleX(-1); transform: scaleX(-1);">
           <img src="assets/img/about-images/news/aahoa5.png" style="-webkit-transform: scaleX(-1); transform: scaleX(-1);">
-          <img src="assets/img/about-images/news/aahoa2.png" style="border-radius: 0 8px 8px 0; -webkit-transform: scaleX(-1); transform: scaleX(-1);">
+          <img src="assets/img/about-images/news/aahoa2.png" style="border-radius: 8px 0 0 8px; -webkit-transform: scaleX(-1); transform: scaleX(-1);">
         </div>
         <div class="carousel-controls">
           <label for="img-1" class="prev-slide"><span>&lsaquo;</span></label>
@@ -603,7 +609,7 @@ AAHOA is one of those events where, the more you attend, the more connected you 
       <input type="radio" name="radio-buttons" id="img-6" />
       <li class="slide-container">
         <div class="slide-image">
-          <img src="assets/img/about-images/news/aahoa9.png" style="border-radius: 8px 0 0 8px; -webkit-transform: scaleX(-1); transform: scaleX(-1);">
+          <img src="assets/img/about-images/news/aahoa9.png" style="border-radius: 0 8px 8px 0; -webkit-transform: scaleX(-1); transform: scaleX(-1);">
           <img src="assets/img/about-images/news/aahoa10.png">
           <img src="assets/img/about-images/news/aahoa11.png" style="border-radius: 0 8px 8px 0;">
         </div>
@@ -2952,10 +2958,45 @@ document.addEventListener('DOMContentLoaded', (function () {
    
    </script>
 
-  <script>
-    const sliderDuration=5e3,radioButtons=document.querySelectorAll('input[name="radio-buttons"]');let currentIndex=0,slideInterval;function nextSlide(){radioButtons[currentIndex=(currentIndex+1)%radioButtons.length].checked=!0}function startAutoslide(){slideInterval=setInterval(nextSlide,5e3)}function resetAutoslide(){clearInterval(slideInterval),radioButtons.forEach((e,t)=>{e.checked&&(currentIndex=t)}),startAutoslide()}startAutoslide(),document.querySelectorAll(".carousel-controls label, .carousel-dot").forEach(e=>{e.addEventListener("click",()=>{setTimeout(resetAutoslide,50)})});
 
-  </script>
+<script>
+  const sliderDuration = 5000; // 5 seconds per slide
+const radioButtons = document.querySelectorAll('input[name="radio-buttons"]');
+let currentIndex = 0;
+let slideInterval;
+
+// Function to move to the next slide
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % radioButtons.length;
+    radioButtons[currentIndex].checked = true;
+}
+
+// Start the timer
+function startAutoslide() {
+    slideInterval = setInterval(nextSlide, sliderDuration);
+}
+
+// Reset timer when user interacts manually
+function resetAutoslide() {
+    clearInterval(slideInterval);
+    // Find the index of the radio button the user just clicked
+    radioButtons.forEach((radio, index) => {
+        if (radio.checked) currentIndex = index;
+    });
+    startAutoslide();
+}
+
+// Initialize
+startAutoslide();
+
+// Add event listeners to all controls (dots and arrows)
+document.querySelectorAll('.carousel-controls label, .carousel-dot').forEach(control => {
+    control.addEventListener('click', () => {
+        // Delay slightly to allow the radio button 'checked' state to update
+        setTimeout(resetAutoslide, 50);
+    });
+});
+</script>
 
 </body>
 
