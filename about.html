@@ -2952,6 +2952,10 @@ document.addEventListener('DOMContentLoaded', (function () {
    
    </script>
 
+  <script>
+    const sliderDuration=5e3,radioButtons=document.querySelectorAll('input[name="radio-buttons"]');let currentIndex=0,slideInterval;function nextSlide(){radioButtons[currentIndex=(currentIndex+1)%radioButtons.length].checked=!0}function startAutoslide(){slideInterval=setInterval(nextSlide,5e3)}function resetAutoslide(){clearInterval(slideInterval),radioButtons.forEach((e,t)=>{e.checked&&(currentIndex=t)}),startAutoslide()}startAutoslide(),document.querySelectorAll(".carousel-controls label, .carousel-dot").forEach(e=>{e.addEventListener("click",()=>{setTimeout(resetAutoslide,50)})});
+
+  </script>
 
 </body>
 
