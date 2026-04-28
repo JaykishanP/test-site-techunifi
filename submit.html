@@ -556,7 +556,7 @@ function zsShowCaptcha() {
     Submit A Ticket
   </button>
 
-  <button class="tab-btn" onclick="navigate('change-order.html', this)">
+  <button class="tab-btn" onclick="navigate('change-order.html', this)" data-no-active="true">
     Change Order
   </button>
 </div>
@@ -976,14 +976,18 @@ document.addEventListener('DOMContentLoaded', function () {
     slider.style.left = element.offsetLeft + "px";
   }
 
-  function navigate(url, el) {
+function navigate(url, el) {
+  // Skip active state for Change Order
+  if (!el.hasAttribute("data-no-active")) {
     buttons.forEach(btn => btn.classList.remove("active"));
     el.classList.add("active");
     updateSlider(el);
-
-    // Navigate
-    window.location.href = url;
   }
+
+  // Navigate
+  window.location.href = url;
+}
+
 
   // Initialize on page load
   window.onload = () => {
