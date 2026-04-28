@@ -540,11 +540,27 @@ function zsShowCaptcha() {
 
       <div class="row">
         <div class="col-md-12">
-          <div class="tab">
+          <!-- <div class="tab">
             <a href="new-inquiry.html" class="sub-tablinks" id="newInquiryButton">New Inquiry</a>
             <a href="submit.html" class="sub-tablinks active">Submit A Ticket</a>
             <a href="change-order.html" class="sub-tablinks">Change Order</a>
-          </div>
+          </div> -->
+          <div class="tab action-group">
+  <div class="slidering" id="slidering"></div>
+
+  <button class="tab-btn" onclick="navigate('new-inquiry.html', this)">
+    New Inquiry
+  </button>
+
+  <button class="tab-btn active" onclick="navigate('submit.html', this)">
+    Submit A Ticket
+  </button>
+
+  <button class="tab-btn" onclick="navigate('change-order.html', this)">
+    Change Order
+  </button>
+</div>
+
         </div>
       </div>
 
@@ -950,6 +966,32 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+
+<script>
+  const buttons = document.querySelectorAll(".tab-btn");
+  const slider = document.getElementById("slidering");
+
+  function updateSlider(element) {
+    slider.style.width = element.offsetWidth + "px";
+    slider.style.left = element.offsetLeft + "px";
+  }
+
+  function navigate(url, el) {
+    buttons.forEach(btn => btn.classList.remove("active"));
+    el.classList.add("active");
+    updateSlider(el);
+
+    // Navigate
+    window.location.href = url;
+  }
+
+  // Initialize on page load
+  window.onload = () => {
+    const activeBtn = document.querySelector(".tab-btn.active");
+    if (activeBtn) updateSlider(activeBtn);
+  };
+</script>
+
 
 </body>
 </html>
