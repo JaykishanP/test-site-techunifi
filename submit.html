@@ -556,7 +556,7 @@ function zsShowCaptcha() {
     Submit A Ticket
   </button>
 
-  <button class="tab-btn" onclick="navigate('change-order.html', this)" data-no-active="true">
+  <button class="tab-btn" onclick="navigate('change-order.html', this)">
     Change Order
   </button>
 </div>
@@ -968,32 +968,50 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
-  const buttons = document.querySelectorAll(".tab-btn");
-  const slider = document.getElementById("slidering");
+ const buttons = document.querySelectorAll(".tab-btn");
+const slider = document.getElementById("slidering");
+let activeBtn = document.querySelector(".tab-btn.active");
 
-  function updateSlider(element) {
-    slider.style.width = element.offsetWidth + "px";
-    slider.style.left = element.offsetLeft + "px";
-  }
+function updateSlider(element) {
+  slider.style.width = element.offsetWidth + "px";
+  slider.style.left = element.offsetLeft + "px";
+}
 
+// Click navigation
 function navigate(url, el) {
-  // Skip active state for Change Order
   if (!el.hasAttribute("data-no-active")) {
     buttons.forEach(btn => btn.classList.remove("active"));
     el.classList.add("active");
+    activeBtn = el;
     updateSlider(el);
   }
 
-  // Navigate
-  window.location.href = url;
+  setTimeout(() => {
+    window.location.href = url;
+  }, 200);
 }
 
+// 👉 Hover effect
+buttons.forEach(btn => {
+  btn.addEventListener("mouseenter", () => {
+    if (!btn.hasAttribute("data-no-active")) {
+      updateSlider(btn);
+    }
+  });
+});
 
-  // Initialize on page load
-  window.onload = () => {
-    const activeBtn = document.querySelector(".tab-btn.active");
-    if (activeBtn) updateSlider(activeBtn);
-  };
+// 👉 Reset to active when leaving container
+document.querySelector(".action-group").addEventListener("mouseleave", () => {
+  if (activeBtn) {
+    updateSlider(activeBtn);
+  }
+});
+
+// Init
+document.addEventListener("DOMContentLoaded", () => {
+  if (activeBtn) updateSlider(activeBtn);
+});
+
 </script>
 
 
