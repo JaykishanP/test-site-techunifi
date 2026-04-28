@@ -1814,29 +1814,31 @@ section.ticket-form {
   margin: 0 5px;
 }
 
-.action-group button.active {
-  color: #fff;
-  font-weight: 600;
-}
-
 .slidering {
   position: absolute;
   top: 4px;
   left: 4px;
   height: calc(100% - 8px);
-  border-radius: 999px;
+  border-radius: 50px;
   background: #2e3b55;
   z-index: 1;
   transition: all 0.35s ease;
+  width: 0; /* ADD THIS */
 }
 
-.tab.action-group button.active {
+.tab.action-group button.active{
     position: relative;
     font-weight: 700;
-    background-color: var(--orange);
+    background-color: transparent;
     border-radius: 50px;
     padding: 5px 20px;
+    color: #fff;
 }
+.tab.action-group button.active,
+.tab.action-group button:hover {
+  color: #fff;
+}
+
 .sub-tab-section .tab.action-group {
     display: flex;
     justify-content: center;
@@ -1848,13 +1850,28 @@ section.ticket-form {
     padding: 5px 0;
 }
 .tab.action-group button:hover {
-    border-right: var(--border);
-    background: var(--blue);
+    border: none;
+    background: transparent;
     color: #fff;
 }
 .tab.action-group button.active::after{
   display: none;
 }
+/* Default active */
+.tab.action-group button.active {
+  color: #fff;
+}
+
+/* When hovering ANY button → make active blue */
+.tab.action-group:hover button.active {
+  color: var(--blue);
+}
+
+/* But if hovering the active button itself → keep it white */
+.tab.action-group button.active:hover {
+  color: #fff;
+}
+
 
 /* ======== */
 
