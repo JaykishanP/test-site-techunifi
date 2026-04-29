@@ -1828,7 +1828,7 @@ section.ticket-form {
 
 .tab.action-group button.active{
     position: relative;
-    font-weight: 700;
+    /* font-weight: 700; */
     background-color: transparent;
     border-radius: 50px;
     padding: 5px 20px;
