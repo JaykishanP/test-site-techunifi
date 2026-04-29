@@ -967,85 +967,68 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+
 <script>
-const buttons = document.querySelectorAll(".tab-btn");
-const slider = document.getElementById("slidering");
-const container = document.querySelector(".action-group");
-let activeBtn = document.querySelector(".tab-btn.active");
-
-// 🔥 Core function
-function updateSlider(element) {
-  if (!element) return;
-
-  slider.style.width = element.offsetWidth + "px";
-  slider.style.left = element.offsetLeft + "px";
-}
-
-// ✅ Click navigation (instant, no animation)
-function navigate(url, el) {
-  if (el && !el.hasAttribute("data-no-active")) {
-    // disable animation
-    slider.classList.add("no-anim");
-
-    // move instantly
-    updateSlider(el);
-
-    // force repaint
-    slider.getBoundingClientRect();
-  }
-
-  // redirect immediately
-  window.location.href = url;
-}
-
-// ✅ Detect touch devices (mobile/iPad)
-const isTouchDevice = window.matchMedia("(hover: none)").matches;
-
-if (!isTouchDevice) {
-  // 👉 Hover effect (animated)
-  buttons.forEach(btn => {
-    btn.addEventListener("mouseenter", () => {
-      if (!btn.hasAttribute("data-no-active")) {
-        slider.classList.remove("no-anim"); // enable animation
-        updateSlider(btn);
-      }
-    });
-  });
-
-  // 👉 Reset to active when leaving container
-  if (container) {
-    container.addEventListener("mouseleave", () => {
-      if (activeBtn) {
-        slider.classList.remove("no-anim");
-        updateSlider(activeBtn);
-      }
-    });
-  }
-}
-
-// ✅ Init on page load (no animation)
-function initSlider() {
-  const activeBtn = document.querySelector(".tab-btn.active");
+(function () {
   const slider = document.getElementById("slidering");
+  const container = document.querySelector(".action-group");
+  const buttons = document.querySelectorAll(".tab-btn");
 
-  if (activeBtn && slider) {
-    slider.classList.add("no-anim");
+  let activeBtn = document.querySelector(".tab-btn.active");
+  let isNavigating = false;
 
-    slider.style.width = activeBtn.offsetWidth + "px";
-    slider.style.left = activeBtn.offsetLeft + "px";
+  // 🔥 Core function
+  function updateSlider(el, animate = true) {
+    if (!el || !slider) return;
 
-    // remove no-anim after positioning
-    requestAnimationFrame(() => {
-      slider.classList.remove("no-anim");
+    slider.style.transition = animate
+      ? "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)"
+      : "none";
+
+    slider.style.width = el.offsetWidth + "px";
+    slider.style.left = el.offsetLeft + "px";
+  }
+
+  // ✅ Run AFTER DOM is ready (IMPORTANT)
+  function initSlider() {
+    activeBtn = document.querySelector(".tab-btn.active");
+
+    if (activeBtn) {
+      updateSlider(activeBtn, false);
+    }
+  }
+
+  // 🚀 This fixes “background not appearing”
+  document.addEventListener("DOMContentLoaded", initSlider);
+
+  // Also fix layout shifts (fonts etc.)
+  window.addEventListener("load", initSlider);
+
+  // ✅ Hover interactions
+  if (window.matchMedia("(hover: hover)").matches) {
+    buttons.forEach((btn) => {
+      btn.addEventListener("mouseenter", () => {
+        if (isNavigating) return;
+        updateSlider(btn, true);
+      });
+    });
+
+    container?.addEventListener("mouseleave", () => {
+      if (isNavigating) return;
+      if (activeBtn) updateSlider(activeBtn, true);
     });
   }
-}
 
-// 🔥 Run ASAP (not waiting for full DOM)
-initSlider();
-
-
+  // ✅ Navigation
+  window.navigate = function (url) {
+    isNavigating = true;
+    window.location.href = url;
+  };
+})();
 </script>
+
+
+
 
 
 </body>
