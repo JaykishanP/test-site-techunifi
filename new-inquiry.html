@@ -230,16 +230,23 @@ function updateSlider(element) {
 
 // Click navigation
 function navigate(url, el) {
-  if (!el.hasAttribute("data-no-active")) {
-    buttons.forEach(btn => btn.classList.remove("active"));
-    el.classList.add("active");
-    activeBtn = el;
+  // if (!el.hasAttribute("data-no-active")) {
+  //   buttons.forEach(btn => btn.classList.remove("active"));
+  //   el.classList.add("active");
+  //   activeBtn = el;
+  //   updateSlider(el);
+  // }
+
+  // setTimeout(() => {
+  //   window.location.href = url;
+  // }, 200);
+    if (!el.hasAttribute("data-no-active")) {
     updateSlider(el);
   }
 
   setTimeout(() => {
     window.location.href = url;
-  }, 200);
+  }, 100);
 }
 
 // 👉 Hover effect
