@@ -968,51 +968,77 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
-  const buttons = document.querySelectorAll(".tab-btn");
+const buttons = document.querySelectorAll(".tab-btn");
 const slider = document.getElementById("slidering");
+const container = document.querySelector(".action-group");
 let activeBtn = document.querySelector(".tab-btn.active");
 
+// 🔥 Core function
 function updateSlider(element) {
+  if (!element) return;
+
   slider.style.width = element.offsetWidth + "px";
   slider.style.left = element.offsetLeft + "px";
 }
 
-// Click navigation
+// ✅ Click navigation (instant, no animation)
 function navigate(url, el) {
-  if (!el.hasAttribute("data-no-active")) {
+  if (el && !el.hasAttribute("data-no-active")) {
+    // disable animation
+    slider.classList.add("no-anim");
+
+    // move instantly
     updateSlider(el);
+
+    // force repaint
+    slider.getBoundingClientRect();
   }
 
-  setTimeout(() => {
-    window.location.href = url;
-  }, 150);
+  // redirect immediately
+  window.location.href = url;
 }
 
-// ✅ Disable hover on touch devices
+// ✅ Detect touch devices (mobile/iPad)
 const isTouchDevice = window.matchMedia("(hover: none)").matches;
 
 if (!isTouchDevice) {
+  // 👉 Hover effect (animated)
   buttons.forEach(btn => {
     btn.addEventListener("mouseenter", () => {
       if (!btn.hasAttribute("data-no-active")) {
+        slider.classList.remove("no-anim"); // enable animation
         updateSlider(btn);
       }
     });
   });
 
-  document.querySelector(".action-group").addEventListener("mouseleave", () => {
-    if (activeBtn) {
-      updateSlider(activeBtn);
-    }
-  });
+  // 👉 Reset to active when leaving container
+  if (container) {
+    container.addEventListener("mouseleave", () => {
+      if (activeBtn) {
+        slider.classList.remove("no-anim");
+        updateSlider(activeBtn);
+      }
+    });
+  }
 }
 
-// Init
+// ✅ Init on page load (no animation)
 document.addEventListener("DOMContentLoaded", () => {
-  if (activeBtn) updateSlider(activeBtn);
+  if (activeBtn) {
+    slider.classList.add("no-anim");
+
+    updateSlider(activeBtn);
+
+    // 🔥 IMPORTANT: remove no-anim AFTER it's positioned
+    requestAnimationFrame(() => {
+      slider.classList.remove("no-anim");
+    });
+  }
 });
 
 </script>
+
 
 </body>
 </html>
