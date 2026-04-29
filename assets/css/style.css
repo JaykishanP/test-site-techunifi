@@ -1823,7 +1823,12 @@ section.ticket-form {
   background: #2e3b55;
   z-index: 1;
   transition: all 0.35s ease;
-  width: 0; /* ADD THIS */
+  /* width: 0; */
+  opacity: 1;
+}
+
+.slidering.ready {
+  opacity: 1;
 }
 
 .tab.action-group button.active{
@@ -1833,10 +1838,6 @@ section.ticket-form {
     border-radius: 50px;
     padding: 5px 20px;
     color: #fff;
-}
-.tab.action-group button.active,
-.tab.action-group button:hover {
-  color: #fff;
 }
 
 .sub-tab-section .tab.action-group {
@@ -1848,6 +1849,7 @@ section.ticket-form {
     margin: 0 auto;
     position: relative;
     padding: 5px 0;
+    gap: 10px;
 }
 .tab.action-group button:hover {
     border: none;
@@ -1867,10 +1869,16 @@ section.ticket-form {
   color: var(--blue);
 }
 
+
 /* But if hovering the active button itself → keep it white */
 .tab.action-group button.active:hover {
   color: #fff;
 }
+
+.slidering.no-anim {
+  transition: none !important;
+}
+
 
 @media only screen and (max-width: 767.9px) {
     .tab.action-group button.active {
