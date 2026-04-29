@@ -1876,7 +1876,18 @@ section.ticket-form {
     .tab.action-group button.active {
         border-radius: 0;
         /* padding: 15px 10px 5px 10px; */
-        border-bottom: none
+        border-bottom: none;
+    }
+    .sub-tab-section .tab.action-group button {
+        font-size: 12px;
+        padding: 10px 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023.9px) {
+    .tab.action-group button {
+        padding: 10px 5px;
+        font-size: 13px;
     }
 }
 
