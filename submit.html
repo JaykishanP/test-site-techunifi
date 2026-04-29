@@ -968,7 +968,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
- const buttons = document.querySelectorAll(".tab-btn");
+  const buttons = document.querySelectorAll(".tab-btn");
 const slider = document.getElementById("slidering");
 let activeBtn = document.querySelector(".tab-btn.active");
 
@@ -979,17 +979,7 @@ function updateSlider(element) {
 
 // Click navigation
 function navigate(url, el) {
-  // if (!el.hasAttribute("data-no-active")) {
-  //   buttons.forEach(btn => btn.classList.remove("active"));
-  //   el.classList.add("active");
-  //   activeBtn = el;
-  //   updateSlider(el);
-  // }
-
-  // setTimeout(() => {
-  //   window.location.href = url;
-  // }, 200);
-    if (!el.hasAttribute("data-no-active")) {
+  if (!el.hasAttribute("data-no-active")) {
     updateSlider(el);
   }
 
@@ -998,21 +988,24 @@ function navigate(url, el) {
   }, 150);
 }
 
-// 👉 Hover effect
-buttons.forEach(btn => {
-  btn.addEventListener("mouseenter", () => {
-    if (!btn.hasAttribute("data-no-active")) {
-      updateSlider(btn);
+// ✅ Disable hover on touch devices
+const isTouchDevice = window.matchMedia("(hover: none)").matches;
+
+if (!isTouchDevice) {
+  buttons.forEach(btn => {
+    btn.addEventListener("mouseenter", () => {
+      if (!btn.hasAttribute("data-no-active")) {
+        updateSlider(btn);
+      }
+    });
+  });
+
+  document.querySelector(".action-group").addEventListener("mouseleave", () => {
+    if (activeBtn) {
+      updateSlider(activeBtn);
     }
   });
-});
-
-// 👉 Reset to active when leaving container
-document.querySelector(".action-group").addEventListener("mouseleave", () => {
-  if (activeBtn) {
-    updateSlider(activeBtn);
-  }
-});
+}
 
 // Init
 document.addEventListener("DOMContentLoaded", () => {
@@ -1020,7 +1013,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
-
 
 </body>
 </html>
