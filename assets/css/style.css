@@ -1853,7 +1853,7 @@ section.ticket-form {
   max-width: fit-content;
   margin: 0 auto;
   position: relative;
-  padding: 4px;
+  padding: 5px 0;
   gap: 0;
 }
 
