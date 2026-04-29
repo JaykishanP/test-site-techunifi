@@ -969,6 +969,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 <script>
+
 (function () {
   const slider = document.getElementById("slidering");
   const container = document.querySelector(".action-group");
@@ -989,25 +990,19 @@ document.addEventListener('DOMContentLoaded', function () {
     slider.style.left = el.offsetLeft + "px";
   }
 
-  // ✅ Init (runs immediately)
+  // ✅ Run AFTER DOM is ready (IMPORTANT)
   function initSlider() {
     activeBtn = document.querySelector(".tab-btn.active");
 
     if (activeBtn) {
       updateSlider(activeBtn, false);
-
-      // 👇 show only after positioning (prevents flicker)
-      requestAnimationFrame(() => {
-        slider.style.opacity = "1";
-      });
     }
   }
 
-  // 🚀 Run instantly (fix for late background)
-  initSlider();
-
-  // Fallback safety (fonts/layout shifts)
+  // 🚀 This fixes “background not appearing”
   document.addEventListener("DOMContentLoaded", initSlider);
+
+  // Also fix layout shifts (fonts etc.)
   window.addEventListener("load", initSlider);
 
   // ✅ Hover interactions
@@ -1025,23 +1020,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // ✅ Navigation (with instant feedback)
-  window.navigate = function (url, el) {
-    if (isNavigating) return;
-
+  // ✅ Navigation
+  window.navigate = function (url) {
     isNavigating = true;
-
-    // Move slider immediately on click
-    if (el) updateSlider(el, true);
-
-    // Small delay so user sees movement
-    setTimeout(() => {
-      window.location.href = url;
-    }, 120);
+    window.location.href = url;
   };
 })();
-</script>
 
+</script>
 
 
 </body>
