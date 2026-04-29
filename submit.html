@@ -1024,18 +1024,26 @@ if (!isTouchDevice) {
 }
 
 // ✅ Init on page load (no animation)
-document.addEventListener("DOMContentLoaded", () => {
-  if (activeBtn) {
+function initSlider() {
+  const activeBtn = document.querySelector(".tab-btn.active");
+  const slider = document.getElementById("slidering");
+
+  if (activeBtn && slider) {
     slider.classList.add("no-anim");
 
-    updateSlider(activeBtn);
+    slider.style.width = activeBtn.offsetWidth + "px";
+    slider.style.left = activeBtn.offsetLeft + "px";
 
-    // 🔥 IMPORTANT: remove no-anim AFTER it's positioned
+    // remove no-anim after positioning
     requestAnimationFrame(() => {
       slider.classList.remove("no-anim");
     });
   }
-});
+}
+
+// 🔥 Run ASAP (not waiting for full DOM)
+initSlider();
+
 
 </script>
 
