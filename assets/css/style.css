@@ -5732,238 +5732,305 @@ a.animated-link:hover {
 
 
 /* =============================================================================== */
-/* Banner Carousel Slider */
-.banner-slider {
+/* Banner Tab Slider*/
 
-  position: relative;
-
-  width: 100%;
-
-  height: 100vh;
-
+.dashboard-wrapper .section {
+  min-height: 100vh;
   display: flex;
-
-  padding: 100px 0 0 0;
-
-}
-
-
-
-/* Make side-by-side layout */
-
-.banner-slider .slider-wrapper {
-
-  display: flex;
-
-  width: 100%;
-
-  height: 100%;
-
-}
-
-
-
-/* MAIN SLIDER (Left) */
-
-.banner-slider .main-slider {
-
-  width: 80%;     /* left area */
-
-  height: 100%;
-
-  position: relative;
-
-  overflow: hidden;
-
-}
-
-
-
-/* THUMB SLIDER (Right Side) */
-
-.banner-slider .nav-slider {
-
-  width: 20%;      /* right area */
-
-  height: 100%;
-
-  overflow-y: auto;
-
-  background: #000;
-
-}
-
-
-
-/* Thumbnail slides */
-
-.nav-slider .swiper-slide {
-
-  height: 20%;     /* exactly 5 slides visible */
-
-  display: flex;
-
   align-items: center;
-
   justify-content: center;
-
-  border-bottom: 1px solid #222;
-
-  cursor: pointer;
-
-  transition: opacity 0.3s ease, filter 0.3s ease; /* Add transitions for smooth effect */
-
+  padding: 40px 20px;
 }
 
-
-
-/* --- NEW STYLES FOR THUMBNAIL VISIBILITY --- */
-
-
-
-/* Default (Inactive) Thumbnail Style: Blur and Lower Opacity */
-
-.nav-slider .swiper-slide {
-
-    opacity: 0.5; /* Reduce opacity for inactive slides */
-
-    filter: blur(2px); /* Apply a slight blur effect */
-
-}
-
-
-
-/* Active Thumbnail Style: Clear and Full Opacity */
-
-.nav-slider .swiper-slide-thumb-active {
-
-    opacity: 1; /* Full opacity for the active slide */
-
-    filter: blur(0); /* Remove blur for the active slide */
-
-    border-left: 5px solid var(--orange, #FFA500); /* Optional: Highlight with a colored border */
-
-}
-
-
-
-/* --- END NEW STYLES --- */
-
-
-
-/* Full background images */
-
-.slide-bgimg {
-
-  position: absolute;
-
+.dashboard-wrapper .hero {
   width: 100%;
-
-  height: 100%;
-
-  top: 0;
-
-  left: 0;
-
-  background-size: cover;
-
-  background-position: center;
-
+  max-width: 1300px;
+  position: relative;
+  text-align: center;
 }
 
-
-
-/* hide demo image */
-
-.entity-img {
-
-  display: none;
-
+.dashboard-wrapper .small-title {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #7b8aa0;
+  margin-bottom: 18px;
+  animation: fadeUp 1s ease;
 }
 
+.dashboard-wrapper h1 {
+  font-size: clamp(36px, 5vw, 70px);
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 18px;
+  animation: fadeUp 1s ease 0.2s both;
+}
 
+.dashboard-wrapper .subtitle {
+  max-width: 760px;
+  margin: auto;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #667085;
+  animation: fadeUp 1s ease 0.4s both;
+}
 
-/* TEXT in main slider */
+.dashboard-wrapper {
+  position: relative;
+  margin-top: 80px;
+  perspective: 1600px;
+}
 
-.main-slider .content {
-
+.dashboard-wrapper .glow {
   position: absolute;
-
-  bottom: 15%;
-
-  left: 5%;
-
-  width: 50%;
-
-  color: #fff;
-
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(91,144,255,0.28), transparent 70%);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(40px);
+  z-index: 0;
 }
 
-
-
-.main-slider .content .title {
-
-  font-size: 90px;
-
-  font-weight: bold;
-
-  color: var(--orange);
-
+.dashboard-wrapper .device {
+  position: relative;
+  width: 1000px;
+  max-width: 100%;
+  margin: auto;
+  transform-style: preserve-3d;
+  animation: float 6s ease-in-out infinite;
 }
 
+.dashboard-wrapper .laptop {
+  width: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #111827;
+  padding: 14px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.18),
+    0 10px 30px rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 2;
+}
 
+.dashboard-wrapper .screen {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  aspect-ratio: 16/9;
+}
 
-.main-slider .content .caption {
-
-  font-size: 50px;
-
+.dashboard-wrapper .slide {
+  position: absolute;
+  inset: 0;
   opacity: 0;
-
-  transform: translateY(20px);
-
-  transition: 0.4s ease;
-
-  color: var(--orange);
-
-  font-weight: 500;
-
+  transform: scale(1.08);
+  transition: 1.2s ease;
 }
 
-
-
-.main-slider .swiper-slide-active .caption {
-
+.dashboard-wrapper .slide.active {
   opacity: 1;
-
-  transform: translateY(0);
-
+  transform: scale(1);
 }
 
-
-
-/* Arrows */
-
-.swiper-button-next,
-
-.swiper-button-prev {
-
-  color: #fff;
-
-  opacity: 0;
-
-  transition: 0.3s;
-
+.dashboard-wrapper .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-
-
-.main-slider:hover .swiper-button-next,
-
-.main-slider:hover .swiper-button-prev {
-
-  opacity: 1;
-
+.dashboard-wrapper .phone {
+  position: absolute;
+  right: -30px;
+  bottom: -30px;
+  width: 170px;
+  background: #111;
+  border-radius: 34px;
+  padding: 10px;
+  z-index: 5;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  animation: phoneFloat 5s ease-in-out infinite;
 }
+
+.dashboard-wrapper .phone-screen {
+  overflow: hidden;
+  border-radius: 24px;
+  aspect-ratio: 9/18;
+}
+
+.dashboard-wrapper .phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dashboard-wrapper .side-card {
+  position: absolute;
+  width: 220px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(20px);
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+.dashboard-wrapper .card-left {
+  left: -70px;
+  top: 80px;
+  animation: cardMove 5s ease-in-out infinite;
+}
+
+.dashboard-wrapper .card-right {
+  right: -60px;
+  top: 180px;
+  animation: cardMove2 5s ease-in-out infinite;
+}
+
+.dashboard-wrapper .metric {
+  height: 14px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #f6ae3b, #fa7a60);
+}
+
+.dashboard-wrapper .metric:nth-child(2) {
+  width: 70%;
+}
+
+.dashboard-wrapper .metric:nth-child(3) {
+  width: 85%;
+}
+
+.dashboard-wrapper .metric:nth-child(4) {
+  width: 55%;
+}
+
+.dashboard-wrapper .tabs {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.dashboard-wrapper .tab {
+  border: 1px solid #d0d7e2;
+  background: white;
+  padding: 14px 22px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: 600;
+}
+
+.dashboard-wrapper .tab.active,
+.dashboard-wrapper .tab:hover {
+  background: var(--orange);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.dashboard-wrapper .progress {
+  width: 220px;
+  height: 5px;
+  background: #dfe7f4;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 25px auto 0;
+}
+
+.dashboard-wrapper .bar {
+  width: 0%;
+  height: 100%;
+  background: var(--orange);
+  animation: loading 5s linear infinite;
+}
+
+@keyframes loading {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,100% {
+    transform: translateY(0px) rotateX(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotateX(2deg);
+  }
+}
+
+@keyframes phoneFloat {
+  0%,100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes cardMove {
+  0%,100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes cardMove2 {
+  0%,100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(14px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .dashboard-wrapper .side-card {
+    display: none;
+  }
+
+  .dashboard-wrapper .phone {
+    width: 130px;
+    right: -10px;
+    bottom: -10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-wrapper h1 {
+    font-size: 40px;
+  }
+
+  .dashboard-wrapper .subtitle {
+    font-size: 16px;
+  }
+
+  .dashboard-wrapper .phone {
+    position: relative;
+    margin: 30px auto 0;
+    right: auto;
+    bottom: auto;
+  }
+}
+
 
 /* ======================================================================= */
 /* Illustration Animation  */
