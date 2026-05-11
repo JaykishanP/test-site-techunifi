@@ -200,142 +200,6 @@ function gtag(){dataLayer.push(arguments);}
   </div>
 <!-- ======= Search Modal ======= -->
 
-<!-- ======= Banner ======= -->
-<section>
-    <div class="dashboard-wrapper">
-    
-    
-    <div class="tabs">
-      <button class="tab active">Design</button>
-      <button class="tab">Construction</button>
-      <button class="tab">Installation</button>
-      <button class="tab">Operations</button>
-    </div>
-
-    <div class="progress">
-      <div class="bar"></div>
-    </div>
-<br> <br>
-      <div class="glow"></div>
-
-      <div class="side-card card-left">
-        <div class="metric"></div>
-        <div class="metric"></div>
-        <div class="metric"></div>
-        <div class="metric"></div>
-      </div>
-
-      <div class="side-card card-right">
-        <div class="metric"></div>
-        <div class="metric"></div>
-        <div class="metric"></div>
-      </div>
-
-      <div class="device">
-
-        <div class="laptop">
-          <div class="screen">
-
-            <div class="slide active">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop" />
-            </div>
-
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1600&auto=format&fit=crop" />
-            </div>
-
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop" />
-            </div>
-
-            <div class="slide">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop" />
-            </div>
-
-          </div>
-        </div>
-
-        <div class="phone">
-          <div class="phone-screen">
-            <img id="phoneImage" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" />
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-</section> 
-<script>
-const slides = document.querySelectorAll('.slide');
-const tabs = document.querySelectorAll('.tab');
-const bar = document.querySelector('.bar');
-const phoneImage = document.getElementById('phoneImage');
-
-const phoneImages = [
-  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop'
-];
-
-let current = 0;
-let progress = 0;
-const duration = 5000; // 5 seconds
-const step = 100; // Update every 100ms
-
-function showSlide(index) {
-  // Update Classes
-  slides.forEach(s => s.classList.remove('active'));
-  tabs.forEach(t => t.classList.remove('active'));
-
-  slides[index].classList.add('active');
-  tabs[index].classList.add('active');
-
-  // Update Media
-  phoneImage.src = phoneImages[index];
-  
-  // Reset Progress Logic
-  current = index;
-  progress = 0;
-  bar.style.width = '0%';
-}
-
-// Timer Logic
-function startTimer() {
-  setInterval(() => {
-    progress += (step / duration) * 100;
-    
-    if (progress >= 100) {
-      let next = (current + 1) % slides.length;
-      showSlide(next);
-    } else {
-      bar.style.width = progress + '%';
-    }
-  }, step);
-}
-
-// Manual Click Events
-tabs.forEach((tab, index) => {
-  tab.addEventListener('click', () => {
-    showSlide(index);
-  });
-});
-
-// Parallax Effect
-window.addEventListener('mousemove', (e) => {
-  const device = document.querySelector('.device');
-  const x = (window.innerWidth / 2 - e.pageX) / 45;
-  const y = (window.innerHeight / 2 - e.pageY) / 45;
-  device.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
-});
-
-// Initialize
-showSlide(0);
-startTimer();
-</script>
-
-<!-- ======= Banner ====== -->
 
 <!-- ======== Video Animation ======== -->
 
@@ -700,6 +564,152 @@ startTimer();
     <!-- Animation Illustration -->
 
   </section><!-- End Hero -->
+
+  
+<!-- ======= Banner ======= -->
+<section>
+  
+        <div class="row how-heading">
+          <div class="col-md-12">          
+            <div class="section-container how-head-sec" id="section3" data-aos="zoom-in" data-aos-delay="50">
+              <h3>What We Do</h3>
+           </div>
+          </div>
+        </div>
+    <div class="dashboard-wrapper">
+    
+    
+    <div class="tabs">
+      <button class="tab active">Design</button>
+      <button class="tab">Construction</button>
+      <button class="tab">Installation</button>
+      <button class="tab">Operations</button>
+    </div>
+
+    <div class="progress">
+      <div class="bar"></div>
+    </div>
+<br> <br>
+      <div class="glow"></div>
+
+      <div class="side-card card-left">
+        <div class="metric"></div>
+        <div class="metric"></div>
+        <div class="metric"></div>
+        <div class="metric"></div>
+      </div>
+
+      <div class="side-card card-right">
+        <div class="metric"></div>
+        <div class="metric"></div>
+        <div class="metric"></div>
+      </div>
+
+      <div class="device">
+
+        <div class="laptop">
+          <div class="screen">
+
+            <div class="slide active">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop" />
+            </div>
+
+            <div class="slide">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1600&auto=format&fit=crop" />
+            </div>
+
+            <div class="slide">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop" />
+            </div>
+
+            <div class="slide">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop" />
+            </div>
+
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="phone-screen">
+            <img id="phoneImage" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" />
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+</section> 
+<script>
+const slides = document.querySelectorAll('.slide');
+const tabs = document.querySelectorAll('.tab');
+const bar = document.querySelector('.bar');
+const phoneImage = document.getElementById('phoneImage');
+
+const phoneImages = [
+  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop'
+];
+
+let current = 0;
+let progress = 0;
+const duration = 5000; // 5 seconds
+const step = 100; // Update every 100ms
+
+function showSlide(index) {
+  // Update Classes
+  slides.forEach(s => s.classList.remove('active'));
+  tabs.forEach(t => t.classList.remove('active'));
+
+  slides[index].classList.add('active');
+  tabs[index].classList.add('active');
+
+  // Update Media
+  phoneImage.src = phoneImages[index];
+  
+  // Reset Progress Logic
+  current = index;
+  progress = 0;
+  bar.style.width = '0%';
+}
+
+// Timer Logic
+function startTimer() {
+  setInterval(() => {
+    progress += (step / duration) * 100;
+    
+    if (progress >= 100) {
+      let next = (current + 1) % slides.length;
+      showSlide(next);
+    } else {
+      bar.style.width = progress + '%';
+    }
+  }, step);
+}
+
+// Manual Click Events
+tabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => {
+    showSlide(index);
+  });
+});
+
+// Parallax Effect
+window.addEventListener('mousemove', (e) => {
+  const device = document.querySelector('.device');
+  const x = (window.innerWidth / 2 - e.pageX) / 45;
+  const y = (window.innerHeight / 2 - e.pageY) / 45;
+  device.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+});
+
+// Initialize
+showSlide(0);
+startTimer();
+</script>
+
+<!-- ======= Banner ====== -->
 
   <main id="main">
 
