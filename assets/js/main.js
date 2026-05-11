@@ -364,98 +364,47 @@ $(document).ready(function() {
 
 /* ====== About tabs ====== */
 // Tabs
-
 function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
+  let tabcontent = document.getElementsByClassName("tabcontent");
+  let tablinks = document.getElementsByClassName("tablinks");
+
+  // Hide all tabs
+  for (let i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+  // Remove active class from all tab buttons
+  for (let i = 0; i < tablinks.length; i++) {
+    tablinks[i].classList.remove("active");
   }
+
+  // Show the clicked tab
   document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
 
-// Get the element with id="defaultOpen" and click on it
-// document.getElementById("defaultOpen").click();
-
-document.addEventListener('DOMContentLoaded', function() {
-  var defaultOpenButton = document.getElementById("defaultOpen");
-  if (defaultOpenButton) {
-      defaultOpenButton.click();
+  // Add active class: IF clicked OR IF URL is opening it
+  if (evt) {
+    evt.currentTarget.classList.add("active");
   } else {
-      // console.error("Element with ID 'defaultOpen' not found.");
+    // URL method → find matching button
+    document.querySelector(`button[data-tab="${tabName}"]`)?.classList.add("active");
   }
-});
+}
 
+document.addEventListener('DOMContentLoaded', function () {
+  let tabParam = new URLSearchParams(window.location.search).get('tab');
 
-/* ==== Home to News - About Page ==== */
-
-document.addEventListener('DOMContentLoaded', function() {
-  var urlParams = new URLSearchParams(window.location.search);
-  var tabParam = urlParams.get('tab');
   if (tabParam === 'news') {
-    openTab(null, 'tab2'); // Assuming 'tab2' is the ID of the News tab
-    var tabLinks = document.getElementsByClassName('tablinks');
-    for (var i = 0; i < tabLinks.length; i++) {
-      if (tabLinks[i].getAttribute('data-tab') === 'tab2') {
-        tabLinks[i].classList.add('active');
-        break; // Stop looping once the News tab link is found
-      }
-    }
+    openTab(null, 'tab2');
+  } 
+  else if (tabParam === 'clientlist') {
+    openTab(null, 'tab4');
+  } 
+  else {
+    // Default tab
+    document.getElementById("defaultOpen")?.click();
   }
 });
 
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].classList.remove("active"); // Remove active class from all tab links
-  }
-  document.getElementById(tabName).style.display = "block";
-  if (evt) {
-    evt.currentTarget.classList.add("active"); // Add active class to the clicked tab link
-  }
-}
-
-/* ==== Home to Clientlist - About Page ==== */
-document.addEventListener('DOMContentLoaded', function() {
-  var urlParams = new URLSearchParams(window.location.search);
-  var tabParam = urlParams.get('tab');
-  if (tabParam === 'clientlist') {
-    openTab(null, 'tab4'); // Assuming 'tab2' is the ID of the News tab
-    var tabLinks = document.getElementsByClassName('tablinks');
-    for (var i = 0; i < tabLinks.length; i++) {
-      if (tabLinks[i].getAttribute('data-tab') === 'tab4') {
-        tabLinks[i].classList.add('active');
-        break; // Stop looping once the News tab link is found
-      }
-    }
-  }
-});
-
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].classList.remove("active"); // Remove active class from all tab links
-  }
-  document.getElementById(tabName).style.display = "block";
-  if (evt) {
-    evt.currentTarget.classList.add("active"); // Add active class to the clicked tab link
-  }
-}
 
 
 /* === Scroll to about top === */
@@ -464,6 +413,22 @@ $('.tablinks, .prod-tablinks').click(function(event) {
   event.preventDefault();
 
   $('html,body').animate({scrollTop:0}, 400); 
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  let tabParam = new URLSearchParams(window.location.search).get('tab');
+
+  if (tabParam === 'news') {
+    openTab(null, 'tab2');
+    window.scrollTo(0, 0); // Force scroll to top
+  } 
+  else if (tabParam === 'clientlist') {
+    openTab(null, 'tab4');
+    window.scrollTo(0, 0); // Force scroll to top
+  } 
+  else {
+    document.getElementById("defaultOpen")?.click();
+  }
 });
 
 
@@ -1893,6 +1858,7 @@ function clearChatIfNewDay() {
   }
 }
 
+/* ============ Gsap ============== */
 
 /* ==== Event Close ==== */
 
@@ -1925,6 +1891,5 @@ function clearChatIfNewDay() {
 //       }
 //   });
 // });
-
 
 
