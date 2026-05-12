@@ -5811,7 +5811,8 @@ ul.menu-bar {
 
 #telecom .sub-Inquiry::after,
 .card-get-link::after,
-#light .sub-Inquiry::after{
+#light .sub-Inquiry::after,
+.we-text-col a::after{
     width: 15px;
     height: 15px;
 }
