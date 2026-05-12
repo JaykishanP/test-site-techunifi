@@ -900,12 +900,19 @@ a.nav-link.search-site.mobile-search {
     .learn-more{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap:6px;
       color: var(--orange);
       font-weight:600;
       font-size:15px;
       transition:0.3s;
     }
+
+    .learn-more img {
+      width: 11px;
+      height: 11px;
+      filter: invert(67%) sepia(78%) saturate(2876%) hue-rotate(337deg) brightness(169%) contrast(101%);
+      margin-top: 3px;
+     }
 
     .service-card:hover .learn-more{
       gap:16px;
@@ -5704,7 +5711,7 @@ ul.menu-bar {
 .home-client-btn, 
 .sub-Inquiry, 
 .card-get-link, 
-.ticket-form .home-contact-submit input[type="submit"] {
+.timePage .nav-end .raise-btn {
     /* Keep it as block if that's what it was, but use flex for internal alignment */
     display: flex; 
     align-items: center;
@@ -5726,7 +5733,7 @@ ul.menu-bar {
 .home-client-btn::after, 
 .sub-Inquiry::after, 
 .card-get-link::after,
-.ticket-form .home-contact-submit input[type="submit"]::after {
+.timePage .nav-end .raise-btn::after {
     content: '';
     position: absolute;
     right: 23px; /* Positioned inside the extra padding we'll add on hover */
@@ -5749,7 +5756,7 @@ ul.menu-bar {
 .home-client-btn:hover, 
 .sub-Inquiry:hover, 
 .card-get-link:hover,
-.ticket-form .home-contact-submit input[type="submit"]:hover {
+.timePage .nav-end .raise-btn:hover {
     padding-right: 50px; /* Button grows smoothly to make room */
     padding-left: 40px;
 }
@@ -5759,7 +5766,7 @@ ul.menu-bar {
 .home-client-btn:hover::after, 
 .sub-Inquiry:hover::after, 
 .card-get-link:hover::after,
-.ticket-form .home-contact-submit input[type="submit"]:hover::after {
+.timePage .nav-end .raise-btn:hover::after {
     opacity: 1;
     transform: translateX(0);
 }
@@ -5777,13 +5784,13 @@ ul.menu-bar {
 }
 .prod-head-text .prod-para a::after,
 .home-client-btn::after,
-.overview-cont-col a.sub-Inquiry::after{
+.overview-cont-col a.sub-Inquiry::after {
     width: 15px;
     height: 15px;
 }
 .prod-head-text .prod-para a:hover::after,
 .home-client-btn:hover::after,
-.overview-cont-col a.sub-Inquiry:hover::after{
+.overview-cont-col a.sub-Inquiry:hover::after {
     filter: brightness(0) saturate(100%) invert(24%) sepia(15%) saturate(787%) hue-rotate(177deg) brightness(92%) contrast(88%);
 }
 
@@ -5812,22 +5819,54 @@ ul.menu-bar {
 #telecom .sub-Inquiry::after,
 .card-get-link::after,
 #light .sub-Inquiry::after,
-.we-text-col a::after{
+.we-text-col a::after,
+.timePage .nav-end .raise-btn::after{
     width: 15px;
     height: 15px;
 }
 
 #telecom .sub-Inquiry:hover,
 .card-get-link:hover,
-#light .sub-Inquiry:hover{
+#light .sub-Inquiry:hover,
+.timePage .nav-end .raise-btn:hover{
     background-color: var(--orange);
     color: #fff;
     border-color: var(--orange);
     font-weight: 600;
 }
 
+.timePage a.sub-tablinks.active {
+    background-color: var(--orange);
+    color: #fff;
+}
 
+/* Input Submit Button CSS */
 
+.ticket-form .home-contact-submit input[type="submit"],
+.ticket-form form input[type="submit"],
+.Brand-Password input[type=button] {
+    /* Base State */
+    background-color: var(--blue); /* Or your default color */
+    transition: all 0.4s ease;
+    background-position: 120% center; /* Hide arrow off to the right */
+    background-repeat: no-repeat;
+    background-size: 18px;
+}
+
+.ticket-form .home-contact-submit input[type="submit"]:hover,
+.ticket-form form input[type="submit"]:hover,
+.Brand-Password input[type=button]:hover {
+    padding-right: 50px;
+    padding-left: 35px;
+    background-color: transparent;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    background-image: url('https://www.techunifi.com/assets/img/login_arrow.svg');
+    background-position: calc(100% - 24px) center;
+    filter: brightness(0) saturate(100%) invert(24%) sepia(15%) saturate(787%) hue-rotate(177deg) brightness(92%) contrast(88%);
+    background-size: 14px 14px;
+    font-weight: 600;
+}
 
 
 /* =========== New CSS ============ */
