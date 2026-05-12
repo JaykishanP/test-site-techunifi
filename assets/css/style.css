@@ -5704,49 +5704,63 @@ ul.menu-bar {
 
 
 /* ========= Buttons ========== */
-
-/* 1. Base styles for the parent elements */
+/* 1. Base styles - Apply to the button in its NATURAL state */
 .we-text-col a, 
 .prod-head-text .prod-para a, 
 .home-client-btn, 
 .sub-Inquiry, 
 .card-get-link {
-    display: inline-flex;
+    /* Keep it as block if that's what it was, but use flex for internal alignment */
+    display: flex; 
     align-items: center;
+    justify-content: center;
     position: relative;
     text-decoration: none;
-    transition: all 0.3s ease-in-out;
     cursor: pointer;
+    
+    /* THE TRICK: The padding must be there BEFORE hover to prevent flickering */
+    /* padding-right: 15px;  */
+    
+    /* Ensure the button doesn't jump */
+    transition: padding 0.4s cubic-bezier(0.23, 1, 0.32, 1), background 0.3s;
 }
 
-/* 2. The Icon (Hidden by default) */
+/* 2. The Icon - Absolute Positioned so it doesn't push text */
 .we-text-col a::after, 
 .prod-head-text .prod-para a::after, 
 .home-client-btn::after, 
 .sub-Inquiry::after, 
 .card-get-link::after {
     content: '';
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-left: 5px; /* Space between text and icon */
-    background: url('assets/img/login_arrow.svg') no-repeat center;
+    position: absolute;
+    right: 10px; /* Positioned inside the extra padding we'll add on hover */
+    background: url('https://www.techunifi.com/assets/img/login_arrow.svg') no-repeat center;
     background-size: contain;
     
-    /* Animation setup */
+    width: 18px;
+    height: 18px;
+    
+    /* Hidden state */
     opacity: 0;
-    visibility: hidden;
-    transform: translateX(-10px); /* Starts slightly to the left */
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: translateX(-5px);
+    transition: opacity 0.3s ease, transform 0.4s ease;
+    pointer-events: none;
 }
 
-/* 3. Reveal and Animate on Hover */
+/* 3. Hover State - We grow the padding and show the icon simultaneously */
+.we-text-col a:hover, 
+.prod-head-text .prod-para a:hover, 
+.home-client-btn:hover, 
+.sub-Inquiry:hover, 
+.card-get-link:hover {
+    padding-right: 35px; /* Button grows smoothly to make room */
+}
+
 .we-text-col a:hover::after, 
 .prod-head-text .prod-para a:hover::after, 
 .home-client-btn:hover::after, 
 .sub-Inquiry:hover::after, 
 .card-get-link:hover::after {
     opacity: 1;
-    visibility: visible;
-    transform: translateX(0); /* Glides into the natural position */
+    transform: translateX(0);
 }
