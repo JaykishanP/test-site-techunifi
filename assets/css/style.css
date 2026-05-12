@@ -1092,6 +1092,18 @@ section#home-clients {
   padding: 0;
 }
 
+.home-client-btn {
+    font-weight: 500;
+    letter-spacing: 1px;
+    background-color: var(--orange);
+    border: 1px solid var(--orange);
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 25px;
+    /* display: block; */
+    margin: 0 auto;
+    max-width: fit-content;
+}
 
 /* ======================================================================= */
 /* Client Images slider */
@@ -2980,6 +2992,7 @@ span.hr-rule {
   background-color: var(--orange);
   border: 1px solid var(--orange);
   padding: 10px 25px;
+  max-width: fit-content;
 }
 .contact .home-clients-section  .prod-heading h3::before {
   left: 31%;
@@ -2990,10 +3003,12 @@ span.hr-rule {
   font-weight: 700;
   letter-spacing: 1px;
   border: 1px solid var(--orange);
-  padding: 10px 40px;
+  padding: 10px 30px;
   max-width: fit-content;
   display: block;
   margin: 0 0 35px 0;
+  background-color: var(--orange);
+  color: #fff;
 }
 .bg-color-services-main .prod-below-hr {
   max-width: 274px;
@@ -5682,34 +5697,14 @@ ul.menu-bar {
 }
 
 
-/* =========== New CSS ============ */
-
-/* Banner */
-.banner-container {
-  width: 100%;
-  text-align: center;
-  padding: 40px 0;
-}
-
-.banner-img {
-  width: 40%;
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.95; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-
 /* ========= Buttons ========== */
 /* 1. Base styles - Apply to the button in its NATURAL state */
 .we-text-col a, 
 .prod-head-text .prod-para a, 
 .home-client-btn, 
 .sub-Inquiry, 
-.card-get-link {
+.card-get-link, 
+.ticket-form .home-contact-submit input[type="submit"] {
     /* Keep it as block if that's what it was, but use flex for internal alignment */
     display: flex; 
     align-items: center;
@@ -5730,10 +5725,11 @@ ul.menu-bar {
 .prod-head-text .prod-para a::after, 
 .home-client-btn::after, 
 .sub-Inquiry::after, 
-.card-get-link::after {
+.card-get-link::after,
+.ticket-form .home-contact-submit input[type="submit"]::after {
     content: '';
     position: absolute;
-    right: 10px; /* Positioned inside the extra padding we'll add on hover */
+    right: 23px; /* Positioned inside the extra padding we'll add on hover */
     background: url('https://www.techunifi.com/assets/img/login_arrow.svg') no-repeat center;
     background-size: contain;
     
@@ -5752,15 +5748,103 @@ ul.menu-bar {
 .prod-head-text .prod-para a:hover, 
 .home-client-btn:hover, 
 .sub-Inquiry:hover, 
-.card-get-link:hover {
-    padding-right: 35px; /* Button grows smoothly to make room */
+.card-get-link:hover,
+.ticket-form .home-contact-submit input[type="submit"]:hover {
+    padding-right: 50px; /* Button grows smoothly to make room */
+    padding-left: 40px;
 }
 
 .we-text-col a:hover::after, 
 .prod-head-text .prod-para a:hover::after, 
 .home-client-btn:hover::after, 
 .sub-Inquiry:hover::after, 
-.card-get-link:hover::after {
+.card-get-link:hover::after,
+.ticket-form .home-contact-submit input[type="submit"]:hover::after {
     opacity: 1;
     transform: translateX(0);
+}
+
+
+/* Button Background color */
+
+.prod-head-text .prod-para a:hover,
+.home-client-btn:hover,
+.overview-cont-col a.sub-Inquiry:hover {
+    background-color: transparent;
+    color: var(--blue);
+    font-weight: 700;
+    border-color: var(--blue);
+}
+.prod-head-text .prod-para a::after,
+.home-client-btn::after,
+.overview-cont-col a.sub-Inquiry::after{
+    width: 15px;
+    height: 15px;
+}
+.prod-head-text .prod-para a:hover::after,
+.home-client-btn:hover::after,
+.overview-cont-col a.sub-Inquiry:hover::after{
+    filter: brightness(0) saturate(100%) invert(24%) sepia(15%) saturate(787%) hue-rotate(177deg) brightness(92%) contrast(88%);
+}
+
+#other-info .sub-Inquiry::after, 
+#audi-vide .sub-Inquiry::after, 
+#wifi .sub-Inquiry::after, 
+#security .sub-Inquiry::after, 
+#energy .sub-Inquiry::after, 
+#low-voltage .sub-Inquiry::after{
+    width: 15px;
+    height: 15px;
+}
+
+#other-info .sub-Inquiry:hover, 
+#audi-vide .sub-Inquiry:hover, 
+#wifi .sub-Inquiry:hover, 
+#security .sub-Inquiry:hover, 
+#energy .sub-Inquiry:hover, 
+#low-voltage .sub-Inquiry:hover{
+   background-color: var(--blue);
+   color: #fff;
+   font-weight: 600;
+   border-color: var(--blue);
+}
+
+#telecom .sub-Inquiry::after,
+.card-get-link::after,
+#light .sub-Inquiry::after{
+    width: 15px;
+    height: 15px;
+}
+
+#telecom .sub-Inquiry:hover,
+.card-get-link:hover,
+#light .sub-Inquiry:hover{
+    background-color: var(--orange);
+    color: #fff;
+    border-color: var(--orange);
+    font-weight: 600;
+}
+
+
+
+
+
+/* =========== New CSS ============ */
+
+/* Banner */
+.banner-container {
+  width: 100%;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.banner-img {
+  width: 40%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.95; }
+  100% { transform: scale(1); opacity: 1; }
 }
