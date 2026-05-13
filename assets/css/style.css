@@ -480,8 +480,8 @@ a.nav-link.search-site.mobile-search {
 
 /* HOVER STATES */
 /* These define how far the button opens to the RIGHT */
-.expand-btn.raise-btn:hover { width: 165px; }
-.expand-btn.search-site:hover { width: 105px; }
+.expand-btn.raise-btn:hover { width: 182px; }
+.expand-btn.search-site:hover { width: 123px; }
 .expand-btn.profile-icon:hover { width: 110px; }
 
 .expand-btn:hover {
@@ -3797,7 +3797,7 @@ input#searchInput {
   color: var(--black);
 }
 
-.nav-end a.profile-icon span img {
+.nav-end a.expand-btn span img {
   display: inline;
   width: 100%;
   margin: 0 0 0 9px;
