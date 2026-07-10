@@ -317,17 +317,15 @@ li.zf-tempFrmWrapper.zf-conditional-accent.maths-val {
 /* ===== Progress Wrapper ===== */
 
 .vertical-progress{
-    position: absolute;
+     left: 0;
     top: 40px;
-    left: -94px;
-    width: 220px;
+    position: absolute;
+    width:220px;
 
-    opacity: 1;
-    visibility: visible;
+    opacity:1;
+    visibility:visible;
 
-    transform: translateY(0);
-    backface-visibility: hidden;
-    will-change: transform;
+    transform:translateX(-70px);
 
     transition:
         opacity .25s ease,
@@ -2477,38 +2475,46 @@ document.addEventListener("DOMContentLoaded", function () {
     // Run once on load to establish baseline state metrics
     updateFormProgressTracking();
 
-    const progressTracker =
-    document.getElementById("verticalProgress");
+    /* ==========================================
+   Sticky Progress Tracker
+========================================== */
 
-const formWrapper =
-    document.getElementById("phoneOrderForm");
+const progressTracker = document.getElementById("verticalProgress");
+const formWrapper = document.getElementById("phoneOrderForm");
+
+let fixedLeft = 0;
+
+function calculateTrackerPosition() {
+
+    const formRect = formWrapper.getBoundingClientRect();
+
+    // Distance between tracker and form
+    const gap = 95; // Change this value (30-70) to move closer/farther
+
+    fixedLeft =
+        formRect.left +
+        window.scrollX -
+        gap;
+
+}
 
 function handleStickyProgress() {
 
-    const formRect =
-        formWrapper.getBoundingClientRect();
+    const formTop = formWrapper.offsetTop;
+    const formHeight = formWrapper.offsetHeight;
+    const trackerHeight = progressTracker.offsetHeight;
 
-    const formTop =
-        formWrapper.offsetTop;
+    const scrollTop = window.pageYOffset;
 
-    const formHeight =
-        formWrapper.offsetHeight;
-
-    const trackerHeight =
-        progressTracker.offsetHeight;
-
-    const scrollTop =
-        window.scrollY;
-
-    const startStick =
-        formTop - 140;
+    const startStick = formTop - 140;
 
     const endStick =
-        formTop + formHeight - trackerHeight - 180;
+        formTop +
+        formHeight -
+        trackerHeight -
+        180;
 
-    /*
-      INITIAL POSITION
-    */
+    /* Before form */
 
     if (scrollTop < startStick) {
 
@@ -2516,57 +2522,46 @@ function handleStickyProgress() {
         progressTracker.style.top = "40px";
         progressTracker.style.left = "-94px";
 
-        progressTracker.style.opacity = "0.98";
-        progressTracker.style.transform = "translateY(2px)";
     }
 
-    /*
-      FIXED WHILE SCROLLING
-    */
+    /* While scrolling */
 
-    else if (
-        scrollTop >= startStick &&
-        scrollTop <= endStick
-    ) {
+    else if (scrollTop <= endStick) {
 
         progressTracker.style.position = "fixed";
         progressTracker.style.top = "230px";
-        progressTracker.style.left = "110px";
+        progressTracker.style.left = fixedLeft + "px";
+
     }
 
-    /*
-      STOP AT FORM END
-    */
+    /* End of form */
 
     else {
 
         progressTracker.style.position = "absolute";
-
         progressTracker.style.top =
             (formHeight - trackerHeight - 40) + "px";
-
         progressTracker.style.left = "-94px";
+
     }
 
-    /*
-      Smooth visual update
-    */
-
-    requestAnimationFrame(() => {
-
-        progressTracker.style.opacity = "1";
-        progressTracker.style.transform = "translateY(0px)";
-
-    });
+    progressTracker.style.opacity = "1";
+    progressTracker.style.transform = "translateY(0)";
 
 }
 
-window.addEventListener(
-    "scroll",
-    handleStickyProgress
-);
-
+/* Calculate once */
+calculateTrackerPosition();
 handleStickyProgress();
+
+/* Recalculate only on resize */
+window.addEventListener("resize", () => {
+    calculateTrackerPosition();
+    handleStickyProgress();
+});
+
+/* Scroll only changes mode */
+window.addEventListener("scroll", handleStickyProgress);
 
 });
 
