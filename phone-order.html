@@ -198,6 +198,7 @@ function gtag(){dataLayer.push(arguments);}
 
   .phonePage .sub-tab2-section .ticket-form form select {
     min-height: auto;
+    padding-left: 4px;
    }
    .zf-conditional-accent {
     border-left: 3px solid #eb6d47 !important; /* Matches your branding accent line */
@@ -310,7 +311,7 @@ li.zf-tempFrmWrapper.zf-conditional-accent.maths-val {
 
 .form-with-progress{
     position: relative;
-    padding-left: 140px;
+    padding-left: 170px;
 }
 
 /* ===== Progress Wrapper ===== */
@@ -342,9 +343,9 @@ li.zf-tempFrmWrapper.zf-conditional-accent.maths-val {
 .progress-line{
     position: absolute;
     left: 109px;
-    top: 8px;
+    top: -27px;
     width: 1px;
-    height: 697px;
+    height: 560px;
     background: var(--blue);
     border-radius: 30px;
 }
@@ -353,7 +354,7 @@ li.zf-tempFrmWrapper.zf-conditional-accent.maths-val {
     position: absolute;
     left: 109px;
     top: 8px;
-    width: 3px;
+    width: 2px;
     height: 0;
     background: #eb6d47;
     border-radius: 30px;
@@ -370,7 +371,7 @@ li.zf-tempFrmWrapper.zf-conditional-accent.maths-val {
     width: 22px;
     height: 22px;
 
-    margin: 0 auto 150px;
+    margin: 0 auto 100px;
 
     background: #313d53;
     border-radius: 999px;
@@ -384,6 +385,7 @@ li.zf-tempFrmWrapper.zf-conditional-accent.maths-val {
         width .35s cubic-bezier(.4,0,.2,1),
         padding .35s cubic-bezier(.4,0,.2,1),
         box-shadow .35s ease;
+        
 }
 
 .progress-item.active,
@@ -464,7 +466,7 @@ li.zf-tempFrmWrapper.zf-conditional-accent.maths-val {
 /* ===== Optional Hover Effect ===== */
 
 .progress-inner:has(.progress-item:hover) .progress-line{
-    height:710px;
+    height:580px;
 }
 
 /* ===== Responsive ===== */
@@ -2428,32 +2430,29 @@ document.addEventListener("DOMContentLoaded", function () {
         item.classList.remove("active","completed");
     });
 
-    sections.forEach((inputs,index)=>{
+    sections.forEach((inputs, index) => {
 
-        if(checkSectionValidity(inputs)){
+    const isCompleted = checkSectionValidity(inputs);
 
-            progressItems[index].classList.add("completed");
-            completedSteps++;
+    if (isCompleted) {
 
-        }else{
+        progressItems[index].classList.add("completed");
+        completedSteps++;
 
-            if(index===completedSteps){
-                progressItems[index].classList.add("active");
-            }
+    }
 
-        }
-
-    });
+});
 
     /* Progress Line */
 
-    const totalHeight = 358;      // Same as .progress-line height
+    const totalHeight = 497;      // Same as .progress-line height
     const totalSteps = sections.length;
 
     const lineHeight =
         (completedSteps / totalSteps) * totalHeight;
 
-    activeLine.style.height = lineHeight + "px";
+    activeLine.style.height =
+    (completedSteps / totalSteps) * totalHeight + "px";
 
 }
 
