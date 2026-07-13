@@ -5264,8 +5264,10 @@ ul.menu-bar {
   height: 100%; 
   position: sticky; 
   top: 107px; 
+  left: -47px;
   padding: 10px;
   position: relative;
+  overflow: visible;
 }
 
 .contact-progress-section .progress {
@@ -5277,6 +5279,7 @@ ul.menu-bar {
   align-items: center;
   position: sticky;
   top: 0; /* Keep progress bar fixed while scrolling */
+   overflow: visible;
 }
 
 .contact-progress-section .progress::after {
@@ -5295,8 +5298,9 @@ ul.menu-bar {
   cursor: pointer;
   width: 20px;
   border-radius: 50%;
-  margin: 0 0 50px 0;
+  margin: 0 0 60px 0;
   background-color: var(--blue);
+  box-shadow: 0 0 1px 6px rgba(49, 61, 83, .1), 0 0 12px rgba(47, 59, 82, .18);
 }
 
 .contact-progress-section .checkpoint.filled{
@@ -5325,47 +5329,65 @@ ul.menu-bar {
 }
 
 /* ===hover=== */
-.contact-progress-section .checkpoint:hover::before{
-  content: attr(data-tooltip); 
+/* === Tooltip === */
+
+.contact-progress-section .checkpoint{
+  position: relative;
+}
+
+.contact-progress-section .checkpoint::before{
+  content: attr(data-tooltip);
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  /* transform: translateY(-50%) translateX(-10px); */
+   transform: translate(-50%, -50%) scaleX(0);
+  transform-origin: center center;
+
   background-color: var(--blue);
   color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 12px;
+  padding: 11px 12px;
+  border-radius: 20px;
+  font-size: 13px;
   white-space: nowrap;
-  opacity: 1; 
+
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.2s ease-in-out;
+
+  /* transition:
+    opacity .3s ease,
+    transform .3s ease,
+    background-color .3s ease,
+    color .3s ease; */
+
+     transition:
+    opacity .25s ease,
+    transform .35s cubic-bezier(.23,1,.32,1);
+    box-shadow: 0 0 1px 6px rgba(49, 61, 83, .1), 0 0 12px rgba(47, 59, 82, .18);
 }
 
-.contact-progress-section .checkpoint.filled#checkpoint1::before,
-.contact-progress-section .checkpoint.filled#checkpoint2::before,
-.contact-progress-section .checkpoint.filled#checkpoint3::before,
-.contact-progress-section .checkpoint.filled#checkpoint4::before{
-  content: attr(data-tooltip); 
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--orange);
-  color: var(--blue);
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 12px;
-  white-space: nowrap;
-  opacity: 1; 
-  pointer-events: none;
-  transition: opacity 0.2s ease-in-out;
-  font-weight: 800;
+.contact-progress-section .checkpoint:hover::before{
+  opacity: 1;
+  visibility: visible;
+  /* transform: translateY(-50%) translateX(0); */
+   transform: translate(-50%, -50%) scaleX(1);
 }
 
-.contact-progress-section .checkpoint.filled::before {
-  background-color: var(--orange);
-  color: var(--blue);
-  font-weight: 800;
+.contact-progress-section .checkpoint.filled::before{
+  /* background-color: var(--orange); */
+  color: #fff;
+  padding: 11px 11px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 1;
+  visibility: visible;
+    /* transform: translateY(-50%) translateX(0); */
+    transform: translate(-50%, -50%) scaleX(1);
+box-shadow: 0 0 1px 6px rgba(49, 61, 83, .1), 0 0 12px rgba(47, 59, 82, .18);
 }
+
 
 /* ===== Scroll Bar ==== */
 /* Applies to webkit browsers (Chrome, Safari, Edge) */
@@ -5431,15 +5453,36 @@ ul.menu-bar {
     margin: 0 35px;
   }
 
+/* Tooltips for horizontal layout */
+.contact-progress-section .checkpoint::before{
+  left: 50%;
+  top: -35px;
+  transform: translateX(-50%) translateY(10px);
+}
+
   /* Tooltips for horizontal layout */
   .contact-progress-section .checkpoint:hover::before {
     top: -30px; /* Position tooltip above checkpoint */
     left: 50%;
-    transform: translateX(-50%);
+  transform: translateX(-50%) translateY(0);
   }
 
   .contact-progress-section .checkpoint.filled::before {
     top: -30px; /* Position tooltip above checkpoint when filled */
+      opacity: 1;
+  visibility: visible;
+
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+
+  background-color: var(--orange);
+  color: #fff;
+
+  padding: 10px 13px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
   }
 }
 
