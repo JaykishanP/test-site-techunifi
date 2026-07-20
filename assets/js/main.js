@@ -153,7 +153,7 @@ var swiper = new Swiper('.bk-slider .swiper', {
 
 document.addEventListener('DOMContentLoaded', (function() {
   // Set the number of items per page globally
-  var itemsPerPage = 4; 
+  var itemsPerPage = 10; 
 
   // Function to display the correct page of news items
   function showPage(pageNumber) {
@@ -213,6 +213,15 @@ document.addEventListener('DOMContentLoaded', (function() {
 })());
 
 
+// =============Grandopening redirection===========
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname === "/GrandOpening") {
+        window.location.replace("https://partiful.com/e/sZQjwYjxAcQdhy8MxDgr");
+    }
+});
+
+
+//==========================
 
 /* ==== Submit ticket ===== */
 
@@ -660,46 +669,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* ======== Home img Slider ========= */
 // Initialize Swiper
-var swiper = new Swiper('.home-clients-slider', {
-  speed: 400,
-  loop: true,
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false
-  },
-  slidesPerView: 'auto',
-  pagination: {
-    el: '.swiper-pagination',
-    type: 'bullets',
-    clickable: true
-  },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
-  },
-  breakpoints: {
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 40
-    },
-    480: {
-      slidesPerView: 1,
-      spaceBetween: 20
-    },
-    640: {
-      slidesPerView: 2,
-      spaceBetween: 20
-    },
-    992: {
-      slidesPerView: 3,
-      spaceBetween: 20,
-    },
-    1200: {
-      slidesPerView: 4,
-      centeredSlides: false,
-      spaceBetween: 20,
-    }
+// ========== Client Images Modal ======== //
+document.addEventListener("DOMContentLoaded", () => {
+
+  const gallery = document.querySelector('.interactive-gallery');
+  const track = document.querySelector('.gallery-track');
+
+  // Stop execution if elements are not found
+  if (!gallery || !track) return;
+
+  function moveSlider(direction) {
+    const itemWidth = 415; // Width (400px) + Gap (15px)
+
+    gallery.scrollBy({
+      left: direction * itemWidth,
+      behavior: 'smooth'
+    });
   }
+
+  // Make function globally accessible if buttons use onclick=""
+  window.moveSlider = moveSlider;
+
+  // Infinite loop effect
+  gallery.addEventListener('scroll', () => {
+    const halfWidth = track.offsetWidth / 2;
+
+    if (gallery.scrollLeft >= halfWidth) {
+      gallery.scrollLeft = 1;
+    } else if (gallery.scrollLeft <= 0) {
+      gallery.scrollLeft = halfWidth - 1;
+    }
+  });
+
 });
 
 
@@ -744,6 +745,35 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+
+// =============== Home PageService Card =============== //
+
+document.addEventListener("DOMContentLoaded", () =>{
+      // Scroll Reveal Animation
+  const cards = document.querySelectorAll('.service-card');
+
+  const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry, index) => {
+
+      if(entry.isIntersecting){
+
+        setTimeout(() => {
+          entry.target.classList.add('show');
+        }, index * 120);
+
+      }
+
+    });
+
+  }, {
+    threshold:0.2
+  });
+
+  cards.forEach(card => {
+    observer.observe(card);
+  });
+})
 
 /* ======== Products Slider ========== */
 
