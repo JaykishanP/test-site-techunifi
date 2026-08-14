@@ -253,12 +253,12 @@ p.zf-instruction.special-note span{
   font-weight: 700;
 }
 .zf-tempFrmWrapper.zf-section h2 {
-    font-size: 35px;
-    /* font-weight: 800; */
+    font-size: 25px;
+    font-weight: 800;
     color: #313d53;
     /* text-align: center; */
     margin: 17px 0 25px 0;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 .checkbox-combo span.zf-multiAttType {
     display: flex;
@@ -499,6 +499,75 @@ li.zf-tempFrmWrapper.zf-conditional-accent.maths-val {
 
 }
 
+/* ==================================================== */
+
+/* ===== Date Time Field ===== */
+
+.zf-date.zf-time .zf-tempContDiv{
+    display:flex;
+    align-items:flex-end;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.zf-date.zf-time .zf-subDate{
+    flex:1 1 280px;
+}
+
+.zf-date.zf-time .zf-subDate input{
+    width:100%;
+    margin: 0;
+}
+
+.zf-date.zf-time span:not(.zf-subDate):not(.zf-symbols){
+    display:flex;
+    flex-direction:column;
+}
+
+.zf-date.zf-time select{
+    width:80px;
+    min-width:80px;
+    margin: 0;
+}
+
+.zf-date.zf-time .zf-symbols{
+    align-self:self-startr;
+    font-size:20px;
+    font-weight:600;
+    padding-bottom:12px;
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .zf-date.zf-time .zf-tempContDiv{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .zf-date.zf-time .zf-subDate{
+        flex:unset;
+    }
+
+    .zf-date.zf-time span:not(.zf-subDate):not(.zf-symbols){
+        width:100%;
+    }
+
+    .zf-date.zf-time select{
+        width:100%;
+    }
+
+    .zf-date.zf-time .zf-symbols{
+        display:none;
+    }
+
+    .zf-date.zf-time label{
+        text-align:left;
+    }
+
+}
 
 /* ==================================================== */
 
@@ -1010,7 +1079,7 @@ class="zf-phwrapper zf-phNumber"
     
     
 <div class="zf-tempFrmWrapper zf-section">
-    <h2>Internet Service Provider</h2>
+    <h2>Internet Service Provider & Network Infrastructure</h2>
 </div>
 
 <div class="zfgrid_Wrapper">
@@ -1166,6 +1235,11 @@ What is the make and model of your current phone system?
 <div class="zf-tempContDiv">
 <span> 
 <input type="text" name="SingleLine4" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" required/> </span><p id="SingleLine4_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>
+
+<div class="zf-tempFrmWrapper zf-section">
+    <h2>Phone System Configuration & Common Areas</h2>
+</div>
+
 <div class="zf-checkbox zf-tempFrmWrapper zf-oneColumns"><label class="zf-labelName">
 What common areas currently have phones?
 </label>
@@ -1408,6 +1482,11 @@ Where does the internet come into the building
 <div class="zf-tempContDiv">
 <span> 
 <input type="text" name="SingleLine6" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" /> </span><p id="SingleLine6_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>  
+
+<div class="zf-tempFrmWrapper zf-section">
+    <h2>Guestroom Phone Configuration</h2>
+</div>
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
 When trying to reach a guest room, do you dial the room number?
 </label>
@@ -1469,6 +1548,7 @@ Please provide the Make/Model
 <div class="zf-tempContDiv">
 <span> 
 <input type="text" name="SingleLine38" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" /> </span><p id="SingleLine38_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>  
+
 
 <div class="zf-tempFrmWrapper zf-date zf-time"><label class="zf-labelName"> After cutover, we ask that you retest all of your guestroom phones. When would you like this testing done?
 </label>
@@ -1556,6 +1636,8 @@ Please provide the Make/Model
 <div class="zf-clearBoth"></div><p id="DateTime_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div><div class="zf-clearBoth"></div>
 </div>
 
+<br>
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
 Who from the hotel will be assigned to test each room?
 </label>
@@ -1581,6 +1663,11 @@ Does your guestroom phone have a button to press to retrieve voicemail?
 <option value="Yes">Yes</option>
 <option value="No">No</option></select><p id="Dropdown29_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div>
 <div class="zf-clearBoth"></div></div>  
+
+<div class="zf-tempFrmWrapper zf-section">
+    <h2>Call Handling, Auto Attendant & Emergency Options</h2>
+</div>
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
 Do you utilize an offsite Reservations Call Center?
 </label>
@@ -1603,8 +1690,15 @@ Do you have a customer pre-recorded music on hold (MOH) recording you would like
 <select class="zf-form-sBox" name="Dropdown18" checktype="c1"><option selected="true" value="-Select-">Choose one</option>
 <option value="Yes">Yes</option>
 <option value="No">No</option></select><p id="Dropdown18_error" class="zf-errorMessage" style="display:none;">Invalid value</p>
-<p class="zf-instruction">If yes, please attach a copy of that file in .wav or.MP3 to your onboarding ticket.</p></div>
+<p class="zf-instruction">If yes, please attach a copy of that file in .wav or.MP3 to your onboarding ticket in the last section.</p></div>
+
+<!-- =========================== -->
+
+
+<!-- ========================== -->
 <div class="zf-clearBoth"></div></div>  
+
+
 
 
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
