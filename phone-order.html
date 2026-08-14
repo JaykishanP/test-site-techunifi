@@ -829,34 +829,7 @@ class="zf-phwrapper zf-phNumber"
 </div></div>
 
 <!-- prop time zone -->
-<div class="container">
-  <div class="row"><div class="col-md-12">
-    <div class="zfgrid_Wrapper">
-<div class="zfoneColumn">
-<div class="zfCol">  
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
-Property Time Zone
-</label>
-<div class="zf-tempContDiv">
-<select class="zf-form-sBox" name="Dropdown" checktype="c1" required><option selected="true" value="-Select-">Select Property Time Zone</option>
-<option value="Alaskan Time Zone">Alaskan Time Zone</option>
-<option value="Central Time Zone">Central Time Zone</option>
-<option value="Eastern Time Zone">Eastern Time Zone</option>
-<option value="Hawaiian Time Zone">Hawaiian Time Zone</option>
-<option value="Mountain Time Zone">Mountain Time Zone</option>
-<option value="Mountain Time Zone (No DST)">Mountain Time Zone (No DST)</option>
-<option value="Pacific Time Zone">Pacific Time Zone</option>
-<option value="Other">Other</option></select><p id="Dropdown_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div>
-<div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-Other Time Zone
-</label>
-<div class="zf-tempContDiv">
-<span> 
-<input type="text" name="SingleLine13" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter Other Time Zone" /> </span><p id="SingleLine13_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>
-</div></div></div>
-  </div></div>
-</div>
+
 
 </div>
 
@@ -965,17 +938,26 @@ Hotel Name
 
   <div class="zf-eclearBoth"></div>
 
-  
+
+<!-- ======== -->
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-Please enter the number of rooms.
+Number of Total Guest Rooms
 </label>
 <div class="zf-tempContDiv">
 <span> 
-<input type="text" name="SingleLine44" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Number of rooms" />
- </span><p id="SingleLine44_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div>
- <div class="zf-clearBoth">
+<input type="text" name="SingleLine44" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Number of rooms" /> </span><p id="SingleLine44_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div>
+</div>
 
-</div></div>
+<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
+Number of Suite Rooms (with second phone)
+</label>
+<div class="zf-tempContDiv">
+<span> 
+<input type="text" name="SingleLine46" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Number of Suite Rooms" /> </span><p id="SingleLine46_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div>
+</div>
+
+<!-- ======== -->
 
 </div>
 
@@ -1049,7 +1031,6 @@ Who is your Internet Service Provider?
 <div class="zf-tempContDiv">
 <span> 
 <input type="text" name="SingleLine1" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" required/> </span><p id="SingleLine1_error" class="zf-errorMessage" style="display: none;">Invalid value</p>
-<p class="zf-instruction special-note"><span>Note:</span> Some ISPs may block port 5060, required for SIP voice services. If blocked, phones may not work properly. AT&amp;T and Spectrum users should contact their ISP to ensure port 5060 is open.</p>
 </div><div class="zf-clearBoth"></div></div>  
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
 Do you have upload and download speeds of at least 20 Mbps?
@@ -1078,22 +1059,16 @@ Please Explain
 <div class="zf-tempContDiv">
 <span> 
 <textarea name="MultiLine5" checktype="c1" maxlength="65535" placeholder="Please Explain"></textarea> </span><p id="MultiLine5_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>  
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
-We have technical questions about your network. Who should we reach out for these questions-
-</label>
-<div class="zf-tempContDiv">
-<select class="zf-form-sBox" name="Dropdown4" checktype="c1" required><option selected="true" value="-Select-">Choose one</option>
-<option value="Myself">Myself</option>
-<option value="IT Contact">IT Contact</option></select><p id="Dropdown4_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div>
-<div class="zf-clearBoth"></div></div>
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
 Please provide IT contact information.
 </label>
-<p class="zf-instruction">name, phone number, email</p>
+<p class="zf-instruction">Name, Phone Number, Email</p>
 <div class="zf-tempContDiv">
 <span> 
-<textarea name="MultiLine6" checktype="c1" maxlength="65535" placeholder="Name, Contact Number, Email" required></textarea> </span><p id="MultiLine6_error" class="zf-errorMessage" style="display: none;">Invalid value</p>
+<textarea name="MultiLine6" checktype="c1" maxlength="65535" placeholder="Name, Contact Number, Email"></textarea> </span><p id="MultiLine6_error" class="zf-errorMessage" style="display: none;">Invalid value</p>
 </div><div class="zf-clearBoth"></div></div>
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
 Who manages your Admin network?
 </label>
@@ -1110,39 +1085,26 @@ Who manages your Guest network?
 <span> 
 <textarea name="MultiLine1" checktype="c1" maxlength="65535" placeholder="Name, Contact Number, Email" required></textarea> </span><p id="MultiLine1_error" class="zf-errorMessage" style="display: none;">Invalid value</p>
 </div><div class="zf-clearBoth"></div></div>
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-If you have ordered WIFI phones, who manages your WIFI?
+If you have SIP phones, who manages your SIP network, VLAN?
 </label>
 <p class="zf-instruction">Name, Contact Number, Email</p>
 <div class="zf-tempContDiv">
 <span> 
-<textarea name="MultiLine2" checktype="c1" maxlength="65535" placeholder="Name, Contact Number, Email" required></textarea> </span><p id="MultiLine2_error" class="zf-errorMessage" style="display: none;">Invalid value</p>
+<textarea name="MultiLine2" checktype="c1" maxlength="65535" placeholder="Name, Contact Number, Email"></textarea> </span><p id="MultiLine2_error" class="zf-errorMessage" style="display: none;">Invalid value</p>
 </div><div class="zf-clearBoth"></div></div>
+
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
 Who at the property should be notified if your primary internet fails and you roll over to cell backup?
 </label>
 <div class="zf-tempContDiv">
 <span> 
-<input type="text" name="SingleLine2" checktype="c1" value="" required maxlength="255" fieldType=1 placeholder="Enter your answer (Email address)" /> </span><p id="SingleLine2_error" class="zf-errorMessage" style="display: none;">Invalid value</p>
-<p class="zf-instruction special-note">Please provide email address.  This email will receive an alert when you roll on to cellular and when you hit data usage thresholds.</p>
+<textarea name="MultiLine13" checktype="c1" maxlength="65535" placeholder="Contact Number, Email"></textarea> </span><p id="MultiLine13_error" class="zf-errorMessage" style="display: none;">Invalid value</p>
+<p class="zf-instruction special-note"><b>Note:</b> This email will receive an alert when you roll on to cellular and when you hit data usage thresholds.</p>
 </div><div class="zf-clearBoth"></div></div>  
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
-Are there any brand restrictions that exclude having the new IP phones on your Admin network?
-</label>
-<div class="zf-tempContDiv">
-<select class="zf-form-sBox" name="Dropdown5" checktype="c1" required><option selected="true" value="-Select-">Choose one</option>
-<option value="Yes">Yes</option>
-<option value="No">No</option>
-<option value="I don&#39;t know">I don&#39;t know</option></select><p id="Dropdown5_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div>
-<div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-How are you providing an internet connection to your ISP to create the separate network?
-</label>
-<div class="zf-tempContDiv">
-<span> 
-<textarea name="MultiLine7" checktype="c1" maxlength="65535" placeholder="" required></textarea> </span><p id="MultiLine7_error" class="zf-errorMessage" style="display: none;">Invalid value</p>
-<!-- <p class="zf-instruction">Enter your answer</p> -->
-</div><div class="zf-clearBoth"></div></div>  
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
 Are there computer or network jacks where all of the new SIP Admin phones are located?
 </label>
@@ -1152,6 +1114,7 @@ Are there computer or network jacks where all of the new SIP Admin phones are lo
 <option value="No">No</option>
 <option value="I don&#39;t know">I don&#39;t know</option></select><p id="Dropdown6_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div>
 <div class="zf-clearBoth"></div></div>  
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
 How would you like to send and receive faxes?
 </label>
@@ -1162,6 +1125,7 @@ How would you like to send and receive faxes?
 <option value="Hybrid (tradition &amp; efax)">Hybrid (tradition &amp; efax)</option>
 <option value="N/A - No Fax">N/A - No Fax</option></select><p id="Dropdown8_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div>
 <div class="zf-clearBoth"></div></div>
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
 What email would you like to send and receive faxes?
 </label>
@@ -1170,21 +1134,26 @@ What email would you like to send and receive faxes?
 <input type="text" name="Email2" checktype="c5" value="" maxlength="255" fieldType=9 placeholder="Enter Email address" required/> </span><p id="Email2_error" class="zf-errorMessage" style="display: none;">Invalid value</p>
 <!-- <p class="zf-instruction">Enter Email address</p> -->
 </div><div class="zf-clearBoth"></div></div>
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-What is the brand of your property management system?
+What is the brand of your Property Management System (PMS)?
 </label>
 <div class="zf-tempContDiv">
 <span> 
 <input type="text" name="SingleLine3" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" required/> </span><p id="SingleLine3_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>  
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
-Does your property management system currently have PBX integration ie. do you see guest&#39;s name display on your front desk console?
+Does your property management system currently have PBX integration?
 </label>
+<p class="zf-instruction">i.e., do you see guest&#39;s name display on your front desk console</p>
 <div class="zf-tempContDiv">
-<select class="zf-form-sBox" name="Dropdown7" checktype="c1" required><option selected="true" value="-Select-">Choose one</option>
+<select class="zf-form-sBox" name="Dropdown7" checktype="c1"><option selected="true" value="-Select-">Choose one</option>
 <option value="Yes">Yes</option>
 <option value="No">No</option>
-<option value="I don&#39;t know">I don&#39;t know</option></select><p id="Dropdown7_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div>
+<option value="I don&#39;t know">I don&#39;t know</option></select><p id="Dropdown7_error" class="zf-errorMessage" style="display:none;">Invalid value</p>
+</div>
 <div class="zf-clearBoth"></div></div>
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
 Please provide the PMS room status codes
 </label>
@@ -1392,73 +1361,22 @@ How many Admin phones?
 <option value="6">6</option>
 <option value="7">7</option></select><p id="Dropdown9_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div>
 <div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-Title/ Extension - Admin Phone #1
-</label>
-<div class="zf-tempContDiv">
-<span> 
-<input type="text" name="SingleLine29" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" required/> </span><p id="SingleLine29_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-Title/ Extension - Admin Phone #2
-</label>
-<div class="zf-tempContDiv">
-<span> 
-<input type="text" name="SingleLine30" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" required/> </span><p id="SingleLine30_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-Title/ Extension - Admin Phone #3
-</label>
-<div class="zf-tempContDiv">
-<span> 
-<input type="text" name="SingleLine31" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" required/> </span><p id="SingleLine31_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-Title/ Extension - Admin Phone #4
-</label>
-<div class="zf-tempContDiv">
-<span> 
-<input type="text" name="SingleLine32" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" required/> </span><p id="SingleLine32_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-Title/ Extension - Admin Phone #5
-</label>
-<div class="zf-tempContDiv">
-<span> 
-<input type="text" name="SingleLine33" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" required/> </span><p id="SingleLine33_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-Title/ Extension - Admin Phone #6
-</label>
-<div class="zf-tempContDiv">
-<span> 
-<input type="text" name="SingleLine34" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" required/> </span><p id="SingleLine34_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-Title/ Extension - Admin Phone #7
-</label>
-<div class="zf-tempContDiv">
-<span> 
-<input type="text" name="SingleLine35" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" required/> 
-</span><p id="SingleLine35_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div>
-<div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper  zf-large " style="display: none;"><label class="zf-labelName">  
-How many Admin phones? Please list their title &amp; extension?
-</label>
-<div class="zf-tempContDiv">
-<span> 
-<textarea name="MultiLine10" checktype="c1" maxlength="65535" placeholder="Enter your answer"></textarea> 
-</span><p id="MultiLine10_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div>
-<div class="zf-clearBoth"></div></div>
-</div></div></div>
 
-<div>
-  <label class="zf-labelName">  
-How many Admin phones? Please list their title &amp; extension?
+<div class="zf-large d-block"><label class="zf-labelName">  
+<b>Admin Phones Details: </b>Please list title &amp; extension for each
 </label>
-<textarea name="MultiLine10" checktype="c1" maxlength="65535" placeholder="Enter your answer"></textarea> 
+<div class="zf-tempContDiv">
+<span> 
+<textarea name="MultiLine10" checktype="c1" maxlength="65535" placeholder="Enter your answer"></textarea> </span><p id="MultiLine10_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div>
 </div>
+</div></div></div>
 
 <div class="zfgrid_Wrapper">
 <div class="zfoneColumn">
 <div class="zfCol">  
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
-As a standard, we will match the extension(s) you have provided for common area and admin phones. If extensions are not provided, are you okay with us assigning extensions in the 700 series? (guest will dial &#34;0&#34; for the front desk)
-</label>
+<b>Extension Assignment Standard: </b>As a standard, we will match the extension(s) you have provided for common area and admin phones. If extensions are not provided, are you okay with us assigning extensions in the 700 series?
+</label><p class="zf-instruction">(Guest will dial &#34;0&#34; for the front desk)</p>
 <div class="zf-tempContDiv">
 <select class="zf-form-sBox" name="Dropdown10" checktype="c1" required><option selected="true" value="-Select-">Choose one</option>
 <option value="Yes">Yes</option>
@@ -1551,14 +1469,93 @@ Please provide the Make/Model
 <div class="zf-tempContDiv">
 <span> 
 <input type="text" name="SingleLine38" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" /> </span><p id="SingleLine38_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>  
-<div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
-After cutover, we ask that you retest all of your guestroom phones. When would you like this testing done?
+
+<div class="zf-tempFrmWrapper zf-date zf-time"><label class="zf-labelName"> After cutover, we ask that you retest all of your guestroom phones. When would you like this testing done?
 </label>
 <div class="zf-tempContDiv">
-<select class="zf-form-sBox" name="Dropdown15" checktype="c1"><option selected="true" value="-Select-">-Select-</option>
-<option value="While tech is onsite at cutover -- accruing tech time cost">While tech is onsite at cutover -- accruing tech time cost</option>
-<option value="After cutover at hotels convenience">After cutover at hotels convenience</option></select><p id="Dropdown15_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div>
-<div class="zf-clearBoth"></div></div>
+<span class="zf-subDate"> <input type="text" class="zf-hasDatepicker" maxlength="25" checktype="c4" name="DateTime_date" value="" placeholder="Select Date/Time"/>
+<label>dd-MMM-yyyy</label> </span><span> <select class="zf-form-sBox" name="DateTime_hours" checktype="c1"><option value=""></option>
+<option value="01" >01</option>
+<option value="02" >02</option>
+<option value="03" >03</option>
+<option value="04" >04</option>
+<option value="05" >05</option>
+<option value="06" >06</option>
+<option value="07" >07</option>
+<option value="08" >08</option>
+<option value="09" >09</option>
+<option value="10" >10</option>
+<option value="11" >11</option>
+<option value="12" >12</option></select>
+<label>HH</label> </span><span class="zf-symbols">:</span> <span> <select class="zf-form-sBox" name="DateTime_minutes" checktype="c1"><option value=""></option>
+<option value="00" >00</option>
+<option value="01" >01</option>
+<option value="02" >02</option>
+<option value="03" >03</option>
+<option value="04" >04</option>
+<option value="05" >05</option>
+<option value="06" >06</option>
+<option value="07" >07</option>
+<option value="08" >08</option>
+<option value="09" >09</option>
+<option value="10" >10</option>
+<option value="11" >11</option>
+<option value="12" >12</option>
+<option value="13" >13</option>
+<option value="14" >14</option>
+<option value="15" >15</option>
+<option value="16" >16</option>
+<option value="17" >17</option>
+<option value="18" >18</option>
+<option value="19" >19</option>
+<option value="20" >20</option>
+<option value="21" >21</option>
+<option value="22" >22</option>
+<option value="23" >23</option>
+<option value="24" >24</option>
+<option value="25" >25</option>
+<option value="26" >26</option>
+<option value="27" >27</option>
+<option value="28" >28</option>
+<option value="29" >29</option>
+<option value="30" >30</option>
+<option value="31" >31</option>
+<option value="32" >32</option>
+<option value="33" >33</option>
+<option value="34" >34</option>
+<option value="35" >35</option>
+<option value="36" >36</option>
+<option value="37" >37</option>
+<option value="38" >38</option>
+<option value="39" >39</option>
+<option value="40" >40</option>
+<option value="41" >41</option>
+<option value="42" >42</option>
+<option value="43" >43</option>
+<option value="44" >44</option>
+<option value="45" >45</option>
+<option value="46" >46</option>
+<option value="47" >47</option>
+<option value="48" >48</option>
+<option value="49" >49</option>
+<option value="50" >50</option>
+<option value="51" >51</option>
+<option value="52" >52</option>
+<option value="53" >53</option>
+<option value="54" >54</option>
+<option value="55" >55</option>
+<option value="56" >56</option>
+<option value="57" >57</option>
+<option value="58" >58</option>
+<option value="59" >59</option></select>
+<label>MM</label> </span>
+<span class="zf-symbols">:</span> <span> <select class="zf-form-sBox" name="DateTime_meridiem" checktype="c1"><option value=""></option>
+<option >AM</option>
+<option >PM</option></select>
+<label>AM / PM</label> </span>
+<div class="zf-clearBoth"></div><p id="DateTime_error" class="zf-errorMessage" style="display:none;">Invalid value</p></div><div class="zf-clearBoth"></div>
+</div>
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
 Who from the hotel will be assigned to test each room?
 </label>
@@ -1598,17 +1595,18 @@ Please provide that number?
 <div class="zf-tempContDiv">
 <span> 
 <input type="text" name="SingleLine40" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" /> </span><p id="SingleLine40_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>  
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
 Do you have a customer pre-recorded music on hold (MOH) recording you would like us to play to callers on hold?
 </label>
-<p class="zf-instruction">If yes, please attach a copy of that file in .wav or.MP3 to your onboarding ticket.</p>
-
 <div class="zf-tempContDiv">
 <select class="zf-form-sBox" name="Dropdown18" checktype="c1"><option selected="true" value="-Select-">Choose one</option>
 <option value="Yes">Yes</option>
 <option value="No">No</option></select><p id="Dropdown18_error" class="zf-errorMessage" style="display:none;">Invalid value</p>
-</div>
+<p class="zf-instruction">If yes, please attach a copy of that file in .wav or.MP3 to your onboarding ticket.</p></div>
 <div class="zf-clearBoth"></div></div>  
+
+
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName"> 
 Would you like to use Automated Auto Attendant to answer your incoming calls from outside callers
 </label>
@@ -1645,7 +1643,7 @@ Who is the authorized user for your existing telephone carrier(s) and can make c
 <span> 
 <input type="text" name="SingleLine8" checktype="c1" value="" maxlength="255" fieldType=1 placeholder="Enter your answer" /> </span><p id="SingleLine8_error" class="zf-errorMessage" style="display: none;">Invalid value</p></div><div class="zf-clearBoth"></div></div>
 <div class="zf-tempFrmWrapper  zf-large "><label class="zf-labelName">  
-Other than main and fax are there any other numbers that you would like to port over to VSR?
+Other than main and fax, are there any other numbers that you would like to port over to us?
 </label>
 <div class="zf-tempContDiv">
 <span> 
@@ -1919,24 +1917,28 @@ How would you like to pay your monthly service?
 <div class="zf-tempFrmWrapper zf-section"><h2>Pictures from Site</h2>
 <p></p>
 </div>
+
 <div class="zf-tempFrmWrapper"><label class="zf-labelName">
-If you haven&#39;t already provided, please attach pictures of your phone room, phone equipment (with cover removed), network equipment, wiring blocks on the wall)
+Phone Room &amp; Equipment: Photos of phone room, phone equipment (with cover removed), network equipment, wiring blocks on the wall.
+</label>
+<div class="zf-tempContDiv">
+<input type="file" accept="image/*" name="ImageUpload" checktype="c1" multiple="multiple" /><p id="ImageUpload_error" class="zf-errorMessage" style="display: none;">
+Choose any file for this field.</p></div><div class="zf-clearBoth"></div></div>
+
+<div class="zf-tempFrmWrapper"><label class="zf-labelName">
+Guestroom Phones: Photos of guestroom phones (front &amp; back).
+</label>
+<div class="zf-tempContDiv">
+<input type="file" accept="image/*" name="ImageUpload1" checktype="c1" multiple="multiple" /><p id="ImageUpload1_error" class="zf-errorMessage" style="display: none;">
+Choose any file for this field.</p></div><div class="zf-clearBoth"></div></div>
+
+<div class="zf-tempFrmWrapper"><label class="zf-labelName">
+Floorplans &amp; Room Numbers: Floorplans with room numbers (fire escape plan on guestroom door or PMS tape/report).
 </label>
 <div class="zf-tempContDiv">
 <input type="file"  name="FileUpload" checktype="c1" multiple="multiple" /><p id="FileUpload_error" class="zf-errorMessage" style="display: none;">
 Choose any file for this field.</p></div><div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper"><label class="zf-labelName">
-If you haven&#39;t already provided, please attach pictures of your guestroom phones front &amp; back.
-</label>
-<div class="zf-tempContDiv">
-<input type="file"  name="FileUpload1" checktype="c1" multiple="multiple" /><p id="FileUpload1_error" class="zf-errorMessage" style="display: none;">
-Choose any file for this field.</p></div><div class="zf-clearBoth"></div></div>
-<div class="zf-tempFrmWrapper"><label class="zf-labelName">
-If you haven&#39;t already provided, please attach your floorplans with room numbers. This can be the fire escape plan on the back of your guestroom door. If room numbers are not listed on the floorplan, please provide a PMS tape/ report.
-</label>
-<div class="zf-tempContDiv">
-<input type="file"  name="FileUpload2" checktype="c1" multiple="multiple" /><p id="FileUpload2_error" class="zf-errorMessage" style="display: none;">
-Choose any file for this field.</p></div><div class="zf-clearBoth"></div></div>
+
 </div></div></div>
 
 </div>
@@ -2339,7 +2341,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-// ================= GLOBAL SECURITY CAPTCHA VALIDATION SHIELD =================
+// ================= GLOBAL SECURITY CAPTCHA VALIDATION SHIELD ================= //
 function validateFormSubmissionWithCaptcha() {
   const answerInput = document.getElementById('math-answer');
   if (!answerInput) return false;
