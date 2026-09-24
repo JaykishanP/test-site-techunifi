@@ -126,6 +126,13 @@ function gtag(){dataLayer.push(arguments);}
   </style>
    
 
+   <style>
+    .news-rows {
+    display: unset;
+    text-align: left;
+}
+   </style>
+
 </head>
 
 <body class="homePage">
@@ -1370,8 +1377,28 @@ async function loadNews() {
 }
 
 function createStandardNews(news) {
-    const imageHTML = (news.Main_Image && news.Main_Image !== "undefined")
-        ? `<img src="${news.Main_Image}" alt="${news.Company || ""}" loading="lazy">`
+    // 1. Sanitize string values to avoid broken HTML or XSS
+    const sanitize = (str) => {
+        if (!str) return "";
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    };
+
+    // 2. Validate image URL (checking for empty, null, or undefined strings)
+    const rawImage = news.Main_Image ? String(news.Main_Image).trim() : "";
+    const isValidImage = rawImage && rawImage !== "undefined" && rawImage !== "null";
+
+    const company = sanitize(news.Company);
+    const location = sanitize(news.Location);
+    const description = news.Description || ""; // Keep HTML tags if Description contains allowed markup
+    const altText = company ? `${company} image` : "News image";
+
+    const imageHTML = isValidImage
+        ? `<img src="${encodeURI(rawImage)}" alt="${altText}" loading="lazy">`
         : "";
 
     return `
@@ -1380,20 +1407,21 @@ function createStandardNews(news) {
                 ${formatNewsDate(news.Publish_Date)}
             </div>
             <div class="news-company">
-                ${news.Company || ""}
+                ${company}
             </div>
             <div class="news-location">
-                ${news.Location || ""}
+                ${location}
             </div>
             <div class="news-content">
                 ${imageHTML}
                 <p>
-                    ${news.Description || ""}
+                    ${description}
                 </p>
             </div>
         </div>
     `;
 }
+
 
 function createNewsHTML(news) {
     switch (news.Article_Type) {
