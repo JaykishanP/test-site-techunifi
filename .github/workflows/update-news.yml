@@ -2,7 +2,6 @@ name: Update Techunifi News
 
 on:
   workflow_dispatch:
-
   schedule:
     - cron: "*/15 * * * *"
 
@@ -10,21 +9,23 @@ permissions:
   contents: write
 
 jobs:
-
   update-news:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Download Zoho News
         run: |
-          curl -L \
-          "https://sheet.zoho.com/sheet/publishedsheet/ef7cde9d861a5551767f66e7b0071335909a777bae6ce280f4ec8f938c38dcdf?type=grid&download=csv" \
-          -o zoho-news.csv
+          curl -sSL --fail \
+            "https://sheet.zoho.com/sheet/publishedsheet/ef7cde9d861a5551767f66e7b0071335909a777bae6ce280f4ec8f938c38dcdf?type=grid&download=csv" \
+            -o zoho-news.csv
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
       - name: Convert CSV to JSON
         run: |
@@ -32,25 +33,30 @@ jobs:
           import csv
           import json
 
-          with open("zoho-news.csv", "r", encoding="utf-8-sig") as f:
-              reader = csv.DictReader(f)
-              data = list(reader)
+          try:
+              with open("zoho-news.csv", "r", encoding="utf-8-sig") as f:
+                  reader = csv.DictReader(f)
+                  data = list(reader)
 
-          with open("news.json", "w", encoding="utf-8") as f:
-              json.dump(data, f, indent=2, ensure_ascii=False)
+              with open("news.json", "w", encoding="utf-8") as f:
+                  json.dump(data, f, indent=2, ensure_ascii=False)
 
-          print("News records:", len(data))
+              print("News records successfully converted:", len(data))
+          except Exception as e:
+              print("Failed to convert CSV to JSON:", e)
+              exit(1)
           PY
 
       - name: Commit updated news
         run: |
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add news.json
 
-          git diff --cached --quiet || \
-          git commit -m "Update news from Zoho Sheet"
-
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "Update news from Zoho Sheet"
+            git push
+          else
+            echo "No changes detected in news.json."
+          fi
