@@ -23,8 +23,8 @@
     "Description": "Another successful project completed by the Techunifi crew! Congratulations to the owners and property staff. We’re proud to support the property and look forward to being there throughout operations.",
     "Main_image": "",
     "Gallery_Images": "",
-    "Video_URL": "",
-    "Article_Type": "",
+    "Video_URL": "assets/img/video/Techunifi.mp4",
+    "Article_Type": "Video",
     "Sort_Order": ""
   },
   {
@@ -35,7 +35,21 @@
     "Location": "High Point, NC",
     "Category": "",
     "Description": "Our Techunifi team successfully completed a comprehensive PBX completion project at Fairfield by Marriott Inn & Suites Lumberton, providing the property with a modern, reliable communication system.",
-    "Main_image": "assets/img/about-images/news/fairfield-lumberton.webp",
+    "Main_image": "assets/img/about-images/news/four-points.webp",
+    "Gallery_Images": "",
+    "Video_URL": "",
+    "Article_Type": "Standard",
+    "Sort_Order": ""
+  },
+  {
+    "ID": "NEWS-004",
+    "Status": "Published",
+    "Publish_Date": "46291",
+    "Company": "Tru by Hilton Meridian",
+    "Location": "Meridian, MS",
+    "Category": "",
+    "Description": "Our Techunifi team recently finished deploying a modern Unonet network at Tru by Hilton Meridian, significantly upgrading the property's digital infrastructure for peak performance.",
+    "Main_image": "assets/img/about-images/news/tru-meridian.jpg",
     "Gallery_Images": "",
     "Video_URL": "",
     "Article_Type": "Standard",
