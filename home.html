@@ -1332,6 +1332,175 @@ startTimer();
 
   <!-- ========= News Articles ========= -->
 
+<!-- <script>
+const NEWS_URL = "news.json";
+
+let allNews = [];
+let filteredNews = [];
+
+const NEWS_PER_PAGE = 5;
+let currentPage = 1;
+
+async function loadNews() {
+    try {
+        console.log("Loading news...");
+
+        const response = await fetch(
+            NEWS_URL + "?v=" + Date.now()
+        );
+
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("text/html")) {
+            throw new Error("Received HTML instead of JSON. The URL may require authentication or is misconfigured.");
+        }
+
+        if (!response.ok) {
+            throw new Error(
+                "Unable to load news: " + response.status
+            );
+        }
+
+        allNews = await response.json();
+
+        // Sort newest first
+        allNews.sort((a, b) => {
+            return new Date(b.Publish_Date) - new Date(a.Publish_Date);
+        });
+
+        filteredNews = [...allNews];
+        renderNews();
+
+    } catch (error) {
+        console.error("News loading error:", error.message);
+    }
+}
+
+function createStandardNews(news) {
+    // 1. Sanitize string values to avoid broken HTML or XSS
+    const sanitize = (str) => {
+        if (!str) return "";
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    };
+
+    // 2. Validate image URL (checking for empty, null, or undefined strings)
+    const rawImage = news.Main_Image ? String(news.Main_Image).trim() : "";
+    const isValidImage = rawImage && rawImage !== "undefined" && rawImage !== "null";
+
+    const company = sanitize(news.Company);
+    const location = sanitize(news.Location);
+    const description = news.Description || ""; // Keep HTML tags if Description contains allowed markup
+    const altText = company ? `${company} image` : "News image";
+
+    const imageHTML = isValidImage
+        ? `<img src="${encodeURI(rawImage)}" alt="${altText}" loading="lazy">`
+        : "";
+
+    return `
+        <div class="news-rows">
+            <div class="news-date">
+                ${formatNewsDate(news.Publish_Date)}
+            </div>
+            <div class="news-company">
+                ${company}
+            </div>
+            <div class="news-location">
+                ${location}
+            </div>
+            <div class="news-content">
+                ${imageHTML}
+                <p>
+                    ${description}
+                </p>
+            </div>
+        </div>
+    `;
+}
+
+
+function createNewsHTML(news) {
+    switch (news.Article_Type) {
+        case "Gallery":
+            if (typeof createGalleryNews === "function") {
+                return createGalleryNews(news);
+            }
+            return createStandardNews(news);
+
+        case "Video":
+            if (typeof createVideoNews === "function") {
+                return createVideoNews(news);
+            }
+            return createStandardNews(news);
+
+        default:
+            return createStandardNews(news);
+    }
+}
+
+function renderNews() {
+    const container = document.getElementById("newsContainer");
+
+    if (!container) {
+        console.error("newsContainer element was not found.");
+        return;
+    }
+
+    const start = (currentPage - 1) * NEWS_PER_PAGE;
+    const end = start + NEWS_PER_PAGE;
+
+    const pageNews = filteredNews.slice(start, end);
+
+    container.innerHTML = pageNews
+        .map(createNewsHTML)
+        .join("");
+
+    if (typeof renderPagination === "function") {
+        renderPagination();
+    }
+}
+
+function formatNewsDate(dateString) {
+    if (!dateString) return "";
+
+    const parts = dateString.split("-");
+    if (parts.length !== 3) return dateString;
+
+    const [year, month, day] = parts;
+    return `${month}.${day}.${year.slice(-2)}`;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const newsInput = document.getElementById("newsInput");
+
+    if (newsInput) {
+        newsInput.addEventListener("input", function () {
+            const search = this.value.toLowerCase().trim();
+
+            filteredNews = allNews.filter(news => {
+                const text = `
+                    ${news.Company || ""}
+                    ${news.Location || ""}
+                    ${news.Category || ""}
+                    ${news.Description || ""}
+                `.toLowerCase();
+
+                return text.includes(search);
+            });
+
+            currentPage = 1;
+            renderNews();
+        });
+    }
+
+    loadNews();
+});
+</script> -->
+
+
 <script>
 const NEWS_URL = "news.json";
 
@@ -1380,6 +1549,7 @@ async function loadNews() {
     }
 }
 
+
 function createStandardNews(news) {
     const sanitize = (str) => {
         if (!str) return "";
@@ -1391,24 +1561,23 @@ function createStandardNews(news) {
             .replace(/'/g, "&#039;");
     };
 
-    // Check multiple common key name variations for Image and Description
-    const rawImage = (news.Main_Image || news.main_image || news.Image || news.image || "").toString().trim();
-    const rawDesc = news.Description || news.description || news.Content || news.content || news.Body || "";
-    
+    // Check both Main_image (lowercase i) and Main_Image (uppercase I)
+    const rawImage = (news.Main_image || news.Main_Image || "").toString().trim();
     const isValidImage = rawImage && rawImage !== "undefined" && rawImage !== "null";
 
-    const company = sanitize(news.Company || news.company);
-    const location = sanitize(news.Location || news.location);
+    const company = sanitize(news.Company);
+    const location = sanitize(news.Location);
+    const description = news.Description || ""; 
     const altText = company ? `${company} image` : "News image";
 
     const imageHTML = isValidImage
-        ? `<img src="${rawImage}" alt="${altText}" loading="lazy" style="max-width: 100%; height: auto; display: block; margin-bottom: 1rem;">`
+        ? `<img src="${rawImage}" alt="${altText}" loading="lazy">`
         : "";
 
     return `
         <div class="news-rows">
             <div class="news-date">
-                ${formatNewsDate(news.Publish_Date || news.Date || news.date)}
+                ${formatNewsDate(news.Publish_Date)}
             </div>
             <div class="news-company">
                 ${company}
@@ -1419,12 +1588,13 @@ function createStandardNews(news) {
             <div class="news-content">
                 ${imageHTML}
                 <p>
-                    ${rawDesc}
+                    ${description}
                 </p>
             </div>
         </div>
     `;
 }
+
 
 function createNewsHTML(news) {
     const articleType = news.Article_Type || news.article_type || news.Type;
@@ -1515,7 +1685,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadNews();
 });
 </script>
-
 
 </body>
 
