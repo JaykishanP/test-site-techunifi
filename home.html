@@ -91,7 +91,7 @@ function gtag(){dataLayer.push(arguments);}
 </script>
 
 
-  <style>
+  <!-- <style>
     #validationMessage {
     display: none;
     position: absolute;
@@ -124,11 +124,17 @@ function gtag(){dataLayer.push(arguments);}
    }
 
   </style>
-   
+    -->
 
    <style>
     .news-rows {
     text-align: left;
+}
+.news-content img {
+    border-radius: 8px;
+    text-align: center;
+    margin: 5px auto;
+    display: block;
 }
    </style>
 
@@ -216,11 +222,11 @@ function gtag(){dataLayer.push(arguments);}
 
       <div class="container">
 
-        <div class="row hero-img">
+        <!-- <div class="row hero-img">
           <div class="col-md-12 banner-container">
             <img src="assets/img/hero-img.svg" title="techunifi" alt="hero-logo" loading="lazy" class="hero-logo banner-img" loading="eager">
           </div>
-        </div>
+        </div> -->
 
         
 <!-- ======== news articles ======== -->
@@ -1586,10 +1592,10 @@ function createStandardNews(news) {
                 ${location}
             </div>
             <div class="news-content">
-                ${imageHTML}
                 <p>
                     ${description}
                 </p>
+                ${imageHTML}
             </div>
         </div>
     `;
