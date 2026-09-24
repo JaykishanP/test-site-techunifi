@@ -201,22 +201,6 @@ function gtag(){dataLayer.push(arguments);}
 <!-- ======= Search Modal ======= -->
 
 
-<!-- ======== news articles ======== -->
-
-
-<div id="newsContainer"></div>
-
-<input
-    type="text"
-    id="newsInput"
-    placeholder="Search News..."
->
-
-<div id="news-pagination"></div>
-
-<!-- ======= news articles ========= -->
-
-
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero-home-main-section">
     <h1 class="seo-heading">Index Techunifi</h1><h2 class="seo-heading">Index website</h2>
@@ -232,11 +216,20 @@ function gtag(){dataLayer.push(arguments);}
           </div>
         </div>
 
-        <div class="row hero-line-parent">
-          <div class="col-md-12">
-           <div class="hero-line"></div>
-          </div>
-        </div>
+        
+<!-- ======== news articles ======== -->
+
+
+<input
+    type="text"
+    id="newsInput"
+    placeholder="Search News..."
+>
+<div id="newsContainer"></div>
+
+<div id="news-pagination"></div>
+
+<!-- ======= news articles ========= -->
 
       </div>
 
@@ -1342,6 +1335,28 @@ let filteredNews = [];
 
 const NEWS_PER_PAGE = 5;
 let currentPage = 1;
+
+
+fetch(serviceUrl)
+  .then(response => {
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("text/html")) {
+      throw new Error("Received HTML instead of JSON. The sheet link may require authentication or is misconfigured.");
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Ensure data is the expected array of news items
+    if (Array.isArray(data) && data[0] && !data[0]["<!DOCTYPE html>"]) {
+      console.log("News loaded successfully:", data);
+      // Process news...
+    } else {
+      console.error("Invalid data format received:", data);
+    }
+  })
+  .catch(error => {
+    console.error("Failed to load news:", error.message);
+  });
 
 
 async function loadNews() {
