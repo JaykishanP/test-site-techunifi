@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "ID": "NEWS-001",
+    "Status": "Published",
+    "Publish_Date": "2026-09-23",
+    "Company": "Testing",
+    "Location": "High Point, NC",
+    "Category": "",
+    "Description": "TEsting",
+    "Main_image": "assets/img/about-images/news/fairfield-lumberton.webp",
+    "Gallery_Images": "",
+    "Video_URL": "",
+    "Article_Type": "Standard",
+    "Sort_Order": ""
+  },
+  {
+    "ID": "NEWS-002",
+    "Status": "Published",
+    "Publish_Date": "2026-09-25",
+    "Company": "Test News",
+    "Location": "Logan, UT",
+    "Category": "",
+    "Description": "",
+    "Main_image": "",
+    "Gallery_Images": "",
+    "Video_URL": "",
+    "Article_Type": "",
+    "Sort_Order": ""
+  },
+  {
+    "ID": "NEWS-003",
+    "Status": "Published",
+    "Publish_Date": "2026-09-24",
+    "Company": "NEWS",
+    "Location": "High Point, NC",
+    "Category": "",
+    "Description": "TEsting",
+    "Main_image": "assets/img/about-images/news/fairfield-lumberton.webp",
+    "Gallery_Images": "",
+    "Video_URL": "",
+    "Article_Type": "Standard",
+    "Sort_Order": ""
+  }
+]
