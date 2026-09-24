@@ -1362,9 +1362,14 @@ async function loadNews() {
 
         allNews = await response.json();
 
+        // LOG FIRST ITEM TO CONSOLE TO VERIFY EXACT KEY NAMES
+        if (allNews.length > 0) {
+            console.log("Loaded raw news item:", allNews[0]);
+        }
+
         // Sort newest first
         allNews.sort((a, b) => {
-            return new Date(b.Publish_Date) - new Date(a.Publish_Date);
+            return new Date(b.Publish_Date || b.date) - new Date(a.Publish_Date || a.date);
         });
 
         filteredNews = [...allNews];
@@ -1376,7 +1381,6 @@ async function loadNews() {
 }
 
 function createStandardNews(news) {
-    // 1. Sanitize string values to avoid broken HTML or XSS
     const sanitize = (str) => {
         if (!str) return "";
         return String(str)
@@ -1387,34 +1391,24 @@ function createStandardNews(news) {
             .replace(/'/g, "&#039;");
     };
 
-    // 2. Validate image & video URLs
-    const rawImage = news.Main_Image ? String(news.Main_Image).trim() : "";
+    // Check multiple common key name variations for Image and Description
+    const rawImage = (news.Main_Image || news.main_image || news.Image || news.image || "").toString().trim();
+    const rawDesc = news.Description || news.description || news.Content || news.content || news.Body || "";
+    
     const isValidImage = rawImage && rawImage !== "undefined" && rawImage !== "null";
 
-    const rawVideo = news.Video_URL || news.Main_Video ? String(news.Video_URL || news.Main_Video).trim() : "";
-    const isValidVideo = rawVideo && rawVideo !== "undefined" && rawVideo !== "null";
-
-    const company = sanitize(news.Company);
-    const location = sanitize(news.Location);
-    const description = news.Description || ""; 
+    const company = sanitize(news.Company || news.company);
+    const location = sanitize(news.Location || news.location);
     const altText = company ? `${company} image` : "News image";
 
-    // Build Media HTML (Video takes priority over Image)
-    let mediaHTML = "";
-    if (isValidVideo) {
-        mediaHTML = `
-            <video controls preload="metadata" style="max-width: 100%;">
-                <source src="${rawVideo}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>`;
-    } else if (isValidImage) {
-        mediaHTML = `<img src="${rawImage}" alt="${altText}" loading="lazy">`;
-    }
+    const imageHTML = isValidImage
+        ? `<img src="${rawImage}" alt="${altText}" loading="lazy" style="max-width: 100%; height: auto; display: block; margin-bottom: 1rem;">`
+        : "";
 
     return `
         <div class="news-rows">
             <div class="news-date">
-                ${formatNewsDate(news.Publish_Date)}
+                ${formatNewsDate(news.Publish_Date || news.Date || news.date)}
             </div>
             <div class="news-company">
                 ${company}
@@ -1423,9 +1417,9 @@ function createStandardNews(news) {
                 ${location}
             </div>
             <div class="news-content">
-                ${mediaHTML}
+                ${imageHTML}
                 <p>
-                    ${description}
+                    ${rawDesc}
                 </p>
             </div>
         </div>
@@ -1433,7 +1427,8 @@ function createStandardNews(news) {
 }
 
 function createNewsHTML(news) {
-    switch (news.Article_Type) {
+    const articleType = news.Article_Type || news.article_type || news.Type;
+    switch (articleType) {
         case "Gallery":
             if (typeof createGalleryNews === "function") {
                 return createGalleryNews(news);
@@ -1473,11 +1468,22 @@ function renderNews() {
     }
 }
 
-function formatNewsDate(dateString) {
-    if (!dateString) return "";
+// Converts Excel serial date numbers (e.g. 46290) OR YYYY-MM-DD to standard MM.DD.YY format
+function formatNewsDate(dateVal) {
+    if (!dateVal) return "";
 
-    const parts = dateString.split("-");
-    if (parts.length !== 3) return dateString;
+    // Convert Excel Serial Date to JS Date if it's a number like 46290
+    if (!isNaN(dateVal) && Number(dateVal) > 30000) {
+        const excelDate = new Date((Number(dateVal) - (25567 + 2)) * 86400 * 1000);
+        const mm = String(excelDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(excelDate.getDate()).padStart(2, '0');
+        const yy = String(excelDate.getFullYear()).slice(-2);
+        return `${mm}.${dd}.${yy}`;
+    }
+
+    const dateStr = String(dateVal);
+    const parts = dateStr.split("-");
+    if (parts.length !== 3) return dateStr;
 
     const [year, month, day] = parts;
     return `${month}.${day}.${year.slice(-2)}`;
@@ -1495,7 +1501,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ${news.Company || ""}
                     ${news.Location || ""}
                     ${news.Category || ""}
-                    ${news.Description || ""}
+                    ${news.Description || news.description || ""}
                 `.toLowerCase();
 
                 return text.includes(search);
@@ -1509,6 +1515,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadNews();
 });
 </script>
+
 
 </body>
 
