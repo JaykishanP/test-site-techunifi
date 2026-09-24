@@ -24,7 +24,7 @@ jobs:
       - name: Download Zoho News
         run: |
           curl -sSL --fail \
-            "https://sheet.zoho.com/sheet/publishedsheet/d389bb066f486d87040032a11aee6c8ed6f76e468345d6cbb25e4863ba778b4d?type=grid&download=csv" \
+            "https://sheet.zohopublic.com/sheet/publishedsheet/48f60d5b3608100bc6803103d7a0194e06f70d55b8e845cecd0c5c28387df267?type=grid&download=csv" \
             -o zoho-news.csv
 
 
