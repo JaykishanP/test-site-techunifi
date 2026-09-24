@@ -128,7 +128,6 @@ function gtag(){dataLayer.push(arguments);}
 
    <style>
     .news-rows {
-    display: unset;
     text-align: left;
 }
    </style>
@@ -1388,18 +1387,29 @@ function createStandardNews(news) {
             .replace(/'/g, "&#039;");
     };
 
-    // 2. Validate image URL (checking for empty, null, or undefined strings)
+    // 2. Validate image & video URLs
     const rawImage = news.Main_Image ? String(news.Main_Image).trim() : "";
     const isValidImage = rawImage && rawImage !== "undefined" && rawImage !== "null";
 
+    const rawVideo = news.Video_URL || news.Main_Video ? String(news.Video_URL || news.Main_Video).trim() : "";
+    const isValidVideo = rawVideo && rawVideo !== "undefined" && rawVideo !== "null";
+
     const company = sanitize(news.Company);
     const location = sanitize(news.Location);
-    const description = news.Description || ""; // Keep HTML tags if Description contains allowed markup
+    const description = news.Description || ""; 
     const altText = company ? `${company} image` : "News image";
 
-    const imageHTML = isValidImage
-        ? `<img src="${encodeURI(rawImage)}" alt="${altText}" loading="lazy">`
-        : "";
+    // Build Media HTML (Video takes priority over Image)
+    let mediaHTML = "";
+    if (isValidVideo) {
+        mediaHTML = `
+            <video controls preload="metadata" style="max-width: 100%;">
+                <source src="${rawVideo}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>`;
+    } else if (isValidImage) {
+        mediaHTML = `<img src="${rawImage}" alt="${altText}" loading="lazy">`;
+    }
 
     return `
         <div class="news-rows">
@@ -1413,7 +1423,7 @@ function createStandardNews(news) {
                 ${location}
             </div>
             <div class="news-content">
-                ${imageHTML}
+                ${mediaHTML}
                 <p>
                     ${description}
                 </p>
@@ -1421,7 +1431,6 @@ function createStandardNews(news) {
         </div>
     `;
 }
-
 
 function createNewsHTML(news) {
     switch (news.Article_Type) {
