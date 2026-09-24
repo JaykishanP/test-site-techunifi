@@ -201,10 +201,20 @@ function gtag(){dataLayer.push(arguments);}
 <!-- ======= Search Modal ======= -->
 
 
-<!-- ======== Video Animation ======== -->
+<!-- ======== news articles ======== -->
 
 
-<!-- ======= Video Animation ========= -->
+<div id="newsContainer"></div>
+
+<input
+    type="text"
+    id="newsInput"
+    placeholder="Search News..."
+>
+
+<div id="news-pagination"></div>
+
+<!-- ======= news articles ========= -->
 
 
   <!-- ======= Hero Section ======= -->
@@ -247,13 +257,9 @@ function gtag(){dataLayer.push(arguments);}
            <div>
             <p>Techunifi collaborates with renowned industry leaders, known for their innovative contributions to the tech landscape. As your trusted partner, we strive to empower you in making informed decisions tailored to your business requirements. Below, we've curated a selection of products and brands categorized by service. Don't hesitate to contact us for further information or to inquire about any specific product. We're here to assist you every step of the way in finding the perfect tech solutions for your business.</p>
           </div>
-            <!-- <a href="#landing-services">Our Services</a> -->
+            <a href="#landing-services">Our Services</a>
 
-            <a href="#landing-services" class="animated-link">
-              <span class="link-text">Our Services</span>
-              <!-- <span class="link-icon">➔</span> -->
-               <span class="link-icon"><img src="assets/img/login_arrow.svg" alt="techunifi" width="29" height="29" loading="lazy"></span>
-            </a>
+            
           </div>
         </div>
       </div>
@@ -541,12 +547,7 @@ function gtag(){dataLayer.push(arguments);}
 </section>
 
 
-         
-            <a href="products.html" class="animated-link" style="max-width: fit-content; margin: 0 auto;">
-              <span class="link-text">Our Products</span>
-              <span class="link-icon"><img src="assets/img/login_arrow.svg" alt="techunifi" width="29" height="29" loading="lazy"></span>
-            </a>
-      </div>
+               </div>
 <br> <br><br>
 
       <span class="prod-below-hr aos-init aos-animate" data-aos="fade-in" data-aos-delay="50"></span>
@@ -791,11 +792,7 @@ startTimer();
         <div class="client-button-home" data-aos="zoom-in" data-aos-delay="50">
           <!-- <a href="about.html?tab=clientlist">Our Clients</a> -->
 
-            <a href="about.html?tab=clientlist" class="animated-link">
-              <span class="link-text">Our Clients</span>
-              <span class="link-icon"><img src="assets/img/login_arrow.svg" alt="techunifi" width="29" height="29" loading="lazy"></span>
-              <!-- <span class="link-icon">➔</span> -->
-            </a>
+           <a href="about.html?tab=clientlist" class="home-client-btn">Our Clients</a>
 
         </div>
         <br>
@@ -1331,9 +1328,264 @@ startTimer();
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js" defer></script>
+  <!-- <script src="assets/js/main.js" defer></script> -->
   <script src="assets/js/home.js" defer></script>
 
+  <!-- ========= News Articles ========= -->
+
+<script>
+
+const ZOHO_NEWS_URL = "https://sheet.zoho.com/sheet/publishedsheet/ef7cde9d861a5551767f66e7b0071335909a777bae6ce280f4ec8f938c38dcdf?type=grid&download=csv";
+
+let allNews = [];
+let filteredNews = [];
+
+const NEWS_PER_PAGE = 5;
+let currentPage = 1;
+
+
+async function loadNews() {
+
+    try {
+
+        console.log("Loading news...");
+
+        const response = await fetch(ZOHO_NEWS_URL);
+
+        if (!response.ok) {
+            throw new Error(
+                "Unable to load news. HTTP status: "
+                + response.status
+            );
+        }
+
+        const csv = await response.text();
+
+        console.log("Zoho data received:");
+        console.log(csv);
+
+        allNews = parseNewsCSV(csv);
+
+        console.log("Parsed news:", allNews);
+
+        filteredNews = [...allNews];
+
+        renderNews();
+
+    } catch (error) {
+
+        console.error(
+            "News loading error:",
+            error
+        );
+
+    }
+
+}
+
+
+function parseNewsCSV(csv) {
+
+    const rows = csv
+        .trim()
+        .split("\n");
+
+    const headers = rows[0]
+        .split(",")
+        .map(header => header.trim());
+
+    return rows.slice(1).map(row => {
+
+        const values = row.split(",");
+
+        const news = {};
+
+        headers.forEach((header, index) => {
+
+            news[header] =
+                values[index]?.trim() || "";
+
+        });
+
+        return news;
+
+    });
+
+}
+
+
+function createStandardNews(news) {
+
+    return `
+
+        <div class="news-rows">
+
+            <div class="news-date">
+                ${formatNewsDate(news.Publish_Date)}
+            </div>
+
+            <div class="news-company">
+                ${news.Company}
+            </div>
+
+            <div class="news-location">
+                ${news.Location}
+            </div>
+
+            <div class="news-content">
+
+                <img
+                    src="${news.Main_Image}"
+                    alt="${news.Company}"
+                    loading="lazy"
+                >
+
+                <p>
+                    ${news.Description}
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function createNewsHTML(news) {
+
+    switch (news.Article_Type) {
+
+        case "Gallery":
+            return createGalleryNews(news);
+
+        case "Video":
+            return createVideoNews(news);
+
+        default:
+            return createStandardNews(news);
+
+    }
+
+}
+
+
+function renderNews() {
+
+    const container =
+        document.getElementById("newsContainer");
+
+    if (!container) {
+
+        console.error(
+            "#newsContainer does not exist."
+        );
+
+        return;
+
+    }
+
+
+    const start =
+        (currentPage - 1) * NEWS_PER_PAGE;
+
+    const end =
+        start + NEWS_PER_PAGE;
+
+    const pageNews =
+        filteredNews.slice(start, end);
+
+
+    container.innerHTML =
+        pageNews
+            .map(createNewsHTML)
+            .join("");
+
+
+    if (typeof renderPagination === "function") {
+
+        renderPagination();
+
+    }
+
+}
+
+
+function formatNewsDate(dateString) {
+
+    if (!dateString) {
+        return "";
+    }
+
+    const parts =
+        dateString.split("-");
+
+    if (parts.length !== 3) {
+        return dateString;
+    }
+
+    const [year, month, day] = parts;
+
+    return `${month}.${day}.${year.slice(-2)}`;
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const newsInput =
+            document.getElementById("newsInput");
+
+
+        if (newsInput) {
+
+            newsInput.addEventListener(
+                "input",
+                function () {
+
+                    const search =
+                        this.value
+                            .toLowerCase()
+                            .trim();
+
+
+                    filteredNews =
+                        allNews.filter(news => {
+
+                            const text = `
+
+                                ${news.Company}
+                                ${news.Location}
+                                ${news.Category}
+                                ${news.Description}
+
+                            `.toLowerCase();
+
+
+                            return text.includes(search);
+
+                        });
+
+
+                    currentPage = 1;
+
+                    renderNews();
+
+                }
+            );
+
+        }
+
+
+        loadNews();
+
+    }
+);
+
+</script>
 
 
 </body>
