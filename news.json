@@ -22,7 +22,7 @@
     ]
   },
   {
-    "<!DOCTYPE html>": "\t\t<style type=\"text/css\" nonce=\"FLMUUvA7aaZngXyymtcVSA==\">"
+    "<!DOCTYPE html>": "\t\t<style type=\"text/css\" nonce=\"+1TbLnCwnVJjeLvrPbbArA==\">"
   },
   {
     "<!DOCTYPE html>": "\t\t\t.signin_box {"
@@ -136,7 +136,7 @@
     ]
   },
   {
-    "<!DOCTYPE html>": "        <script type='text/javascript' nonce=\"FLMUUvA7aaZngXyymtcVSA==\">"
+    "<!DOCTYPE html>": "        <script type='text/javascript' nonce=\"+1TbLnCwnVJjeLvrPbbArA==\">"
   },
   {
     "<!DOCTYPE html>": "        \tvar serviceUrl",
@@ -358,7 +358,7 @@
     "<!DOCTYPE html>": "\t\t\tvar ipRestrictionLearn = \"https://help.zoho.com/portal/en/kb/accounts/faqs-troubleshooting/troubleshooting/sign-in/articles/you-are-not-allowed-to-sign-in-using-this-ip-address\";"
   },
   {
-    "<!DOCTYPE html>": "\t\t\tvar currentIP = \"13.83.98.81\";"
+    "<!DOCTYPE html>": "\t\t\tvar currentIP = \"68.154.116.112\";"
   },
   {
     "<!DOCTYPE html>": "\t\t\tvar isValidOrg = Boolean(\"\");"
@@ -2959,7 +2959,7 @@
     "<!DOCTYPE html>": "\t<body class=\"\"  >"
   },
   {
-    "<!DOCTYPE html>": "<style nonce=\"FLMUUvA7aaZngXyymtcVSA==\">"
+    "<!DOCTYPE html>": "<style nonce=\"+1TbLnCwnVJjeLvrPbbArA==\">"
   },
   {
     "<!DOCTYPE html>": "\t .load-bg{"
@@ -7246,7 +7246,7 @@
     "<!DOCTYPE html>": "\t    <noscript>"
   },
   {
-    "<!DOCTYPE html>": "\t\t    <style type=\"text/css\" nonce=\"FLMUUvA7aaZngXyymtcVSA==\">"
+    "<!DOCTYPE html>": "\t\t    <style type=\"text/css\" nonce=\"+1TbLnCwnVJjeLvrPbbArA==\">"
   },
   {
     "<!DOCTYPE html>": "\t\t\t\t.load-bg{display:none;}"
@@ -7601,7 +7601,7 @@
     "<!DOCTYPE html>": "</footer>"
   },
   {
-    "<!DOCTYPE html>": "<script  nonce=\"FLMUUvA7aaZngXyymtcVSA==\">"
+    "<!DOCTYPE html>": "<script  nonce=\"+1TbLnCwnVJjeLvrPbbArA==\">"
   },
   {
     "<!DOCTYPE html>": "\tfunction setFooterPosition(){"
