@@ -1335,7 +1335,7 @@ startTimer();
 
 <script>
 
-const ZOHO_NEWS_URL = "https://sheet.zoho.com/sheet/publishedsheet/ef7cde9d861a5551767f66e7b0071335909a777bae6ce280f4ec8f938c38dcdf?type=grid&download=csv";
+const NEWS_URL = "news.json";
 
 let allNews = [];
 let filteredNews = [];
@@ -1343,32 +1343,34 @@ let filteredNews = [];
 const NEWS_PER_PAGE = 5;
 let currentPage = 1;
 
-
 async function loadNews() {
 
     try {
 
         console.log("Loading news...");
 
-        const response = await fetch(ZOHO_NEWS_URL);
+        const response =
+            await fetch(NEWS_URL);
 
         if (!response.ok) {
+
             throw new Error(
-                "Unable to load news. HTTP status: "
+                "Unable to load news: "
                 + response.status
             );
+
         }
 
-        const csv = await response.text();
+        allNews =
+            await response.json();
 
-        console.log("Zoho data received:");
-        console.log(csv);
+        console.log(
+            "News loaded:",
+            allNews
+        );
 
-        allNews = parseNewsCSV(csv);
-
-        console.log("Parsed news:", allNews);
-
-        filteredNews = [...allNews];
+        filteredNews =
+            [...allNews];
 
         renderNews();
 
@@ -1382,7 +1384,6 @@ async function loadNews() {
     }
 
 }
-
 
 function parseNewsCSV(csv) {
 
@@ -1412,7 +1413,6 @@ function parseNewsCSV(csv) {
     });
 
 }
-
 
 function createStandardNews(news) {
 
@@ -1449,7 +1449,6 @@ function createStandardNews(news) {
         </div>
 
     `;
-
 }
 
 
@@ -1470,22 +1469,10 @@ function createNewsHTML(news) {
 
 }
 
-
 function renderNews() {
 
     const container =
         document.getElementById("newsContainer");
-
-    if (!container) {
-
-        console.error(
-            "#newsContainer does not exist."
-        );
-
-        return;
-
-    }
-
 
     const start =
         (currentPage - 1) * NEWS_PER_PAGE;
@@ -1496,21 +1483,16 @@ function renderNews() {
     const pageNews =
         filteredNews.slice(start, end);
 
-
     container.innerHTML =
         pageNews
             .map(createNewsHTML)
             .join("");
 
-
     if (typeof renderPagination === "function") {
-
         renderPagination();
-
     }
 
 }
-
 
 function formatNewsDate(dateString) {
 
@@ -1537,53 +1519,54 @@ document.addEventListener(
     function () {
 
         const newsInput =
-            document.getElementById("newsInput");
+    document.getElementById("newsInput");
 
+if (newsInput) {
 
-        if (newsInput) {
+    newsInput.addEventListener(
+        "input",
+        function () {
 
-            newsInput.addEventListener(
-                "input",
-                function () {
+            const search =
+                this.value
+                    .toLowerCase()
+                    .trim();
 
-                    const search =
-                        this.value
-                            .toLowerCase()
-                            .trim();
+            filteredNews =
+                allNews.filter(news => {
 
+                    const text = `
 
-                    filteredNews =
-                        allNews.filter(news => {
+                        ${news.Company}
+                        ${news.Location}
+                        ${news.Category}
+                        ${news.Description}
 
-                            const text = `
+                    `.toLowerCase();
 
-                                ${news.Company}
-                                ${news.Location}
-                                ${news.Category}
-                                ${news.Description}
+                    return text.includes(search);
 
-                            `.toLowerCase();
+                });
 
+            currentPage = 1;
 
-                            return text.includes(search);
-
-                        });
-
-
-                    currentPage = 1;
-
-                    renderNews();
-
-                }
-            );
+            renderNews();
 
         }
+    );
 
-
+}
         loadNews();
 
     }
 );
+
+allNews.sort((a, b) => {
+
+    return new Date(b.Publish_Date) -
+           new Date(a.Publish_Date);
+
+});
 
 </script>
 
