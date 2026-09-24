@@ -19,7 +19,7 @@ jobs:
       - name: Download Zoho News
         run: |
           curl -sSL --fail \
-            "https://sheet.zoho.com/sheet/publishedsheet/ef7cde9d861a5551767f66e7b0071335909a777bae6ce280f4ec8f938c38dcdf?type=grid&download=csv" \
+            "https://sheet.zoho.com/sheet/publishedsheet/d389bb066f486d87040032a11aee6c8ed6f76e468345d6cbb25e4863ba778b4d?type=grid&download=csv" \
             -o zoho-news.csv
 
       - name: Set up Python
