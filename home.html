@@ -1343,34 +1343,48 @@ let filteredNews = [];
 const NEWS_PER_PAGE = 5;
 let currentPage = 1;
 
+
 async function loadNews() {
 
     try {
 
         console.log("Loading news...");
 
-        const response =
-            await fetch(NEWS_URL);
+        const response = await fetch(
+            NEWS_URL + "?v=" + Date.now()
+        );
 
         if (!response.ok) {
 
             throw new Error(
-                "Unable to load news: "
-                + response.status
+                "Unable to load news: " + response.status
             );
 
         }
 
-        allNews =
-            await response.json();
+        allNews = await response.json();
 
         console.log(
             "News loaded:",
             allNews
         );
 
-        filteredNews =
-            [...allNews];
+        console.log(
+            "Number of news items:",
+            allNews.length
+        );
+
+
+        // Sort newest first
+        allNews.sort((a, b) => {
+
+            return new Date(b.Publish_Date) -
+                   new Date(a.Publish_Date);
+
+        });
+
+
+        filteredNews = [...allNews];
 
         renderNews();
 
@@ -1385,94 +1399,84 @@ async function loadNews() {
 
 }
 
-function parseNewsCSV(csv) {
-
-    const rows = csv
-        .trim()
-        .split("\n");
-
-    const headers = rows[0]
-        .split(",")
-        .map(header => header.trim());
-
-    return rows.slice(1).map(row => {
-
-        const values = row.split(",");
-
-        const news = {};
-
-        headers.forEach((header, index) => {
-
-            news[header] =
-                values[index]?.trim() || "";
-
-        });
-
-        return news;
-
-    });
-
-}
 
 function createStandardNews(news) {
+    // Only generate the image tag if Main_Image exists and isn't empty/undefined
+    const imageHTML = (news.Main_Image && news.Main_Image !== "undefined")
+        ? `<img src="${news.Main_Image}" alt="${news.Company || ""}" loading="lazy">`
+        : "";
 
     return `
-
         <div class="news-rows">
-
             <div class="news-date">
                 ${formatNewsDate(news.Publish_Date)}
             </div>
 
             <div class="news-company">
-                ${news.Company}
+                ${news.Company || ""}
             </div>
 
             <div class="news-location">
-                ${news.Location}
+                ${news.Location || ""}
             </div>
 
             <div class="news-content">
-
-                <img
-                    src="${news.Main_Image}"
-                    alt="${news.Company}"
-                    loading="lazy"
-                >
-
+                ${imageHTML}
                 <p>
-                    ${news.Description}
+                    ${news.Description || ""}
                 </p>
-
             </div>
-
         </div>
-
     `;
 }
-
 
 function createNewsHTML(news) {
 
     switch (news.Article_Type) {
 
         case "Gallery":
-            return createGalleryNews(news);
+
+            if (typeof createGalleryNews === "function") {
+                return createGalleryNews(news);
+            }
+
+            return createStandardNews(news);
+
 
         case "Video":
-            return createVideoNews(news);
+
+            if (typeof createVideoNews === "function") {
+                return createVideoNews(news);
+            }
+
+            return createStandardNews(news);
+
 
         default:
+
             return createStandardNews(news);
 
     }
 
 }
 
+
 function renderNews() {
 
     const container =
         document.getElementById("newsContainer");
+
+
+    if (!container) {
+
+        console.error(
+            "newsContainer element was not found."
+        );
+
+        return;
+
+    }
+
 
     const start =
         (currentPage - 1) * NEWS_PER_PAGE;
@@ -1480,34 +1484,48 @@ function renderNews() {
     const end =
         start + NEWS_PER_PAGE;
 
+
     const pageNews =
         filteredNews.slice(start, end);
+
 
     container.innerHTML =
         pageNews
             .map(createNewsHTML)
             .join("");
 
+
     if (typeof renderPagination === "function") {
+
         renderPagination();
+
     }
 
 }
 
+
 function formatNewsDate(dateString) {
 
     if (!dateString) {
+
         return "";
+
     }
+
 
     const parts =
         dateString.split("-");
 
+
     if (parts.length !== 3) {
+
         return dateString;
+
     }
 
+
     const [year, month, day] = parts;
+
 
     return `${month}.${day}.${year.slice(-2)}`;
 
@@ -1518,58 +1536,59 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
+
         const newsInput =
-    document.getElementById("newsInput");
+            document.getElementById("newsInput");
 
-if (newsInput) {
 
-    newsInput.addEventListener(
-        "input",
-        function () {
+        if (newsInput) {
 
-            const search =
-                this.value
-                    .toLowerCase()
-                    .trim();
+            newsInput.addEventListener(
+                "input",
+                function () {
 
-            filteredNews =
-                allNews.filter(news => {
 
-                    const text = `
+                    const search =
+                        this.value
+                            .toLowerCase()
+                            .trim();
 
-                        ${news.Company}
-                        ${news.Location}
-                        ${news.Category}
-                        ${news.Description}
 
-                    `.toLowerCase();
+                    filteredNews =
+                        allNews.filter(news => {
 
-                    return text.includes(search);
 
-                });
+                            const text = `
 
-            currentPage = 1;
+                                ${news.Company || ""}
+                                ${news.Location || ""}
+                                ${news.Category || ""}
+                                ${news.Description || ""}
 
-            renderNews();
+                            `.toLowerCase();
+
+
+                            return text.includes(search);
+
+                        });
+
+
+                    currentPage = 1;
+
+                    renderNews();
+
+                }
+            );
 
         }
-    );
 
-}
+
         loadNews();
 
     }
 );
 
-allNews.sort((a, b) => {
-
-    return new Date(b.Publish_Date) -
-           new Date(a.Publish_Date);
-
-});
-
 </script>
-
 
 </body>
 
