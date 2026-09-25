@@ -151,66 +151,67 @@ var swiper = new Swiper('.bk-slider .swiper', {
 
 /* ================== About pagination ==================== */
 
-document.addEventListener('DOMContentLoaded', (function() {
-  // Set the number of items per page globally
-  var itemsPerPage = 10; 
+// document.addEventListener('DOMContentLoaded', (function() {
+//   // Set the number of items per page globally
+//   var itemsPerPage = 10; 
 
-  // Function to display the correct page of news items
-  function showPage(pageNumber) {
-      // Select all elements with the class 'news-rows' (individual news items)
-      var newsSections = document.querySelectorAll('.news-rows');
-      var paginationButtons = document.querySelectorAll('.news-pagination button');
+//   // Function to display the correct page of news items
+//   function showPage(pageNumber) {
+//       // Select all elements with the class 'news-rows' (individual news items)
+//       var newsSections = document.querySelectorAll('.news-rows');
+//       var paginationButtons = document.querySelectorAll('.news-pagination button');
 
-      // Loop through all news items to display only those that belong to the current page
-      for (var i = 0; i < newsSections.length; i++) {
-          if (i < pageNumber * itemsPerPage && i >= (pageNumber - 1) * itemsPerPage) {
-              newsSections[i].style.display = 'block'; // Show items within the current page range
-          } else {
-              newsSections[i].style.display = 'none'; // Hide items outside the current page range
-          }
-      }
+//       // Loop through all news items to display only those that belong to the current page
+//       for (var i = 0; i < newsSections.length; i++) {
+//           if (i < pageNumber * itemsPerPage && i >= (pageNumber - 1) * itemsPerPage) {
+//               newsSections[i].style.display = 'block'; // Show items within the current page range
+//           } else {
+//               newsSections[i].style.display = 'none'; // Hide items outside the current page range
+//           }
+//       }
 
-      // Loop through all pagination buttons to remove the 'active' class
-      paginationButtons.forEach(function(button) {
-          button.classList.remove('active'); // Remove 'active' class from all buttons
-      });
+//       // Loop through all pagination buttons to remove the 'active' class
+//       paginationButtons.forEach(function(button) {
+//           button.classList.remove('active'); // Remove 'active' class from all buttons
+//       });
 
-      // Add the 'active' class to the clicked button
-      paginationButtons[pageNumber - 1].classList.add('active');
+//       // Add the 'active' class to the clicked button
+//       paginationButtons[pageNumber - 1].classList.add('active');
 
-      // Scroll to the top of the news section
-      document.getElementById('tab2').scrollIntoView({ behavior: 'smooth' });
-  }
+//       // Scroll to the top of the news section
+//       document.getElementById('tab2').scrollIntoView({ behavior: 'smooth' });
+//   }
 
-  // Function to create pagination controls
-  function setupPagination() {
-      // Select all news items and calculate the number of pages needed
-      var newsSections = document.querySelectorAll('.news-rows');
-      var numPages = Math.ceil(newsSections.length / itemsPerPage);
+//   // Function to create pagination controls
+//   function setupPagination() {
+//       // Select all news items and calculate the number of pages needed
+//       var newsSections = document.querySelectorAll('.news-rows');
+//       var numPages = Math.ceil(newsSections.length / itemsPerPage);
 
-      // Get the pagination container and clear any existing content
-      var pagination = document.getElementById('news-pagination');
-      pagination.innerHTML = '';
+//       // Get the pagination container and clear any existing content
+//       var pagination = document.getElementById('news-pagination');
+//       pagination.innerHTML = '';
 
-      // Create page buttons dynamically
-      for (var i = 1; i <= numPages; i++) {
-          var button = document.createElement('button');
-          button.textContent = i;
-          button.addEventListener('click', function() {
-              showPage(parseInt(this.textContent)); // Call showPage() with the selected page number
-          });
-          pagination.appendChild(button);
-      }
+//       // Create page buttons dynamically
+//       for (var i = 1; i <= numPages; i++) {
+//           var button = document.createElement('button');
+//           button.textContent = i;
+//           button.addEventListener('click', function() {
+//               showPage(parseInt(this.textContent)); // Call showPage() with the selected page number
+//           });
+//           pagination.appendChild(button);
+//       }
 
-      // Display the first page by default
-      showPage(1);
-  }
+//       // Display the first page by default
+//       showPage(1);
+//   }
 
-  // Initialize pagination
-  if (document.getElementById('news-pagination')) {
-      setupPagination();
-  }
-})());
+//   // Initialize pagination
+//   if (document.getElementById('news-pagination')) {
+//       setupPagination();
+//   }
+// })());
+
 
 
 // =============Grandopening redirection===========
@@ -748,32 +749,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // =============== Home PageService Card =============== //
 
-document.addEventListener("DOMContentLoaded", () =>{
-      // Scroll Reveal Animation
-  const cards = document.querySelectorAll('.service-card');
+// document.addEventListener("DOMContentLoaded", () =>{
+//       // Scroll Reveal Animation
+//   const cards = document.querySelectorAll('.service-card');
 
-  const observer = new IntersectionObserver((entries) => {
+//   const observer = new IntersectionObserver((entries) => {
 
-    entries.forEach((entry, index) => {
+//     entries.forEach((entry, index) => {
 
-      if(entry.isIntersecting){
+//       if(entry.isIntersecting){
 
-        setTimeout(() => {
-          entry.target.classList.add('show');
-        }, index * 120);
+//         setTimeout(() => {
+//           entry.target.classList.add('show');
+//         }, index * 120);
 
-      }
+//       }
 
-    });
+//     });
 
-  }, {
-    threshold:0.2
-  });
+//   }, {
+//     threshold:0.2
+//   });
 
-  cards.forEach(card => {
-    observer.observe(card);
-  });
-})
+//   cards.forEach(card => {
+//     observer.observe(card);
+//   });
+// })
 
 /* ======== Products Slider ========== */
 
