@@ -22,9 +22,9 @@
     "Category": "",
     "Description": "Testing",
     "Main_image": "",
-    "Gallery_Images": "",
-    "Video_URL": "assets/img/video/Techunifi.mp4",
-    "Article_Type": "Video",
+    "Gallery_Images": "assets/img/about-images/news/tru-meridian.jpg | assets/img/about-images/news/tru-meridian.jpg",
+    "Video_URL": "",
+    "Article_Type": "Gallery",
     "Sort_Order": ""
   }
 ]
