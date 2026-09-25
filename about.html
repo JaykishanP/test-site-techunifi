@@ -3388,6 +3388,33 @@ We’ll see you again next year. Until then, let’s keep building the future of
     }); // restore when you scroll up
 });
    
+function newsFunction() {
+  const input = document.getElementById('newsInput');
+  const filter = input.value.toLowerCase();
+  const newsRows = document.querySelectorAll('.news-rows');
+
+  newsRows.forEach(function (row) {
+    const company = row.querySelector('.news-company');
+    const location = row.querySelector('.news-location');
+    const content = row.querySelector('.news-content');
+
+    if (
+      company &&
+      location &&
+      content &&
+      (
+        company.textContent.toLowerCase().includes(filter) ||
+        location.textContent.toLowerCase().includes(filter) ||
+        content.textContent.toLowerCase().includes(filter)
+      )
+    ) {
+      row.style.display = 'block';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+}
+
    
    </script>
 
