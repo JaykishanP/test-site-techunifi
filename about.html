@@ -462,7 +462,7 @@ As we focus on the future, our commitment remains strong. Our goal is not just t
                 <div class="prod-heading month-heading">
                     <h3>Latest News</h3>
 
-                    <div class="search-container" style="position: relative; display: inline-block;">
+                    <!-- <div class="search-container" style="position: relative; display: inline-block;">
                       <input 
                         type="text" 
                         id="newsInput" 
@@ -475,17 +475,56 @@ As we focus on the future, our commitment remains strong. Our goal is not just t
                         id="clearIcon" 
                         onclick="clearSearch()" 
                         style="
-                          position: relative; 
-                          right: 30px; 
-                          transform: translateY(-50%); 
-                          cursor: pointer; 
-                          font-size: 16px; 
-                          display: none;"
+                          position: absolute; 
+      right: 10px; 
+      top: 33%; 
+      transform: translateY(-50%); 
+      cursor: pointer; 
+      font-size: 16px; 
+      display: none;"
                       >
                         &#x2715;
                       </span>
-                    </div>
-        
+                    </div> -->
+
+                    <!-- <div class="search-container">
+  <input 
+    type="search" 
+    id="newsInput" 
+    placeholder="🔍 Search for hotels.." 
+    title="Type in a name" 
+    style="width: 100%; max-width: 400px; padding: 8px 12px; box-sizing: border-box;"
+  >
+</div> -->
+
+<div class="search-wrapper" style="position: relative; display: inline-block; width: 100%; max-width: 400px;">
+  <input 
+    type="text" 
+    id="newsInput" 
+    placeholder="🔍 Search for hotels.." 
+    title="Type in a name" 
+    style="width: 100%; padding-right: 35px; box-sizing: border-box; height: 38px;"
+  >
+  <span 
+    id="clearIcon" 
+    title="Clear search"
+    style="
+      position: absolute; 
+      right: 10px; 
+      top: 28%; 
+      transform: translateY(-50%); 
+      cursor: pointer; 
+      font-size: 16px; 
+      color: #888;
+      display: none;
+      z-index: 10;
+      user-select: none;
+      padding: 4px 6px;
+      line-height: 1;"
+  >
+    &#x2715;
+  </span>
+</div>
                 </div>
 
                 <div id="newsContainer">
@@ -605,32 +644,6 @@ We’re proud to add another successful project to the Techunifi portfolio. Cong
                     
                 </div> -->
 
-  <!-- 51 -->
-                   <div class="news-rows">
-                    <div class="news-date">Published: 08.15.26</div>
-                    <div class="news-company">Tru by Hilton Meridian</div>
-                    <div class="news-location">Meridian, MS</div>
-                    <div class="news-content">
-
-  <p style="padding-bottom: 10px;">
-    Our Techunifi team recently finished deploying a modern Unonet network at Tru by Hilton Meridian, significantly upgrading the property's digital infrastructure for peak performance.
-</p>
-
-                      <div class="aahoacon-images" style="padding-bottom: 20px;">
-  
-                        <div class="row">
-                          <div class="col-md-12">        
-                            <br>              
-                            <img src="assets/img/about-images/news/tru-meridian.jpg" title="techunifi" alt="techunifi" loading="lazy">
-                          </div>
-                        </div>
-  
-                      
-                      </div>
-  
-                    </div>
-                    
-                </div> 
 
   <!-- 51 -->
                    <div class="news-rows">
@@ -3431,6 +3444,7 @@ document.querySelectorAll('.carousel-controls label, .carousel-dot').forEach(con
 });
 </script>
 
+<!-- 
 <script>
 const NEWS_URL = "news.json";
 
@@ -3442,38 +3456,29 @@ let filteredNews = [];
 const NEWS_PER_PAGE = 10;
 let currentPage = 1;
 
-// 1. Extract existing static HTML items from DOM on load
 function parseStaticNews() {
     const container = document.getElementById("newsContainer");
     if (!container) return [];
 
     const existingRows = Array.from(container.querySelectorAll(".news-rows"));
-    
-    return existingRows.map((row, index) => {
-        return {
-            isStatic: true,
-            elementHTML: row.outerHTML,
-            textForSearch: row.innerText.toLowerCase(),
-            sortOrder: index
-        };
-    });
+    return existingRows.map((row, index) => ({
+        isStatic: true,
+        elementHTML: row.outerHTML,
+        textForSearch: row.innerText.toLowerCase(),
+        sortOrder: index
+    }));
 }
 
 async function loadNews() {
     try {
         staticNews = parseStaticNews();
-
-        console.log("Loading sheet news...");
         const response = await fetch(NEWS_URL + "?v=" + Date.now());
 
         if (response.ok) {
             const contentType = response.headers.get("content-type");
             if (!contentType || !contentType.includes("text/html")) {
                 sheetNews = await response.json();
-
-                sheetNews.sort((a, b) => {
-                    return new Date(b.Publish_Date || b.date) - new Date(a.Publish_Date || a.date);
-                });
+                sheetNews.sort((a, b) => new Date(b.Publish_Date || b.date) - new Date(a.Publish_Date || a.date));
             }
         }
     } catch (error) {
@@ -3483,27 +3488,15 @@ async function loadNews() {
             ...sheetNews.map(item => ({ ...item, isStatic: false })),
             ...staticNews
         ];
-
         filteredNews = [...allNews];
         renderNews();
     }
 }
 
 function createStandardNews(news) {
-    if (news.isStatic) {
-        return news.elementHTML;
-    }
+    if (news.isStatic) return news.elementHTML;
 
-    const sanitize = (str) => {
-        if (!str) return "";
-        return String(str)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    };
-
+    const sanitize = (str) => str ? String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : "";
     const rawImage = (news.Main_image || news.Main_Image || "").toString().trim();
     const isValidImage = rawImage && rawImage !== "undefined" && rawImage !== "null";
 
@@ -3511,22 +3504,13 @@ function createStandardNews(news) {
     const location = sanitize(news.Location);
     const description = news.Description || ""; 
     const altText = company ? `${company} image` : "News image";
-
-    const imageHTML = isValidImage
-        ? `<img src="${rawImage}" alt="${altText}" loading="lazy">`
-        : "";
+    const imageHTML = isValidImage ? `<img src="${rawImage}" alt="${altText}" loading="lazy">` : "";
 
     return `
         <div class="news-rows">
-            <div class="news-date">
-               Published: ${formatNewsDate(news.Publish_Date)}
-            </div>
-            <div class="news-company">
-                ${company}
-            </div>
-            <div class="news-location">
-                ${location}
-            </div>
+            <div class="news-date">Published: ${formatNewsDate(news.Publish_Date)}</div>
+            <div class="news-company">${company}</div>
+            <div class="news-location">${location}</div>
             <div class="news-content">
                 <p>${description}</p>
                 ${imageHTML}
@@ -3537,7 +3521,6 @@ function createStandardNews(news) {
 
 function createNewsHTML(news) {
     if (news.isStatic) return news.elementHTML;
-
     const articleType = news.Article_Type || news.article_type || news.Type;
     switch (articleType) {
         case "Gallery":
@@ -3555,11 +3538,9 @@ function renderNews() {
 
     const start = (currentPage - 1) * NEWS_PER_PAGE;
     const end = start + NEWS_PER_PAGE;
-
     const pageNews = filteredNews.slice(start, end);
 
     container.innerHTML = pageNews.map(createNewsHTML).join("");
-
     renderPaginationControls();
 }
 
@@ -3569,14 +3550,12 @@ function renderPaginationControls() {
 
     const numPages = Math.ceil(filteredNews.length / NEWS_PER_PAGE);
     pagination.innerHTML = "";
-
     if (numPages <= 1) return;
 
     for (let i = 1; i <= numPages; i++) {
         const button = document.createElement("button");
         button.textContent = i;
         if (i === currentPage) button.classList.add("active");
-
         button.addEventListener("click", function () {
             currentPage = i;
             renderNews();
@@ -3603,58 +3582,391 @@ function formatNewsDate(dateVal) {
     return `${month}.${day}.${year.slice(-2)}`;
 }
 
-// Global function triggered on typing in input (onkeyup)
-function newsFunction() {
+// Single initialization handler
+document.addEventListener("DOMContentLoaded", function () {
     const input = document.getElementById("newsInput");
     const clearIcon = document.getElementById("clearIcon");
-    if (!input) return;
 
-    const search = input.value.toLowerCase().trim();
+    function executeSearch() {
+        const search = input ? input.value.toLowerCase().trim() : "";
 
-    // Toggle clear icon visibility
-    if (clearIcon) {
-        clearIcon.style.display = search.length > 0 ? "inline-block" : "none";
+        if (clearIcon) {
+            clearIcon.style.display = search.length > 0 ? "inline-block" : "none";
+        }
+
+        filteredNews = allNews.filter(news => {
+            if (news.isStatic) {
+                return news.textForSearch.includes(search);
+            }
+            const text = `
+                ${news.Company || ""}
+                ${news.Location || ""}
+                ${news.Category || ""}
+                ${news.Description || news.description || ""}
+            `.toLowerCase();
+
+            return text.includes(search);
+        });
+
+        currentPage = 1;
+        renderNews();
     }
 
-    filteredNews = allNews.filter(news => {
-        if (news.isStatic) {
-            return news.textForSearch.includes(search);
+    function resetSearch(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
         }
-        const text = `
-            ${news.Company || ""}
-            ${news.Location || ""}
-            ${news.Category || ""}
-            ${news.Description || news.description || ""}
-        `.toLowerCase();
-
-        return text.includes(search);
-    });
-
-    currentPage = 1;
-    renderNews();
-}
-
-// Global function triggered on clicking clear icon (onclick)
-function clearSearch() {
-    const input = document.getElementById("newsInput");
-    const clearIcon = document.getElementById("clearIcon");
+        if (input) {
+            input.value = "";
+            input.focus();
+        }
+        if (clearIcon) {
+            clearIcon.style.display = "none";
+        }
+        filteredNews = [...allNews];
+        currentPage = 1;
+        renderNews();
+    }
 
     if (input) {
-        input.value = "";
-    }
-    if (clearIcon) {
-        clearIcon.style.display = "none";
+        input.addEventListener("input", executeSearch);
     }
 
-    filteredNews = [...allNews];
-    currentPage = 1;
-    renderNews();
+    if (clearIcon) {
+        clearIcon.addEventListener("mouseenter", function () {
+            this.style.color = "#333";
+        });
+        clearIcon.addEventListener("mouseleave", function () {
+            this.style.color = "#888";
+        });
+
+        clearIcon.addEventListener("click", resetSearch);
+        clearIcon.addEventListener("mousedown", resetSearch);
+    }
+
+    loadNews();
+});
+</script> -->
+
+
+<script>
+const NEWS_URL = "news.json";
+
+let sheetNews = [];
+let staticNews = [];
+let allNews = [];
+let filteredNews = [];
+
+const NEWS_PER_PAGE = 10;
+let currentPage = 1;
+
+function parseStaticNews() {
+    const container = document.getElementById("newsContainer");
+    if (!container) return [];
+
+    const existingRows = Array.from(container.querySelectorAll(".news-rows"));
+    return existingRows.map((row, index) => ({
+        isStatic: true,
+        elementHTML: row.outerHTML,
+        textForSearch: row.innerText.toLowerCase(),
+        sortOrder: index
+    }));
+}
+
+async function loadNews() {
+    try {
+        staticNews = parseStaticNews();
+        const response = await fetch(NEWS_URL + "?v=" + Date.now());
+
+        if (response.ok) {
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("text/html")) {
+                const rawData = await response.json();
+
+                // 1. Filter out Drafts (Only keep Published items)
+                sheetNews = rawData.filter(item => {
+                    const status = (item.Status || "").toString().trim().toLowerCase();
+                    return status === "published" || status === "";
+                });
+
+                // 2. Sort by date
+                sheetNews.sort((a, b) => new Date(b.Publish_Date || b.date) - new Date(a.Publish_Date || a.date));
+            }
+        }
+    } catch (error) {
+        console.error("News sheet loading error:", error.message);
+    } finally {
+        allNews = [
+            ...sheetNews.map(item => ({ ...item, isStatic: false })),
+            ...staticNews
+        ];
+        filteredNews = [...allNews];
+        renderNews();
+    }
+}
+
+// Utility function to escape raw strings safely
+function sanitize(str) {
+    if (!str) return "";
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+// STANDARD TEMPLATE
+function createStandardNews(news) {
+    if (news.isStatic) return news.elementHTML;
+
+    const rawImage = (news.Main_image || news.Main_Image || "").toString().trim();
+    const isValidImage = rawImage && rawImage !== "undefined" && rawImage !== "null";
+
+    const company = sanitize(news.Company);
+    const location = sanitize(news.Location);
+    const description = news.Description || news.description || ""; 
+    const altText = company ? `${company} image` : "News image";
+
+    const imageHTML = isValidImage ? `<img src="${rawImage}" alt="${altText}" loading="lazy">` : "";
+
+    return `
+        <div class="news-rows">
+            <div class="news-date">Published: ${formatNewsDate(news.Publish_Date)}</div>
+            <div class="news-company">${company}</div>
+            <div class="news-location">${location}</div>
+            <div class="news-content">
+                <p>${description}</p>
+                ${imageHTML}
+            </div>
+        </div>
+    `;
+}
+
+// GALLERY TEMPLATE
+function createGalleryNews(news) {
+    if (news.isStatic) return news.elementHTML;
+
+    const company = sanitize(news.Company);
+    const location = sanitize(news.Location);
+    const description = news.Description || news.description || "";
+    
+    // Support comma-separated URLs or JSON array format
+    let images = [];
+    const rawGallery = news.Gallery_Images || news.gallery_images || "";
+    if (typeof rawGallery === "string" && rawGallery.trim().length > 0) {
+        images = rawGallery.split(",").map(img => img.trim()).filter(Boolean);
+    } else if (Array.isArray(rawGallery)) {
+        images = rawGallery;
+    }
+
+    // Fallback to Main_image if Gallery_Images is empty
+    const mainImg = (news.Main_image || news.Main_Image || "").toString().trim();
+    if (images.length === 0 && mainImg) {
+        images.push(mainImg);
+    }
+
+    const galleryHTML = images.map(imgUrl => 
+        `<img src="${imgUrl}" alt="${company || 'Gallery'} image" loading="lazy" style="max-width: 100%; height: auto; object-fit: cover;">`
+    ).join("");
+
+    return `
+        <div class="news-rows news-gallery">
+            <div class="news-date">Published: ${formatNewsDate(news.Publish_Date)}</div>
+            <div class="news-company">${company}</div>
+            <div class="news-location">${location}</div>
+            <div class="news-content">
+                <p>${description}</p>
+                <div class="gallery-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 10px;">
+                    ${galleryHTML}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// VIDEO TEMPLATE
+function createVideoNews(news) {
+    if (news.isStatic) return news.elementHTML;
+
+    const company = sanitize(news.Company);
+    const location = sanitize(news.Location);
+    const description = news.Description || news.description || "";
+    const videoUrl = (news.Video_URL || news.video_url || "").toString().trim();
+
+    let videoHTML = "";
+
+    if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+        // Extract YouTube Video ID
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = videoUrl.match(regExp);
+        const videoId = (match && match[2].length === 11) ? match[2] : null;
+
+        if (videoId) {
+            videoHTML = `
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 10px;">
+                    <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen style="position: absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+                </div>`;
+        }
+    } else if (videoUrl.includes("vimeo.com")) {
+        const vimeoId = videoUrl.split("/").pop();
+        videoHTML = `
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 10px;">
+                <iframe src="https://player.vimeo.com/video/${vimeoId}" frameborder="0" allowfullscreen style="position: absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+            </div>`;
+    } else if (videoUrl) {
+        // Direct MP4 or video link fallback
+        videoHTML = `<video controls style="width: 100%; margin-top: 10px;"><source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
+    }
+
+    return `
+        <div class="news-rows news-video">
+            <div class="news-date">Published: ${formatNewsDate(news.Publish_Date)}</div>
+            <div class="news-company">${company}</div>
+            <div class="news-location">${location}</div>
+            <div class="news-content">
+                <p>${description}</p>
+                ${videoHTML}
+            </div>
+        </div>
+    `;
+}
+
+// ROUTER FUNCTION
+function createNewsHTML(news) {
+    if (news.isStatic) return news.elementHTML;
+
+    const articleType = (news.Article_Type || news.article_type || news.Type || "").toString().trim();
+
+    switch (articleType) {
+        case "Gallery":
+            return createGalleryNews(news);
+        case "Video":
+            return createVideoNews(news);
+        case "Standard":
+        default:
+            return createStandardNews(news);
+    }
+}
+
+function renderNews() {
+    const container = document.getElementById("newsContainer");
+    if (!container) return;
+
+    const start = (currentPage - 1) * NEWS_PER_PAGE;
+    const end = start + NEWS_PER_PAGE;
+    const pageNews = filteredNews.slice(start, end);
+
+    container.innerHTML = pageNews.map(createNewsHTML).join("");
+    renderPaginationControls();
+}
+
+function renderPaginationControls() {
+    const pagination = document.getElementById("news-pagination");
+    if (!pagination) return;
+
+    const numPages = Math.ceil(filteredNews.length / NEWS_PER_PAGE);
+    pagination.innerHTML = "";
+    if (numPages <= 1) return;
+
+    for (let i = 1; i <= numPages; i++) {
+        const button = document.createElement("button");
+        button.textContent = i;
+        if (i === currentPage) button.classList.add("active");
+        button.addEventListener("click", function () {
+            currentPage = i;
+            renderNews();
+            const tabElement = document.getElementById("tab2") || document.getElementById("newsContainer");
+            if (tabElement) tabElement.scrollIntoView({ behavior: "smooth" });
+        });
+        pagination.appendChild(button);
+    }
+}
+
+function formatNewsDate(dateVal) {
+    if (!dateVal) return "";
+    if (!isNaN(dateVal) && Number(dateVal) > 30000) {
+        const excelDate = new Date((Number(dateVal) - (25567 + 2)) * 86400 * 1000);
+        const mm = String(excelDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(excelDate.getDate()).padStart(2, '0');
+        const yy = String(excelDate.getFullYear()).slice(-2);
+        return `${mm}.${dd}.${yy}`;
+    }
+    const dateStr = String(dateVal);
+    const parts = dateStr.split("-");
+    if (parts.length !== 3) return dateStr;
+    const [year, month, day] = parts;
+    return `${month}.${day}.${year.slice(-2)}`;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("newsInput");
+    const clearIcon = document.getElementById("clearIcon");
+
+    function executeSearch() {
+        const search = input ? input.value.toLowerCase().trim() : "";
+
+        if (clearIcon) {
+            clearIcon.style.display = search.length > 0 ? "inline-block" : "none";
+        }
+
+        filteredNews = allNews.filter(news => {
+            if (news.isStatic) {
+                return news.textForSearch.includes(search);
+            }
+            const text = `
+                ${news.Company || ""}
+                ${news.Location || ""}
+                ${news.Category || ""}
+                ${news.Description || news.description || ""}
+                ${news.Article_Type || ""}
+            `.toLowerCase();
+
+            return text.includes(search);
+        });
+
+        currentPage = 1;
+        renderNews();
+    }
+
+    function resetSearch(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        if (input) {
+            input.value = "";
+            input.focus();
+        }
+        if (clearIcon) {
+            clearIcon.style.display = "none";
+        }
+        filteredNews = [...allNews];
+        currentPage = 1;
+        renderNews();
+    }
+
+    if (input) {
+        input.addEventListener("input", executeSearch);
+    }
+
+    if (clearIcon) {
+        clearIcon.addEventListener("mouseenter", function () {
+            this.style.color = "#333";
+        });
+        clearIcon.addEventListener("mouseleave", function () {
+            this.style.color = "#888";
+        });
+
+        clearIcon.addEventListener("click", resetSearch);
+        clearIcon.addEventListener("mousedown", resetSearch);
+    }
+
     loadNews();
 });
 </script>
+
 
 </body>
 
