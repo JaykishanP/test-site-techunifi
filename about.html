@@ -3388,33 +3388,6 @@ We’ll see you again next year. Until then, let’s keep building the future of
     }); // restore when you scroll up
 });
    
-function newsFunction() {
-  const input = document.getElementById('newsInput');
-  const filter = input.value.toLowerCase();
-  const newsRows = document.querySelectorAll('.news-rows');
-
-  newsRows.forEach(function (row) {
-    const company = row.querySelector('.news-company');
-    const location = row.querySelector('.news-location');
-    const content = row.querySelector('.news-content');
-
-    if (
-      company &&
-      location &&
-      content &&
-      (
-        company.textContent.toLowerCase().includes(filter) ||
-        location.textContent.toLowerCase().includes(filter) ||
-        content.textContent.toLowerCase().includes(filter)
-      )
-    ) {
-      row.style.display = 'block';
-    } else {
-      row.style.display = 'none';
-    }
-  });
-}
-
    
    </script>
 
@@ -3466,7 +3439,7 @@ let staticNews = [];
 let allNews = [];
 let filteredNews = [];
 
-const NEWS_PER_PAGE = 10; // Unified items per page
+const NEWS_PER_PAGE = 10;
 let currentPage = 1;
 
 // 1. Extract existing static HTML items from DOM on load
@@ -3476,25 +3449,20 @@ function parseStaticNews() {
 
     const existingRows = Array.from(container.querySelectorAll(".news-rows"));
     
-    // Convert static DOM elements into data objects
-    const items = existingRows.map((row, index) => {
+    return existingRows.map((row, index) => {
         return {
             isStatic: true,
             elementHTML: row.outerHTML,
             textForSearch: row.innerText.toLowerCase(),
-            sortOrder: index // Keep original static order
+            sortOrder: index
         };
     });
-
-    return items;
 }
 
 async function loadNews() {
     try {
-        // Step A: Capture existing static news HTML from DOM
         staticNews = parseStaticNews();
 
-        // Step B: Fetch news from JSON sheet
         console.log("Loading sheet news...");
         const response = await fetch(NEWS_URL + "?v=" + Date.now());
 
@@ -3503,7 +3471,6 @@ async function loadNews() {
             if (!contentType || !contentType.includes("text/html")) {
                 sheetNews = await response.json();
 
-                // Sort sheet news newest first
                 sheetNews.sort((a, b) => {
                     return new Date(b.Publish_Date || b.date) - new Date(a.Publish_Date || a.date);
                 });
@@ -3512,7 +3479,6 @@ async function loadNews() {
     } catch (error) {
         console.error("News sheet loading error:", error.message);
     } finally {
-        // Step C: Combine Sheet News FIRST, then Static News
         allNews = [
             ...sheetNews.map(item => ({ ...item, isStatic: false })),
             ...staticNews
@@ -3524,7 +3490,6 @@ async function loadNews() {
 }
 
 function createStandardNews(news) {
-    // Return existing rendered HTML string directly if static item
     if (news.isStatic) {
         return news.elementHTML;
     }
@@ -3593,7 +3558,6 @@ function renderNews() {
 
     const pageNews = filteredNews.slice(start, end);
 
-    // Re-render container with combined sheet + static items
     container.innerHTML = pageNews.map(createNewsHTML).join("");
 
     renderPaginationControls();
@@ -3639,32 +3603,55 @@ function formatNewsDate(dateVal) {
     return `${month}.${day}.${year.slice(-2)}`;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const newsInput = document.getElementById("newsInput");
+// Global function triggered on typing in input (onkeyup)
+function newsFunction() {
+    const input = document.getElementById("newsInput");
+    const clearIcon = document.getElementById("clearIcon");
+    if (!input) return;
 
-    if (newsInput) {
-        newsInput.addEventListener("input", function () {
-            const search = this.value.toLowerCase().trim();
+    const search = input.value.toLowerCase().trim();
 
-            filteredNews = allNews.filter(news => {
-                if (news.isStatic) {
-                    return news.textForSearch.includes(search);
-                }
-                const text = `
-                    ${news.Company || ""}
-                    ${news.Location || ""}
-                    ${news.Category || ""}
-                    ${news.Description || news.description || ""}
-                `.toLowerCase();
-
-                return text.includes(search);
-            });
-
-            currentPage = 1;
-            renderNews();
-        });
+    // Toggle clear icon visibility
+    if (clearIcon) {
+        clearIcon.style.display = search.length > 0 ? "inline-block" : "none";
     }
 
+    filteredNews = allNews.filter(news => {
+        if (news.isStatic) {
+            return news.textForSearch.includes(search);
+        }
+        const text = `
+            ${news.Company || ""}
+            ${news.Location || ""}
+            ${news.Category || ""}
+            ${news.Description || news.description || ""}
+        `.toLowerCase();
+
+        return text.includes(search);
+    });
+
+    currentPage = 1;
+    renderNews();
+}
+
+// Global function triggered on clicking clear icon (onclick)
+function clearSearch() {
+    const input = document.getElementById("newsInput");
+    const clearIcon = document.getElementById("clearIcon");
+
+    if (input) {
+        input.value = "";
+    }
+    if (clearIcon) {
+        clearIcon.style.display = "none";
+    }
+
+    filteredNews = [...allNews];
+    currentPage = 1;
+    renderNews();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
     loadNews();
 });
 </script>
