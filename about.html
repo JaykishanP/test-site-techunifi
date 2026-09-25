@@ -3787,37 +3787,67 @@ function createGalleryNews(news) {
 }
 
 // VIDEO TEMPLATE
+// UPDATED VIDEO TEMPLATE
 function createVideoNews(news) {
     if (news.isStatic) return news.elementHTML;
 
     const company = sanitize(news.Company);
     const location = sanitize(news.Location);
     const description = news.Description || news.description || "";
-    const videoUrl = (news.Video_URL || news.video_url || "").toString().trim();
+    let videoUrl = (news.Video_URL || news.video_url || news.Video_Url || "").toString().trim();
 
     let videoHTML = "";
 
-    if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
-        // Extract YouTube Video ID
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        const match = videoUrl.match(regExp);
-        const videoId = (match && match[2].length === 11) ? match[2] : null;
+    if (videoUrl) {
+        // 1. YOUTUBE (Handles standard watch URLs, Shorts, embed URLs, and youtu.be)
+        if (videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
+            let videoId = "";
+            
+            if (videoUrl.includes("shorts/")) {
+                videoId = videoUrl.split("shorts/")[1].split("?")[0].split("/")[0];
+            } else if (videoUrl.includes("youtu.be/")) {
+                videoId = videoUrl.split("youtu.be/")[1].split("?")[0].split("/")[0];
+            } else if (videoUrl.includes("v=")) {
+                videoId = videoUrl.split("v=")[1].split("&")[0].split("#")[0];
+            } else if (videoUrl.includes("embed/")) {
+                videoId = videoUrl.split("embed/")[1].split("?")[0].split("/")[0];
+            }
 
-        if (videoId) {
+            if (videoId) {
+                videoHTML = `
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 10px; border-radius: 6px;">
+                        <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+                    </div>`;
+            }
+        } 
+        // 2. VIMEO
+        else if (videoUrl.includes("vimeo.com")) {
+            const vimeoId = videoUrl.split("/").pop().split("?")[0];
+            if (vimeoId) {
+                videoHTML = `
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 10px; border-radius: 6px;">
+                        <iframe src="https://player.vimeo.com/video/${vimeoId}" frameborder="0" allowfullscreen style="position: absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+                    </div>`;
+            }
+        }
+        // 3. GOOGLE DRIVE VIDEO LINK
+        else if (videoUrl.includes("drive.google.com")) {
+            const embedUrl = videoUrl.replace(/\/view.*$/, "/preview").replace(/\/edit.*$/, "/preview");
             videoHTML = `
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 10px;">
-                    <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen style="position: absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 10px; border-radius: 6px;">
+                    <iframe src="${embedUrl}" width="100%" height="100%" allow="autoplay" style="position: absolute; top:0; left:0; width:100%; height:100%; border:none;"></iframe>
                 </div>`;
         }
-    } else if (videoUrl.includes("vimeo.com")) {
-        const vimeoId = videoUrl.split("/").pop();
-        videoHTML = `
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 10px;">
-                <iframe src="https://player.vimeo.com/video/${vimeoId}" frameborder="0" allowfullscreen style="position: absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-            </div>`;
-    } else if (videoUrl) {
-        // Direct MP4 or video link fallback
-        videoHTML = `<video controls style="width: 100%; margin-top: 10px;"><source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
+        // 4. DIRECT VIDEO FILES (.mp4, .webm, etc.) OR UNKNOWN EMBED FALLBACK
+        else {
+            videoHTML = `
+                <div style="margin-top: 10px;">
+                    <video controls style="width: 100%; max-height: 400px; border-radius: 6px;">
+                        <source src="${videoUrl}">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>`;
+        }
     }
 
     return `
