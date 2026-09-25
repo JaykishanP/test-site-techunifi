@@ -3434,53 +3434,74 @@ document.querySelectorAll('.carousel-controls label, .carousel-dot').forEach(con
 <script>
 const NEWS_URL = "news.json";
 
+let sheetNews = [];
+let staticNews = [];
 let allNews = [];
 let filteredNews = [];
 
-const NEWS_PER_PAGE = 5;
+const NEWS_PER_PAGE = 10; // Unified items per page
 let currentPage = 1;
+
+// 1. Extract existing static HTML items from DOM on load
+function parseStaticNews() {
+    const container = document.getElementById("newsContainer");
+    if (!container) return [];
+
+    const existingRows = Array.from(container.querySelectorAll(".news-rows"));
+    
+    // Convert static DOM elements into data objects
+    const items = existingRows.map((row, index) => {
+        return {
+            isStatic: true,
+            elementHTML: row.outerHTML,
+            textForSearch: row.innerText.toLowerCase(),
+            sortOrder: index // Keep original static order
+        };
+    });
+
+    return items;
+}
 
 async function loadNews() {
     try {
-        console.log("Loading news...");
+        // Step A: Capture existing static news HTML from DOM
+        staticNews = parseStaticNews();
 
-        const response = await fetch(
-            NEWS_URL + "?v=" + Date.now()
-        );
+        // Step B: Fetch news from JSON sheet
+        console.log("Loading sheet news...");
+        const response = await fetch(NEWS_URL + "?v=" + Date.now());
 
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.includes("text/html")) {
-            throw new Error("Received HTML instead of JSON. The URL may require authentication or is misconfigured.");
+        if (response.ok) {
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("text/html")) {
+                sheetNews = await response.json();
+
+                // Sort sheet news newest first
+                sheetNews.sort((a, b) => {
+                    return new Date(b.Publish_Date || b.date) - new Date(a.Publish_Date || a.date);
+                });
+            }
         }
-
-        if (!response.ok) {
-            throw new Error(
-                "Unable to load news: " + response.status
-            );
-        }
-
-        allNews = await response.json();
-
-        // LOG FIRST ITEM TO CONSOLE TO VERIFY EXACT KEY NAMES
-        if (allNews.length > 0) {
-            console.log("Loaded raw news item:", allNews[0]);
-        }
-
-        // Sort newest first
-        allNews.sort((a, b) => {
-            return new Date(b.Publish_Date || b.date) - new Date(a.Publish_Date || a.date);
-        });
+    } catch (error) {
+        console.error("News sheet loading error:", error.message);
+    } finally {
+        // Step C: Combine Sheet News FIRST, then Static News
+        allNews = [
+            ...sheetNews.map(item => ({ ...item, isStatic: false })),
+            ...staticNews
+        ];
 
         filteredNews = [...allNews];
         renderNews();
-
-    } catch (error) {
-        console.error("News loading error:", error.message);
     }
 }
 
-
 function createStandardNews(news) {
+    // Return existing rendered HTML string directly if static item
+    if (news.isStatic) {
+        return news.elementHTML;
+    }
+
     const sanitize = (str) => {
         if (!str) return "";
         return String(str)
@@ -3491,7 +3512,6 @@ function createStandardNews(news) {
             .replace(/'/g, "&#039;");
     };
 
-    // Check both Main_image (lowercase i) and Main_Image (uppercase I)
     const rawImage = (news.Main_image || news.Main_Image || "").toString().trim();
     const isValidImage = rawImage && rawImage !== "undefined" && rawImage !== "null";
 
@@ -3516,31 +3536,22 @@ function createStandardNews(news) {
                 ${location}
             </div>
             <div class="news-content">
-                <p>
-                    ${description}
-                </p>
+                <p>${description}</p>
                 ${imageHTML}
             </div>
         </div>
     `;
 }
 
-
 function createNewsHTML(news) {
+    if (news.isStatic) return news.elementHTML;
+
     const articleType = news.Article_Type || news.article_type || news.Type;
     switch (articleType) {
         case "Gallery":
-            if (typeof createGalleryNews === "function") {
-                return createGalleryNews(news);
-            }
-            return createStandardNews(news);
-
+            return (typeof createGalleryNews === "function") ? createGalleryNews(news) : createStandardNews(news);
         case "Video":
-            if (typeof createVideoNews === "function") {
-                return createVideoNews(news);
-            }
-            return createStandardNews(news);
-
+            return (typeof createVideoNews === "function") ? createVideoNews(news) : createStandardNews(news);
         default:
             return createStandardNews(news);
     }
@@ -3548,31 +3559,45 @@ function createNewsHTML(news) {
 
 function renderNews() {
     const container = document.getElementById("newsContainer");
-
-    if (!container) {
-        console.error("newsContainer element was not found.");
-        return;
-    }
+    if (!container) return;
 
     const start = (currentPage - 1) * NEWS_PER_PAGE;
     const end = start + NEWS_PER_PAGE;
 
     const pageNews = filteredNews.slice(start, end);
 
-    container.innerHTML = pageNews
-        .map(createNewsHTML)
-        .join("");
+    // Re-render container with combined sheet + static items
+    container.innerHTML = pageNews.map(createNewsHTML).join("");
 
-    if (typeof renderPagination === "function") {
-        renderPagination();
+    renderPaginationControls();
+}
+
+function renderPaginationControls() {
+    const pagination = document.getElementById("news-pagination");
+    if (!pagination) return;
+
+    const numPages = Math.ceil(filteredNews.length / NEWS_PER_PAGE);
+    pagination.innerHTML = "";
+
+    if (numPages <= 1) return;
+
+    for (let i = 1; i <= numPages; i++) {
+        const button = document.createElement("button");
+        button.textContent = i;
+        if (i === currentPage) button.classList.add("active");
+
+        button.addEventListener("click", function () {
+            currentPage = i;
+            renderNews();
+            const tabElement = document.getElementById("tab2") || document.getElementById("newsContainer");
+            if (tabElement) tabElement.scrollIntoView({ behavior: "smooth" });
+        });
+        pagination.appendChild(button);
     }
 }
 
-// Converts Excel serial date numbers (e.g. 46290) OR YYYY-MM-DD to standard MM.DD.YY format
 function formatNewsDate(dateVal) {
     if (!dateVal) return "";
-
-    // Convert Excel Serial Date to JS Date if it's a number like 46290
     if (!isNaN(dateVal) && Number(dateVal) > 30000) {
         const excelDate = new Date((Number(dateVal) - (25567 + 2)) * 86400 * 1000);
         const mm = String(excelDate.getMonth() + 1).padStart(2, '0');
@@ -3580,11 +3605,9 @@ function formatNewsDate(dateVal) {
         const yy = String(excelDate.getFullYear()).slice(-2);
         return `${mm}.${dd}.${yy}`;
     }
-
     const dateStr = String(dateVal);
     const parts = dateStr.split("-");
     if (parts.length !== 3) return dateStr;
-
     const [year, month, day] = parts;
     return `${month}.${day}.${year.slice(-2)}`;
 }
@@ -3597,6 +3620,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const search = this.value.toLowerCase().trim();
 
             filteredNews = allNews.filter(news => {
+                if (news.isStatic) {
+                    return news.textForSearch.includes(search);
+                }
                 const text = `
                     ${news.Company || ""}
                     ${news.Location || ""}
@@ -3615,7 +3641,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadNews();
 });
 </script>
-
 
 </body>
 
