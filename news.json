@@ -2,7 +2,7 @@
   {
     "ID": "NEWS-001",
     "Status": "Published",
-    "Publish_Date": "2026-08-15",
+    "Publish_Date": "46249",
     "Company": "Tru by Hilton Meridian",
     "Location": "Meridian, MS",
     "Category": "",
@@ -11,20 +11,6 @@
     "Gallery_Images": "",
     "Video_URL": "",
     "Article_Type": "Standard",
-    "Sort_Order": ""
-  },
-  {
-    "ID": "NEWS-002",
-    "Status": "Published",
-    "Publish_Date": "2026-09-25",
-    "Company": "Testing",
-    "Location": "Testing",
-    "Category": "",
-    "Description": "Testing",
-    "Main_image": "",
-    "Gallery_Images": "assets/img/about-images/news/tru-meridian.jpg , assets/img/about-images/news/tru-meridian.jpg",
-    "Video_URL": "",
-    "Article_Type": "Gallery",
     "Sort_Order": ""
   }
 ]
