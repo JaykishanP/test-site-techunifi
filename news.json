@@ -22,7 +22,7 @@
     "Category": "",
     "Description": "Testing",
     "Main_image": "",
-    "Gallery_Images": "assets/img/about-images/news/tru-meridian.jpg | assets/img/about-images/news/tru-meridian.jpg",
+    "Gallery_Images": "assets/img/about-images/news/tru-meridian.jpg , assets/img/about-images/news/tru-meridian.jpg",
     "Video_URL": "",
     "Article_Type": "Gallery",
     "Sort_Order": ""
