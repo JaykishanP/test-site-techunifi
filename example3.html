@@ -5929,491 +5929,42 @@ box-shadow: 0 0 1px 6px rgba(49, 61, 83, .1), 0 0 12px rgba(47, 59, 82, .18);
   </style>
    
 
- <!-- <style>
-
-  /* ==========================================================================
-   1. CSS Variables & Theme Defaults
-   ========================================================================== */
-:root {
-  --orange: #ff6600;
-  --darkgray: rgba(0, 0, 0, 0.7);
-  --white: #ffffff;
-}
-/* =========================================================
-   SCROLL BANNER
-========================================================= */
-
-.banner-scroll-section {
-    position: relative;
-
-    /*
-       9 services.
-       This creates the scroll distance.
-    */
-    height: 700vh;
-
-    width: 100%;
-
-    padding: 0;
-
-    background: var(--blue, #313d53);
-}
-
-
-/* =========================================================
-   STICKY BANNER
-========================================================= */
-
-.imagemap-wrapper {
-    position: sticky;
-
+<style>
+  /* HEADER ALWAYS VISIBLE */
+#nav-menu.header-nav {
+    position: fixed !important;
     top: 0;
-
+    left: 0;
     width: 100%;
-
-    /*
-       IMPORTANT:
-       Exactly one viewport.
-    */
-    height: 100vh;
-
-    /* min-height: 600px; */
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: var(--blue, #313d53);
-
-    /*
-       Do NOT use overflow:hidden here.
-    */
-    overflow: visible;
-
-    z-index: 10;
+    z-index: 12 !important;
 }
 
-
-/* =========================================================
-   IMAGE MAP
-========================================================= */
-
-.imagemap {
-    position: relative;
-
-    width: min(1000px, 90vw);
-
-    max-width: 100%;
-
-    margin: 0 auto;
+/* SCROLLING SERVICE BANNER */
+#hero.hero-home-main-section {
+    overflow: visible !important;
 }
 
-
-/* Main image */
-
-.imagemap > img {
-    display: block;
-
-    width: 100%;
-
-    max-width: 70%;
-
-    height: auto;
-
-    padding: 0;
-
-    margin: 0 auto;
-
-    object-fit: contain;
+#interactive-banner.banner-scroll-section {
+    position: relative !important;
+    overflow: visible !important;
+    height: 700vh !important;
+    padding: 0 !important;
 }
 
-/* ==========================================================================
-   3. Hotspot Area Base & Hover Styles
-   ========================================================================== */
-.imagemap .area {
-    position: absolute;
-
-    width: 12px;
-    height: 12px;
-
-    padding: 0;
-
-    margin: 0;
-
-    background-color: var(--orange);
-
-    border: 2px solid #fff;
-
-    border-radius: 50%;
-
-    z-index: 20;
-
-    box-sizing: border-box;
-    animation: 1s infinite zoom;
+#interactive-banner .imagemap-wrapper {
+    position: sticky !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    padding-top: 82px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    z-index: 10 !important;
 }
-
-.imagemap .area:hover,
-.imagemap .area.active-animate {
-    background-color: transparent;
-
-    border: 0;
-
-    animation: none !important;
-}
-
-/* Display Container Inside Hotspot */
-.imagemap .area .hover-display {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.imagemap .area:hover .hover-display,
-.imagemap .area.active-animate .hover-display {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* Hover Images Base Styles */
-.imagemap .hoverImage {
-  max-width: 100px; 
-  height: auto;
-  margin-bottom: 5px;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.imagemap .area:hover .hoverImage,
-.imagemap .area.active-animate .hoverImage {
-  opacity: 1; 
-  transform: scale(1);
-}
-
-/* Active Scroll Pulse Effect */
-.imagemap .area.active-animate .hoverImage,
-.imagemap .area.active-animate .info-box {
-  animation: pulse-scale 2s infinite ease-in-out; 
-}
-
-/* ==========================================================================
-   4. Info-Box Callout Badges
-   ========================================================================== */
-.info-box {
-  display: flex;
-  position: absolute;
-  top: -39px;
-  left: -28px;
-  padding: 3px 10px;
-  background-color: #fff;
-  border: 1px dotted var(--orange);
-  color: var(--orange);
-  backdrop-filter: blur(30px);
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 25px;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2), 0 6px 9px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  white-space: nowrap;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.info-box img {
-  max-width: 18px; 
-  height: auto;
-  margin-right: 10px;
-  padding: 0;
-}
-
-.info-box span {
-  display: inline-block;
-}
-
-/* ==========================================================================
-   5. Callout Connector Lines & Keyframes
-   ========================================================================== */
-/* Horizontal Line */
-.area .hover-display::before {
-  content: "";
-  position: absolute;
-  height: 2px;
-  width: 0;
-  top: 50%;
-  left: calc(100% + 10px);
-  background: var(--orange);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Vertical Line */
-.area .hover-display::after {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 0;
-  top: 50%;
-  left: calc(100% + 10px + var(--line-w, 50px));
-  background: var(--orange);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Make Lines Visible On Hover & Scroll Active States */
-.area:hover .hover-display::before,
-.area:hover .hover-display::after,
-.area.active-animate .hover-display::before,
-.area.active-animate .hover-display::after {
-  opacity: 1;
-}
-
-.area:hover .hover-display::before,
-.area.active-animate .hover-display::before {
-  animation: draw-horizontal 0.5s forwards ease-out, glow-pulse 1.6s infinite ease-in-out;
-}
-
-.area:hover .hover-display::after,
-.area.active-animate .hover-display::after {
-  animation: draw-vertical 0.5s 0.3s forwards ease-out, glow-pulse 1.6s infinite ease-in-out;
-}
-
-/* Line & Scale Animations */
-@keyframes draw-horizontal {
-  from { width: 0; }
-  to   { width: var(--line-w); }
-}
-
-@keyframes draw-vertical {
-  from { height: 0; }
-  to   { height: var(--line-h); }
-}
-
-@keyframes glow-pulse {
-  0%   { box-shadow: 0 0 8px #45e242; }
-  50%  { box-shadow: 0 0 16px #ffffff; }
-  100% { box-shadow: 0 0 8px #45e242; }
-}
-
-@keyframes pulse-scale {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-}
-
-@keyframes zoom {
-  0%, 100% {
-    box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.3); 
-  }
-  50% {
-    box-shadow: 0 0 0 6px rgba(255, 165, 0, 0.7); 
-  }
-}
-
-/* ==========================================================================
-   6. Individual Area Offsets & Line Dimensions
-   ========================================================================== */
-
-/* EV Charging */
-.ev-charge-map .hoverImage {
-  max-width: 64.6px;
-  position: relative;
-  left: 26px;
-  top: 1px;
-  padding: 0;
-}
-.ev-charge-map .info-box {
-  left: -239px;
-  top: -44px;
-}
-.area.ev-charge-map .hover-display::before {
-  top: -28px;
-  left: -31px;
-  --line-w: 42px;
-}
-.area.ev-charge-map .hover-display::after {
-        top: -26px;
-    left: 9px;
-    --line-h: 34px;
-}
-
-/* Telecom */
-.telecom-map .hoverImage {
-  position: relative;
-      max-width: 27.7px;
-    left: -6px;
-    top: -3.8px;
-  padding: 0;  
-}
-.telecom-map .info-box {
-    left: 234px;
-    top: -61px;
-}
-.area.telecom-map .hover-display::before {
-      top: -47px;
-    left: 3px;
-    --line-w: 233px;
-}
-.area.telecom-map .hover-display::after {
-  top: -47px;
-    left: 2px;
-    --line-h: 45px;
-}
-
-/* Lighting */
-.lightning-map .hoverImage {
-       max-width: 30px;
-    position: relative;
-    left: -6px;
-    top: 6px;
-    padding: 0;
-}
-.lightning-map .info-box {
-  left: 125px;
-  top: -74px;
-}
-.area.lightning-map .hover-display::before {
-      top: -58px;
-    left: -5px;
-    --line-w: 132px;
-}
-.area.lightning-map .hover-display::after {
-      top: -56px;
-    left: -5px;
-    --line-h: 63px;
-}
-
-/* IT Management */
-.itman-map .hoverImage {
-        max-width: 50px;
-    position: relative;
-    left: -1px;
-    top: -30px;
-    padding: 0;
-}
-.itman-map .info-box {
-   left: 214px;
-    top: -103px;
-}
-.area.itman-map .hover-display::before {
-      top: -86px;
-    left: -2px;
-    --line-w: 219px;
-}
-.area.itman-map .hover-display::after {
-     top: -86px;
-    left: -3px;
-    --line-h: 72px;
-}
-
-/* Low Voltage */
-.lowvoltage-map .hoverImage {
-    max-width: 213px;
-    position: relative;
-    left: -12px;
-    top: -194px;
-    padding: 0;
-}
-.lowvoltage-map .info-box {
-  left: 483px;
-  top: 22px;
-}
-.area.lowvoltage-map .hover-display::before {
-  top: 35px;
-  left: 19px;
-  --line-w: 464px;
-}
-.area.lowvoltage-map .hover-display::after {
-  top: -60px;
-  left: 19px;
-  --line-h: 97px;
-}
-
-/* Security */
-.security-map .hoverImage {
-        max-width: 170px;
-    position: relative;
-    left: 68px;
-    top: -33px;
-    padding: 0;
-}
-.security-map .info-box {
-      left: 290px;
-    top: 32px;
-}
-.area.security-map .hover-display::before {
-      top: 47px;
-    left: 131px;
-    --line-w: 166px;
-}
-.area.security-map .hover-display::after {
-    top: 48px;
-    left: 295px;
-    --line-h: 12px;
-}
-
-/* Audio-Video */
-.audivide-map .hoverImage {
-      max-width: 63px;
-    position: relative;
-    left: 49px;
-    top: -9px;
-    padding: 0;
-}
-.audivide-map .info-box {
-  left: -393px;
-  top: -59px;
-}
-.area.audivide-map .hover-display::before {
-  top: -44px;
-  left: -256px;
-  --line-w: 282px;
-}
-.area.audivide-map .hover-display::after {
-  top: -43px;
-  left: 24px;
-  --line-h: 34px;
-}
-
-/* Network */
-.network-map .hoverImage {
-     max-width: 129.6px;
-    position: relative;
-    left: 64px;
-    top: -6px;
-    padding: 0;
-}
-.network-map .info-box {
-    left: -220px;
-    top: -49px;
-}
-.area.network-map .hover-display::before {
-  top: -35px;
-  left: -108px;
-  --line-w: 134px;
-}
-.area.network-map .hover-display::after {
-      top: -35px;
-    left: 24px;
-    --line-h: 32px;
-}
-
- </style> -->
+</style>
 
 <style>
 
@@ -6691,7 +6242,7 @@ box-shadow: 0 0 1px 6px rgba(49, 61, 83, .1), 0 0 12px rgba(47, 59, 82, .18);
 
     width: var(--line-w);
 
-    height: 2px;
+    height: 1px;
 
     background: var(--orange);
 
@@ -6725,7 +6276,7 @@ box-shadow: 0 0 1px 6px rgba(49, 61, 83, .1), 0 0 12px rgba(47, 59, 82, .18);
 
     top: var(--vertical-top);
 
-    width: 2px;
+    width: 1px;
 
     height: var(--line-h);
 
@@ -7612,422 +7163,310 @@ box-shadow: 0 0 1px 6px rgba(49, 61, 83, .1), 0 0 12px rgba(47, 59, 82, .18);
 
 }
 
-
 /* ============================================================
-   32. RESPONSIVE — MOBILE
-   481px → 767px
+   MOBILE + IPAD
+   FINAL OVERRIDE
+   Orange Fragment + Service Icon + Info Box
+   NO CONNECTOR LINES
    ============================================================ */
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media (max-width: 1024px) {
 
-    #interactive-banner.banner-scroll-section {
-        height: 650vh !important;
+    /* --------------------------------------------------------
+       REMOVE CONNECTOR LINES ONLY
+       -------------------------------------------------------- */
+
+    #interactive-banner .hover-display::before {
+        display: none !important;
+        content: none !important;
+        opacity: 0 !important;
+        animation: none !important;
     }
 
-    #interactive-banner .imagemap-wrapper {
-        height: 100vh;
+    #interactive-banner .hover-display::after {
+        display: none !important;
+        content: none !important;
+        opacity: 0 !important;
+        animation: none !important;
+    }
 
-        padding-top: 70px !important;
 
+    /* --------------------------------------------------------
+       ACTIVE SERVICE
+       Keep the orange fragment + service icon visible
+       -------------------------------------------------------- */
+
+    #interactive-banner
+    .area.active-animate
+    .hover-display {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
+    }
+
+
+    #interactive-banner
+    .area.active-animate
+    .hoverImage {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        transform: scale(1) !important;
+        animation: pulse-scale 2s infinite ease-in-out !important;
+    }
+
+
+    /* --------------------------------------------------------
+       INFO BOX
+       Show immediately
+       -------------------------------------------------------- */
+
+    #interactive-banner
+    .area.active-animate
+    .info-box {
+        opacity: 1 !important;
+        visibility: visible !important;
         display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+        transform: translateY(0) !important;
+        animation: service-name-appear 0.4s ease-out forwards !important;
+        gap: 1px;
+    }
+
+
+    /* --------------------------------------------------------
+       INACTIVE SERVICES
+       -------------------------------------------------------- */
+
+    #interactive-banner
+    .area:not(.active-animate)
+    .hover-display {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(-10px) !important;
+    }
+
+
+    #interactive-banner
+    .area:not(.active-animate)
+    .hoverImage {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: scale(0.8) !important;
+    }
+
+
+    #interactive-banner
+    .area:not(.active-animate)
+    .info-box {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        animation: none !important;
+    }
+
+    
+    #interactive-banner.banner-scroll-section {
+
+        /*
+         * IMPORTANT:
+         * No 600vh / 700vh scrolling section
+         */
+        height: unset !important;
+
+        min-height: unset !important;
+
+        position: relative !important;
 
         overflow: visible !important;
-    }
 
-    .imagemap {
-        width: 96vw;
-        max-width: 700px;
-        margin: 0 auto;
-    }
+        padding: 0 !important;
 
-    .imagemap > img {
-        width: 100%;
-        max-width: 92%;
-        height: auto;
+        margin: 0 !important;
     }
 
 
     /* --------------------------------------------------------
-       HOTSPOTS
+       IMAGE MAP WRAPPER
        -------------------------------------------------------- */
-
-    .imagemap .area {
-        width: 10px;
-        height: 10px;
-        border-width: 1.5px;
-    }
-
-
-    /* --------------------------------------------------------
-       SERVICE ICONS
-       -------------------------------------------------------- */
-
-    .imagemap .hoverImage {
-        max-width: 60px;
-    }
-
-    .ev-charge-map .hoverImage {
-        max-width: 45px;
-    }
-
-    .telecom-map .hoverImage {
-        max-width: 21px;
-    }
-
-    .lightning-map .hoverImage {
-        max-width: 23px;
-    }
-
-    .itman-map .hoverImage {
-        max-width: 36px;
-    }
-
-    .lowvoltage-map .hoverImage {
-        max-width: 130px;
-    }
-
-    .security-map .hoverImage {
-        max-width: 105px;
-    }
-
-    .audivide-map .hoverImage {
-        max-width: 45px;
-    }
-
-    .network-map .hoverImage {
-        max-width: 85px;
-    }
-
-
-    /* --------------------------------------------------------
-       SERVICE LABELS
-       -------------------------------------------------------- */
-
-    .info-box {
-        font-size: 12px;
-        padding: 3px 7px;
-        border-radius: 20px;
-        gap: 4px;
-    }
-
-
-    /* --------------------------------------------------------
-       HORIZONTAL LINES
-       -------------------------------------------------------- */
-
-    .area.ev-charge-map .hover-display::before {
-        --line-w: 30px;
-    }
-
-    .area.telecom-map .hover-display::before {
-        --line-w: 145px;
-    }
-
-    .area.lightning-map .hover-display::before {
-        --line-w: 82px;
-    }
-
-    .area.itman-map .hover-display::before {
-        --line-w: 138px;
-    }
-
-    .area.lowvoltage-map .hover-display::before {
-        --line-w: 290px;
-    }
-
-    .area.security-map .hover-display::before {
-        --line-w: 105px;
-    }
-
-    .area.audivide-map .hover-display::before {
-        --line-w: 178px;
-    }
-
-    .area.network-map .hover-display::before {
-        --line-w: 88px;
-    }
-
-
-    /* --------------------------------------------------------
-       VERTICAL LINES
-       -------------------------------------------------------- */
-
-    .area.ev-charge-map .hover-display::after {
-        --line-h: 27px;
-    }
-
-    .area.telecom-map .hover-display::after {
-        --line-h: 32px;
-    }
-
-    .area.lightning-map .hover-display::after {
-        --line-h: 45px;
-    }
-
-    .area.itman-map .hover-display::after {
-        --line-h: 50px;
-    }
-
-    .area.lowvoltage-map .hover-display::after {
-        --line-h: 24px;
-    }
-
-    .area.security-map .hover-display::after {
-        --line-h: 8px;
-    }
-
-    .area.audivide-map .hover-display::after {
-        --line-h: 24px;
-    }
-
-    .area.network-map .hover-display::after {
-        --line-h: 23px;
-    }
-
-}
-
-
-/* ============================================================
-   33. RESPONSIVE — SMALL MOBILE
-   ≤ 480px
-   ============================================================ */
-
-@media (max-width: 480px) {
-
-    #interactive-banner.banner-scroll-section {
-        height: 650vh !important;
-    }
 
     #interactive-banner .imagemap-wrapper {
-        height: 100vh;
+
+        /*
+         * Remove sticky behavior
+         */
+        position: relative !important;
+
+        top: auto !important;
+
+        width: 100% !important;
+
+        height: unset !important;
+
+        min-height: unset !important;
 
         padding-top: 65px !important;
 
+        box-sizing: border-box !important;
+
         display: flex !important;
+
         align-items: center !important;
+
         justify-content: center !important;
 
         overflow: visible !important;
+
+        z-index: 10 !important;
+        padding-bottom: 20px;
+    }  
+#interactive-banner .imagemap > img {
+
+        display: block !important;
+
+        width: 100% !important;
+
+        max-width: 77% !important;
+
+        height: auto !important;
+
+        margin: 0 auto !important;
+
     }
-
-    .imagemap {
-        width: 100vw;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .imagemap > img {
-        width: 100%;
-        max-width: 96%;
-        height: auto;
-    }
-
-
-    /* --------------------------------------------------------
-       HOTSPOTS
-       -------------------------------------------------------- */
-
-    .imagemap .area {
-        width: 9px;
-        height: 9px;
-        border-width: 1px;
-    }
-
-
-    /* --------------------------------------------------------
-       SERVICE ICONS
-       -------------------------------------------------------- */
-
-    .imagemap .hoverImage {
-        max-width: 48px;
-    }
-
-    .ev-charge-map .hoverImage {
-        max-width: 38px;
-    }
-
-    .telecom-map .hoverImage {
-        max-width: 18px;
-    }
-
-    .lightning-map .hoverImage {
-        max-width: 20px;
-    }
-
-    .itman-map .hoverImage {
-        max-width: 30px;
-    }
-
-    .lowvoltage-map .hoverImage {
-        max-width: 105px;
-    }
-
-    .security-map .hoverImage {
-        max-width: 85px;
-    }
-
-    .audivide-map .hoverImage {
-        max-width: 38px;
-    }
-
-    .network-map .hoverImage {
-        max-width: 70px;
-    }
-
-
-    /* --------------------------------------------------------
-       SERVICE LABELS
-       -------------------------------------------------------- */
-
+    #interactive-banner .imagemap .area:not(.active-animate)
     .info-box {
-        font-size: 10px;
 
-        padding: 2px 6px;
+        opacity: 0 !important;
 
-        border-radius: 18px;
+        transform: translateY(8px) !important;
 
-        gap: 3px;
+        animation: none !important;
+        padding: 1px 2px;
+    }
+    .info-box span {
+    font-size: 8px;
+}
+.ev-charge-map .info-box {
+    left: -101px;
+    top: -28px;
+}
+.telecom-map .info-box {
+    left: -29px;
+    top: -29px;
+}
+.lightning-map .info-box {
+            left: -10px;
+        top: -26px;
+}
+.itman-map .info-box {
+    left: 5px;
+    top: -43px;
+}
+.lowvoltage-map .info-box {
+    left: 4px;
+    top: 2px;
+}
 
+.security-map .info-box {
+    left: 4px;
+    top: 2px;
+}
+.audivide-map .info-box {
+    left: -24px;
+    top: -22px;
+}
+.network-map .info-box {
+    left: -15px;
+    top: -27px;
+}
+.imagemap .info-box img {
+    padding: 0;
+    max-width: 11px;
+}
+.imagemap .area {
+    width: 8px;
+    height: 8px;
+}
+
+/* ================================== */
+.ev-charge-map .hoverImage {
+    max-width: 26.6px;
+    position: relative;
+    left: -1px;
+    top: 0px;
+    padding: 0;
+}
+.telecom-map .hoverImage {
+    position: relative;
+    max-width: 14.7px;
+    left: -6px;
+    top: -0.8px;
+    padding: 0;
+}
+.lightning-map .hoverImage {
+    max-width: 13px;
+    position: relative;
+    left: 3px;
+    top: 1px;
+    padding: 0;
+}
+.itman-map .hoverImage {
+    max-width: 19px;
+    position: relative;
+    left: -1px;
+    top: -10px;
+    padding: 0;
+}
+.lowvoltage-map .hoverImage {
+    max-width: 100px;
+    position: relative;
+    left: -12px;
+    top: -87px;
+    padding: 0;
+}
+.security-map .hoverImage {
+    max-width: 83px;
+    position: relative;
+    left: 24px;
+    top: -16px;
+    padding: 0;
+}
+.audivide-map .hoverImage {
+    max-width: 22px;
+    position: relative;
+    left: 12px;
+    top: 0px;
+    padding: 0;
+}
+.network-map .hoverImage {
+    max-width: 64.6px;
+    position: relative;
+    left: 17px;
+    top: -2px;
+    padding: 0;
+}
+@keyframes zoom {
+
+    0%,
+    100% {
         box-shadow:
-            0 1px 7px rgba(0, 0, 0, 0.18),
-            0 4px 6px rgba(0, 0, 0, 0.08);
+            0 0 0 2px
+            rgba(255, 165, 0, 0.3);
     }
 
-
-    /* --------------------------------------------------------
-       HORIZONTAL LINES
-       -------------------------------------------------------- */
-
-    .area.ev-charge-map .hover-display::before {
-        --line-w: 24px;
-    }
-
-    .area.telecom-map .hover-display::before {
-        --line-w: 115px;
-    }
-
-    .area.lightning-map .hover-display::before {
-        --line-w: 65px;
-    }
-
-    .area.itman-map .hover-display::before {
-        --line-w: 110px;
-    }
-
-    .area.lowvoltage-map .hover-display::before {
-        --line-w: 230px;
-    }
-
-    .area.security-map .hover-display::before {
-        --line-w: 83px;
-    }
-
-    .area.audivide-map .hover-display::before {
-        --line-w: 140px;
-    }
-
-    .area.network-map .hover-display::before {
-        --line-w: 70px;
-    }
-
-
-    /* --------------------------------------------------------
-       VERTICAL LINES
-       -------------------------------------------------------- */
-
-    .area.ev-charge-map .hover-display::after {
-        --line-h: 22px;
-    }
-
-    .area.telecom-map .hover-display::after {
-        --line-h: 26px;
-    }
-
-    .area.lightning-map .hover-display::after {
-        --line-h: 36px;
-    }
-
-    .area.itman-map .hover-display::after {
-        --line-h: 40px;
-    }
-
-    .area.lowvoltage-map .hover-display::after {
-        --line-h: 19px;
-    }
-
-    .area.security-map .hover-display::after {
-        --line-h: 7px;
-    }
-
-    .area.audivide-map .hover-display::after {
-        --line-h: 19px;
-    }
-
-    .area.network-map .hover-display::after {
-        --line-h: 18px;
-    }
-
-
-    /* --------------------------------------------------------
-       KEEP REVERSE-DIRECTION SERVICES
-       -------------------------------------------------------- */
-
-    .area.ev-charge-map .hover-display::before,
-    .area.audivide-map .hover-display::before,
-    .area.network-map .hover-display::before {
-        transform-origin: right center;
-    }
-
-    .area.security-map .hover-display::before,
-    .area.telecom-map .hover-display::before,
-    .area.lightning-map .hover-display::before,
-    .area.itman-map .hover-display::before,
-    .area.lowvoltage-map .hover-display::before {
-        transform-origin: left center;
+    50% {
+        box-shadow:
+            0 0 0 3px
+            rgba(255, 165, 0, 0.7);
     }
 
 }
+
+
+}
+
 
 </style>
 
-<style>
-  /* HEADER ALWAYS VISIBLE */
-#nav-menu.header-nav {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 12 !important;
-}
 
-/* SCROLLING SERVICE BANNER */
-#hero.hero-home-main-section {
-    overflow: visible !important;
-}
-
-#interactive-banner.banner-scroll-section {
-    position: relative !important;
-    overflow: visible !important;
-    height: 700vh !important;
-    padding: 0 !important;
-}
-
-#interactive-banner .imagemap-wrapper {
-    position: sticky !important;
-    top: 0 !important;
-    width: 100% !important;
-    height: 100vh !important;
-    padding-top: 82px !important;
-    box-sizing: border-box !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    overflow: visible !important;
-    z-index: 10 !important;
-}
-</style>
    
 </head>
 
@@ -9093,7 +8532,7 @@ box-shadow: 0 0 1px 6px rgba(49, 61, 83, .1), 0 0 12px rgba(47, 59, 82, .18);
   <script src="assets/js/main.js" defer></script>
 
 
-  <script>
+ <script>
 document.addEventListener("DOMContentLoaded", function () {
 
     const section = document.getElementById("interactive-banner");
@@ -9106,7 +8545,22 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    function updateService() {
+    let mobileTimer = null;
+    let mobileIndex = 0;
+
+    /*
+    ============================================================
+    DESKTOP
+    Scroll controls the services
+    ============================================================
+    */
+
+    function updateDesktopService() {
+
+        /* Do nothing on mobile / tablet */
+        if (window.innerWidth <= 1024) {
+            return;
+        }
 
         const rect = section.getBoundingClientRect();
 
@@ -9143,21 +8597,145 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+
+    /*
+    ============================================================
+    MOBILE + IPAD
+    Automatically show services one by one
+    ============================================================
+    */
+
+    function startMobileAnimation() {
+
+        /* Only run on mobile / tablet */
+        if (window.innerWidth > 1024) {
+            return;
+        }
+
+        /* Prevent duplicate timers */
+        if (mobileTimer) {
+            return;
+        }
+
+        /* Start from first service */
+        mobileIndex = 0;
+
+        areas.forEach(function (area) {
+            area.classList.remove("active-animate");
+        });
+
+        /*
+        First service immediately
+        */
+        areas[mobileIndex].classList.add("active-animate");
+
+
+        /*
+        Move to next service every 2.2 seconds
+        */
+        mobileTimer = setInterval(function () {
+
+            areas[mobileIndex].classList.remove(
+                "active-animate"
+            );
+
+            mobileIndex++;
+
+            /*
+            Loop back to first service
+            */
+            if (mobileIndex >= areas.length) {
+                mobileIndex = 0;
+            }
+
+            areas[mobileIndex].classList.add(
+                "active-animate"
+            );
+
+        }, 2200);
+    }
+
+
+    /*
+    ============================================================
+    STOP MOBILE TIMER WHEN RETURNING TO DESKTOP
+    ============================================================
+    */
+
+    function stopMobileAnimation() {
+
+        if (mobileTimer) {
+
+            clearInterval(mobileTimer);
+
+            mobileTimer = null;
+        }
+
+        areas.forEach(function (area) {
+            area.classList.remove("active-animate");
+        });
+    }
+
+
+    /*
+    ============================================================
+    RESPONSIVE CHECK
+    ============================================================
+    */
+
+    function handleResponsiveMode() {
+
+        if (window.innerWidth <= 1024) {
+
+            /*
+            Mobile / iPad
+            Automatic animation
+            */
+            startMobileAnimation();
+
+        } else {
+
+            /*
+            Desktop
+            Scroll animation
+            */
+            stopMobileAnimation();
+
+            updateDesktopService();
+        }
+    }
+
+
+    /*
+    ============================================================
+    EVENTS
+    ============================================================
+    */
+
     window.addEventListener(
         "scroll",
-        updateService,
+        updateDesktopService,
         { passive: true }
     );
 
     window.addEventListener(
         "resize",
-        updateService
+        handleResponsiveMode
     );
 
-    updateService();
+
+    /*
+    ============================================================
+    INITIALIZE
+    ============================================================
+    */
+
+    handleResponsiveMode();
 
 });
+
 </script>
+
 
 </body>
 
