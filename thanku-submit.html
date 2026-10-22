@@ -20,11 +20,14 @@
   <meta property="og:description" content="Techunifi: full-service IT solutions through all USA—cabling, PBX, security, AV, Wi-Fi & EV charging." />
   <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
   <title>Thank You</title>
-  <link rel="canonical" href="https://www.techunifi.com/thanku-submit.html">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/favicon.png" rel="apple-touch-icon">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
+
+  <link rel="canonical" href="https://www.techunifi.com/thanku-submit.html">
+
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -64,6 +67,190 @@ function gtag(){dataLayer.push(arguments);}
  gtag('js', new Date());   gtag('config', 'G-CKH6XB0EMD'); 
 </script>
 
+<style>
+
+  .thank-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: linear-gradient(135deg, #f4f7ff, #eef2ff); */
+    padding: 0 0 30px 0;
+    /* font-family: 'Poppins', sans-serif; */
+}
+
+.thank-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 750px;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* .thank-card::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 200px;
+    height: 200px;
+    background: rgba(79, 70, 229, 0.08);
+    border-radius: 50%;
+} */
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: #eb6d47;
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(244, 189, 127, 0.3);
+}
+
+.thank-card h1 {
+    font-size: 42px;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.thank-card h5 {
+    font-size: 18px;
+    color: #6b7280;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.ticket-box {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 30px;
+}
+
+.ticket-box p {
+    margin-bottom: 10px;
+    color: #374151;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 33px;
+    font-size: 20px;
+}
+
+.ticket-box a {
+    display: inline-block;
+    text-decoration: none;
+    background: #eb6d47;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s ease;
+    font-weight: 600;
+    margin: unset;
+}
+
+.ticket-box a:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    color: #374151;
+    padding-left: 24px;
+}
+
+a.home-client-btn:hover::after{
+   margin-top: 4px;
+}
+
+.steps-box {
+    text-align: left;
+}
+
+.steps-box h3 {
+    margin-bottom: 20px;
+    color: #111827;
+    font-size: 24px;
+}
+
+.steps-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.steps-box li {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 18px;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+.steps-box li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    background: #ededed;
+    color: #eb6d47;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.steps-box span {
+    color: #eb6d47;
+    font-weight: 600;
+}
+.thank-section li a.home-client-btn {
+    display: inline;
+    padding: 0;
+    background-color: unset;
+    color: #eb6d47;
+    border: 0;
+}
+.thank-section li a.home-client-btn:hover::after{
+   background: unset;
+}
+
+@media (max-width: 767.9px) {
+    .thank-card {
+        padding: 35px 25px;
+    }
+
+    .thank-card h1 {
+        font-size: 32px;
+    }
+
+    .steps-box h3 {
+        font-size: 20px;
+    }
+    .ticket-box p{
+      display: unset;
+    }
+    .ticket-box p a{
+      margin-top: 10px;
+    }
+}
+
+</style>
+
 </head>
 
 <body class="ThankuSubmit">
@@ -90,17 +277,17 @@ function gtag(){dataLayer.push(arguments);}
   
       
     <div class="nav-end">
-       <a class="nav-link expand-btn raise-btn" href="submit.html" onclick="toggleUnderline(event)">
+        <a class="nav-link expand-btn raise-btn" href="submit.html" onclick="toggleUnderline(event)">
           <!-- <img src="assets/img/submit_icon.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Submit"> -->
           <!-- <span>Submit A Ticket</span> -->
            <span class="icon"></span>
-           <span class="label">Submit A Ticket</span>
+           <span class="label">Submit A Ticket<img src="assets/img/login_arrow.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Ticket"></span>
         </a>
         <a class="nav-link expand-btn search-site mobile-search" href="javascript:void(0)" onclick="toggleModal()">
           <!-- <img src="assets/img/search-icon.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Search"> -->
           <!-- <span>Search</span> -->
            <span class="icon"></span>
-           <span class="label">Search</span>
+           <span class="label">Search<img src="assets/img/login_arrow.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Search"></span>
         </a>
         <a class="nav-link expand-btn profile-icon" href="https://connect.ebizcharge.net/(S(nltki3tr3mxc3a0ya4rsesky))/EbizLogin.aspx?ReturnUrl=%2fTechunifi" target="_blank" onclick="toggleUnderline(event)">
           <!-- <img src="assets/img/account_circle.svg" alt="techunifi" width="29" height="29" loading="lazy" title="Login"> -->
@@ -148,14 +335,62 @@ function gtag(){dataLayer.push(arguments);}
 
   <main id="main">
 
-    <section class="thank-section">
-        <h1>Thank You!</h1>
-        <p>Form was submitted successfully.</p>
-        <p>Click here to submit ticket -<span><a href="submit.html">Submit Ticket</a></span></p>
-        <p>Click here to submit New Inquiry -<span><a href="new-inquiry.html">New Inquiry</a></span></p>
-        <p>Click here to submit Change Order -<span><a href="change-order.html">Change Order</a></span></p>
+ <section class="thank-section desk-thank">
+    <div class="thank-card">
+        <!-- <div class="success-icon">✔</div> -->
 
-    </section>
+        <!-- <h1>Thank You!</h1> -->
+        <h5>Your form was submitted successfully.</h5>
+
+        <div class="ticket-box">
+          <p>Track your ticket here:
+            <a href="https://techunifillc.zohodesk.com/portal/tickets" class="home-client-btn" target="_blank">
+                Go to Ticket Portal
+            </a>
+          </p>
+        </div>
+
+        <div class="steps-box">
+            <h3>How to Track Your Ticket</h3>
+
+            <ul>
+                <li>
+                    Sign up using the same email address you used while submitting the form.
+                </li>
+
+                <li>
+                    Sign in using the email and password created during registration.
+                </li>
+
+                <li>
+                    Click on <span>My Area</span>
+                </li>
+
+                <li>
+                    Track your ticket progress using filters like:
+                    <span>My Tickets</span>,
+                    <span>Open Tickets</span>,
+                    <span>Closed Tickets</span>,
+                    <span>On Hold Tickets</span>.
+                </li>
+
+                <li>
+                    You can also create a new ticket using the
+                    <strong>"Add Ticket"</strong> button.
+                </li>
+
+                <li>
+                      Have questions? Visit our 
+                    <a href="https://techunifillc.zohodesk.com/portal/en/kb/articles/faq" class="home-client-btn" target="_blank">
+                      [FAQs]
+                    </a>
+                    to find the answers you need.
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</section>
     
   </main><!-- End #main -->
   
@@ -209,7 +444,7 @@ function gtag(){dataLayer.push(arguments);}
                 <li>
                     <a href="tel:+1 (336) 860-6061"><span class="bi bi-telephone"></span>+1 (336) 860-6061</a>
                     <br>
-                    <a href="mailto: office-admin@techunifi.com"><span class="bi bi-envelope"></span>info@techunifi.com</a>
+                    <a href="mailto: info@techunifi.com"><span class="bi bi-envelope"></span>info@techunifi.com</a>
                 </li>
               </ul>
             </div>
@@ -244,7 +479,7 @@ function gtag(){dataLayer.push(arguments);}
       <div class="col-md-12" style="padding-top: 30px;">
         <div class="copy-right">
           <a href="https://www.techunifi.com/"><img src="assets/img/hero-img.svg" title="techunifi" alt="logo" loading="lazy"></a>
-          <p>@ Techunifi 2024</p>
+          <p>© Techunifi 2026</p>
         </div>
       </div>
     </div>
